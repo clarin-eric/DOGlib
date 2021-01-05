@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "name": "Zenodo",
+    "host_name": "zenodo",
+    "host_netloc": "zenodo.org",
+    "api": "/api/records/#RECORD_ID#",
+    "parsers": {
+      "type": "json",
+      "troot": "files",
+      "item": {
+        "title": "key",
+        "pid": "self"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "repository": {
+    "name": "B2SHARE",
+    "host_name": "b2share",
+    "host_netloc": "b2share.eudat.eu",
+    "api": "/api/records/#RECORD_ID#"
+  }
+}
