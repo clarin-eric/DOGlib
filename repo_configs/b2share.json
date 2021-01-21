@@ -3,6 +3,16 @@
     "name": "B2SHARE",
     "host_name": "b2share",
     "host_netloc": "b2share.eudat.eu",
-    "api": "/api/records/#RECORD_ID#"
+    "api": "/api/records/{record_id}",
+    "hdl_id": 11304,
+    "doi_id": 23728,
+    "parsers": {
+      "type": "json",
+      "troot": "files",
+      "item": {
+        "title": "key",
+        "pid": "self"
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@
     "name": "Zenodo",
     "host_name": "zenodo",
     "host_netloc": "zenodo.org",
-    "api": "/api/records/#RECORD_ID#",
+    "api": "/api/records/{record_id}",
     "parsers": {
       "type": "json",
       "troot": "files",
