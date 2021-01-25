@@ -1,22 +1,20 @@
 import json
 from collections import namedtuple
 import os
-from re import compile, match, Pattern, Match
-from requests import get, Response
-from typing import List, Any, Protocol
+from typing import List, Any
 
-from pid import PID, HDL
+from pid import PID, URL, HDL, DOI
 
 
 class RegRepo:
-    def __init__(self, name: str, host_name: str, host_netloc: str, hdl_id: str, doi_id: str, api: str):
-        if api == 'oai':
-            self.repo = OAIRepo(hdl_id, doi_id)
-        else:
-            self.repo = InvenioRepo(hdl_id, doi_id, api)
+    def __init__(self, name: str, host_name: str, host_netloc: str, hdl_id: str, doi_id: str, api: str, parser: dict):
         self.name: str = name
         self.host_name = host_name
         self.host_netloc = host_netloc
+        self.api: str = api
+        self.hdl_id: str = hdl_id
+        self.doi_id: str = doi_id
+        self.parser_type = parser['type']
 
     @staticmethod
     def config_decoder(json_dict: dict) -> Any:
@@ -27,43 +25,18 @@ class RegRepo:
                f"Host name: {self.host_name}\n" \
                f"Host netloc: {self.host_netloc}"
 
+    def fetch(self, pid: PID):
+        pid.to_url()
 
-class InvenioRepo:
-    def __init__(self, hdl_id: str, doi_id: str, api: str):
-        self.api: str = api
-        self.hdl_id: str = hdl_id
-        self.doi_id: str = doi_id
-
-    def _hdl_doi_redirect(self, hdl: PID) -> PID:
-        response: Response = get(str(hdl), allow_redirect=False)
-        return PID(self._extract_redirect_doi())
-
-    def _extract_redirect_doi(self, response: Response):
-        doi_in_html_pattern: Pattern = compile(r"\w+>(?P<url_string>(http(?:s)//\w+)<)")
-        doi_match: Match = match(doi_in_html_pattern, response.text)
-        return doi_match.group("url_string")
-
-    def request(self, pid: PID) -> str:
+    def match(self, pid: PID) -> bool:
         if pid.pid_type() == HDL:
-            pid = self._hdl_doi_redirect(pid)
-
-            return f"{self.api}/{pid.pid}"
+            return self.hdl_id == pid.pid.repo_id
+        elif pid.pid_type() == URL:
+            return self.host_name == pid.pid.host_name
+        elif pid.pid_type() == DOI:
+            return self.doi_id == pid.pid.repo_id
         else:
-            return ''
-
-
-class OAIRepo:
-    def __init__(self, name: str, host_name: str, host_netloc: str, hdl_id:str, doi_id:str):
-        self.name: str = name
-        self.host_name = host_name
-        self.host_netloc = host_netloc
-        self.hdl_id: str = hdl_id
-        self.doi_id: str = doi_id
-
-    def __str__(self):
-        return f"Name: {self.name}\n" \
-               f"Host name: {self.host_name}\n" \
-               f"Host netloc: {self.host_netloc}"
+            return False
 
 
 def load_repos(configs_dir: str= "./repo_configs") -> List[RegRepo]:

@@ -3,8 +3,6 @@ from requests import get, Response
 from typing import NamedTuple
 from urllib.parse import urlparse, urlsplit, ParseResult
 
-from repos import RegRepo
-
 
 class PID:
     def __init__(self, pid_string: str):
@@ -20,9 +18,6 @@ class PID:
                 break
         if not self.pid:
             raise ValueError(f"Provided string {self.pid} is in invalid PID format")
-
-    def match(self, reg_repo: RegRepo) -> bool:
-        return self.pid.match(reg_repo)
 
     def pid_type(self) -> type:
         return type(self.pid)
@@ -48,9 +43,6 @@ class URL:
         self.repo_id: str = url_match.group("repo_id")
         self.record_id: str = url_match.group("record_id")
         self.url: str = url_string
-
-    def match(self, reg_repo: RegRepo) -> bool:
-        return reg_repo.host_name == self.host_name
 
     def to_url(self):
         return self
@@ -78,9 +70,6 @@ class DOI:
         self.host_name: str = doi_match.group("host_name")
         self.record_id: str = doi_match.group("record_id")
 
-    def match(self, reg_repo: RegRepo) -> bool:
-        return reg_repo.doi_id == self.repo_id
-
     def to_url(self) -> URL:
         redirect: Response = get(f'https://doi.org/{self.repo_id}/{self.host_name}/{self.repo_id}', follow_redirects=False)
         redirect_url: str = redirect.url
@@ -105,9 +94,6 @@ class HDL:
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
         self.hdl_string: str = hdl_string
-
-    def match(self, reg_repo: RegRepo) -> bool:
-        return reg_repo.hdl_id == self.repo_id
 
     def to_url(self) -> URL:
         redirect: Response = get(f'http://hdl.handle.net/{self.repo_id}/{self.repo_id}', follow_redirects=False)
