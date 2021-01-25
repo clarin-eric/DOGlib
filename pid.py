@@ -1,3 +1,4 @@
+import os
 from re import compile, match, Match, Pattern
 from requests import get, Response
 from typing import NamedTuple
@@ -31,17 +32,14 @@ class PID:
 
 class URL:
     def __init__(self, url_string: str):
-        if not self.is_url(url_string) or 'hdl.handle.net' in url_string or 'doi.org' in url_string:
+        if (not self.is_url(url_string)) or 'hdl.handle.net' in url_string or 'doi.org' in url_string:
             raise ValueError(f"Provided string {url_string} is not an URL")
         url_split: NamedTuple = urlsplit(url_string)
         self.host_name: str = getattr(url_split, 'hostname')
 
         _path: str = getattr(url_split, 'path')
-        url_pattern: Pattern = compile(r"(?:/)(?P<repo_id>\d{0,9})/(?!/).*(?P<record_id>[\w]+)$")
-        url_match: Match = url_pattern.match(_path)
 
-        self.repo_id: str = url_match.group("repo_id")
-        self.record_id: str = url_match.group("record_id")
+        self.record_id: str = os.path.basename(_path)
         self.url: str = url_string
 
     def to_url(self):
@@ -51,6 +49,8 @@ class URL:
     def is_url(url_string: str) -> bool:
         try:
             url: ParseResult = urlparse(url_string)
+            if url.netloc == '':
+                return False
         except ValueError:
             return False
         except TypeError:
@@ -64,7 +64,7 @@ class DOI:
             raise ValueError(f"Provided string {doi_string} is not a DOI")
 
         doi_pattern: Pattern = compile(
-            r"(?:doi:)10.(?P<repo_id>\d{4,9})/(?P<host_name>[\w]+)\.(?P<record_id>[\w]+)$")
+            r"10.(?P<repo_id>\d{4,9})/(?P<host_name>\w+)\.(?P<record_id>\w+)$")
         doi_match: Match = doi_pattern.match(doi_string)
         self.repo_id: str = "10." + doi_match.group("repo_id")
         self.host_name: str = doi_match.group("host_name")
@@ -89,7 +89,7 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not an URL")
         hdl_pattern: Pattern = compile(
-            r"(?:hdl:)(?P<repo_id>\d{4,9})/(?P<record_id>[\w]+)$")
+            r"(?P<repo_id>\d{4,9})/(?P<record_id>[\w-]+)$")
         hdl_match: Match = hdl_pattern.match(hdl_string)
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
@@ -102,7 +102,7 @@ class HDL:
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
-        regex: Pattern = compile(r"(?:hdl:)\d{4,9}/[\w]+$")
+        regex: Pattern = compile(r"\d{4,9}/[\w-]+$")
         if match(regex, hdl_string):
             return True
         else:
