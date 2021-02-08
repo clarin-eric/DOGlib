@@ -1,0 +1,10 @@
+{
+  "repository": {
+    "name": "LINDAT/CLARIAH-CZ",
+    "host_name": "LINDAT/CLARIAH-CZ",
+    "host_netloc": "https://lindat.mff.cuni.cz/",
+    "api": "oai",
+    "hdl_id": 11304,
+    "doi_id": 23728
+  }
+}
