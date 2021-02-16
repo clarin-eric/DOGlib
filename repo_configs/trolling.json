@@ -1,0 +1,12 @@
+{
+  "repository": {
+    "name": "Trolling",
+    "host_name": "dataverse",
+    "host_netloc": "https://dataverse.no/",
+    "api": "https://dataverse.no/api/datasets/:persistentId/?persistentId=doi:10.18710/$repo_id",
+    "doi_id": "18710",
+    "parser": {
+      "type": "dataverse"
+    }
+  }
+}

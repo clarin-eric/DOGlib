@@ -3,13 +3,15 @@
     "name": "B2SHARE",
     "host_name": "b2share",
     "host_netloc": "b2share.eudat.eu",
-    "api": "/api/records/",
+    "api": "https://b2share.eudat.eu/api/records/$record_id",
     "hdl_id": "11304",
     "doi_id": "23728",
     "parser": {
       "type": "json",
       "config":{
         "items_root": "files",
+        "license": "metadata/license/license",
+        "description": "metadata/descriptions/description",
         "item": {
           "title": "key",
           "pid": "ePIC_PID"
