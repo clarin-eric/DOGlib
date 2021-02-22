@@ -1,93 +1,105 @@
 from collections import namedtuple
-from typing import Generator, NamedTuple, Type
+from typing import Any, Generator, List, NamedTuple, Type, Union
 from xml.etree import ElementTree
+
+from pid import PID
+from repos import RegRepo
 
 
 class Parser:
     def __init__(self):
         pass
 
-    def parse(self, response: dict) -> list:
+    def fetch(self, response: dict) -> list:
         pass
+
+    def traverse_path_in_dict(self, _dict: dict, path: str) -> Union[dict, str]:
+        for key in path.split('/'):
+            _dict = _dict[key]
+        return _dict
+
+    def fetchall_path_in_dict(self, root: dict, path: str) -> list:
+        keys_to_follow = path.split('/')
+        return [elem for elem in self._fetchall_path_in_dict(root, keys_to_follow)]
+
+    def _fetchall_path_in_dict(self, root: dict, keys_to_follow: List[str]) -> Generator[Any, Any, None]:
+        if hasattr(root, 'items'):
+            for k, v in root.items():
+                if k == keys_to_follow[0]:
+                    if k == keys_to_follow[-1]:
+                        yield v
+                    else:
+                        keys_to_follow.pop(0)
+                        if isinstance(v, dict):
+                            for result in self._fetchall_path_in_dict(v, keys_to_follow[:]):
+                                yield result
+                        elif isinstance(v, list):
+                            for d in v:
+                                for result in self._fetchall_path_in_dict(d, keys_to_follow[:]):
+                                    yield result
+        elif isinstance(root, list):
+            for d in root:
+                for result in self._fetchall_path_in_dict(d, keys_to_follow[:]):
+                    yield result
 
 
 class JSONParser(Parser):
     def __init__(self, parser_config: dict):
+        """
+
+        :param parser_config: dict,
+        """
         super().__init__()
-        self.items_root: str = parser_config['items_root']
-        self.item_key: str = parser_config['item']['pid']
-        self.title_key: str = parser_config['item']['title']
-        self.descritption_path: str = parser_config["description"]
+        self.dos_root: str = parser_config['items_root']
+        self.pid_path: str = parser_config['digital_object']['pid_key']
+        self.pid_api: str = ''
+        if 'pid_api' in parser_config['digital_object'].keys():
+            self.pid_api = parser_config['digital_object']['pid_api']
+        self.filename_path: str = parser_config['digital_object']['filename_key']
+        self.description_path: str = parser_config['description']
+        self.license_path: str = parser_config['license']
 
-    def parse(self, response: dict) -> dict:
-        items_root: dict = response[self.items_root]
+    def fetch(self, response: dict, reg_repo: RegRepo) -> dict:
+        """
 
-        items = self._parse_items(items_root)
+        :param response: dict, json response from call to repository
+        :return: dict, result of response parsing:
+            digitalObjects: [{filename: str, pid: str}]
+            decriptions: [str]
+            license: str
+        """
+        dos_root: dict = self.traverse_path_in_dict(response, self.dos_root)
+        dos: list = self._fetch_dos(dos_root, reg_repo)
         descriptions = self._parse_description(response)
-        _license = self._parse_license(response)
+        _license: str = str(self._parse_license(response))
 
-        return {"items": items,
+        return {"digitalObjects": dos,
                 "descriptions": descriptions,
                 "license": _license}
 
-    def _parse_items(self, items_root: dict) -> list:
-        items = []
-        for item in items_root:
-            title: str = item[self.title_key]
-            # The link to the item can be a nested dict in the file json (e.g. Zenodo)
-            link_keys: list = self.item_key.split('/')
-            for key in link_keys:
-                item = item[key]
-            digital_object = item
-            items.append({"title": title, "url": digital_object})
-        return items
+    def _fetch_dos(self, dos_root: dict, reg_repo: RegRepo) -> list:
+        """
+        Finds all Digital Objects in specified DO
+        :param dos_root:
+        :return:
+        """
+        dos = []
+        filenames = list(self.fetchall_path_in_dict(dos_root, self.filename_path))
+        pids = self.fetchall_path_in_dict(dos_root, self.pid_path)
+        for filename, _pid in zip(filenames, pids):
+            pid: PID = PID(_pid)
+            if self.pid_api:
+                pid: str = f'{reg_repo.get_host_netloc()}/{self.pid_api.replace("$pid", str(pid))}'
+            else:
+                pid: str = pid.get_resolvable()
+            dos.append({"filename": filename, "pid": pid})
+        return dos
 
     def _parse_description(self, response: dict) -> list:
-        ret = []
-        for key in self.descritption_path.split('/'):
-            if isinstance(response, list):
-                for desc in response:
-                    ret.append(desc[key])
-            else:
-                response = response[key]
-        return ret
+        return list(self.fetchall_path_in_dict(response, self.description_path))
 
     def _parse_license(self, response) -> str:
-        _license = response
-        for key in self.license.split('/'):
-            _license = _license[key]
-        return _license
-
-
-class DataverseParser(Parser):
-    def __init__(self, parser_config: dict):
-        super().__init__()
-        self.record_api: str = "https://dataverse.no/api/access/datafile/:persistentId?persistentId=$persistentId"
-
-    def parse(self, response: dict):
-        response = response["data"]["latestVersion"]
-        items_root: dict = response["files"]
-        metadata: dict = response["metadataBlocks"]
-
-        _license = response["license"]
-        items = self._parse_items(items_root)
-        title = self._parse_title(metadata)
-
-        return {"items": items,
-                "license": _license}
-
-    def _parse_items(self, items_root: dict) -> list:
-        items = []
-        for item in items_root:
-            persistentId = item["dataFile"]["persistentId"]
-            title = item["dataFile"]["filename"]
-            items.append({"title": title, "url": self.record_api.replace("$persistentId", persistentId)})
-        return items
-
-    def _parse_title(self, metadata: dict) -> str:
-        for field in metadata["citation"]["fields"]:
-            if field["typeName"] == "title":
-                return field["value"]
+        return list(self.fetchall_path_in_dict(response, self.license_path))[0]
 
 
 class CMDIParser(Parser):
@@ -97,7 +109,7 @@ class CMDIParser(Parser):
         self.item_key = item_key
         self.title_key = title_key
 
-    def parse(self, response: str):
+    def fetch(self, response: str):
         tree = ElementTree.parse(response)
         items_root = tree.getroot()
         return self._parse()
@@ -107,4 +119,4 @@ class CMDIParser(Parser):
             if item.tag == self.item_key:
                 print(item)
             else:
-                self.parse(item)
+                self.fetch(item)

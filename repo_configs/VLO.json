@@ -1,9 +1,0 @@
-{
-  "repository": {
-    "name": "Virtual Collection Registry  ",
-    "host_name": "CLARIN_ERIC",
-    "host_netloc": "https://collections.clarin.eu/",
-    "api": "oai",
-    "hdl_id": 11372
-  }
-}

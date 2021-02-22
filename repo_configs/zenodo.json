@@ -2,18 +2,18 @@
   "repository": {
     "name": "Zenodo",
     "host_name": "zenodo",
-    "host_netloc": "zenodo.org",
-    "api": "https://zenodo.org/api/records/$record_id",
-    "doi_id": "5281",
+    "host_netloc": "https://zenodo.org",
+    "api": "api/records/$record_id",
+    "doi_id": "10.5281",
     "parser": {
       "type": "json",
       "config": {
-        "license": "metadata/licence/id",
+        "license": "metadata/license/id",
         "items_root": "files",
         "description": "metadata/description",
-        "item": {
-          "title": "key",
-          "pid": "links/self"
+        "digital_object": {
+          "filename_key": "key",
+          "pid_key": "links/self"
         }
       }
     }

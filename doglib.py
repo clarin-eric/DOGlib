@@ -27,34 +27,43 @@ class DOG:
                     reg_repos.append(reg_repo)
         return reg_repos
 
-    def _match(self, pid: PID) -> Optional[RegRepo]:
+    def _sniff(self, pid: PID) -> Optional[RegRepo]:
         for reg_repo in self.reg_repos:
             if reg_repo.match_pid(pid):
                 return reg_repo
         return None
 
-    def _make_parser(self, parser_type: str, parser_config: dict):
+    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, CMDIParser]:
+        """
+
+        :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
+        :param parser_config: dict, Parser configuration dictionary
+        :return: Type[Parser]: Parser object
+        """
         if parser_type == "json":
             return JSONParser(parser_config)
         else:
             return CMDIParser()
 
-    def sniff(self, pid_string: str) -> Optional[list]:
+    def sniff(self, pid_string: str) -> str:
         pid = PID(pid_string)
-        matching_repo = self._match(pid)
+        matching_repo = self._sniff(pid)
+        return str(matching_repo)
+
+    def fetch(self, pid_string: str):
+        print(pid_string)
+        pid = PID(pid_string)
+        print(pid)
+        matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
             return None
         else:
-            print(matching_repo)
             matched_repo_entry_url: str = matching_repo.request_url(pid)
-            print(matched_repo_entry_url)
-            if not urlparse(matched_repo_entry_url).scheme:
-                matched_repo_entry_url = 'http://' + matched_repo_entry_url
             response: Response = requests.get(matched_repo_entry_url)
+
             parser: Union[JSONParser, CMDIParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                       matching_repo.get_parser_config())
-            print(response.json())
-            return parser.parse(response=response.json())
+            return parser.fetch(response.json(), matching_repo)
 
 
 

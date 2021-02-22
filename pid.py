@@ -1,12 +1,21 @@
 import os
-from re import compile, match, Match, Pattern
+from re import compile, match
 from requests import get, Response
-from typing import NamedTuple
+from typing import Match, NamedTuple, Pattern, Sequence
 from urllib.parse import urlparse, urlsplit, ParseResult
 
 
 class PID(object):
+    """
+    Class wrapping possible parses of input string (HDL, DOI, URL)
+
+    Attributes:
+        pid: type,      type of underlying parsed PID class instance
+    """
     def __init__(self, pid_string: str):
+        """
+        :param pid_string:  str, PID string that is a URL, handle or doi.
+        """
         pid_types: list = [URL, DOI, HDL]
         self.pid: object = None
         for pid_type in pid_types:
@@ -20,29 +29,62 @@ class PID(object):
         if not self.pid:
             raise ValueError(f"Provided string {self.pid} is in invalid PID format")
 
-    def pid_type(self) -> type:
+    def __str__(self):
+        return str(self.pid)
+
+    def get_pid_type(self) -> type:
+        """
+        Get underlying type of PID
+
+        :return: type, one of classes: URL, HDL, DOI
+        """
         return type(self.pid)
 
-    def record_id(self) -> str:
-        return self.pid.record_id
+    def get_record_id(self) -> str:
+        """
+        Get the ID
+
+        :return: str, record/entity #TODO nomenclature
+        """
+        return self.pid.get_record_id()
+
+    def get_resolvable(self) -> str:
+        return self.pid.resolvable()
 
     def to_url(self):
-        self.pid = self.pid.to_url()
+        """
+        Cast underlying PID to URL
+
+        :return: None
+        """
+        self.pid = self.pid.resolve_to_url()
 
 
 class URL:
     def __init__(self, url_string: str):
-        if (not self.is_url(url_string)) or 'hdl.handle.net' in url_string or 'doi.org' in url_string:
+        if not self.is_url(url_string):
             raise ValueError(f"Provided string {url_string} is not an URL")
+        self.url: ParseResult = urlparse(url_string)
         url_split: NamedTuple = urlsplit(url_string)
         self.host_netloc: str = getattr(url_split, 'hostname')
-
         _path: str = getattr(url_split, 'path')
+        if getattr(url_split, 'query'):
+            q = getattr(url_split, 'query')
+            pid: PID = PID(q)
+            self.record_id = str(pid)
 
-        self.record_id: str = os.path.basename(_path)
-        self.url: str = url_string
+        self.record_id: str = self.url.geturl().split('/')[-1]
 
-    def to_url(self):
+    def __str__(self):
+        return self.url.geturl()
+
+    def resolvable(self):
+        return self.__str__()
+
+    def get_record_id(self):
+        return self.record_id
+
+    def resolve_to_url(self):
         return self
 
     @staticmethod
@@ -64,20 +106,34 @@ class DOI:
             raise ValueError(f"Provided string {doi_string} is not a DOI")
 
         doi_pattern: Pattern = compile(
-            r".*(?P<repo_id>10.\d{4,9})/(?P<host_name>\w+)\.(?P<record_id>\w+)$")
+            r".*10\.(?P<repo_id>\d{4,9})/(?P<collection>[^\W]+)(?P<repo_record_sep>[./])?(?P<record_id>[\w]*)?$")
         doi_match: Match = doi_pattern.match(doi_string)
+        matched_groups: dict = doi_match.groupdict()
         self.repo_id: str = "10." + doi_match.group("repo_id")
-        self.host_name: str = doi_match.group("host_name")
-        self.record_id: str = doi_match.group("record_id")
+        self.collection: str = doi_match.group("collection")
+        self.repo_record_sep: str = ''
+        self.record_id: str = ''
+        if "repo_record_sep" in matched_groups and "record_id" in matched_groups:
+            self.repo_record_sep: str = doi_match.group("repo_record_sep")
+            self.record_id: str = doi_match.group("record_id")
 
-    def to_url(self) -> URL:
-        redirect: Response = get(f'https://doi.org/{self.repo_id}/{self.host_name}/{self.repo_id}', follow_redirects=False)
+    def __str__(self):
+        return f'doi:{self.repo_id}/{self.collection}{self.repo_record_sep}{self.record_id}'
+
+    def resolvable(self) -> str:
+        return 'https://doi.org/' + self.__str__()
+
+    def get_record_id(self):
+        return self.record_id
+
+    def resolve_to_url(self) -> URL:
+        redirect: Response = get(self.resolvable(), allow_redirects=True)
         redirect_url: str = redirect.url
         return URL(redirect_url)
 
     @staticmethod
     def is_doi(doi_string: str) -> bool:
-        regex: Pattern = compile(r".*10.\d{4,9}/[\w]+.[\w]+$")
+        regex: Pattern = compile(r".*10.\d{4,9}/[^\W]+[./][\w]+$")
         if match(regex, doi_string):
             return True
         else:
@@ -89,20 +145,28 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not an URL")
         hdl_pattern: Pattern = compile(
-            r".*(?P<repo_id>\d{4,9})/(?P<record_id>[\w\-]+)$")
-        hdl_match: Match = hdl_pattern.match(hdl_string)
+            r"^.*(?P<repo_id>\d{4}[\d]+)/(?P<record_id>[\w\-]+)$")
+        hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
-        self.hdl_string: str = hdl_string
 
-    def to_url(self) -> URL:
-        redirect: Response = get(f'http://hdl.handle.net/{self.repo_id}/{self.record_id}', follow_redirects=False)
+    def __str__(self):
+        return f"{self.repo_id}/{self.record_id}"
+
+    def resolvable(self) -> str:
+        return "https://hdl.handle.net/" + self.__str__()
+
+    def get_record_id(self):
+        return self.record_id
+
+    def resolve_to_url(self) -> URL:
+        redirect: Response = get(self.resolvable(), allow_redirects=True)
         redirect_url: str = redirect.url
         return URL(redirect_url)
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
-        regex: Pattern = compile(r".*\d{4,9}/[\w\d-]+$")
+        regex: Pattern = compile(r".*[\d]+/[\w\d-]+$")
         if match(regex, hdl_string):
             return True
         else:
