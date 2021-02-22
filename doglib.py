@@ -1,13 +1,11 @@
 import json
-from http.client import HTTPResponse
 import os
 import requests
 from requests import Response
-from typing import List, Union, Optional, Type
-from urllib.parse import urlparse
+from typing import List, Union, Optional
 
 from repos import RegRepo
-from parsers import JSONParser, CMDIParser, Parser
+from parsers import JSONParser
 from pid import PID
 
 
@@ -33,7 +31,7 @@ class DOG:
                 return reg_repo
         return None
 
-    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, CMDIParser]:
+    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser]:
         """
 
         :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
@@ -42,8 +40,6 @@ class DOG:
         """
         if parser_type == "json":
             return JSONParser(parser_config)
-        else:
-            return CMDIParser()
 
     def sniff(self, pid_string: str) -> str:
         pid = PID(pid_string)
@@ -51,9 +47,7 @@ class DOG:
         return str(matching_repo)
 
     def fetch(self, pid_string: str):
-        print(pid_string)
         pid = PID(pid_string)
-        print(pid)
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
             return None
@@ -61,7 +55,7 @@ class DOG:
             matched_repo_entry_url: str = matching_repo.request_url(pid)
             response: Response = requests.get(matched_repo_entry_url)
 
-            parser: Union[JSONParser, CMDIParser] = self._make_parser(matching_repo.get_parser_type(),
+            parser: Union[JSONParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                       matching_repo.get_parser_config())
             return parser.fetch(response.json(), matching_repo)
 

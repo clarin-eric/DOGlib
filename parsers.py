@@ -26,7 +26,7 @@ class Parser:
         if hasattr(root, 'items'):
             for k, v in root.items():
                 if k == keys_to_follow[0]:
-                    if k == keys_to_follow[-1]:
+                    if k == keys_to_follow[-1] and len(keys_to_follow) == 1:
                         yield v
                     else:
                         keys_to_follow.pop(0)
@@ -69,7 +69,7 @@ class JSONParser(Parser):
             license: str
         """
         dos_root: dict = self.traverse_path_in_dict(response, self.dos_root)
-        dos: list = self._fetch_dos(dos_root, reg_repo)
+        dos: list = self._fetch_files(dos_root, reg_repo)
         descriptions = self._parse_description(response)
         _license: str = str(self._parse_license(response))
 
@@ -77,13 +77,13 @@ class JSONParser(Parser):
                 "descriptions": descriptions,
                 "license": _license}
 
-    def _fetch_dos(self, dos_root: dict, reg_repo: RegRepo) -> list:
+    def _fetch_files(self, dos_root: dict, reg_repo: RegRepo) -> list:
         """
-        Finds all Digital Objects in specified DO
+        Find all download links to files
         :param dos_root:
         :return:
         """
-        dos = []
+        ret = []
         filenames = list(self.fetchall_path_in_dict(dos_root, self.filename_path))
         pids = self.fetchall_path_in_dict(dos_root, self.pid_path)
         for filename, _pid in zip(filenames, pids):
@@ -92,31 +92,11 @@ class JSONParser(Parser):
                 pid: str = f'{reg_repo.get_host_netloc()}/{self.pid_api.replace("$pid", str(pid))}'
             else:
                 pid: str = pid.get_resolvable()
-            dos.append({"filename": filename, "pid": pid})
-        return dos
+            ret.append({"filename": filename, "pid": pid})
+        return ret
 
     def _parse_description(self, response: dict) -> list:
         return list(self.fetchall_path_in_dict(response, self.description_path))
 
     def _parse_license(self, response) -> str:
         return list(self.fetchall_path_in_dict(response, self.license_path))[0]
-
-
-class CMDIParser(Parser):
-    def __init__(self, items_root: str, item_key: str, title_key: str):
-        super().__init__()
-        self.items_root = items_root
-        self.item_key = item_key
-        self.title_key = title_key
-
-    def fetch(self, response: str):
-        tree = ElementTree.parse(response)
-        items_root = tree.getroot()
-        return self._parse()
-
-    def _parse(self, items_root):
-        for item in items_root.getchildren():
-            if item.tag == self.item_key:
-                print(item)
-            else:
-                self.fetch(item)
