@@ -11,7 +11,7 @@
     },
     "hdl_id": "11372",
     "parser": {
-      "type": "cmdi",
+      "type": "xml",
       "config": {
         "description": ".//VirtualCollection/Description",
         "license": "",

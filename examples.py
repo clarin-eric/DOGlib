@@ -22,7 +22,7 @@ if __name__ == "__main__":
     ret = dog.fetch(url)
     print(ret)
 
-    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
+    url = '11304/a287e5b9-feca-4ad6-bc16-14675d574088'
     ret = dog.sniff(url)
     print(ret)
     ret = dog.fetch(url)

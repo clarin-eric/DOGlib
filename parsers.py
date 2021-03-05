@@ -19,13 +19,14 @@ class JSONParser:
         :param parser_config: dict, parser configuration retrieved from repository JSON config
         """
         super().__init__()
-        self.dos_root = parser_config['items_root']
-        self.pid_path = parser_config['ref_file']['pid']
+        self.dos_root: dict = parser_config['items_root']
+        self.pid_path: str = parser_config['ref_file']['pid']
+        self.pid_format: str = ''
         if 'pid_api' in parser_config['ref_file'].keys():
             self.pid_format = parser_config['ref_file']['pid_api']
-        self.filename_path = parser_config['ref_file']['filename']
-        self.description_path = parser_config['description']
-        self.license_path = parser_config['license']
+        self.filename_path: str = parser_config['ref_file']['filename']
+        self.description_path: str = parser_config['description']
+        self.license_path: str = parser_config['license']
 
     def fetch(self, response: Response, reg_repo: RegRepo) -> dict:
         """
@@ -39,7 +40,7 @@ class JSONParser:
         response: dict = response.json()
         ref_files_root: dict = self.traverse_path_in_dict(response, self.dos_root)
         ref_files: list = self._fetch_resources(ref_files_root, reg_repo)
-        descriptions = self._parse_description(response)
+        descriptions: str = self._parse_description(response)
         _license: str = str(self._parse_license(response))
 
         return {"ref_files": ref_files,
@@ -202,11 +203,11 @@ class XMLParser:
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
         ref_resources = xml_tree.findall(self.pid_path, nsmap)
-        labels = xml_tree.find(self.filename_path, nsmap)
-        ret = []
-        for ref_resource, label in zip(ref_resources, labels):
-            ret.append({"filename": label.text, "pid": ref_resource.text})
-        return []
+        if self.filename_path:
+            labels = xml_tree.find(self.filename_path, nsmap)
+            return [{"filename": label.text, "pid": ref_resource.text} for ref_resource, label in zip(ref_resources, labels)]
+        else:
+            return [{"filename": '', "pid": ref_resource.text} for ref_resource in ref_resources]
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -219,7 +220,7 @@ class XMLParser:
         except SyntaxError:
             return ''
         
-        if license:
+        if license is not None:
             return license.text
         else:
             return ''

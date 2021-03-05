@@ -16,7 +16,7 @@
     },
     "hdl_id": ["11234", "11858"],
     "parser": {
-      "type": "cmdi",
+      "type": "xml",
       "config": {
         "namespaces": {
           "olac": "http://www.clarin.eu/cmd/",
