@@ -1,10 +1,15 @@
 {
   "repository": {
-    "name": "B2SHARE",
-    "host_name": "b2share",
-    "host_netloc": "https://b2share.eudat.eu",
+    "name": "europeana",
+    "host_name": "europeana",
+    "host_netloc": "https://www.europeana.eu",
     "api": {
-        "base": "https://b2share.eudat.eu/api/records/$record_id"
+        "base": "https://api.europeana.eu/oai/record?",
+        "params": {
+          "verb": "GetRecord",
+          "metadataPrefix": "edm",
+          "identifier": "%2$collection%2$record_id"
+        }
     },
     "hdl_id": "11304",
     "doi_id": "10.23728",

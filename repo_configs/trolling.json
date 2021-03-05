@@ -3,7 +3,12 @@
     "name": "Trolling",
     "host_name": "dataverse",
     "host_netloc": "https://dataverse.no",
-    "api": "api/datasets/:persistentId/?persistentId=doi:10.18710/$record_id",
+    "api": {
+        "base": "https://dataverse.no/api/datasets/:persistentId/?",
+        "params": {
+          "persistentId": "doi:10.18710/$record_id"
+        }
+    },
     "doi_id": "10.18710",
     "parser": {
       "type": "json",
@@ -11,9 +16,9 @@
         "license": "data/latestVersion/license",
         "items_root": "data/latestVersion/files",
         "description": "",
-        "digital_object": {
-          "filename_key": "dataFile/filename",
-          "pid_key": "dataFile/persistentId",
+        "ref_file": {
+          "filename": "dataFile/filename",
+          "pid": "dataFile/persistentId",
           "pid_api": "/api/access/datafile/:persistentId/?persistentId=$pid"
         }
       }

@@ -1,0 +1,25 @@
+{
+  "repository": {
+    "name": "Virtual Collection Registry",
+    "host_name": "clarin",
+    "host_netloc": "https://collections.clarin.eu",
+    "headers": {
+      "Accept": "application/x-cmdi+xml"
+    },
+    "api": {
+      "base": "https://collections.clarin.eu/service/virtualcollections/$record_id"
+    },
+    "hdl_id": "11372",
+    "parser": {
+      "type": "cmdi",
+      "config": {
+        "description": ".//VirtualCollection/Description",
+        "license": "",
+        "ref_file": {
+          "pid": ".//ResourceProxy[ResourceType='Resource']/ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}

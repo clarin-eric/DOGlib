@@ -1,19 +1,26 @@
 import json
 from collections import namedtuple
 import os
+import requests
 from typing import List, Any
+from urllib.parse import urlencode
 
 from pid import PID, URL, HDL, DOI
 
 
 class RegRepo(object):
     """
-
+    Class wrapping registered repository configuration, all objects of this class are loaded on the DOGlib object init
     """
-    def __init__(self, config_dict):
-        self.api: str = ''
+    def __init__(self, config_dict: dict):
+        """
+
+        :param config_dict: dict, JSON dict with repository configuration
+        """
+        self.api: dict = {}
         self.doi_id: str = ''
-        self.hdl_id: str = ''
+        self.hdl_id: set = set()
+        self.headers: dict = {}
         self.host_name: str = ''
         self.host_netloc: str = ''
         self.name: str = ''
@@ -21,26 +28,69 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def request_url(self, pid: PID) -> str:
+    def get_request_url(self, pid: PID) -> str:
+        """
+        Resolve the persistent identifier in case of URL and HDL and generate URL for GET request
+
+        :param pid: PID, PID object instance
+        :return: str, GET request URL string
+        """
         pid.to_url()
-        print(pid.pid)
-        if self.api == "oai":
-            pass
+        base = self.api["base"]
+        if "params" in self.api:
+            params = self.api["params"]
         else:
-            return f"{self.host_netloc}/{self.api.replace('$record_id', pid.get_record_id())}"
+            params = {}
+
+        url_query: str = urlencode(params)
+        url_query = url_query.replace("%24", "$")
+        url: str = f"{base}{url_query}"
+        return url.replace('$collection', pid.get_collection()).replace('$record_id', pid.get_record_id())
 
     def get_host_netloc(self) -> str:
+        """
+        Return repository's host netloc
+
+        :return: str, host netloc URL
+        """
         return self.host_netloc
 
     def get_parser_type(self) -> str:
+        """
+        Return parser type relevant for this repository
+
+        :return: str, string representation of parser type, see JSON schema for possible values # TODO ref JSON schema
+        """
         return self.parser['type']
 
     def get_parser_config(self) -> dict:
-        return self.parser['config']
+        """
+        Return dict with parser configuration, this dict is passed to relevant parser constructor
+
+        :return: dict, parser configuration dict, see JSON schema for possible values # TODO ref JSON schema
+        """
+        if 'config' in self.parser:
+            return self.parser['config']
+        else:
+            return {}
+
+    def get_headers(self) -> dict:
+        """
+        Return headers for collection GET request
+
+        :return: dict, request headers
+        """
+        return self.headers
 
     def match_pid(self, pid: PID) -> bool:
+        """
+        Check if given persistent identifier matches this repository
+
+        :param pid: PID object instance
+        :return: bool, True if PID points to collection in this repository, False otherwise
+        """
         if pid.get_pid_type() == HDL:
-            return self.hdl_id == pid.pid.repo_id
+            return pid.pid.repo_id in self.hdl_id
         elif pid.get_pid_type() == URL:
             return self.host_netloc.replace('https://', '').replace('http://', '') == \
                    pid.pid.host_netloc.replace('https://', '').replace('http://', '')
@@ -53,11 +103,3 @@ class RegRepo(object):
         return f"Name: {self.name}\n" \
                f"Host name: {self.host_name}\n" \
                f"Host netloc: {self.host_netloc}"
-
-    @staticmethod
-    def config_decoder(json_dict: dict) -> Any:
-        return namedtuple('RegRepo', json_dict.keys())(*json_dict.values())
-
-
-
-

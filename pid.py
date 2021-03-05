@@ -51,13 +51,20 @@ class PID(object):
     def get_resolvable(self) -> str:
         return self.pid.resolvable()
 
+    def get_collection(self) -> str:
+        if hasattr(self.pid, 'get_collection'):
+            return self.pid.get_collection()
+        else:
+            return ""
+
     def to_url(self):
         """
         Cast underlying PID to URL
 
         :return: None
         """
-        self.pid = self.pid.resolve_to_url()
+        url = self.pid.resolve_to_url()
+        self.pid = URL(url)
 
 
 class URL:
@@ -74,6 +81,7 @@ class URL:
             self.record_id = str(pid)
 
         self.record_id: str = self.url.geturl().split('/')[-1]
+        self.collection: str = self.url.geturl().split('/')[-2]
 
     def __str__(self):
         return self.url.geturl()
@@ -81,11 +89,14 @@ class URL:
     def resolvable(self):
         return self.__str__()
 
+    def get_collection(self):
+        return self.collection
+
     def get_record_id(self):
         return self.record_id
 
-    def resolve_to_url(self):
-        return self
+    def resolve_to_url(self) -> str:
+        return self.__str__()
 
     @staticmethod
     def is_url(url_string: str) -> bool:
@@ -126,10 +137,10 @@ class DOI:
     def get_record_id(self):
         return self.record_id
 
-    def resolve_to_url(self) -> URL:
+    def resolve_to_url(self) -> str:
         redirect: Response = get(self.resolvable(), allow_redirects=True)
         redirect_url: str = redirect.url
-        return URL(redirect_url)
+        return redirect_url
 
     @staticmethod
     def is_doi(doi_string: str) -> bool:
@@ -159,10 +170,11 @@ class HDL:
     def get_record_id(self):
         return self.record_id
 
-    def resolve_to_url(self) -> URL:
+    def resolve_to_url(self) -> str:
+        ret = get('https://hdl.handle.net/11304/a287e5b9-feca-4ad6-bc16-14675d574088', allow_redirects=True, timeout=5)
         redirect: Response = get(self.resolvable(), allow_redirects=True)
         redirect_url: str = redirect.url
-        return URL(redirect_url)
+        return redirect_url
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:

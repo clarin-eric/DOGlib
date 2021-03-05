@@ -2,9 +2,33 @@
   "repository": {
     "name": "LINDAT/CLARIAH-CZ",
     "host_name": "LINDAT/CLARIAH-CZ",
-    "host_netloc": "https://lindat.mff.cuni.cz/",
-    "api": "oai",
-    "hdl_id": "11304",
-    "doi_id": "10.23728"
+    "host_netloc": "https://lindat.mff.cuni.cz",
+    "headers": {
+      "Accept": "application/x-cmdi+xml"
+    },
+    "api": {
+      "base": "http://lindat.mff.cuni.cz/repository/oai/request?",
+      "params": {
+        "metadataPrefix": "cmdi",
+        "verb": "GetRecord",
+        "identifier": "oai:ufal-point.mff.cuni.cz:$collection/$record_id"
+      }
+    },
+    "hdl_id": ["11234", "11858"],
+    "parser": {
+      "type": "cmdi",
+      "config": {
+        "namespaces": {
+          "olac": "http://www.clarin.eu/cmd/",
+          "cmd": "http://www.clarin.eu/cmd/"
+        },
+        "description": ".//GetRecord",
+        "license": ".//cmd:licenseInfo/cmd:license/cmd:uri",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
   }
 }
