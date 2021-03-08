@@ -1,7 +1,7 @@
-from collections import namedtuple
+from lxml.etree import fromstring, Element, ElementTree
+from re import compile, match, findall, Match, Pattern
 from requests import Response
 from typing import Any, Generator, List, NamedTuple, Type, Union
-from lxml.etree import fromstring, Element, ElementTree
 
 from pid import PID
 from repos import RegRepo
@@ -184,8 +184,12 @@ class XMLParser:
                 "license: str
             }
         """
-        xml_tree: ElementTree = fromstring(response.text.encode('utf-8'))
-        nsmap: dict = {**self.namespaces, **xml_tree.nsmap}
+        response_text: str = response.text
+
+        xml_tree: ElementTree = fromstring(response_text.encode('utf-8'))
+        nsmap: dict = self._parse_nested_namespaces(response_text)
+        nsmap = {**nsmap, **xml_tree.nsmap}
+
         resources: list = self._fetch_resources(xml_tree, nsmap)
         description: str = self._fetch_description(xml_tree, nsmap)
         _license: str = self._fetch_license(xml_tree, nsmap)
@@ -202,12 +206,22 @@ class XMLParser:
             in a case of nested namespaces not parsable by lxml # TODO alternative?
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
-        ref_resources = xml_tree.findall(self.pid_path, nsmap)
+        ref_resources: list = xml_tree.findall(self.pid_path, nsmap)
+
+        # check if path refers to attrib as lxml does not support full XPath and XPath does not support default namespaces
+        ref_resource_base: str = self.pid_path.split("/")[-1]
+        if "@" in ref_resource_base:
+            namespace, attrib_key = self._xpath_basename_to_attr_key(ref_resource_base)
+            print(attrib_key)
+            ref_resources: list = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
+        else:
+            ref_resources: list = [ref_resource.text for ref_resource in ref_resources]
+
         if self.filename_path:
             labels = xml_tree.find(self.filename_path, nsmap)
-            return [{"filename": label.text, "pid": ref_resource.text} for ref_resource, label in zip(ref_resources, labels)]
+            return [{"filename": label.text, "pid": ref_resource} for ref_resource, label in zip(ref_resources, labels)]
         else:
-            return [{"filename": '', "pid": ref_resource.text} for ref_resource in ref_resources]
+            return [{"filename": '', "pid": ref_resource} for ref_resource in ref_resources]
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -216,7 +230,7 @@ class XMLParser:
         :return: str, license
         """
         try:
-            license = xml_tree.find(self.license_path, nsmap)
+            license: str = xml_tree.find(self.license_path, nsmap)
         except SyntaxError:
             return ''
         
@@ -241,3 +255,18 @@ class XMLParser:
             return description.text
         else:
             return ''
+
+    def _parse_nested_namespaces(self, response_text: str) -> dict:
+        namespace_pattern: Pattern = compile(r'xmlns:(?P<ns_key>[\w]+)="(?P<ns_uri>[^"]*)"')
+        matches: list = findall(namespace_pattern, response_text)
+
+        nsmap: dict = {}
+        for match in matches:
+            nsmap[match[0]] = match[1]
+        return nsmap
+
+    def _xpath_basename_to_attr_key(self, xpath_basename: str) -> (str, str):
+        lxml_attrib_pattern: Pattern = compile(r'.*\[@(?P<attrib_name>[^]]*)]')
+        attrib_key_match: Match = match(lxml_attrib_pattern, xpath_basename)
+        namespace, attrib_name = attrib_key_match.group("attrib_name").split(':')
+        return namespace, attrib_name

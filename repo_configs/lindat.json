@@ -18,10 +18,6 @@
     "parser": {
       "type": "xml",
       "config": {
-        "namespaces": {
-          "olac": "http://www.clarin.eu/cmd/",
-          "cmd": "http://www.clarin.eu/cmd/"
-        },
         "description": ".//GetRecord",
         "license": ".//cmd:licenseInfo/cmd:license/cmd:uri",
         "ref_file": {

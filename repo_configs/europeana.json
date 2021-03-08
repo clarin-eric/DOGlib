@@ -8,20 +8,25 @@
         "params": {
           "verb": "GetRecord",
           "metadataPrefix": "edm",
-          "identifier": "%2$collection%2$record_id"
+          "identifier": "/$collection/$record_id"
         }
     },
     "hdl_id": "11304",
     "doi_id": "10.23728",
     "parser": {
-      "type": "json",
+      "type": "xml",
       "config":{
+        "namespaces": {
+          "edm": "http://www.europeana.eu/schemas/edm/",
+          "dc": "http://purl.org/dc/elements/1.1/",
+          "ore": "http://www.openarchives.org/ore/terms/"
+        },
         "items_root": "files",
-        "license": "metadata/license/license",
-        "description": "metadata/descriptions/description",
+        "license": ".//edm:rights",
+        "description": ".//dc:description",
         "ref_file": {
-          "filename": "key",
-          "pid": "ePIC_PID"
+          "filename": "",
+          "pid": ".//edm:WebResource[@rdf:about]"
         }
       }
     }
