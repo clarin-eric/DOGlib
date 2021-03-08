@@ -212,7 +212,6 @@ class XMLParser:
         ref_resource_base: str = self.pid_path.split("/")[-1]
         if "@" in ref_resource_base:
             namespace, attrib_key = self._xpath_basename_to_attr_key(ref_resource_base)
-            print(attrib_key)
             ref_resources: list = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
         else:
             ref_resources: list = [ref_resource.text for ref_resource in ref_resources]
