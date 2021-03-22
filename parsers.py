@@ -128,7 +128,7 @@ class JSONParser:
         Utility generator for yielding all results in iterable
         :param root: dict, dict with nested iterable to yield from
         :param keys_to_follow: list, path split into queue of keys
-        :return: Generator, Generator object yielding all found queue matched in dict
+        :return: Generator, Generator object yielding all queued key found matches in dict
         """
         if hasattr(root, 'items'):
             for k, v in root.items():
@@ -162,14 +162,17 @@ class XMLParser:
 
         :param parser_config: dict, parser configuration retrieved from repository XML config
         """
-        if 'namespaces' in parser_config.keys():
-            self.namespaces: dict = parser_config['namespaces']
+        if 'nsmap' in parser_config.keys():
+            self.namespaces: dict = parser_config['nsmap']
         else:
             self.namespaces: dict = {}
         self.pid_path: str = parser_config['ref_file']['pid']
         self.filename_path: str = parser_config['ref_file']['filename']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
+        self.pid_format: str = ''
+        if 'pid_api' in parser_config['ref_file'].keys():
+            self.pid_format = parser_config['ref_file']['pid_api']
 
     def fetch(self, response: Response, reg_repo: RegRepo) -> dict:
         """
@@ -185,9 +188,10 @@ class XMLParser:
             }
         """
         response_text: str = response.text
-
         xml_tree: ElementTree = fromstring(response_text.encode('utf-8'))
-        nsmap: dict = self._parse_nested_namespaces(response_text)
+
+        nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response_text)}
+        # for parsing default namespace
         nsmap = {**nsmap, **xml_tree.nsmap}
 
         resources: list = self._fetch_resources(xml_tree, nsmap)
@@ -201,23 +205,30 @@ class XMLParser:
     def _fetch_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
         Find all direct references/download links to referenced resources and if possible their filenames/labels
-        :param xml_tree: ElementTree, lxml tree object from XML response
-        :param nsmap: dict, dictionary with combined parsed namespaces and namespaces from repo config file
-            in a case of nested namespaces not parsable by lxml # TODO alternative?
+        :param xml_tree: ElementTree, lxml tree object from HTML XML response
+        :param nsmap: dict, map of namespace tags to namespace URIs
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
-        ref_resources: list = xml_tree.findall(self.pid_path, nsmap)
+        for elem in xml_tree.iter():
+            print(elem)
 
-        # check if path refers to attrib as lxml does not support full XPath and XPath does not support default namespaces
+        ref_resources: list = xml_tree.findall(self.pid_path, nsmap)
+        """ 
+        check if lxml compatible XPath refers to an attribute, as lxml does not support full XPath (attribute value 
+        retrieval) and XPath does not support default {None: ns_uri} namespace
+        """
         ref_resource_base: str = self.pid_path.split("/")[-1]
         if "@" in ref_resource_base:
             namespace, attrib_key = self._xpath_basename_to_attr_key(ref_resource_base)
-            ref_resources: list = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
+            ref_resources = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
         else:
-            ref_resources: list = [ref_resource.text for ref_resource in ref_resources]
+            ref_resources = [ref_resource.text for ref_resource in ref_resources]
+
+        if self.pid_format:
+            ref_resources = [self.pid_format.replace("$pid", ref_resource) for ref_resource in ref_resources]
 
         if self.filename_path:
-            labels = xml_tree.find(self.filename_path, nsmap)
+            labels = xml_tree.findall(self.filename_path, nsmap)
             return [{"filename": label.text, "pid": ref_resource} for ref_resource, label in zip(ref_resources, labels)]
         else:
             return [{"filename": '', "pid": ref_resource} for ref_resource in ref_resources]
@@ -229,16 +240,21 @@ class XMLParser:
         :return: str, license
         """
         try:
-            license: str = xml_tree.find(self.license_path, nsmap)
+            _licenses: list = xml_tree.findall(self.license_path, nsmap)
         except SyntaxError:
             return ''
         
-        if license is not None:
-            return license.text
+        if _licenses:
+            if len(_licenses) == 1:
+                if hasattr(_licenses, "text"):
+                    return _licenses.text
+                else:
+                    return ''
         else:
-            return ''
+            _licenses = [_license.text for _license in _licenses]
+            return '\n'.join(_licenses)
 
-    def _fetch_description(self, xml_tree: ElementTree, nsmap: dict):
+    def _fetch_description(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Find collection description if path provided
         :param response: dict, JSON response from repository
@@ -246,26 +262,33 @@ class XMLParser:
         join all collection descriptions
         """
         try:
-            description = xml_tree.find(self.description_path, nsmap)
+            descriptions: list = xml_tree.findall(self.description_path, nsmap)
         except SyntaxError:
             return ''
 
-        if description:
-            return description.text
-        else:
-            return ''
+        if descriptions:
+            if len(descriptions) == 1:
+                if hasattr(descriptions[0], "text"):
+                    return descriptions[0].text
+                else:
+                    return ''
+            else:
+                descriptions = [description.text for description in descriptions]
+                return '\n'.join(descriptions)
 
     def _parse_nested_namespaces(self, response_text: str) -> dict:
+        """
+        Utility method for finding not-default
+        :param response_text:
+        :return:
+        """
         namespace_pattern: Pattern = compile(r'xmlns:(?P<ns_key>[\w]+)="(?P<ns_uri>[^"]*)"')
         matches: list = findall(namespace_pattern, response_text)
 
-        nsmap: dict = {}
-        for match in matches:
-            nsmap[match[0]] = match[1]
-        return nsmap
+        return {_match[0]: _match[1] for _match in matches}
 
     def _xpath_basename_to_attr_key(self, xpath_basename: str) -> (str, str):
         lxml_attrib_pattern: Pattern = compile(r'.*\[@(?P<attrib_name>[^]]*)]')
         attrib_key_match: Match = match(lxml_attrib_pattern, xpath_basename)
-        namespace, attrib_name = attrib_key_match.group("attrib_name").split(':')
-        return namespace, attrib_name
+        namespace_tag, attrib_name = attrib_key_match.group("attrib_name").split(':')
+        return namespace_tag, attrib_name

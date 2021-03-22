@@ -33,7 +33,7 @@ class DOG:
             matched_repo_entry_url: str = matching_repo.get_request_url(pid)
             response: Response = requests.get(matched_repo_entry_url, headers=matching_repo.get_headers())
 
-            parser: Union[JSONParser] = self._make_parser(matching_repo.get_parser_type(),
+            parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                           matching_repo.get_parser_config())
             return parser.fetch(response, matching_repo)
 
@@ -51,7 +51,10 @@ class DOG:
         for config_file in os.listdir(config_dir):
             if config_file.endswith(".json"):
                 with open(os.path.join(config_dir, config_file)) as cfile:
-                    repo_config: dict = json.load(cfile)["repository"]
+                    try:
+                        repo_config: dict = json.load(cfile)["repository"]
+                    except json.decoder.JSONDecodeError as error:
+                        raise Exception(f"{error}\nConfig failing to load: {cfile}")
                     reg_repo: RegRepo = RegRepo(repo_config)
                     reg_repos.append(reg_repo)
         return reg_repos
@@ -80,6 +83,8 @@ class DOG:
             return JSONParser(parser_config)
         elif parser_type == "xml":
             return XMLParser(parser_config)
+        else:
+            return None
 
     def isdownloadable(self, url: str) -> bool:
         """

@@ -28,3 +28,9 @@ if __name__ == "__main__":
     ret = dog.fetch(url)
     print(ret)
 
+    url = 'https://repository.clarin.is/repository/oai/request?verb=GetRecord&metadataPrefix=cmdi&identifier=oai:repository.clarin.is:20.500.12537/5'
+    ret = dog.sniff(url)
+    print(ret)
+    ret = dog.fetch(url)
+    print(ret)
+

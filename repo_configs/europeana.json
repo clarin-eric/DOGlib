@@ -16,7 +16,7 @@
     "parser": {
       "type": "xml",
       "config":{
-        "namespaces": {
+        "nsmap": {
           "edm": "http://www.europeana.eu/schemas/edm/",
           "dc": "http://purl.org/dc/elements/1.1/",
           "ore": "http://www.openarchives.org/ore/terms/"

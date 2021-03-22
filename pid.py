@@ -66,11 +66,21 @@ class PID(object):
         url = self.pid.resolve_to_url()
         self.pid = URL(url)
 
+    @classmethod
+    def is_pid(cls, pid_string: str):
+        return HDL.is_hdl(pid_string) or URL.is_url(pid_string) or DOI.is_doi(pid_string)
+
+    @classmethod
+    def is_hdl_or_doi(cls, pid_string: str):
+        return HDL.is_hdl(pid_string) or DOI.is_doi(pid_string)
+
 
 class URL:
     def __init__(self, url_string: str):
         if not self.is_url(url_string):
             raise ValueError(f"Provided string {url_string} is not an URL")
+        if url_string.split('/')[-1] == '':
+            url_string = '/'.join(url_string.split('/')[:-1])
         self.url: ParseResult = urlparse(url_string)
         url_split: NamedTuple = urlsplit(url_string)
         self.host_netloc: str = getattr(url_split, 'hostname')
@@ -156,7 +166,7 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not an URL")
         hdl_pattern: Pattern = compile(
-            r"^.*(?P<repo_id>\d{4}[\d]+)/(?P<record_id>[\w\-]+)$")
+            r"(?:.*)?(?:\.)?(?P<repo_id>\d{4}[\d]+)/(?P<record_id>[\w\-/]+)$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
@@ -178,7 +188,7 @@ class HDL:
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
-        regex: Pattern = compile(r".*[\d]+/[\w\d-]+$")
+        regex: Pattern = compile(r".*[\d]{4,9}/[\w\d-]+$")
         if match(regex, hdl_string):
             return True
         else:

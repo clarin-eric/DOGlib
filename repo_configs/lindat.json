@@ -11,7 +11,7 @@
       "params": {
         "metadataPrefix": "cmdi",
         "verb": "GetRecord",
-        "identifier": "oai:ufal-point.mff.cuni.cz:$collection/$record_id"
+        "identifier": "oai:lindat.mff.cuni.cz:$collection/$record_id"
       }
     },
     "hdl_id": ["11234", "11858"],
