@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "Austrian Centre for Digital Humanities and Cultural Heritage - A Resource Centre for the Humanities",
+    "host_name": "ACDH-CH",
+    "host_netloc": "",
+    "api": {
+      "base": "",
+      "params": {
+        "verb": "",
+        "metadataPrefix": "",
+        "identifier": ""
+      }
+    },
+    "hdl_id": "11115",
+    "parser": {
+      "type": "",
+      "config": {
+        "description": "",
+        "license": ".//cmdp:rights",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

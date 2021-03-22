@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "FIN-CLARIN",
+    "host_name": "The Language Bank of Finland",
+    "host_netloc": "http://www.kielipankki.fi",
+    "api": {
+      "base": "https://kielipankki.fi/md_api/que?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "oai_dc",
+        "identifier": "$record_id"
+      }
+    },
+    "hdl_id": "11113",
+    "parser": {
+      "type": "",
+      "config": {
+        "description": "",
+        "license": "",
+        "ref_file": {
+          "pid": "",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

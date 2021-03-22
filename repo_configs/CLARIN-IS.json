@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "CLARIN-IS",
+    "host_name": "CLARIN-IS",
+    "host_netloc": "https://repository.clarin.is",
+    "api": {
+      "base": "https://repository.clarin.is/repository/oai/request?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": "oai:repository.clarin.is:20.500.12537/$record_id"
+      }
+    },
+    "hdl_id": "12537",
+    "parser": {
+      "type": "xml",
+      "config": {
+        "description": ".//cmd:description",
+        "license": ".//cmd:license/cmd:uni",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

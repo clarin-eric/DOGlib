@@ -1,0 +1,32 @@
+{
+  "repository": {
+    "name": "CLARIN-PL Language Technology Centre",
+    "host_name": "Wroclaw University of Science and Technology",
+    "host_netloc": "https://clarin-pl.eu",
+    "api": {
+      "base": "https://clarin-pl.eu/oai/request?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": "oai:clarin-pl.eu:11321/$record_id"
+      }
+    },
+    "hdl_id": "11321",
+    "parser": {
+      "nsmap": {
+        "ms": "http://www.clarin.eu/cmd/",
+        "olac": "http://www.clarin.eu/cmd/"
+      },
+      "type": "xml",
+      "config": {
+        "description": "",
+        "license": ".//ms:licence",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

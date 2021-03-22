@@ -1,0 +1,30 @@
+{
+  "repository": {
+    "name": "DARIAH-DE",
+    "host_name": "DARIAH",
+    "host_netloc": "https://repository.de.dariah.eu",
+    "api": {
+      "base": "https://repository.de.dariah.eu/1.0/oaipmh/oai?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "oai_dc",
+        "identifier": "21.11113/$record_id"
+      }
+    },
+    "hdl_id": "11113",
+    "doi_id": "20375",
+    "parser": {
+      "type": "xml",
+      "config": {
+        "description": ".//dc:description",
+        "license": ".//dc:rights",
+        "ref_file": {
+          "pid": ".//header/identifier",
+          "filename": ".//dc:title",
+          "pid_api": "https://repository.de.dariah.eu/1.0/dhcrud/$pid/data"
+        }
+      }
+    }
+  }
+}
+

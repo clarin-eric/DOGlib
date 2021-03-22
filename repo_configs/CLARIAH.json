@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "",
+    "host_name": "",
+    "host_netloc": "",
+    "api": {
+      "base": "",
+      "params": {
+        "verb": "",
+        "metadataPrefix": "",
+        "identifier": ""
+      }
+    },
+    "hdl_id": "",
+    "parser": {
+      "type": "",
+      "config": {
+        "description": "",
+        "license": "",
+        "ref_file": {
+          "pid": "",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

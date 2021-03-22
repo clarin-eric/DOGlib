@@ -1,0 +1,33 @@
+{
+  "repository": {
+    "name": "TALAR",
+    "host_name": "Eberhard Karls Universität Tübingen",
+    "host_netloc": "https://talar.sfb833.uni-tuebingen.de",
+    "api": {
+      "base": "",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": "http://127.0.0.1:8080/erdora/rest/$collection/$record_id"
+      }
+    },
+    "hdl_id": "11022",
+    "doi_id": "",
+    "parser": {
+      "type": "xml",
+      "config": {
+        "nsmap": {
+          "cmd": "http://www.clarin.eu/cmd/"
+        },
+        "description": ".//dc:description",
+        "license": ".//dc:rights",
+        "ref_file": {
+          "pid": ".//ResourceProxy[ResourceType='Resource']/ResourceRef",
+          "filename": "",
+          "pid_api": ""
+        }
+      }
+    }
+  }
+}
+
