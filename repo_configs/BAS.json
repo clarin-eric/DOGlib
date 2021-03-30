@@ -1,24 +1,24 @@
 {
   "repository": {
-    "name": "",
-    "host_name": "",
-    "host_netloc": "",
+    "name": "Bayerisches Archiv für Sprachsignale",
+    "host_name": "Ludwig-Maximilians-Universität München",
+    "host_netloc": "https://www.phonetik.uni-muenchen.de/",
     "api": {
       "base": "",
       "params": {
-        "verb": "",
-        "metadataPrefix": "",
-        "identifier": ""
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": "oai:BAS.repo:$path"
       }
     },
-    "hdl_id": "",
+    "hdl_id": "11022",
     "parser": {
-      "type": "",
+      "type": "xml",
       "config": {
         "description": "",
         "license": "",
         "ref_file": {
-          "pid": "",
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
           "filename": ""
         }
       }

@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "ILC-CNR for CLARIN-IT",
+    "host_name": "Institute for Computational Linguistics \"A. Zampolli\", National Research Council, in Pisa",
+    "host_netloc": "https://dspace-clarin-it.ilc.cnr.it",
+    "api": {
+      "base": "http://dspace-clarin-it.ilc.cnr.it/repository/oai/request?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": "oai:dspace-clarin-it.ilc.cnr.it.ilc.cnr.it:20.500.11752/record_id"
+      }
+    },
+    "hdl_id": "11752",
+    "parser": {
+      "type": "xml",
+      "config": {
+        "description": ".//cmd:description",
+        "license": ".//cmd:license/cmd:uri",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

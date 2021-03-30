@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "ASV Leipzig",
+    "host_name": "ASV Leipzig",
+    "host_netloc": "http://asv.informatik.uni-leipzig.de//",
+    "api": {
+      "base": "https://clarinoai.informatik.uni-leipzig.de/oaiprovider/oai?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": ""
+      }
+    },
+    "hdl_id": "",
+    "parser": {
+      "type": "",
+      "config": {
+        "description": "",
+        "license": "",
+        "ref_file": {
+          "pid": "",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

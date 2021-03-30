@@ -15,19 +15,17 @@
     "doi_id": "",
     "parser": {
       "type": "xml",
-      "config": {
-        "nsmap": {
-          "cmd": "http://www.clarin.eu/cmd/"
-        },
-        "description": ".//dc:description",
+      "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/1"
+      },
+        "description": ".//cmd:Descriptions/cmd:Description",
         "license": ".//dc:rights",
         "ref_file": {
-          "pid": ".//ResourceProxy[ResourceType='Resource']/ResourceRef",
-          "filename": "",
-          "pid_api": ""
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
         }
-      }
     }
   }
 }
+
 

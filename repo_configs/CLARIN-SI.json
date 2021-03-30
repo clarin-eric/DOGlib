@@ -1,0 +1,28 @@
+{
+  "repository": {
+    "name": "Slovenian language resource repository CLARIN.SI",
+    "host_name": "CLARIN.SI",
+    "host_netloc": "http://www.clarin.si",
+    "api": {
+      "base": "http://www.clarin.si/repository/oai/request?",
+      "params": {
+        "verb": "GetRecord",
+        "metadataPrefix": "cmdi",
+        "identifier": "oai:www.clarin.si:11356/$record_id"
+      }
+    },
+    "hdl_id": "11356",
+    "parser": {
+      "type": "xml",
+      "config": {
+        "description": ".//cmd:dataInfo/cmd:description",
+        "license": ".//cmd:license/cmd:uri",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+
