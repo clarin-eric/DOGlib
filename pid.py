@@ -162,7 +162,7 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not an URL")
         hdl_pattern: Pattern = compile(
-            r"(?:[\w\d.:]+)?(?P<repo_id>\d{4}[\d]+)/(?P<record_id>[\w\-/]+)$")
+            r"(?:[\d.]+)?(?P<repo_id>\d{4}[\d]?)/(?P<record_id>[\w\-/]+)(?:[@\w=]+)$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
@@ -181,7 +181,7 @@ class HDL:
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
-        regex: Pattern = compile(r".*[\d]{4,9}/[\w\d-]+$")
+        regex: Pattern = compile(r".*[\d]{4,9}/[\w\d-]+(?:[@\w=]+)$")
         if match(regex, hdl_string):
             return True
         else:
