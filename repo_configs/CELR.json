@@ -3,18 +3,15 @@
     "name": "Center of Estonian Language Resources",
     "host_name": "Eesti Keeleressursside Keskus",
     "host_netloc": "https://metashare.ut.ee",
-    "api": {
-      "base": "https://metashare.ut.ee/oai_pmh/?",
-      "params": {
-        "verb": "GetRecord",
-        "metadataPrefix": "cmdi",
-        "identifier": "$record_id"
-      }
+    "hdl": {
+      "id": "11297",
+      "format": "$hdl"
     },
-    "hdl_id": "11297",
-    "doi_id": "15155",
+    "doi": {
+      "id": "15155"
+    },
     "parser": {
-      "type": "xml",
+      "type": "cmdi",
       "config": {
         "nsmap": {
           "cmd": "http://www.clarin.eu/cmd/"

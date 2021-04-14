@@ -209,8 +209,6 @@ class XMLParser:
         :param nsmap: dict, map of namespace tags to namespace URIs
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
-        for elem in xml_tree.iter():
-            print(elem)
 
         ref_resources: list = xml_tree.findall(self.pid_path, nsmap)
         """ 

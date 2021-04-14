@@ -2,21 +2,15 @@
   "repository": {
     "name": "Berlin-Brandenburg Academy of Sciences and Humanities",
     "host_name": "BBAW",
-    "host_netloc": "https://repository.clarin.is",
-    "api": {
-      "base": "https://repository.clarin.is/repository/oai/request?",
-      "params": {
-        "verb": "GetRecord",
-        "metadataPrefix": "cmdi",
-        "identifier": "oai:repository.clarin.is:20.500.12537/$record_id"
-      }
-    },
-    "hdl_id": "12537",
+    "host_netloc": "https://clarin.bbaw.de:8088",
+    "hdl": "",
+      "id": "11120",
+      "format": "$hdl",
     "parser": {
-      "type": "xml",
+      "type": "cmdi",
       "config": {
         "description": ".//cmd:Description",
-        "license": ".//cmdp:licence/cmdp:p",
+        "license": "",
         "ref_file": {
           "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
           "filename": ""

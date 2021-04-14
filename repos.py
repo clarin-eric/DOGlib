@@ -1,7 +1,7 @@
 import json
 from collections import namedtuple
 import os
-import requests
+from requests import get, Response
 from typing import List, Any
 from urllib.parse import urlencode
 
@@ -18,9 +18,9 @@ class RegRepo(object):
         :param config_dict: dict, JSON dict with repository configuration
         """
         self.api: dict = {}
-        self.doi_id: str = ''
-        self.hdl_id: set = set()
-        self.headers: dict = {}
+        self.doi: dict = {}
+        self.hdl: dict = {}
+        self.metadata: str = ''
         self.host_name: str = ''
         self.host_netloc: str = ''
         self.name: str = ''
@@ -28,24 +28,22 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request_url(self, pid: PID) -> str:
+    def get_request(self, pid: PID) -> Response:
         """
         Resolve the persistent identifier in case of URL and HDL and generate URL for GET request
 
         :param pid: PID, PID object instance
-        :return: str, GET request URL string
+        :return: Response, the response from PID call
         """
-        pid.to_url()
-        base = self.api["base"]
-        if "params" in self.api:
-            params = self.api["params"]
-        else:
-            params = {}
 
-        url_query: str = urlencode(params)
-        url_query = url_query.replace("%24", "$")
-        url: str = f"{base}{url_query}"
-        return url.replace('$collection', pid.get_collection()).replace('$record_id', pid.get_record_id())
+        # Request to repo providing CMDI metadata
+        if self.parser["type"] == 'cmdi':
+            cmdi_headers: dict = {"Accept": "x-cmdi+xml"}
+
+            if pid.get_pid_type() == HDL:
+                return get(self.hdl["format"].replace("$hdl", pid.get_resolvable()), cmdi_headers)
+            if pid.get_pid_type() == DOI:
+                return get(self.doi["format"].replace("$doi", pid.get_resolvable()), cmdi_headers)
 
     def get_host_netloc(self) -> str:
         """
@@ -74,14 +72,6 @@ class RegRepo(object):
         else:
             return {}
 
-    def get_headers(self) -> dict:
-        """
-        Return headers for collection GET request
-
-        :return: dict, request headers
-        """
-        return self.headers
-
     def match_pid(self, pid: PID) -> bool:
         """
         Check if given persistent identifier matches this repository
@@ -89,13 +79,16 @@ class RegRepo(object):
         :param pid: PID object instance
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
+        print(pid.get_pid_type())
+        print(pid.pid.repo_id in self.hdl["id"])
+
         if pid.get_pid_type() == HDL:
-            return pid.pid.repo_id in self.hdl_id
+            return pid.pid.repo_id in self.hdl["id"]
         elif pid.get_pid_type() == URL:
             return self.host_netloc.replace('https://', '').replace('http://', '') == \
                    pid.pid.host_netloc.replace('https://', '').replace('http://', '')
         elif pid.get_pid_type() == DOI:
-            return self.doi_id == pid.pid.repo_id
+            return pid.pid.repo_id in self.doi["id"]
         else:
             return False
 

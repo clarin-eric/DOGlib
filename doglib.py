@@ -30,11 +30,10 @@ class DOG:
         if not matching_repo:
             return {}
         else:
-            matched_repo_entry_url: str = matching_repo.get_request_url(pid)
-            response: Response = requests.get(matched_repo_entry_url, headers=matching_repo.get_headers())
+            response: Response = matching_repo.get_request(pid)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
-                                                          matching_repo.get_parser_config())
+                                                                     matching_repo.get_parser_config())
             return parser.fetch(response, matching_repo)
 
     def _load_repos(self, config_dir: str = os.path.join(os.getcwd(), "repo_configs")) -> List[RegRepo]:
@@ -48,6 +47,7 @@ class DOG:
         reg_repos: List[RegRepo] = []
         if not os.path.exists(config_dir):
             raise FileNotFoundError(f"Config dir {config_dir} does not exist")
+
         for config_file in os.listdir(config_dir):
             if config_file.endswith(".json"):
                 with open(os.path.join(config_dir, config_file)) as cfile:
@@ -71,7 +71,7 @@ class DOG:
                 return reg_repo
         return None
 
-    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser]:
+    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser, None]:
         """
         Mathod wraping parser constrution
 
@@ -82,6 +82,8 @@ class DOG:
         if parser_type == "json":
             return JSONParser(parser_config)
         elif parser_type == "xml":
+            return XMLParser(parser_config)
+        elif parser_type == "cmdi":
             return XMLParser(parser_config)
         else:
             return None

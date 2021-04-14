@@ -16,7 +16,7 @@ class PID(object):
         """
         :param pid_string:  str, PID string that is a URL, handle or doi.
         """
-        pid_types: list = [URL, DOI, HDL]
+        pid_types: list = [HDL, DOI, URL]
         self.pid: object = None
         for pid_type in pid_types:
             # Try to create new instance of pid type
@@ -147,11 +147,6 @@ class DOI:
     def get_record_id(self):
         return self.record_id
 
-    def resolve_to_url(self) -> str:
-        redirect: Response = get(self.resolvable(), allow_redirects=True)
-        redirect_url: str = redirect.url
-        return redirect_url
-
     @staticmethod
     def is_doi(doi_string: str) -> bool:
         regex: Pattern = compile(r".*10.\d{4,9}/[^\W]+[./][\w]+$")
@@ -163,10 +158,11 @@ class DOI:
 
 class HDL:
     def __init__(self, hdl_string: str):
+        print(hdl_string)
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not an URL")
         hdl_pattern: Pattern = compile(
-            r"(?:.*)?(?:\.)?(?P<repo_id>\d{4}[\d]+)/(?P<record_id>[\w\-/]+)$")
+            r"(?:[\w\d.:]+)?(?P<repo_id>\d{4}[\d]+)/(?P<record_id>[\w\-/]+)$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
@@ -180,11 +176,8 @@ class HDL:
     def get_record_id(self):
         return self.record_id
 
-    def resolve_to_url(self) -> str:
-        ret = get('https://hdl.handle.net/11304/a287e5b9-feca-4ad6-bc16-14675d574088', allow_redirects=True, timeout=5)
-        redirect: Response = get(self.resolvable(), allow_redirects=True)
-        redirect_url: str = redirect.url
-        return redirect_url
+    def get_repo_id(self):
+        return self.repo_id
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
