@@ -48,6 +48,9 @@ class PID(object):
         """
         return self.pid.get_record_id()
 
+    def get_repo_id(self) -> str:
+        return self.pid.get_repo_id()
+
     def get_resolvable(self) -> str:
         return self.pid.resolvable()
 
@@ -147,6 +150,9 @@ class DOI:
     def get_record_id(self):
         return self.record_id
 
+    def get_repo_id(self):
+        return self.repo_id
+
     @staticmethod
     def is_doi(doi_string: str) -> bool:
         regex: Pattern = compile(r".*10.\d{4,9}/[^\W]+[./][\w]+$")
@@ -158,12 +164,13 @@ class DOI:
 
 class HDL:
     def __init__(self, hdl_string: str):
-        print(hdl_string)
         if not self.is_hdl(hdl_string):
-            raise ValueError(f"Provided string {hdl_string} is not an URL")
+            raise ValueError(f"Provided string {hdl_string} is not a HDL")
         hdl_pattern: Pattern = compile(
-            r"(?:[\d.]+)?(?P<repo_id>\d{4}[\d]?)/(?P<record_id>[\w\-/]+)(?:[@\w=]+)$")
+            r"(?:[\d.]+)?(?P<repo_id>\d{4}[\d]?)+/(?P<record_id>[\w\-/]+)(?:[@\w=]+)?$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
+        if not hdl_match:
+            raise ValueError(f"Provided string {hdl_string} is not a HDL")
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
 
@@ -181,7 +188,7 @@ class HDL:
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
-        regex: Pattern = compile(r".*[\d]{4,9}/[\w\d-]+(?:[@\w=]+)$")
+        regex: Pattern = compile(r".*[\d]{4,9}/[\w\d-]+(?:[@\w=]+)?$")
         if match(regex, hdl_string):
             return True
         else:

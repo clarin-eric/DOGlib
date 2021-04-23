@@ -7,6 +7,7 @@
       "id": ["20.500.12115", "11221"],
       "format": "$hdl@format=cmdi"
     },
+    "url": {"format":  "$url"},
     "parser": {
       "nsmap": {
         "cmd": "http://www.clarin.eu/cmd/",

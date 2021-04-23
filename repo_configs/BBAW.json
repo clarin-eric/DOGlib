@@ -6,6 +6,7 @@
     "hdl": "",
       "id": "11120",
       "format": "$hdl",
+    "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",
       "config": {

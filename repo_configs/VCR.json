@@ -4,6 +4,7 @@
     "host_name": "clarin",
     "host_netloc": "https://collections.clarin.eu",
     "hdl": {"id": "11372", "format": "$hdl"},
+    "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",
       "config": {

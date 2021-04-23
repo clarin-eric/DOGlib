@@ -7,6 +7,7 @@
       "id": "11022",
       "format": "$hdl"
     },
+    "url": {"format":  "$url"},
     "parser": {
       "nsmap": {
         "cmd": "http://www.clarin.eu/cmd/",

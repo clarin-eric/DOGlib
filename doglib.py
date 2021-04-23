@@ -1,7 +1,7 @@
 import json
 import os
 import requests
-from requests import Response
+from requests import Response, Session
 from typing import List, Union, Optional
 
 from repos import RegRepo
@@ -12,6 +12,8 @@ from pid import PID
 class DOG:
     def __init__(self):
         self.reg_repos: List[RegRepo] = self._load_repos()
+        self.session: Session = requests.Session()
+        self.session.max_redirects = 3
 
     def _fetch(self, pid_string: str) -> dict:
         """
@@ -26,11 +28,13 @@ class DOG:
             }
         """
         pid = PID(pid_string)
-        matching_repo: RegRepo = self._sniff(pid)
+        matching_repo: RegRepo = self.sniff(str(pid))
         if not matching_repo:
             return {}
         else:
-            response: Response = matching_repo.get_request(pid)
+            request_url: str = matching_repo.get_request_url(pid)
+            headers = {"Accept": "application/x-cmdi+xml"}
+            response: Response = self.session.get(request_url, headers=headers)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                      matching_repo.get_parser_config())
@@ -59,17 +63,18 @@ class DOG:
                     reg_repos.append(reg_repo)
         return reg_repos
 
-    def _sniff(self, pid: PID) -> Optional[RegRepo]:
+    def _sniff(self, pid: PID) -> List[RegRepo]:
         """
         Check if pid matches any registered repository
 
         :param pid: PID, PID object to be matched
         :return: Optional[RegRepo], if matched returns matching RegRepo object, if not returns None
         """
+        ret: list = []
         for reg_repo in self.reg_repos:
             if reg_repo.match_pid(pid):
-                return reg_repo
-        return None
+                ret.append(reg_repo)
+        return ret
 
     def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser, None]:
         """
@@ -98,20 +103,25 @@ class DOG:
         headers = requests.head(url).headers
         return 'attachment' in headers.get('Content-Disposition', '')
 
-    def sniff(self, pid_string: str) -> str:
+    def sniff(self, pid_string: str) -> Optional[RegRepo]:
         """
         Method for sniff call, tries to match pid with registered repositories and returns string with information
-        about repository, if pid is not matched returns empty string
+        about repository, if pid is not matched returns empty string. If there are multiple repositories using the same
+        identifier tries to resolve PID and match repo by host.
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
         :return: str, repository description of matching registered repository, '' if pid not matched
         """
         pid: PID = PID(pid_string)
-        matching_repo: Optional[RegRepo] = self._sniff(pid)
-        if matching_repo:
-            return str(matching_repo)
-        else:
-            return ''
+        matching_repos: List[RegRepo] = self._sniff(pid)
+        for matching_repo in matching_repos:
+            if len(matching_repos) > 1:
+                url: PID = PID(requests.get(pid.get_resolvable()).url)
+                if matching_repo.match_pid(url):
+                    return matching_repo
+            else:
+                return matching_repos[0]
+        return None
 
     def fetch(self, pid_string: str) -> dict:
         """

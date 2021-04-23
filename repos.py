@@ -20,6 +20,7 @@ class RegRepo(object):
         self.api: dict = {}
         self.doi: dict = {}
         self.hdl: dict = {}
+        self.url: dict = {}
         self.metadata: str = ''
         self.host_name: str = ''
         self.host_netloc: str = ''
@@ -28,22 +29,21 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request(self, pid: PID) -> Response:
+    def get_request_url(self, pid: PID) -> str:
         """
         Resolve the persistent identifier in case of URL and HDL and generate URL for GET request
 
         :param pid: PID, PID object instance
         :return: Response, the response from PID call
         """
-
         # Request to repo providing CMDI metadata
         if self.parser["type"] == 'cmdi':
-            cmdi_headers: dict = {"Accept": "x-cmdi+xml"}
-
             if pid.get_pid_type() == HDL:
-                return get(self.hdl["format"].replace("$hdl", pid.get_resolvable()), cmdi_headers)
+                return self.hdl["format"].replace("$hdl", pid.get_resolvable())
             if pid.get_pid_type() == DOI:
-                return get(self.doi["format"].replace("$doi", pid.get_resolvable()), cmdi_headers)
+                return self.doi["format"].replace("$doi", pid.get_resolvable())
+            if pid.get_pid_type() == URL:
+                return self.url["format"].replace("$url", pid.get_resolvable())
 
     def get_host_netloc(self) -> str:
         """
@@ -79,18 +79,19 @@ class RegRepo(object):
         :param pid: PID object instance
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
+        print(pid.get_resolvable())
         print(pid.get_pid_type())
-        print(pid.pid.repo_id in self.hdl["id"])
 
         if pid.get_pid_type() == HDL:
-            return pid.pid.repo_id in self.hdl["id"]
+            for _id in self.hdl["id"]:
+                if pid.pid.repo_id == _id:
+                    return True
         elif pid.get_pid_type() == URL:
             return self.host_netloc.replace('https://', '').replace('http://', '') == \
                    pid.pid.host_netloc.replace('https://', '').replace('http://', '')
         elif pid.get_pid_type() == DOI:
             return pid.pid.repo_id in self.doi["id"]
-        else:
-            return False
+        return False
 
     def __str__(self):
         return f"Name: {self.name}\n" \
