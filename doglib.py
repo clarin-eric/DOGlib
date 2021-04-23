@@ -31,9 +31,9 @@ class DOG:
         matching_repo: RegRepo = self.sniff(str(pid))
         if not matching_repo:
             return {}
-        else:
-            request_url: str = matching_repo.get_request_url(pid)
-            headers = {"Accept": "application/x-cmdi+xml"}
+        elif matching_repo:
+            request_url: str = matching_repo.get_request_url(pid, self.session)
+            headers: dict = matching_repo.get_headers()
             response: Response = self.session.get(request_url, headers=headers)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),

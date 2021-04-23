@@ -1,7 +1,8 @@
 import json
 from collections import namedtuple
 import os
-from requests import get, Response
+from re import match, Match
+from requests import get, Response, Session
 from typing import List, Any
 from urllib.parse import urlencode
 
@@ -21,6 +22,7 @@ class RegRepo(object):
         self.doi: dict = {}
         self.hdl: dict = {}
         self.url: dict = {}
+        self.api: dict = {}
         self.metadata: str = ''
         self.host_name: str = ''
         self.host_netloc: str = ''
@@ -29,7 +31,7 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request_url(self, pid: PID) -> str:
+    def get_request_url(self, pid: PID, session: Session) -> str:
         """
         Resolve the persistent identifier in case of URL and HDL and generate URL for GET request
 
@@ -44,6 +46,24 @@ class RegRepo(object):
                 return self.doi["format"].replace("$doi", pid.get_resolvable())
             if pid.get_pid_type() == URL:
                 return self.url["format"].replace("$url", pid.get_resolvable())
+        # General case
+        else:
+            request_config: dict = {}
+            if pid.get_pid_type() == HDL:
+                request_config = self.hdl
+            elif pid.get_pid_type() == DOI:
+                request_config = self.doi
+            elif pid.get_pid_type() == URL:
+                request_config = self.url
+
+            # follow redirects
+            if request_config["format"] == "redirect":
+                return session.get(pid.get_resolvable(), allow_redirects=True).url
+            # parse id
+            elif "regex" in request_config.keys():
+                rmatch: Match = match(request_config["regex"], pid.get_resolvable())
+                record_id = rmatch.group("record_id")
+                return self.hdl["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
 
     def get_host_netloc(self) -> str:
         """
@@ -72,6 +92,12 @@ class RegRepo(object):
         else:
             return {}
 
+    def get_headers(self) -> dict:
+        if self.parser['type'] == "cmdi":
+            return {"Accept": "application/x-cmdi+xml"}
+        else:
+            return {}
+
     def match_pid(self, pid: PID) -> bool:
         """
         Check if given persistent identifier matches this repository
@@ -79,9 +105,6 @@ class RegRepo(object):
         :param pid: PID object instance
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
-        print(pid.get_resolvable())
-        print(pid.get_pid_type())
-
         if pid.get_pid_type() == HDL:
             for _id in self.hdl["id"]:
                 if pid.pid.repo_id == _id:

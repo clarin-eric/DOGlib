@@ -1,6 +1,6 @@
 from doglib import DOG
 from repos import RegRepo
-from pid import DOI, URL
+from pid import PID, HDL
 
 """
 Examples of DOGlib supported repositories
@@ -10,7 +10,15 @@ Examples of DOGlib supported repositories
 if __name__ == "__main__":
     dog = DOG()
 
-    url = 'https://collections.clarin.eu/details/1033'
+    # url = 'https://collections.clarin.eu/details/1033'
+    # pid = PID(url)
+    # print(pid.get_pid_type())
+    # ret = dog.sniff(url)
+    # print(ret)
+    # ret = dog.fetch(url)
+    # print(ret)
+
+    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
     ret = dog.sniff(url)
     print(ret)
     ret = dog.fetch(url)
@@ -22,15 +30,18 @@ if __name__ == "__main__":
     ret = dog.fetch(url)
     print(ret)
 
-    url = '11304/a287e5b9-feca-4ad6-bc16-14675d574088'
+    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
     ret = dog.sniff(url)
     print(ret)
     ret = dog.fetch(url)
     print(ret)
 
-    url = 'https://repository.clarin.is/repository/oai/request?verb=GetRecord&metadataPrefix=cmdi&identifier=oai:repository.clarin.is:20.500.12537/5'
+    url = 'http://hdl.handle.net/11022/1007-0000-0000-8DEE-6'
+    pid = PID(url)
+    hdl = HDL(url)
+    print(hdl)
+    print(pid.get_pid_type())
     ret = dog.sniff(url)
     print(ret)
     ret = dog.fetch(url)
     print(ret)
-
