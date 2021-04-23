@@ -1,0 +1,25 @@
+{
+  "repository": {
+    "name": "CLARINO Bergen Center",
+    "host_name": "CLARINO Bergen Center",
+    "host_netloc": "http://clarino.uib.no",
+    "hdl": {"id": "11509", "format": "$hdl@format=cmdi"},
+    "url": {"format":  "$url"},
+    "parser": {
+      "type": "cmdi",
+      "nsmap": {
+        "ms": "http://www.clarin.eu/cmd/",
+        "olac": "http://www.clarin.eu/cmd/"
+      },
+      "config": {
+        "description": ".//olac:description",
+        "license": ".//ms:licenceInfo/ms:licence",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "repository": {
+    "name": "GAMS - Asset Management System for the Humanities",
+    "host_name": "ZIM Centre for Information Modelling",
+    "host_netloc": "https://zim.uni-graz.at/",
+    "hdl": {"id": "11471", "format":  "$hdl"},
+    "url": {"format":  "$url"},
+    "parser": {
+      "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/1",
+        "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1320657629644"
+      },
+      "type": "cmdi",
+      "config": {
+        "description": ".//cmdp:p",
+        "license": ".//cmdp:licence",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef"
+        }
+      }
+    }
+  }
+}
+

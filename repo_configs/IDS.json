@@ -1,0 +1,24 @@
+{
+  "repository": {
+    "name": "Leibniz-Institut für Deutsche Sprache",
+    "host_name": "Leibniz-Institut für Deutsche Sprache",
+    "host_netloc": "http://repos.ids-mannheim.de",
+    "hdl": {"id": "10932", "format": "$hdl"},
+    "url": {"format":  "$url"},
+    "parser": {
+      "type": "cmdi",
+      "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/"
+      },
+      "config": {
+        "description": ".//cmd:Description",
+        "license": ".//cmd:License",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
+

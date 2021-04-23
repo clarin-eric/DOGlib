@@ -1,0 +1,25 @@
+{
+  "repository": {
+    "name": "B2SHARE",
+    "host_name": "b2share",
+    "host_netloc": "https://b2share.eudat.eu",
+    "api": {
+        "base": "https://b2share.eudat.eu/api/records/$record_id"
+    },
+    "doi": {"id": "10.23728", "regex": ".*/(?P<record_id>[\\w]+)$", "format": "$api"},
+    "hdl": {"id": "11304", "format": "redirect"},
+    "url": {"regex": ".*/(?P<record_id>[\\w]+)$", "format": "$api"},
+    "parser": {
+      "type": "json",
+      "config":{
+        "items_root": "files",
+        "license": "metadata/license/license",
+        "description": "metadata/descriptions/description",
+        "ref_file": {
+          "filename": "key",
+          "pid": "ePIC_PID"
+        }
+      }
+    }
+  }
+}
