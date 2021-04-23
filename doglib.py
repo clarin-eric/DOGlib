@@ -27,11 +27,12 @@ class DOG:
                 "license: str
             }
         """
-        pid = PID(pid_string)
-        matching_repo: RegRepo = self.sniff(str(pid))
+        matching_repo: RegRepo = self.sniff(pid_string)
         if not matching_repo:
             return {}
         elif matching_repo:
+            pid = PID(pid_string)
+            print(pid)
             request_url: str = matching_repo.get_request_url(pid, self.session)
             headers: dict = matching_repo.get_headers()
             response: Response = self.session.get(request_url, headers=headers)

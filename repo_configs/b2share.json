@@ -8,7 +8,7 @@
     },
     "doi": {"id": "10.23728", "regex": ".*/(?P<record_id>[\\w]+)$", "format": "$api"},
     "hdl": {"id": "11304", "format": "redirect"},
-    "url": {"regex": ".*/(?P<record_id>[\\w]+)$", "format": "$api"},
+    "url": {"regex": "^.*\/([\\w]+)(\/|.)(?P<record_id>[\\w]+)$", "format": "$api"},
     "parser": {
       "type": "json",
       "config":{

@@ -58,12 +58,18 @@ class RegRepo(object):
 
             # follow redirects
             if request_config["format"] == "redirect":
-                return session.get(pid.get_resolvable(), allow_redirects=True).url
+                target_url: PID = PID(session.get(pid.get_resolvable(), allow_redirects=True).url)
+                return self.get_request_url(target_url, session)
             # parse id
             elif "regex" in request_config.keys():
+                regex = request_config["regex"]
+                print(regex)
+                print(pid.get_resolvable())
                 rmatch: Match = match(request_config["regex"], pid.get_resolvable())
                 record_id = rmatch.group("record_id")
-                return self.hdl["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
+                print(record_id)
+                a = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
+                return a
 
     def get_host_netloc(self) -> str:
         """
@@ -105,15 +111,25 @@ class RegRepo(object):
         :param pid: PID object instance
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
+        # Match HDL with repo
         if pid.get_pid_type() == HDL:
-            for _id in self.hdl["id"]:
-                if pid.pid.repo_id == _id:
-                    return True
+            if "id" in self.hdl.keys():
+                if type(self.hdl["id"]) == str:
+                    return pid.pid.repo_id == self.hdl["id"]
+            else:
+                for _id in self.hdl["id"]:
+                    if pid.pid.repo_id == _id:
+                        return True
+
+        # Match URL with repo
         elif pid.get_pid_type() == URL:
             return self.host_netloc.replace('https://', '').replace('http://', '') == \
                    pid.pid.host_netloc.replace('https://', '').replace('http://', '')
+
+        # Match DOI with repo
         elif pid.get_pid_type() == DOI:
-            return pid.pid.repo_id in self.doi["id"]
+            if "id" in self.doi.keys():
+                return pid.pid.repo_id in self.doi["id"]
         return False
 
     def __str__(self):

@@ -130,7 +130,7 @@ class DOI:
             raise ValueError(f"Provided string {doi_string} is not a DOI")
 
         doi_pattern: Pattern = compile(
-            r".*10\.(?P<repo_id>\d{4,9})/(?P<collection>[^\W]+)(?P<repo_record_sep>[./])?(?P<record_id>[\w]*)?$")
+            r"^(?:10\.)(?P<repo_id>[\d]+)/(?P<collection>[\w-]+)(?P<repo_record_sep>[./])(?P<record_id>[\w]*)?$")
         doi_match: Match = doi_pattern.match(doi_string)
         matched_groups: dict = doi_match.groupdict()
         self.repo_id: str = "10." + doi_match.group("repo_id")
@@ -167,18 +167,19 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
         hdl_pattern: Pattern = compile(
-            r"(?:[\d.]+)?(?P<repo_id>\d{4}[\d]?)+/(?P<record_id>[\w\-/]+)(?:[@\w=]+)?$")
+            r".*(?:hdl:|hdl.handle.net\/)(?P<repo_id>[\w.]+)\/(?P<record_id>[\w\-]+)(?:[@\w=]+)?$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         if not hdl_match:
+
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
         self.repo_id: str = hdl_match.group("repo_id")
         self.record_id: str = hdl_match.group("record_id")
 
     def __str__(self):
-        return f"{self.repo_id}/{self.record_id}"
+        return self.resolvable()
 
     def resolvable(self) -> str:
-        return "https://hdl.handle.net/" + self.__str__()
+        return f"https://hdl.handle.net/{self.repo_id}/{self.record_id}"
 
     def get_record_id(self):
         return self.record_id

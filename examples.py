@@ -18,29 +18,40 @@ if __name__ == "__main__":
     # ret = dog.fetch(url)
     # print(ret)
 
-    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
-    ret = dog.sniff(url)
-    print(ret)
-    ret = dog.fetch(url)
-    print(ret)
+    # url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
+    # pid = PID(url)
+    # print("HERE")
+    # print(pid)
+    # ret = dog.sniff(url)
+    # print(ret)
+    # ret = dog.fetch(url)
+    # print(ret)
 
-    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
-    ret = dog.sniff(url)
-    print(ret)
-    ret = dog.fetch(url)
-    print(ret)
-
-    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
-    ret = dog.sniff(url)
-    print(ret)
-    ret = dog.fetch(url)
-    print(ret)
-
-    url = 'http://hdl.handle.net/11022/1007-0000-0000-8DEE-6'
+    # url = 'http://hdl.handle.net/11022/1007-0000-0000-8DEE-6'
+    # ret = dog.sniff(url)
+    # print(ret)
+    # ret = dog.fetch(url)
+    # print(ret)
+    #
+    url = "https://b2share.eudat.eu/records/5399170dc1b8415a90af3f52a6362227"
     pid = PID(url)
-    hdl = HDL(url)
-    print(hdl)
-    print(pid.get_pid_type())
+    print(pid)
+    ret = dog.sniff(url)
+    print(ret)
+    ret = dog.fetch(url)
+    print(ret)
+
+    url = "hdl:11304/d91121d1-f31c-410f-96e1-4d9f5839e74f"
+    pid = PID(url)
+    print(pid)
+    ret = dog.sniff(url)
+    print(ret)
+    ret = dog.fetch(url)
+    print(ret)
+
+    url = "10.23728/b2share.5399170dc1b8415a90af3f52a6362227"
+    pid = PID(url)
+    print("HERE" + str(pid) )
     ret = dog.sniff(url)
     print(ret)
     ret = dog.fetch(url)

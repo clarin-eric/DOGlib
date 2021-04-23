@@ -19,7 +19,7 @@ class JSONParser:
         :param parser_config: dict, parser configuration retrieved from repository JSON config
         """
         super().__init__()
-        self.dos_root: dict = parser_config['items_root']
+        self.dos_root: str = parser_config['items_root']
         self.pid_path: str = parser_config['ref_file']['pid']
         self.pid_format: str = ''
         if 'pid_api' in parser_config['ref_file'].keys():

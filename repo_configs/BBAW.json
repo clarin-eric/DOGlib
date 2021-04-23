@@ -3,9 +3,8 @@
     "name": "Berlin-Brandenburg Academy of Sciences and Humanities",
     "host_name": "BBAW",
     "host_netloc": "https://clarin.bbaw.de:8088",
-    "hdl": "",
-      "id": "11120",
-      "format": "$hdl",
+    "hdl": {
+      "id": "11120", "format": "$hdl"},
     "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",

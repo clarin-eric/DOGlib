@@ -3,10 +3,7 @@
     "name": "Bayerisches Archiv für Sprachsignale",
     "host_name": "Ludwig-Maximilians-Universität München",
     "host_netloc": "https://www.phonetik.uni-muenchen.de",
-    "hdl": {
-      "id": "11022",
-      "format": "$hdl@format=cmdi"
-    },
+    "hdl": { "id": "11022", "format": "$hdl@format=cmdi"},
     "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",
