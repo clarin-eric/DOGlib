@@ -115,6 +115,7 @@ class DOG:
         """
         pid: PID = PID(pid_string)
         matching_repos: List[RegRepo] = self._sniff(pid)
+        print(matching_repos)
         for matching_repo in matching_repos:
             if len(matching_repos) > 1:
                 url: PID = PID(requests.get(pid.get_resolvable()).url)

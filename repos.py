@@ -62,12 +62,10 @@ class RegRepo(object):
                 return self.get_request_url(target_url, session)
             # parse id
             elif "regex" in request_config.keys():
-                regex = request_config["regex"]
-                print(regex)
                 print(pid.get_resolvable())
+                regex = request_config["regex"]
                 rmatch: Match = match(request_config["regex"], pid.get_resolvable())
                 record_id = rmatch.group("record_id")
-                print(record_id)
                 a = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
                 return a
 
@@ -116,10 +114,10 @@ class RegRepo(object):
             if "id" in self.hdl.keys():
                 if type(self.hdl["id"]) == str:
                     return pid.pid.repo_id == self.hdl["id"]
-            else:
-                for _id in self.hdl["id"]:
-                    if pid.pid.repo_id == _id:
-                        return True
+                else:
+                    for _id in self.hdl["id"]:
+                        if pid.pid.repo_id == _id:
+                            return True
 
         # Match URL with repo
         elif pid.get_pid_type() == URL:
@@ -135,4 +133,7 @@ class RegRepo(object):
     def __str__(self):
         return f"Name: {self.name}\n" \
                f"Host name: {self.host_name}\n" \
-               f"Host netloc: {self.host_netloc}"
+               f"Host netloc: {self.host_netloc}" \
+               f"hdl: {self.hdl}\n" \
+               f"doi: {self.doi}\n"
+

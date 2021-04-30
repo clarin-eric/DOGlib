@@ -6,9 +6,9 @@
     "api": {
         "base": "https://b2share.eudat.eu/api/records/$record_id"
     },
-    "doi": {"id": "10.23728", "regex": ".*/(?P<record_id>[\\w]+)$", "format": "$api"},
-    "hdl": {"id": "11304", "format": "redirect"},
-    "url": {"regex": "^.*\/([\\w]+)(\/|.)(?P<record_id>[\\w]+)$", "format": "$api"},
+    "doi": {"id": "10.23728", "regex": "^.*\\/([\\w]+)(\\/|\\.)(?P<record_id>[\\w]+)$", "format": "$api"},
+    "hdl": {"id": "11304", "regex": "", "format": "redirect"},
+    "url": {"regex": "^.*\/([\\w]+)\/(?P<record_id>[\\w\\W]+)$", "format": "$api"},
     "parser": {
       "type": "json",
       "config":{

@@ -167,7 +167,7 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
         hdl_pattern: Pattern = compile(
-            r".*(?:hdl:|hdl.handle.net\/)(?P<repo_id>[\w.]+)\/(?P<record_id>[\w\-]+)(?:[@\w=]+)?$")
+            r".*(?:hdl:|hdl.handle.net/)(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:[@\w=]+)?$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         if not hdl_match:
 
