@@ -11,6 +11,7 @@
           "identifier": "/$collection/$record_id"
         }
     },
+    "url": {"regex": "^.*\/([\\w]+)(\/|\\.)(?P<record_id>[\\w\\W]+)$", "format": "$api"},
     "hdl_id": "11304",
     "doi_id": "10.23728",
     "parser": {

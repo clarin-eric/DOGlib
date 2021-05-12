@@ -2,10 +2,10 @@ import json
 from collections import namedtuple
 import os
 from re import match, Match
-from requests import get, Response, Session
 from typing import List, Any
 from urllib.parse import urlencode
 
+import curl
 from pid import PID, URL, HDL, DOI
 
 
@@ -31,7 +31,7 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request_url(self, pid: PID, session: Session) -> str:
+    def get_request_url(self, pid: PID) -> str:
         """
         Resolve the persistent identifier in case of URL and HDL and generate URL for GET request
 
@@ -44,30 +44,34 @@ class RegRepo(object):
                 return self.hdl["format"].replace("$hdl", pid.get_resolvable())
             if pid.get_pid_type() == DOI:
                 return self.doi["format"].replace("$doi", pid.get_resolvable())
-            if pid.get_pid_type() == URL:
+            if pid.get_pid_type() == URL and "regex" not in self.url.keys():
                 return self.url["format"].replace("$url", pid.get_resolvable())
-        # General case
-        else:
-            request_config: dict = {}
-            if pid.get_pid_type() == HDL:
-                request_config = self.hdl
-            elif pid.get_pid_type() == DOI:
-                request_config = self.doi
-            elif pid.get_pid_type() == URL:
-                request_config = self.url
 
-            # follow redirects
-            if request_config["format"] == "redirect":
-                target_url: PID = PID(session.get(pid.get_resolvable(), allow_redirects=True).url)
-                return self.get_request_url(target_url, session)
-            # parse id
-            elif "regex" in request_config.keys():
-                print(pid.get_resolvable())
-                regex = request_config["regex"]
-                rmatch: Match = match(request_config["regex"], pid.get_resolvable())
-                record_id = rmatch.group("record_id")
-                a = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
-                return a
+        # Generic case
+        request_config: dict = {}
+        if pid.get_pid_type() == HDL:
+            request_config = self.hdl
+        elif pid.get_pid_type() == DOI:
+            request_config = self.doi
+        elif pid.get_pid_type() == URL:
+            request_config = self.url
+
+        # follow redirects
+        if request_config["format"] == "redirect":
+            target_url: PID = PID(curl.get(pid.get_resolvable(), self.get_headers(), follow_redirects=True)[0])
+            return self.get_request_url(target_url)
+        # parse id
+        elif "regex" in request_config.keys():
+            regex = request_config["regex"]
+            print("#######")
+            print(regex)
+            print(pid.get_resolvable())
+            rmatch: Match = match(request_config["regex"], pid.get_resolvable())
+            record_id = rmatch.group("record_id")
+            print(record_id)
+            a = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
+            print(a)
+            return a
 
     def get_host_netloc(self) -> str:
         """
@@ -97,10 +101,14 @@ class RegRepo(object):
             return {}
 
     def get_headers(self) -> dict:
+        """
+        Return dict with repo specific headers
+        :return: dict, headers for http request to the repository
+        """
         if self.parser['type'] == "cmdi":
             return {"Accept": "application/x-cmdi+xml"}
-        else:
-            return {}
+        elif "headers" in self.api.keys():
+            return self.api["headers"]
 
     def match_pid(self, pid: PID) -> bool:
         """

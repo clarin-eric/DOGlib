@@ -1,9 +1,9 @@
 import json
 import os
 import requests
-from requests import Response, Session
 from typing import List, Union, Optional
 
+import curl
 from repos import RegRepo
 from parsers import JSONParser, XMLParser
 from pid import PID
@@ -12,8 +12,6 @@ from pid import PID
 class DOG:
     def __init__(self):
         self.reg_repos: List[RegRepo] = self._load_repos()
-        self.session: Session = requests.Session()
-        self.session.max_redirects = 3
 
     def _fetch(self, pid_string: str) -> dict:
         """
@@ -32,10 +30,10 @@ class DOG:
             return {}
         elif matching_repo:
             pid = PID(pid_string)
-            print(pid)
-            request_url: str = matching_repo.get_request_url(pid, self.session)
+
+            request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
-            response: Response = self.session.get(request_url, headers=headers)
+            final_url, response = curl.get(request_url, headers, follow_redirects=True)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                      matching_repo.get_parser_config())

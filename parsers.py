@@ -1,3 +1,4 @@
+import json
 from lxml.etree import fromstring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern
 from requests import Response
@@ -28,7 +29,7 @@ class JSONParser:
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
 
-    def fetch(self, response: Response, reg_repo: RegRepo) -> dict:
+    def fetch(self, response: str, reg_repo: RegRepo) -> dict:
         """
 
         :param response: dict, json response from call to repository
@@ -37,7 +38,7 @@ class JSONParser:
             decriptions: [str]
             license: str
         """
-        response: dict = response.json()
+        response: dict = json.loads(response)
         ref_files_root: dict = self.traverse_path_in_dict(response, self.dos_root)
         ref_files: list = self._fetch_resources(ref_files_root, reg_repo)
         descriptions: str = self._parse_description(response)
@@ -174,7 +175,7 @@ class XMLParser:
         if 'pid_api' in parser_config['ref_file'].keys():
             self.pid_format = parser_config['ref_file']['pid_api']
 
-    def fetch(self, response: Response, reg_repo: RegRepo) -> dict:
+    def fetch(self, response: str, reg_repo: RegRepo) -> dict:
         """
         Method wrapping fetch logic
 
@@ -187,10 +188,11 @@ class XMLParser:
                 "license: str
             }
         """
-        response_text: str = response.text
-        xml_tree: ElementTree = fromstring(response_text.encode('utf-8'))
+        print("HERE#################")
+        print(response[0:150])
+        xml_tree: ElementTree = fromstring(response.encode('utf-8'))
 
-        nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response_text)}
+        nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}
         # for parsing default namespace
         nsmap = {**nsmap, **xml_tree.nsmap}
 

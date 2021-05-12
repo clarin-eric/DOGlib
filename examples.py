@@ -14,7 +14,6 @@ if __name__ == "__main__":
 
     url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
     pid = PID(url)
-    print("HERE")
     print(pid)
     ret = dog.sniff(url)
     print(ret)
@@ -45,7 +44,6 @@ if __name__ == "__main__":
 
     url = "10.23728/b2share.5399170dc1b8415a90af3f52a6362227"
     pid = PID(url)
-    print("HERE" + str(pid) )
     ret = dog.sniff(url)
     print(ret)
     ret = dog.fetch(url)

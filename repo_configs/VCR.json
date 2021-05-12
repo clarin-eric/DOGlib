@@ -3,8 +3,12 @@
     "name": "Virtual Collection Registry",
     "host_name": "clarin",
     "host_netloc": "https://collections.clarin.eu",
+    "api": {
+        "base": "https://collections.clarin.eu/service/virtualcollections/$record_id"
+    },
     "hdl": {"id": "11372", "format": "$hdl"},
-    "url": {"format":  "$url"},
+    "url": {"format": "$api/$record_id", "regex": ".*/(?P<record_id>[\\w\\W]+)$"
+    },
     "parser": {
       "type": "cmdi",
       "config": {
