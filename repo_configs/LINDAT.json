@@ -3,9 +3,6 @@
     "name": "LINDAT/CLARIAH-CZ",
     "host_name": "LINDAT/CLARIAH-CZ",
     "host_netloc": "https://lindat.mff.cuni.cz",
-    "headers": {
-      "Accept": "application/x-cmdi+xml"
-    },
     "hdl": {"id": ["11234", "11372", "11858"], "format": "$hdl"},
     "url": {"format":  "$url"},
     "parser": {

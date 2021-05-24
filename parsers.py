@@ -188,8 +188,6 @@ class XMLParser:
                 "license: str
             }
         """
-        print("HERE#################")
-        print(response[0:150])
         xml_tree: ElementTree = fromstring(response.encode('utf-8'))
 
         nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}

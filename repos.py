@@ -63,14 +63,9 @@ class RegRepo(object):
         # parse id
         elif "regex" in request_config.keys():
             regex = request_config["regex"]
-            print("#######")
-            print(regex)
-            print(pid.get_resolvable())
             rmatch: Match = match(request_config["regex"], pid.get_resolvable())
             record_id = rmatch.group("record_id")
-            print(record_id)
             a = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
-            print(a)
             return a
 
     def get_host_netloc(self) -> str:
@@ -109,6 +104,8 @@ class RegRepo(object):
             return {"Accept": "application/x-cmdi+xml"}
         elif "headers" in self.api.keys():
             return self.api["headers"]
+        else:
+            return {}
 
     def match_pid(self, pid: PID) -> bool:
         """
@@ -141,7 +138,7 @@ class RegRepo(object):
     def __str__(self):
         return f"Name: {self.name}\n" \
                f"Host name: {self.host_name}\n" \
-               f"Host netloc: {self.host_netloc}" \
+               f"Host netloc: {self.host_netloc}\n" \
                f"hdl: {self.hdl}\n" \
-               f"doi: {self.doi}\n"
+               f"doi: {self.doi}"
 

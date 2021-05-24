@@ -7,7 +7,8 @@
         "base": "https://collections.clarin.eu/service/virtualcollections/$record_id"
     },
     "hdl": {"id": "11372", "format": "$hdl"},
-    "url": {"format": "$api/$record_id", "regex": ".*/(?P<record_id>[\\w\\W]+)$"
+    "url": {"format": "$api", "regex": ".*/(?P<record_id>[\\w\\W]+)$", "headers": {
+      "Accept": "application/x-cmdi+xml"}
     },
     "parser": {
       "type": "cmdi",

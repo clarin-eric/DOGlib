@@ -2,7 +2,7 @@
   "repository": {
     "name": "ASV Leipzig",
     "host_name": "ASV Leipzig",
-    "host_netloc": "http://asv.informatik.uni-leipzig.de//",
+    "host_netloc": "https://clarinws.informatik.uni-leipzig.de",
     "hdl": {
       "id": "11022",
       "format": "$hdl"

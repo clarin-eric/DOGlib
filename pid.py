@@ -88,10 +88,6 @@ class URL:
         url_split: NamedTuple = urlsplit(url_string)
         self.host_netloc: str = getattr(url_split, 'hostname')
         _path: str = getattr(url_split, 'path')
-        if getattr(url_split, 'query'):
-            q = getattr(url_split, 'query')
-            pid: PID = PID(q)
-            self.record_id = str(pid)
 
         self.record_id: str = self.url.geturl().split('/')[-1]
         self.collection: str = self.url.geturl().split('/')[-2]
@@ -167,7 +163,7 @@ class HDL:
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
         hdl_pattern: Pattern = compile(
-            r".*(?:hdl:|hdl.handle.net/)(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:[@\w=]+)?$")
+            r".*(?:hdl:|hdl.handle.net/)(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:[@format=cmdi]+)?$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         if not hdl_match:
 

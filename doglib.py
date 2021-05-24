@@ -111,16 +111,21 @@ class DOG:
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
         :return: str, repository description of matching registered repository, '' if pid not matched
         """
+
         pid: PID = PID(pid_string)
         matching_repos: List[RegRepo] = self._sniff(pid)
-        print(matching_repos)
-        for matching_repo in matching_repos:
+
+        for _, matching_repo in enumerate(matching_repos):
             if len(matching_repos) > 1:
-                url: PID = PID(requests.get(pid.get_resolvable()).url)
+                try:
+                    candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(), True)[0]
+                except curl.RequestError:
+                    continue
+                url: PID = PID(candidate)
                 if matching_repo.match_pid(url):
                     return matching_repo
             else:
-                return matching_repos[0]
+                return matching_repo
         return None
 
     def fetch(self, pid_string: str) -> dict:
