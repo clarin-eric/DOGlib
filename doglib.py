@@ -1,6 +1,5 @@
 import json
 import os
-import requests
 from typing import List, Union, Optional
 
 import curl
@@ -92,15 +91,15 @@ class DOG:
         else:
             return None
 
-    def isdownloadable(self, url: str) -> bool:
-        """
-        Is reference link a downloadable
-
-        :param url: str, resolvable url
-        :return: bool, true if downloadable, false otherwise
-        """
-        headers = requests.head(url).headers
-        return 'attachment' in headers.get('Content-Disposition', '')
+    # def isdownloadable(self, url: str) -> bool:
+    #     """
+    #     Is reference link a downloadable
+    #
+    #     :param url: str, resolvable url
+    #     :return: bool, true if downloadable, false otherwise
+    #     """
+    #     headers = requests.head(url).headers
+    #     return 'attachment' in headers.get('Content-Disposition', '')
 
     def sniff(self, pid_string: str) -> Optional[RegRepo]:
         """

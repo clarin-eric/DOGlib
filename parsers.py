@@ -1,7 +1,6 @@
 import json
 from lxml.etree import fromstring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern
-from requests import Response
 from typing import Any, Generator, List, NamedTuple, Type, Union
 
 from pid import PID
@@ -181,7 +180,7 @@ class XMLParser:
 
         :param response: Response, response from repository
         :param reg_repo: RegRepo, object of Registered Repository for providing necessary repo-specific behaviour
-        :return: dict, return fetch result in a format:
+        :return: dict, return fetch reimport ossult in a format:
             {
                 "ref_files": [{"filename": str, "pid": str}],
                 "description": str,

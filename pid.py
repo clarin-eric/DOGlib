@@ -1,6 +1,4 @@
-import os
 from re import compile, match
-from requests import get, Response
 from typing import Match, NamedTuple, Pattern, Sequence
 from urllib.parse import urlparse, urlsplit, ParseResult
 
