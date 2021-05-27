@@ -56,7 +56,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -96,6 +96,6 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
