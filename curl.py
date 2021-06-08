@@ -28,6 +28,7 @@ def get(url: Union[str, PID], headers: dict, follow_redirects=False, verbose=0) 
         0: effective url request (final redirection landing url)
         1: response body
     """
+    print(url)
     body: BytesIO = BytesIO()
     c: pycurl.Curl = pycurl.Curl()
     c.setopt(c.URL, url)

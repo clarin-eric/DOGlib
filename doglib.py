@@ -12,7 +12,7 @@ class DOG:
     def __init__(self):
         self.reg_repos: List[RegRepo] = self._load_repos()
 
-    def _fetch(self, pid_string: str) -> dict:
+    def _fetch(self, pid: PID) -> dict:
         """
         Method that takes care of parser construction and parse call
 
@@ -24,12 +24,10 @@ class DOG:
                 "license: str
             }
         """
-        matching_repo: RegRepo = self.sniff(pid_string)
+        matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
             return {}
         elif matching_repo:
-            pid = PID(pid_string)
-
             request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
             final_url, response = curl.get(request_url, headers, follow_redirects=True)
@@ -61,18 +59,39 @@ class DOG:
                     reg_repos.append(reg_repo)
         return reg_repos
 
-    def _sniff(self, pid: PID) -> List[RegRepo]:
+    def _sniff(self, pid: PID) -> Optional[RegRepo]:
         """
         Check if pid matches any registered repository
 
-        :param pid: PID, PID object to be matched
-        :return: Optional[RegRepo], if matched returns matching RegRepo object, if not returns None
+        :param pid: PID, PID to match with hosting repository
+        :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
         """
-        ret: list = []
+        sniffed_repos: list = []
         for reg_repo in self.reg_repos:
             if reg_repo.match_pid(pid):
-                ret.append(reg_repo)
-        return ret
+                sniffed_repos.append(reg_repo)
+        return self._match_sniffed(sniffed_repos, pid)
+
+    def _match_sniffed(self, sniffed_repos: list, pid: PID) -> Optional[RegRepo]:
+        """
+        Matches PID with hosting repo. Method used by DOG._sniff()
+
+        :param sniffed_repos: list, registered repositories possibly hosting referenced PID metadata
+        :param pid: PID, PID to match with hosting repository
+        :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
+        """
+        for matching_repo in sniffed_repos:
+            if len(sniffed_repos) > 1:
+                try:
+                    candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(), True)[0]
+                except curl.RequestError:
+                    continue
+                url: PID = PID(candidate)
+                if matching_repo.match_pid(url):
+                    return matching_repo
+            else:
+                return matching_repo
+        return None
 
     def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser, None]:
         """
@@ -101,7 +120,7 @@ class DOG:
     #     headers = requests.head(url).headers
     #     return 'attachment' in headers.get('Content-Disposition', '')
 
-    def sniff(self, pid_string: str) -> Optional[RegRepo]:
+    def sniff(self, pid_string: str) -> dict:
         """
         Method for sniff call, tries to match pid with registered repositories and returns string with information
         about repository, if pid is not matched returns empty string. If there are multiple repositories using the same
@@ -112,20 +131,8 @@ class DOG:
         """
 
         pid: PID = PID(pid_string)
-        matching_repos: List[RegRepo] = self._sniff(pid)
-
-        for _, matching_repo in enumerate(matching_repos):
-            if len(matching_repos) > 1:
-                try:
-                    candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(), True)[0]
-                except curl.RequestError:
-                    continue
-                url: PID = PID(candidate)
-                if matching_repo.match_pid(url):
-                    return matching_repo
-            else:
-                return matching_repo
-        return None
+        matching_repo: RegRepo = self._sniff(pid)
+        return matching_repo.__dict__()
 
     def fetch(self, pid_string: str) -> dict:
         """
@@ -143,5 +150,6 @@ class DOG:
             }
         """
         # TODO nested reference resolving
-        fetch_result: dict = self._fetch(pid_string)
+        pid: PID = PID(pid_string)
+        fetch_result: dict = self._fetch(pid)
         return fetch_result

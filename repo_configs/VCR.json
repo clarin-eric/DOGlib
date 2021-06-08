@@ -4,11 +4,11 @@
     "host_name": "clarin",
     "host_netloc": "https://collections.clarin.eu",
     "api": {
-        "base": "https://collections.clarin.eu/service/virtualcollections/$record_id"
+        "base": "https://collections.clarin.eu/service/v1/collections/$record_id"
     },
     "hdl": {"id": "11372", "format": "$hdl"},
     "url": {"format": "$api", "regex": ".*/(?P<record_id>[\\w\\W]+)$", "headers": {
-      "Accept": "application/x-cmdi+xml"}
+      "Accept": "application/xml"}
     },
     "parser": {
       "type": "cmdi",
