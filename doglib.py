@@ -122,8 +122,8 @@ class DOG:
 
     def sniff(self, pid_string: str) -> dict:
         """
-        Method for sniff call, tries to match pid with registered repositories and returns string with information
-        about repository, if pid is not matched returns empty string. If there are multiple repositories using the same
+        Method for sniff call, tries to match pid with registered repositories and returns dict with information
+        about repository, if pid is not matched returns empty dict. If there are multiple repositories using the same
         identifier tries to resolve PID and match repo by host.
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
