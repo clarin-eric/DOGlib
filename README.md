@@ -3,7 +3,7 @@ A Python library for direct download link retrieval of resources referenced by a
  
 ## Usage
 
-####### sniff(pid: string) -> string 
+###### sniff(pid: string) -> string 
  Checks whether entity with given PID is stored in registered repository, if it is returns repository information.
  Returns dict with information about hosting repository
 
@@ -19,7 +19,7 @@ A Python library for direct download link retrieval of resources referenced by a
  
 ```
  
-####### fetch(pid: string) -> dict
+###### fetch(pid: string) -> dict
 
  Returns dict with collection's licence and description and list of download links to referenced resource.
 
