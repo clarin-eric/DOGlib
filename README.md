@@ -53,16 +53,31 @@ returns:
 
 ## Installation
 
+Clone the repository and enter the directory:
+```bash
+git clone https://github.com/clarin-eric/DOGlib.git
+cd DOGlib
+```
+
+Next depending on method of choice you can install dependencies:
+
 via PIP:
 ```bash
 pip install requirements.txt
 ```
 
-Conda:
+via setuptools:
+```bash
+python setup.py install
+```
+
+Or build Conda VE from a config file:
 ```bash
 conda env create -f environment.yml
-conda activate DOG
+conda activate doglib
 ```
+
+
 
 
 
