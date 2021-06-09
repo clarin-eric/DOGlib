@@ -11,7 +11,7 @@ Tries to match PID with registered repositories and returns dict with informatio
  from DOGlib import DOG
 
  dog = DOG()
- dog.sniff("https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698"))
+ dog.sniff("https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698")
 ```
 
 returns:
@@ -30,7 +30,7 @@ returns:
  from DOGlib import DOG
 
  dog = DOG()
- dog.fetch("https://hdl.handle.net/11022/0000-0000-20E0-E"))
+ dog.fetch("https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698")
 ```
 
 returns:
