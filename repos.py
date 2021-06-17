@@ -142,3 +142,6 @@ class RegRepo(object):
                f"hdl: {self.hdl}\n" \
                f"doi: {self.doi}"
 
+    def __dict__(self):
+        return {"name": self.name, "host_name": self.host_name, "host_netloc": self.host_netloc}
+

@@ -236,17 +236,13 @@ class XMLParser:
         :param response: dict, JSON response from repository
         :return: str, license
         """
-        try:
-            _licenses: list = xml_tree.findall(self.license_path, nsmap)
-        except SyntaxError:
-            return ''
-        
+        _licenses: List[Element] = xml_tree.findall(self.license_path, nsmap)
+
         if _licenses:
             if len(_licenses) == 1:
-                if hasattr(_licenses, "text"):
-                    return _licenses.text
-                else:
-                    return ''
+                return _licenses[0].text
+            else:
+                return ''
         else:
             _licenses = [_license.text for _license in _licenses]
             return '\n'.join(_licenses)

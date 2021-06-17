@@ -10,7 +10,8 @@ Examples of DOGlib supported repositories
 if __name__ == "__main__":
     dog = DOG()
 
-    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422'
+
+    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698'
     ret = dog.sniff(url)
     print("This is sniff() output")
     print(ret)
@@ -56,7 +57,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -66,7 +67,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
@@ -86,16 +87,16 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
 
-    url = 'https://collections.clarin.eu/details/1017'
+    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698'
     ret = dog.sniff(url)
     print("This is sniff() output")
     print(ret)
     print("\n")
     ret = dog.fetch(url)
-    print("This is sniff() output")
+    print("This is fetch() output")
     print(ret)
     print("\n")
