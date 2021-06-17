@@ -63,7 +63,7 @@ Next depending on method of choice you can install dependencies:
 
 via PIP:
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 via setuptools:
