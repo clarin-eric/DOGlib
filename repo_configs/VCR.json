@@ -14,7 +14,7 @@
       "type": "cmdi",
       "config": {
         "description": ".//VirtualCollection/Description",
-        "license": "",
+        "license": ".//Reproducibility",
         "ref_file": {
           "pid": ".//ResourceProxy[ResourceType='Resource']/ResourceRef",
           "filename": ""

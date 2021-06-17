@@ -21,37 +21,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
 
-    url = 'http://hdl.handle.net/11022/1007-0000-0000-8DEE-6'
-    ret = dog.sniff(url)
-    print("This is sniff() output")
-    print(ret)
-    print("\n")
-    ret = dog.fetch(url)
-    print("This is fetch() output")
-    print(ret)
-    print("\n")
-
-    url = "https://b2share.eudat.eu/records/5399170dc1b8415a90af3f52a6362227"
-    ret = dog.sniff(url)
-    print("This is sniff() output")
-    print(ret)
-    print("\n")
-    ret = dog.fetch(url)
-    print("This is fetch() output")
-    print(ret)
-    print("\n")
-
-    url = "hdl:11304/d91121d1-f31c-410f-96e1-4d9f5839e74f"
-    ret = dog.sniff(url)
-    print("This is sniff() output")
-    print(ret)
-    print("\n")
-    ret = dog.fetch(url)
-    print("This is fetch() output")
-    print(ret)
-    print("\n")
-
-    url = "10.23728/b2share.5399170dc1b8415a90af3f52a6362227"
+    url = 'https://collections.clarin.eu/details/1030'
     ret = dog.sniff(url)
     print("This is sniff() output")
     print(ret)
