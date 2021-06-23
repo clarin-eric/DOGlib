@@ -120,6 +120,17 @@ class DOG:
     #     headers = requests.head(url).headers
     #     return 'attachment' in headers.get('Content-Disposition', '')
 
+    def is_host_registered(self, pid_string: str) -> bool:
+        """
+        Method wrap over _sniff() for recognition whether provided PID belongs to registered repository
+
+        :param pid:string: str, persisten identifier of collection, may be in a format of URL, DOI or HDL
+        :return: bool, True if PID belongs to registered repository, False otherwise
+        """
+
+        pid = PID(pid_string)
+        return bool(self._sniff(pid))
+
     def sniff(self, pid_string: str) -> dict:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information

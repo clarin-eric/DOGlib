@@ -3,7 +3,7 @@ A Python library for direct download link retrieval of resources referenced by a
  
 ## Usage
 
-#### sniff(pid: string) -> string 
+#### sniff(pid: str) -> string 
 Tries to match PID with registered repositories and returns dict with information about repository, otherwise returns empty dict. If there are multiple repositories using the same identifier tries to resolve PID and match repo by host.
 
  Example:
@@ -23,7 +23,7 @@ returns:
 }
 ```
  
-#### fetch(pid: string) -> dict
+#### fetch(pid: str) -> dict
 
  Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty dict
 ```Python 
@@ -43,6 +43,11 @@ returns:
 	'license': 'http://creativecommons.org/licenses/by-nc-sa/4.0/'}
 
 ```
+
+#### is_host_registered(pid: str) -> bool
+
+Checks whether PID is hosted on registered repository or not. Note that it may be slower then expected, due to some repositories using same institutional ID in their PIDs (HDl/DOI). In such cases DOG tries to resolve the PID and match the host with registered repositories.   
+
 
 ## Installation
 
