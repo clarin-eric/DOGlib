@@ -25,7 +25,7 @@ returns:
  
 #### fetch(pid: str) -> dict
 
- Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty dict
+Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty dict
 ```Python 
  from DOGlib import DOG
 
