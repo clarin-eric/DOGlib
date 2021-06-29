@@ -1,5 +1,6 @@
 import json
 import os
+import requests
 from typing import List, Union, Optional
 
 import curl
@@ -110,15 +111,15 @@ class DOG:
         else:
             return None
 
-    # def isdownloadable(self, url: str) -> bool:
-    #     """
-    #     Is reference link a downloadable
-    #
-    #     :param url: str, resolvable url
-    #     :return: bool, true if downloadable, false otherwise
-    #     """
-    #     headers = requests.head(url).headers
-    #     return 'attachment' in headers.get('Content-Disposition', '')
+    def is_downloadable(self, url: str) -> bool:
+        """
+        Is reference link downloadable
+
+        :param url: str, resolvable url
+        :return: bool, true if downloadable, false otherwise
+        """
+        headers = requests.head(url).headers
+        return 'attachment' in headers.get('Content-Disposition', '')
 
     def is_host_registered(self, pid_string: str) -> bool:
         """
@@ -135,7 +136,7 @@ class DOG:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information
         about repository, if pid is not matched returns empty dict. If there are multiple repositories using the same
-        identifier tries to resolve PID and match repo by host.
+        identifier tries to resolve PID and match repo by host (this can take time).
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
         :return: str, repository description of matching registered repository, '' if pid not matched
