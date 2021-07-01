@@ -75,30 +75,3 @@ conda env create -f environment.yml
 conda activate doglib
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-See examplary usage:
-```bash
-./example.py
-```
