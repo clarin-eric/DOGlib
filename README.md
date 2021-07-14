@@ -64,10 +64,6 @@ via PIP:
 pip install -r requirements.txt
 ```
 
-via setuptools:
-```bash
-python setup.py install
-```
 
 Or build Conda VE from a config file:
 ```bash
