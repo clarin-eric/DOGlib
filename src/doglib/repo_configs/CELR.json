@@ -1,0 +1,31 @@
+{
+  "repository": {
+    "name": "Center of Estonian Language Resources",
+    "host_name": "Eesti Keeleressursside Keskus",
+    "host_netloc": "https://metashare.ut.ee",
+    "hdl": {
+      "id": "11297",
+      "format": "$hdl"
+    },
+    "url": {"format":  "$url"},
+    "doi": {
+      "id": "15155",
+      "format": "$doi"
+    },
+    "parser": {
+      "type": "cmdi",
+      "config": {
+        "nsmap": {
+          "cmd": "http://www.clarin.eu/cmd/"
+        },
+        "description": ".//cmd:identificationInfo/cmd:description",
+        "license": ".//cmd:licenceInfo/cmd:licence",
+        "ref_file": {
+          "pid": ".//header/identifier",
+          "filename": "",
+          "pid_api": "https://metashare.ut.ee/repository/download/$pid"
+        }
+      }
+    }
+  }
+}

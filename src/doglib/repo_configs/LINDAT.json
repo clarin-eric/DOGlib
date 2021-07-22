@@ -1,0 +1,20 @@
+{
+  "repository": {
+    "name": "LINDAT/CLARIAH-CZ",
+    "host_name": "LINDAT/CLARIAH-CZ",
+    "host_netloc": "https://lindat.mff.cuni.cz",
+    "hdl": {"id": ["11234", "11372", "11858"], "format": "$hdl"},
+    "url": {"format":  "$url"},
+    "parser": {
+      "type": "cmdi",
+      "config": {
+        "description": ".//cmd:description",
+        "license": ".//cmd:license/cmd:uri",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "filename": ""
+        }
+      }
+    }
+  }
+}
