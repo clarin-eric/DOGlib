@@ -3,10 +3,10 @@ import os
 import requests
 from typing import List, Union, Optional
 
-import curl
-from repos import RegRepo
-from parsers import JSONParser, XMLParser
-from pid import PID
+from . import curl
+from .repos import RegRepo
+from .parsers import JSONParser, XMLParser
+from .pid import PID
 
 
 class DOG:
@@ -37,7 +37,7 @@ class DOG:
                                                                      matching_repo.get_parser_config())
             return parser.fetch(response, matching_repo)
 
-    def _load_repos(self, config_dir: str = os.path.join(os.getcwd(), "repo_configs")) -> List[RegRepo]:
+    def _load_repos(self, config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")) -> List[RegRepo]:
         """
         Method for constructor taking care of loading repository configurations
 

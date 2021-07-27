@@ -5,8 +5,8 @@ from re import match, Match
 from typing import List, Any
 from urllib.parse import urlencode
 
-import curl
-from pid import PID, URL, HDL, DOI
+from . import curl
+from .pid import PID, URL, HDL, DOI
 
 
 class RegRepo(object):

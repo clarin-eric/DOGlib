@@ -3,7 +3,7 @@ from io import BytesIO
 import pycurl
 from typing import Any, Tuple, Union
 
-from pid import PID
+from .pid import PID
 
 
 class CurlError(Exception):

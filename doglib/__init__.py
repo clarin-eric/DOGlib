@@ -1,1 +1,1 @@
-from doglib import *
+from .doglib import DOG

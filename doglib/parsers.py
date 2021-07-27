@@ -3,8 +3,8 @@ from lxml.etree import fromstring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern
 from typing import Any, Generator, List, NamedTuple, Type, Union
 
-from pid import PID
-from repos import RegRepo
+from .pid import PID
+from .repos import RegRepo
 
 
 class JSONParser:
