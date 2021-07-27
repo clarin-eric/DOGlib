@@ -31,7 +31,7 @@ class DOG:
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
-            final_url, response = curl.get(request_url, headers, follow_redirects=True)
+            final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                      matching_repo.get_parser_config())
