@@ -1,7 +1,7 @@
 {
   "repository": {
-    "name": "",
-    "host_name": "",
+    "name": "Meertens Institute",
+    "host_name": "Meertens Institute",
     "host_netloc": "https://www.meertens.knaw.nl",
     "hdl": {"id":  "10744", "format": "$hdl"},
     "url": {"format":  "$url"},
