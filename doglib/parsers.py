@@ -24,7 +24,8 @@ class JSONParser:
         self.pid_format: str = ''
         if 'pid_api' in parser_config['ref_file'].keys():
             self.pid_format = parser_config['ref_file']['pid_api']
-        self.filename_path: str = parser_config['ref_file']['filename']
+        # TODO possible filename handling
+        #self.filename_path: str = parser_config['ref_file']['filename']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
 
@@ -54,7 +55,8 @@ class JSONParser:
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
         ret = []
-        filenames = list(self.fetchall_path_in_dict(ref_files_root, self.filename_path))
+        # TODO possible filename handling
+        #filenames = list(self.fetchall_path_in_dict(ref_files_root, self.filename_path))
         pids = self.fetchall_path_in_dict(ref_files_root, self.pid_path)
         for filename, _pid in zip(filenames, pids):
             try:
@@ -66,7 +68,9 @@ class JSONParser:
                 pid: str = f'{reg_repo.get_host_netloc()}{self.pid_format.replace("$pid", str(pid))}'
             else:
                 pid: str = pid.get_resolvable()
-            ret.append({"filename": filename, "pid": pid})
+            # TODO possible filename handling
+            #ret.append({"filename": filename, "pid": pid})
+            ret.append({"pid": pid})
         return ret
 
     def _parse_description(self, response: dict) -> str:
@@ -167,7 +171,7 @@ class XMLParser:
         else:
             self.namespaces: dict = {}
         self.pid_path: str = parser_config['ref_file']['pid']
-        self.filename_path: str = parser_config['ref_file']['filename']
+        #self.filename_path: str = parser_config['ref_file']['filename']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
         self.pid_format: str = ''
@@ -223,12 +227,12 @@ class XMLParser:
 
         if self.pid_format:
             ref_resources = [self.pid_format.replace("$pid", ref_resource) for ref_resource in ref_resources]
-
-        if self.filename_path:
-            labels = xml_tree.findall(self.filename_path, nsmap)
-            return [{"filename": label.text, "pid": ref_resource} for ref_resource, label in zip(ref_resources, labels)]
-        else:
-            return [{"filename": '', "pid": ref_resource} for ref_resource in ref_resources]
+        # TODO possible filename handling
+        # if self.filename_path:
+        #     labels = xml_tree.findall(self.filename_path, nsmap)
+        #     return [{"filename": label.text, "pid": ref_resource} for ref_resource, label in zip(ref_resources, labels)]
+        # else:
+        return [{"filename": '', "pid": ref_resource} for ref_resource in ref_resources]
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
