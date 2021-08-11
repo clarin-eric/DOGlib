@@ -22,7 +22,6 @@ class RegRepo(object):
         self.doi: dict = {}
         self.hdl: dict = {}
         self.url: dict = {}
-        self.api: dict = {}
         self.metadata: str = ''
         self.host_name: str = ''
         self.host_netloc: str = ''
@@ -63,10 +62,11 @@ class RegRepo(object):
         # parse id
         elif "regex" in request_config.keys():
             regex = request_config["regex"]
-            rmatch: Match = match(request_config["regex"], pid.get_resolvable())
+            rmatch: Match = match(regex, pid.get_resolvable())
             record_id = rmatch.group("record_id")
-            a = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
-            return a
+            # get API call
+            request_url = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
+            return request_url
 
     def get_host_netloc(self) -> str:
         """

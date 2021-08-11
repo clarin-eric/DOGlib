@@ -34,7 +34,6 @@ def get(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fal
     response_headers: BytesIO = BytesIO()
     c: pycurl.Curl = pycurl.Curl()
     c.setopt(c.URL, url)
-    print(headers)
     if headers:
         c.setopt(c.HTTPHEADER, [k + ': ' + v for k, v in list(headers.items())])
     c.setopt(c.WRITEFUNCTION, response_body.write)

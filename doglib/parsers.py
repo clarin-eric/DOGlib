@@ -240,7 +240,10 @@ class XMLParser:
         :param response: dict, JSON response from repository
         :return: str, license
         """
-        _licenses: List[Element] = xml_tree.findall(self.license_path, nsmap)
+        if self.license_path != '':
+            _licenses: List[Element] = xml_tree.findall(self.license_path, nsmap)
+        else:
+            return ''
 
         if _licenses:
             if len(_licenses) == 1:

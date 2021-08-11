@@ -15,6 +15,15 @@ Examples of DOGlib supported repositories
 if __name__ == "__main__":
     dog = DOG()
 
+    url = 'https://archive.mpi.nl/objects/tla:1839_00_0000_0000_0018_A640_9/datastreams/CMD/content?asOfDateTime=2018-03-02T11:00:00.000Z'
+    ret = dog.sniff(url)
+    print("This is sniff() output")
+    print(ret)
+    print("\n")
+    ret = dog.fetch(url)
+    print("This is fetch() output")
+    print(ret)
+    print("\n")
 
     url = 'https://archive.mpi.nl/tla/islandora/object/tla:1839_00_0000_0000_0018_A640_9?asOfDateTime=2018-03-02T11:00:00.000Z'
     ret = dog.sniff(url)
