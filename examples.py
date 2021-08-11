@@ -16,7 +16,7 @@ if __name__ == "__main__":
     dog = DOG()
 
 
-    url = 'https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698'
+    url = 'https://archive.mpi.nl/tla/islandora/object/tla:1839_00_0000_0000_0018_A640_9?asOfDateTime=2018-03-02T11:00:00.000Z'
     ret = dog.sniff(url)
     print("This is sniff() output")
     print(ret)
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
 
-    url = 'https://collections.clarin.eu/details/1030'
+    url = 'http://hdl.handle.net/1839/00-0000-0000-0018-A640-9'
     ret = dog.sniff(url)
     print("This is sniff() output")
     print(ret)
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     print(ret)
     print("\n")
 
-    url = "https://zenodo.org/record/1639549#.YIu0fxKxXs0"
+    url = "http://hdl.handle.net/1839/00-0000-0000-0018-A640-9@view"
     ret = dog.sniff(url)
     print("This is sniff() output")
     print(ret)
