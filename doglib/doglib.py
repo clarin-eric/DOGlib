@@ -1,6 +1,5 @@
 import json
 import os
-import requests
 from typing import List, Union, Optional
 
 from . import curl
@@ -111,26 +110,38 @@ class DOG:
         else:
             return None
 
-    def is_downloadable(self, url: str) -> bool:
+    def is_downloadable(self, pid_string: str) -> bool:
         """
-        Is reference link downloadable
+        Method checks if reference link is downloadable by investigating Content-Disposition header of the response
 
-        :param url: str, resolvable url
+        :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, true if downloadable, false otherwise
         """
-        headers = requests.head(url).headers
-        return 'attachment' in headers.get('Content-Disposition', '')
+        _, response_headers = curl.head(pid_string, follow_redirects=True)
+        return "Content-Disposition: attachment" in response_headers
 
     def is_host_registered(self, pid_string: str) -> bool:
         """
-        Method wrap over _sniff() for recognition whether provided PID belongs to registered repository
+        Method for recognition whether provided PID reference is hosted by registered repository
 
-        :param pid:string: str, persisten identifier of collection, may be in a format of URL, DOI or HDL
+        :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
 
         pid = PID(pid_string)
         return bool(self._sniff(pid))
+
+    def is_collection(self, pid_string: str) -> bool:
+        """
+        Method wrap over _sniff() for recognition whether provided PID is a collection hosted by registered repository
+
+        :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
+        :return: bool, True if PID belongs to registered repository, False otherwise
+        """
+        if self.is_host_registered(pid_string):
+            return not self.is_downloadable(pid_string)
+        else:
+            return False
 
     def sniff(self, pid_string: str) -> dict:
         """
