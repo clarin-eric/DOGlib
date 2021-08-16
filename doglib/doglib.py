@@ -71,9 +71,6 @@ class DOG:
         for reg_repo in self.reg_repos:
             if reg_repo.match_pid(pid):
                 sniffed_repos.append(reg_repo)
-        print(sniffed_repos)
-        print(pid)
-        print(pid.get_pid_type())
         return self._match_sniffed(sniffed_repos, pid)
 
     def _match_sniffed(self, sniffed_repos: list, pid: PID) -> Optional[RegRepo]:

@@ -48,7 +48,4 @@ def get(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fal
     if response_code != 200:
         raise RequestError(f"Response code from {url}: {response_code}") #TODO
 
-    a = response_headers.getvalue().decode("utf-8")
-    print(response_headers)
-
     return c.getinfo(c.EFFECTIVE_URL), response_body.getvalue().decode("utf-8"), response_headers.getvalue().decode("utf-8")
