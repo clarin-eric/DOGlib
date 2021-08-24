@@ -58,7 +58,8 @@ class JSONParser:
         # TODO possible filename handling
         #filenames = list(self.fetchall_path_in_dict(ref_files_root, self.filename_path))
         pids = self.fetchall_path_in_dict(ref_files_root, self.pid_path)
-        for filename, _pid in zip(filenames, pids):
+        #for _pid in zip(filenames, pids):
+        for _pid in pids:
             try:
                 pid: PID = PID(_pid)
             except ValueError:
@@ -164,14 +165,20 @@ class XMLParser:
     def __init__(self, parser_config: dict):
         """
 
-        :param parser_config: dict, parser configuration retrieved from repository XML config
+        :param parser_config: dict, parser configuration retrieved from repository XML config in .repo_configs/
         """
         if 'nsmap' in parser_config.keys():
             self.namespaces: dict = parser_config['nsmap']
         else:
             self.namespaces: dict = {}
+
+        # In case no accepted resource type is provided make sure to not leave the list empty, so the body of main
+        # for loop in self._fetch_resources can be executed anyway
+        self.accept_resource_type: list = ['']
+        if 'resource_type' in parser_config.keys():
+            self.accept_resource_type = parser_config['accept_resource_type']
+
         self.pid_path: str = parser_config['ref_file']['pid']
-        #self.filename_path: str = parser_config['ref_file']['filename']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
         self.pid_format: str = ''
@@ -195,7 +202,7 @@ class XMLParser:
 
         nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}
         # for parsing default namespace
-        nsmap = {**nsmap, **xml_tree.nsmap}
+        nsmap: dict = {**nsmap, **xml_tree.nsmap}
 
         resources: list = self._fetch_resources(xml_tree, nsmap)
         description: str = self._fetch_description(xml_tree, nsmap)
@@ -212,27 +219,27 @@ class XMLParser:
         :param nsmap: dict, map of namespace tags to namespace URIs
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
+        fetched_resources: dict = {}
+        ref_resource_basename: str = self.pid_path.split("/")[-1]
+        ret: list = []
+        for resource_type in self.accept_resource_type:
+            ref_resources: list = xml_tree.findall(self.pid_path.replace("$resource_type", resource_type), nsmap)
 
-        ref_resources: list = xml_tree.findall(self.pid_path, nsmap)
-        """ 
-        check if lxml compatible XPath refers to an attribute, as lxml does not support full XPath (attribute value 
-        retrieval) and XPath does not support default {None: ns_uri} namespace
-        """
-        ref_resource_base: str = self.pid_path.split("/")[-1]
-        if "@" in ref_resource_base:
-            namespace, attrib_key = self._xpath_basename_to_attr_key(ref_resource_base)
-            ref_resources = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
-        else:
-            ref_resources = [ref_resource.text for ref_resource in ref_resources]
+            """ 
+            check if lxml compatible XPath refers to an attribute, as lxml does not support full XPath (@attribute value 
+            retrieval) and XPath does not support default {None: <ns_uri>} namespace
+            """
+            if "@" in ref_resource_basename:
+                namespace, attrib_key = self._xpath_basename_to_attr_key(ref_resource_basename)
+                fetched_resources[resource_type] = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
+            else:
+                ref_resources = [ref_resource.text for ref_resource in ref_resources]
 
-        if self.pid_format:
-            ref_resources = [self.pid_format.replace("$pid", ref_resource) for ref_resource in ref_resources]
-        # TODO possible filename handling
-        # if self.filename_path:
-        #     labels = xml_tree.findall(self.filename_path, nsmap)
-        #     return [{"filename": label.text, "pid": ref_resource} for ref_resource, label in zip(ref_resources, labels)]
-        # else:
-        return [{"filename": '', "pid": ref_resource} for ref_resource in ref_resources]
+            if self.pid_format:
+                ref_resources = [self.pid_format.replace("$pid", ref_resource) for ref_resource in ref_resources]
+
+            ret.extend([{"resource_type": resource_type, "filename": '', "pid": ref_resource} for ref_resource in ref_resources])
+        return ret
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -292,3 +299,13 @@ class XMLParser:
         attrib_key_match: Match = match(lxml_attrib_pattern, xpath_basename)
         namespace_tag, attrib_name = attrib_key_match.group("attrib_name").split(':')
         return namespace_tag, attrib_name
+
+
+class CMDIParser(XMLParser):
+    def __init__(self, parser_config: dict):
+        super().__init__(parser_config)
+        if 'resource_type' in parser_config.keys():
+            self.accept_resource_type = parser_config['accept_resource_type']
+        else:
+            self.accept_resource_type = ["Resource", "LandingPage", "Metadata"]
+        self.pid_path: str = ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"

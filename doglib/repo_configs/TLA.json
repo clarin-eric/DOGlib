@@ -15,7 +15,7 @@
         "description": ".//cmd:lat-session/cmd:descriptions",
         "license": "",
         "ref_file": {
-          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef"
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
     }

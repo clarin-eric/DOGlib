@@ -4,7 +4,7 @@ from typing import List, Union, Optional
 
 from . import curl
 from .repos import RegRepo
-from .parsers import JSONParser, XMLParser
+from .parsers import CMDIParser, JSONParser, XMLParser
 from .pid import PID
 
 
@@ -106,7 +106,7 @@ class DOG:
         elif parser_type == "xml":
             return XMLParser(parser_config)
         elif parser_type == "cmdi":
-            return XMLParser(parser_config)
+            return CMDIParser(parser_config)
         else:
             return None
 
