@@ -305,7 +305,10 @@ class CMDIParser(XMLParser):
     def __init__(self, parser_config: dict):
         super().__init__(parser_config)
         if 'resource_type' in parser_config.keys():
-            self.accept_resource_type = parser_config['accept_resource_type']
+            self.accept_resource_type = parser_config["accept_resource_type"]
         else:
             self.accept_resource_type = ["Resource", "LandingPage", "Metadata"]
-        self.pid_path: str = ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
+        if "pid" in parser_config["ref_file"].keys():
+            self.pid_path = parser_config["ref_file"]["pid"]
+        else:
+            self.pid_path: str = ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
