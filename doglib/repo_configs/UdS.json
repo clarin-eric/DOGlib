@@ -14,7 +14,7 @@
         "description": ".//cmd:description",
         "license": ".//cmd:licenceInfo/cmd:licence",
         "ref_file": {
-          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef"
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
     }
