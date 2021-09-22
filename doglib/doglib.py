@@ -127,8 +127,10 @@ class DOG:
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
-
-        pid = PID(pid_string)
+        try:
+            pid = PID(pid_string)
+        except ValueError:
+            return False
         return bool(self._sniff(pid))
 
     def is_collection(self, pid_string: str) -> bool:
@@ -139,7 +141,12 @@ class DOG:
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
         if self.is_host_registered(pid_string):
-            return not self.is_downloadable(pid_string)
+            if not self.is_downloadable(pid_string):
+                try:
+                    pid = PID(pid_string)
+                    return bool(self._fetch(pid))
+                except ValueError:
+                    return False
         else:
             return False
 
@@ -156,7 +163,6 @@ class DOG:
         pid: PID = PID(pid_string)
         matching_repo: RegRepo = self._sniff(pid)
         return matching_repo.__dict__()
-
 
     def fetch(self, pid_string: str) -> dict:
         """
