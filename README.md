@@ -18,9 +18,9 @@ Tries to match PID with registered repositories and returns dict with informatio
 returns:
 ```JSON
 {
-  'name': 'LINDAT/CLARIAH-CZ', 
-  'host_name': 'LINDAT/CLARIAH-CZ', 
-  'host_netloc': 'https://lindat.mff.cuni.cz'
+  "name": "LINDAT/CLARIAH-CZ", 
+  "host_name": "LINDAT/CLARIAH-CZ", 
+  "host_netloc": "https://lindat.mff.cuni.cz"
 }
 
 ```
