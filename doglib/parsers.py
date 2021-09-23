@@ -185,7 +185,7 @@ class XMLParser:
         if 'pid_api' in parser_config['ref_file'].keys():
             self.pid_format = parser_config['ref_file']['pid_api']
 
-    def fetch(self, response: str, reg_repo: RegRepo) -> dict:
+    def fetch(self, response: str, reg_repo: RegRepo) -> str:
         """
         Method wrapping fetch logic
 
@@ -208,9 +208,7 @@ class XMLParser:
         description: str = self._fetch_description(xml_tree, nsmap)
         _license: str = self._fetch_license(xml_tree, nsmap)
 
-        return {"ref_files": resources,
-                "description": description,
-                "license": _license}
+        return json.dumps({"ref_files": resources, "description": description, "license": _license})
 
     def _fetch_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
@@ -238,7 +236,7 @@ class XMLParser:
             if self.pid_format:
                 ref_resources = [self.pid_format.replace("$pid", ref_resource) for ref_resource in ref_resources]
 
-            ret.extend([{"resource_type": resource_type, "filename": '', "pid": ref_resource} for ref_resource in ref_resources])
+            ret.extend([{"resource_type": resource_type, "filename": "", "pid": ref_resource,} for ref_resource in ref_resources])
         return ret
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
@@ -250,16 +248,16 @@ class XMLParser:
         if self.license_path != '':
             _licenses: List[Element] = xml_tree.findall(self.license_path, nsmap)
         else:
-            return ''
+            return ""
 
         if _licenses:
             if len(_licenses) == 1:
                 return _licenses[0].text
             else:
-                return ''
+                return ""
         else:
             _licenses = [_license.text for _license in _licenses]
-            return '\n'.join(_licenses)
+            return "\n".join(_licenses)
 
     def _fetch_description(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -281,7 +279,7 @@ class XMLParser:
                     return ''
             else:
                 descriptions = [description.text for description in descriptions]
-                return '\n'.join(descriptions)
+                return "\n".join(descriptions)
 
     def _parse_nested_namespaces(self, response_text: str) -> dict:
         """
