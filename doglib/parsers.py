@@ -29,7 +29,7 @@ class JSONParser:
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
 
-    def fetch(self, response: str, reg_repo: RegRepo) -> dict:
+    def fetch(self, response: str, reg_repo: RegRepo) -> str:
         """
 
         :param response: dict, json response from call to repository
@@ -44,9 +44,9 @@ class JSONParser:
         descriptions: str = self._parse_description(response)
         _license: str = str(self._parse_license(response))
 
-        return {"ref_files": ref_files,
+        return json.dumps({"ref_files": ref_files,
                 "description": descriptions,
-                "license": _license}
+                "license": _license})
 
     def _fetch_resources(self, ref_files_root: dict, reg_repo: RegRepo) -> list:
         """

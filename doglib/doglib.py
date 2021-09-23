@@ -12,7 +12,7 @@ class DOG:
     def __init__(self):
         self.reg_repos: List[RegRepo] = self._load_repos()
 
-    def _fetch(self, pid: PID) -> dict:
+    def _fetch(self, pid: PID) -> str:
         """
         Method that takes care of parser construction and parse call
 
@@ -26,7 +26,7 @@ class DOG:
         """
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
-            return {}
+            return ""
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
@@ -150,7 +150,7 @@ class DOG:
         else:
             return False
 
-    def sniff(self, pid_string: str) -> dict:
+    def sniff(self, pid_string: str) -> str:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information
         about repository, if pid is not matched returns empty dict. If there are multiple repositories using the same
@@ -162,9 +162,9 @@ class DOG:
 
         pid: PID = PID(pid_string)
         matching_repo: RegRepo = self._sniff(pid)
-        return matching_repo.__dict__()
+        return json.dumps(matching_repo.__dict__())
 
-    def fetch(self, pid_string: str) -> dict:
+    def fetch(self, pid_string: str) -> str:
         """
         Method for fetch call, tries to match pid with registered repositories and returns dict with collection's
             license and description, and links to referenced resources within the collection, if pid does not match
@@ -181,5 +181,5 @@ class DOG:
         """
         # TODO nested reference resolving
         pid: PID = PID(pid_string)
-        fetch_result: dict = self._fetch(pid)
-        return fetch_result
+        fetch_result: str = self._fetch(pid)
+        return json.dumps(fetch_result)
