@@ -1,5 +1,5 @@
 # Digital Object Gate library
-A Python library for direct download link retrieval of resources referenced by a Persistend Identifier. For list of registered (supported) repositories see: TBD. DOG currently supports following PIDs: HDL and DOI as well as URL's with CMDI content negotiation (![more](https://www.clarin.eu/content/component-metadata)).
+A Python library for direct download link retrieval of resources referenced by a Persistend Identifier. For list of registered (supported) repositories see: TBD. DOG currently supports following PIDs: HDL and DOI as well as URL's with CMDI content negotiation [more](https://www.clarin.eu/content/component-metadata).
  
 ## Usage
 In order to use Digital Object Gate functionalities, create an instance of doglib.DOG, which loads .json configurations of registered repositories. DOG offers the following methods:
