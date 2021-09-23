@@ -1,12 +1,11 @@
 import json
 import os
-import requests
 from typing import List, Union, Optional
 
-import curl
-from repos import RegRepo
-from parsers import JSONParser, XMLParser
-from pid import PID
+from . import curl
+from .repos import RegRepo
+from .parsers import CMDIParser, JSONParser, XMLParser
+from .pid import PID
 
 
 class DOG:
@@ -31,13 +30,13 @@ class DOG:
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
-            final_url, response = curl.get(request_url, headers, follow_redirects=True)
+            final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                      matching_repo.get_parser_config())
             return parser.fetch(response, matching_repo)
 
-    def _load_repos(self, config_dir: str = os.path.join(os.getcwd(), "repo_configs")) -> List[RegRepo]:
+    def _load_repos(self, config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")) -> List[RegRepo]:
         """
         Method for constructor taking care of loading repository configurations
 
@@ -107,30 +106,49 @@ class DOG:
         elif parser_type == "xml":
             return XMLParser(parser_config)
         elif parser_type == "cmdi":
-            return XMLParser(parser_config)
+            return CMDIParser(parser_config)
         else:
             return None
 
-    def is_downloadable(self, url: str) -> bool:
+    def is_downloadable(self, pid_string: str) -> bool:
         """
-        Is reference link downloadable
+        Method checks if reference link is downloadable by investigating Content-Disposition header of the response
 
-        :param url: str, resolvable url
+        :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, true if downloadable, false otherwise
         """
-        headers = requests.head(url).headers
-        return 'attachment' in headers.get('Content-Disposition', '')
+        _, response_headers = curl.head(pid_string, follow_redirects=True)
+        return "Content-Disposition: attachment" in response_headers
 
     def is_host_registered(self, pid_string: str) -> bool:
         """
-        Method wrap over _sniff() for recognition whether provided PID belongs to registered repository
+        Method for recognition whether provided PID reference is hosted by registered repository
 
-        :param pid:string: str, persisten identifier of collection, may be in a format of URL, DOI or HDL
+        :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
-
-        pid = PID(pid_string)
+        try:
+            pid = PID(pid_string)
+        except ValueError:
+            return False
         return bool(self._sniff(pid))
+
+    def is_collection(self, pid_string: str) -> bool:
+        """
+        Method wrap over _sniff() for recognition whether provided PID is a collection hosted by registered repository
+
+        :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
+        :return: bool, True if PID belongs to registered repository, False otherwise
+        """
+        if self.is_host_registered(pid_string):
+            if not self.is_downloadable(pid_string):
+                try:
+                    pid = PID(pid_string)
+                    return bool(self._fetch(pid))
+                except ValueError:
+                    return False
+        else:
+            return False
 
     def sniff(self, pid_string: str) -> dict:
         """

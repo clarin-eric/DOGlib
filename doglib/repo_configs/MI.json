@@ -1,7 +1,7 @@
 {
   "repository": {
-    "name": "",
-    "host_name": "",
+    "name": "Meertens Institute",
+    "host_name": "Meertens Institute",
     "host_netloc": "https://www.meertens.knaw.nl",
     "hdl": {"id":  "10744", "format": "$hdl"},
     "url": {"format":  "$url"},
@@ -14,7 +14,7 @@
         "description": ".//cmd:description",
         "license": ".//cmd:rights",
         "ref_file": {
-          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef"
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
     }

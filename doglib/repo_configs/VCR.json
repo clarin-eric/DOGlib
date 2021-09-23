@@ -7,7 +7,7 @@
         "base": "https://collections.clarin.eu/service/v1/collections/$record_id"
     },
     "hdl": {"id": "11372", "format": "$hdl"},
-    "url": {"format": "$api", "regex": ".*/(?P<record_id>[\\w\\W]+)$", "headers": {
+    "url": {"format": "$api", "regex": ".*/(?P<record_id>[^?]+).*$", "headers": {
       "Accept": "application/xml"}
     },
     "parser": {
@@ -16,7 +16,7 @@
         "description": ".//VirtualCollection/Description",
         "license": ".//Reproducibility",
         "ref_file": {
-          "pid": ".//ResourceProxy[ResourceType='Resource']/ResourceRef",
+          "pid": ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef",
           "filename": ""
         }
       }

@@ -1,14 +1,13 @@
 {
   "repository": {
-    "name": "Austrian Centre for Digital Humanities and Cultural Heritage - A Resource Centre for the Humanities",
-    "host_name": "ACDH-CH",
-    "host_netloc": "",
+    "name": "ASV Leipzig",
+    "host_name": "ASV Leipzig",
+    "host_netloc": "https://clarinws.informatik.uni-leipzig.de",
     "hdl": {
-      "id": "21.11115",
+      "id": "11022",
       "format": "$hdl"
     },
     "url": {"format":  "$url"},
-    "type": "cmdi",
     "parser": {
       "nsmap": {
         "cmd": "http://www.clarin.eu/cmd/",
@@ -16,10 +15,10 @@
       },
       "type": "cmdi",
       "config": {
-        "description": "",
-        "license": ".//cmdp:rights",
+        "description": ".//cmdp:Description",
+        "license": ".//cmdp:LicenseName",
         "ref_file": {
-          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='Resource']/cmd:ResourceRef",
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef",
           "filename": ""
         }
       }

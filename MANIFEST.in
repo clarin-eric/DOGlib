@@ -1,0 +1,2 @@
+recursive-include doglib/repo_configs *.json
+include README.md

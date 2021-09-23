@@ -1,0 +1,24 @@
+{
+  "repository": {
+    "name": "The Language Archive (MPI)",
+    "host_name": "The Language Archive (MPI)",
+    "host_netloc": "https://archive.mpi.nl",
+    "hdl": {"id":  "1839", "format": "$hdl"},
+    "api": {"base": "https://archive.mpi.nl/objects/tla:1839_$record_id/datastreams/CMD/content"},
+    "url": {"format": "$api", "regex":  ".*/tla:1839_(?P<record_id>[^?\\/]+)(.*)$"},
+    "parser": {
+      "type": "cmdi",
+      "config": {
+        "nsmap": {
+          "cmd": "http://www.clarin.eu/cmd/"
+        },
+        "description": ".//cmd:lat-session/cmd:descriptions",
+        "license": "",
+        "ref_file": {
+          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+        }
+      }
+    }
+  }
+}
+
