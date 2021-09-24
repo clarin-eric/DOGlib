@@ -1,8 +1,8 @@
 {
   "repository": {
     "name": "Austrian Centre for Digital Humanities and Cultural Heritage - A Resource Centre for the Humanities",
-    "host_name": "ACDH-CH",
-    "host_netloc": "",
+    "host_name": "ACDH-ARCHE",
+    "host_netloc": "https://arche.acdh.oeaw.ac.at",
     "hdl": {
       "id": "21.11115",
       "format": "$hdl"
