@@ -36,7 +36,9 @@ class DOG:
                                                                      matching_repo.get_parser_config())
             return parser.fetch(response, matching_repo)
 
-    def _load_repos(self, config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")) -> List[RegRepo]:
+    @staticmethod
+    def _load_repos(config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")) \
+            -> list[RegRepo]:
         """
         Method for constructor taking care of loading repository configurations
 
