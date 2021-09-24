@@ -18,8 +18,7 @@
         "description": ".//cmdp:description",
         "license": ".//cmdp:license/cmdp:uri",
         "ref_file": {
-          "pid": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef",
-          "filename": ""
+          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
     }

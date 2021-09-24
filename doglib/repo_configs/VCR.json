@@ -16,8 +16,7 @@
         "description": ".//VirtualCollection/Description",
         "license": ".//Reproducibility",
         "ref_file": {
-          "pid": ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef",
-          "filename": ""
+          "path": ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
         }
       }
     }

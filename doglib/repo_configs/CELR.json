@@ -21,9 +21,8 @@
         "description": ".//cmd:identificationInfo/cmd:description",
         "license": ".//cmd:licenceInfo/cmd:licence",
         "ref_file": {
-          "pid": ".//header/identifier",
-          "filename": "",
-          "pid_api": "https://metashare.ut.ee/repository/download/$pid"
+          "path": ".//header/identifier",
+          "resource_format": "https://metashare.ut.ee/repository/download/$resource"
         }
       }
     }

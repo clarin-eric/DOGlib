@@ -1,0 +1,220 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://example.com/object1632482313.json",
+	"title": "Root",
+	"type": "object",
+	"required": [
+		"repository"
+	],
+	"properties": {
+		"repository": {
+			"$id": "#root/repository",
+			"title": "Repository",
+			"type": "object",
+			"required": [
+				"name",
+				"host_name",
+				"host_netloc",
+				"parser"
+			],
+			"properties": {
+				"api": {
+					"$id": "#root/repository/api",
+					"title": "API",
+					"type": "object",
+					"description": "Repository API call specification for PID resolving",
+					"required": [
+						"base"
+					],
+					"properties": {
+						"base": {
+							"$id": "#root/repository/api/base",
+							"title": "Base",
+							"type": "string",
+							"description": "Base URL of API call, query params can be specified in optional property 'params'",
+							"examples": [
+								"https://api.europeana.eu/oai/record?"
+							]
+						}
+					}
+				},
+				"name": {
+					"$id": "#root/repository/name",
+					"title": "Name",
+					"type": "string",
+                    "description": "Full name of the institution providing the repository"
+				},
+				"host_name": {
+					"$id": "#root/repository/host_name",
+					"title": "Host_name",
+					"type": "string",
+                    "description": "Full name of the entity hosting the repository"
+                },
+				"host_netloc": {
+					"$id": "#root/repository/host_netloc",
+					"title": "Host_netloc",
+					"type": "string",
+					"default": "",
+					"format": "uri"
+				},
+				"hdl": {
+					"$id": "#root/repository/hdl",
+					"title": "HDL",
+					"type": "object",
+					"required": [
+						"id",
+						"format"
+					],
+					"properties": {
+						"id": {
+							"$id": "#root/repository/hdl/id",
+							"title": "Repository ID",
+							"type": "string",
+                            "description": "HDL ID used by the repository for HDL persistent identifiers"
+						},
+						"format": {
+							"$id": "#root/repository/hdl/format",
+							"title": "Format",
+							"type": "string",
+                            "description": "Format of resolvable HDL, $hdl is a placeholder for generated HDL based on the repository ID and record ID parsed from the PID",
+							"examples": [
+                                "$hdl",
+								"$hdl@format=cmdi"
+							]
+						}
+					}
+				},
+				"doi": {
+					"$id": "#root/repository/doi",
+					"title": "DOI",
+					"type": "object",
+					"description": "Specification for resolving PID's in the form of DOI",
+					"required": [
+						"id",
+						"format"
+					],
+					"properties": {
+						"id": {
+							"$id": "#root/repository/hdl/id",
+							"title": "Repository ID",
+							"type": "string",
+                            "description": "DOI ID used by the repository for DOI persistent identifiers"
+						},
+						"format": {
+							"$id": "#root/repository/hdl/format",
+							"title": "Format",
+							"type": "string",
+                            "description": "Format of resolvable DOI, $doi is a placeholder for generated DOI based on the repository ID and record ID parsed from the PID",
+							"examples": [
+                                "$doi"
+							]
+						}
+					}
+				},
+				"url": {
+					"$id": "#root/repository/url",
+					"title": "URL",
+					"type": "object",
+					"description": "Specification for resolving PID's in the form of URL",
+					"properties": {
+						"format": {
+							"$id": "#root/repository/url/format",
+							"title": "URL format",
+							"type": "string",
+							"description": "Format of the URL to call in order to resolve the PID",
+							"examples": [
+								"$url"
+							]
+						},
+						"regex":{
+							"$id": "#/root/repository/url/regex",
+							"title": "URL regex",
+							"type": "string",
+							"description": "Regex defining how to parse values from the input URL required for PID resolving"
+						}
+					}
+				},
+
+				"parser": {
+					"$id": "#root/repository/parser",
+					"title": "Parser",
+					"type": "object",
+					"description": "Specification of the parser for extracting referenced resources from machine-readable response",
+					"required": [
+						"type"
+					],
+					"properties": {
+						"nsmap": {
+							"$id": "#root/repository/parser/nsmap",
+							"title": "Namespace map",
+							"type": "object",
+							"description": "Dictionary with explicitly specified namespaces of xml document in order to avoid namespaces clash of default and dynamic namespaces, not all namespaces from the document are required, only those expected on the path to referenced resources"
+						},
+						"type": {
+							"$id": "#root/repository/parser/type",
+							"title": "Type",
+							"type": "string",
+							"description": "Format of the repository response, XML and JSON supported",
+							"pattern": "^(xml|json)$"
+						},
+						"config": {
+							"$id": "#root/repository/parser/config",
+							"title": "Config",
+							"type": "object",
+							"description": "Parser specific configuration",
+							"properties": {
+								"items_root": {
+									"$id": "#root/repository/parser/config/items_root",
+									"title": "Items root",
+									"type": "string",
+									"description": "FS-like path for JSON to iterable with referenced resources"
+								},
+								"description": {
+									"$id": "#root/repository/parser/config/description",
+									"title": "Description",
+									"type": "string",
+									"description": "Collection's description: XPath for XML, FS-like path for JSON"
+								},
+								"license": {
+									"$id": "#root/repository/parser/config/license",
+									"title": "License",
+									"type": "string",
+									"description": "Collection's licence, XPath for XML, FS-like path for JSON"
+								},
+								"ref_file": {
+									"$id": "#root/repository/parser/config/ref_file",
+									"title": "Referenced Files",
+									"type": "object",
+									"description": "Specification of location of referenced resources in machine-readable response and away of accessing them",
+									"required": [
+										"pid",
+										"filename"
+									],
+									"properties": {
+										"path": {
+											"$id": "#root/repository/parser/config/ref_file/path",
+											"title": "Resource",
+											"type": "string",
+											"description": "If parser type==xml: XPath of referenced resources in a collection\nIf parser type=json: Key of referenced resources",
+											"examples": [
+												".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+											]
+										},
+										"resource_format": {
+											"$id": "#root/repository/parser/config/ref_file/resource_format",
+											"title": "Resource format",
+											"type": "string",
+											"description": "Format in which to return fetched referenced resource, use $resource placeholder"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		}
+	}
+}

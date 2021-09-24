@@ -16,8 +16,7 @@
         "license": "metadata/license/license",
         "description": "metadata/descriptions/description",
         "ref_file": {
-          "filename": "key",
-          "pid": "ePIC_PID"
+          "path": "ePIC_PID"
         }
       }
     }
