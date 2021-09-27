@@ -4,8 +4,9 @@ A Python library for direct download link retrieval of resources referenced by a
 ## Usage
 In order to use Digital Object Gate functionalities, create an instance of doglib.DOG, which loads .json configurations of registered repositories. DOG offers the following methods:
 
-#### sniff(pid: str) -> str 
-Tries to match PID with registered repositories and returns dict with information about repository, otherwise returns empty dict. If there are multiple repositories using the same identifier tries to resolve PID and match repo by host.
+#### sniff(pid: str, format='dict') -> Union\[dict, str\]
+Tries to match PID with registered repositories and returns dict with information about repository, otherwise returns empty dict. If there are multiple repositories using the same identifier tries to resolve PID and match repo by host. 
+By default, returns dictionary, if format=='jsons' returns a JSON string.
 
  Example:
 ```Python 
@@ -25,9 +26,10 @@ returns:
 
 ```
  
-#### fetch(pid: str) -> str
+#### fetch(pid: str, format='dict') -> Union\[dict, str\]
 
 Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty string
+By default, returns dictionary, if format=='jsons' returns a JSON string.
 ```Python 
  from DOGlib import DOG
 
@@ -67,4 +69,3 @@ git clone https://github.com/clarin-eric/DOGlib.git
 cd DOGlib
 pip install ./ -r ./requirements.txt
 ```
-

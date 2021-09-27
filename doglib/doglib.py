@@ -12,7 +12,7 @@ class DOG:
     def __init__(self):
         self.reg_repos: List[RegRepo] = self._load_repos()
 
-    def _fetch(self, pid: PID) -> str:
+    def _fetch(self, pid: PID) -> dict:
         """
         Method that takes care of parser construction and parse call
 
@@ -26,7 +26,7 @@ class DOG:
         """
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
-            return ""
+            return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
@@ -34,7 +34,7 @@ class DOG:
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                      matching_repo.get_parser_config())
-            return parser.fetch(response, matching_repo)
+            return parser.fetch(response)
 
     def _load_repos(self, config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")) -> List[RegRepo]:
         """
@@ -150,21 +150,28 @@ class DOG:
         else:
             return False
 
-    def sniff(self, pid_string: str) -> str:
+    def sniff(self, pid_string: str, format='dict') -> Union[dict, str]:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information
         about repository, if pid is not matched returns empty dict. If there are multiple repositories using the same
         identifier tries to resolve PID and match repo by host (this can take time).
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
+        :param format: str={'dict', 'jsons'}, format of output, 'dict' by default
         :return: str, repository description of matching registered repository, '' if pid not matched
         """
+        accepted_formats: set = {'dict', 'jsons', 'str'}
+        if format not in accepted_formats:
+            raise ValueError(f"Format {format} not supported, use one of {accepted_formats}")
 
         pid: PID = PID(pid_string)
-        matching_repo: RegRepo = self._sniff(pid)
-        return json.dumps(matching_repo.__dict__())
+        sniff_result: RegRepo = self._sniff(pid)
+        if format == 'dict':
+            return sniff_result.__dict__()
+        elif format == 'jsons' or format == 'str':
+            return json.dumps(sniff_result.__dict__())
 
-    def fetch(self, pid_string: str) -> str:
+    def fetch(self, pid_string: str, format='dict') -> Union[dict, str]:
         """
         Method for fetch call, tries to match pid with registered repositories and returns dict with collection's
             license and description, and links to referenced resources within the collection, if pid does not match
@@ -172,14 +179,24 @@ class DOG:
 
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
+        :param format: str={'dict', 'jsons'}, format of output, 'dict' by default
         :return: dict, return fetch result in a format:
-            {
-                "ref_files": [{"filename": str, "pid": str}],
-                "description": str,
-                "license: str
-            }
+                {
+                    "ref_files": [{"filename": str, "pid": str}],
+                    "description": str,
+                    "license: str
+                }
+            or
+                str, JSON string of dict output
         """
         # TODO nested reference resolving
+        accepted_formats: set = {'dict', 'jsons'}
+        if format not in accepted_formats:
+            raise ValueError(f"Format {format} not supported, use one of {accepted_formats}")
+
         pid: PID = PID(pid_string)
-        fetch_result: str = self._fetch(pid)
-        return json.dumps(fetch_result)
+        fetch_result: dict = self._fetch(pid)
+        if format == 'dict':
+            return fetch_result
+        elif format == 'jsons' or format == 'str':
+            return json.dumps(fetch_result)

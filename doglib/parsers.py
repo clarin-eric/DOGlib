@@ -29,7 +29,7 @@ class JSONParser:
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
 
-    def fetch(self, response: str, reg_repo: RegRepo) -> str:
+    def fetch(self, response: str, reg_repo: RegRepo) -> dict:
         """
 
         :param response: dict, json response from call to repository
@@ -44,9 +44,9 @@ class JSONParser:
         descriptions: str = self._parse_description(response)
         _license: str = str(self._parse_license(response))
 
-        return json.dumps({"ref_files": ref_files,
+        return {"ref_files": ref_files,
                 "description": descriptions,
-                "license": _license})
+                "license": _license}
 
     def _fetch_resources(self, ref_files_root: dict, reg_repo: RegRepo) -> list:
         """
@@ -185,7 +185,7 @@ class XMLParser:
         if 'pid_api' in parser_config['ref_file'].keys():
             self.pid_format = parser_config['ref_file']['pid_api']
 
-    def fetch(self, response: str, reg_repo: RegRepo) -> str:
+    def fetch(self, response: str) -> dict:
         """
         Method wrapping fetch logic
 
@@ -208,7 +208,7 @@ class XMLParser:
         description: str = self._fetch_description(xml_tree, nsmap)
         _license: str = self._fetch_license(xml_tree, nsmap)
 
-        return json.dumps({"ref_files": resources, "description": description, "license": _license})
+        return {"ref_files": resources, "description": description, "license": _license}
 
     def _fetch_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
