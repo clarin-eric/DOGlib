@@ -31,7 +31,7 @@ returns:
 Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty string
 By default, returns dictionary, if format=='jsons' returns a JSON string.
 ```Python 
- from DOGlib import DOG
+ from doglib import DOG
 
  dog = DOG()
  dog.fetch("https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698")
