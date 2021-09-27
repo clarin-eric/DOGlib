@@ -5,7 +5,7 @@ A Python library for direct download link retrieval of resources referenced by a
 In order to use Digital Object Gate functionalities, create an instance of doglib.DOG, which loads .json configurations of registered repositories. DOG offers the following methods:
 
 #### sniff(pid: str, format='dict') -> Union\[dict, str\]
-Tries to match PID with registered repositories and returns dict with information about repository, otherwise returns empty dict. If there are multiple repositories using the same identifier tries to resolve PID and match repo by host. 
+Tries to match PID with registered repositories and returns dict with information about repository, otherwise returns empty dict. If there are multiple repositories using the same identifier tries to resolve PID and match repo by host.  
 By default, returns dictionary, if format=='jsons' returns a JSON string.
 
  Example:
@@ -28,7 +28,7 @@ returns:
  
 #### fetch(pid: str, format='dict') -> Union\[dict, str\]
 
-Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty string
+Tries to match PID with registered repositories and returns dict with collection's license and description, and links to referenced resources within the collection, otherwise returns empty string.  
 By default, returns dictionary, if format=='jsons' returns a JSON string.
 ```Python 
  from doglib import DOG
@@ -62,7 +62,7 @@ Checks whether PID is hosted by registered repository or not. Note that it may b
 Checkes whether PID is a collection hosted by registered repository. Note that this method tries to resolve the PID in order to verify whether it is a collection, therefor may be slow.
 
 ## Installation
-It is recommended to install DOGlib in the virtual environment to avoid dependency clash. In order to install DOGlib enter cloned directory and install it via pip with explicit requirements.txt from the project
+It is recommended to install DOGlib in the virtual environment to avoid dependency clash. In order to install DOGlib enter cloned directory and install it via pip with explicit requirements.txt from the project.  
 Clone the repository and enter the directory:
 ```bash
 git clone https://github.com/clarin-eric/DOGlib.git
