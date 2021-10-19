@@ -38,6 +38,12 @@ class RegRepo(object):
         :param pid: PID, PID object instance
         :return: Response, the response from PID call
         """
+        if pid is None:
+            return ""
+        print("HERE###")
+        print(pid.get_resolvable())
+        print(pid)
+        print(type(pid))
         # Request to repo providing CMDI metadata
         if self.parser["type"] == 'cmdi':
             if type(pid) == HDL:

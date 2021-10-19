@@ -9,15 +9,12 @@ class PID(Protocol):
     """
 
     def get_record_id(self) -> str:
-        """Each PID has ability to parse record ID according its format"""
         ...
 
     def get_repo_id(self) -> str:
-        """Each PID has ability to parse repo ID from itself"""
         ...
 
     def get_resolvable(self) -> str:
-        """Each PID has to be resolvable"""
         ...
 
 
@@ -52,7 +49,7 @@ class URL(PID):
     def __str__(self):
         return self.url.geturl()
 
-    def resolvable(self):
+    def get_resolvable(self):
         return self.__str__()
 
     def get_host_netloc(self):
@@ -97,7 +94,7 @@ class DOI(PID):
     def __str__(self):
         return f'doi:{self.repo_id}/{self.collection}{self.repo_record_sep}{self.record_id}'
 
-    def resolvable(self) -> str:
+    def get_resolvable(self) -> str:
         return 'https://doi.org/' + self.__str__()
 
     def get_record_id(self):
@@ -134,7 +131,7 @@ class HDL(PID):
     def __str__(self):
         return self.resolvable()
 
-    def resolvable(self) -> str:
+    def get_resolvable(self) -> str:
         return f"https://hdl.handle.net/{self.repo_id}/{self.record_id}"
 
     def get_record_id(self):

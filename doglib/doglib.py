@@ -25,7 +25,10 @@ class DOG:
             }
         """
         matching_repo: RegRepo = self._sniff(pid)
+        print("HERE")
+        print(matching_repo)
         if not matching_repo:
+            print("NOT")
             return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
@@ -172,6 +175,11 @@ class DOG:
             elif format == 'jsons' or format == 'str':
                 return ""
         sniff_result: RegRepo = self._sniff(pid)
+        if not sniff_result:
+            if format == 'dict':
+                return {}
+            elif format == 'jsons' or format == 'str':
+                return ''
         if format == 'dict':
             return sniff_result.__dict__()
         elif format == 'jsons' or format == 'str':
