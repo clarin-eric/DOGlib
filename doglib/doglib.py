@@ -41,7 +41,7 @@ class DOG:
 
     @staticmethod
     def _load_repos(config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")) \
-            -> list[RegRepo]:
+            -> List[RegRepo]:
         """
         Method for constructor taking care of loading repository configurations
 
