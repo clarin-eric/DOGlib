@@ -1,5 +1,5 @@
 from re import compile, match
-from typing import Match, NamedTuple, Pattern, Protocol
+from typing import Match, NamedTuple, Pattern, Protocol, Union
 from urllib.parse import urlparse, urlsplit, ParseResult
 
 
@@ -7,9 +7,6 @@ class PID(Protocol):
     """
     Abstract interface (a protocol) for PID instances
     """
-    def __str__(self):
-        """Each PID has str representation"""
-        ...
 
     def get_record_id(self) -> str:
         """Each PID has ability to parse record ID according its format"""
@@ -24,7 +21,7 @@ class PID(Protocol):
         ...
 
 
-def pid_factory(pid_string: str) -> object:
+def pid_factory(pid_string: str) -> Union[PID, None]:
     """
     Function for constructing relevant instance of PID
     """
@@ -38,7 +35,7 @@ def pid_factory(pid_string: str) -> object:
         return None
 
 
-class URL:
+class URL(PID):
     def __init__(self, url_string: str):
         if not self.is_url(url_string):
             raise ValueError(f"Provided string {url_string} is not an URL")
@@ -57,6 +54,9 @@ class URL:
 
     def resolvable(self):
         return self.__str__()
+
+    def get_host_netloc(self):
+        return self.host_netloc
 
     def get_repo_id(self):
         return self.collection
@@ -77,7 +77,7 @@ class URL:
         return True
 
 
-class DOI:
+class DOI(PID):
     def __init__(self, doi_string: str):
         if not self.is_doi(doi_string):
             raise ValueError(f"Provided string {doi_string} is not a DOI")
@@ -118,7 +118,7 @@ class DOI:
             return False
 
 
-class HDL:
+class HDL(PID):
     def __init__(self, hdl_string: str):
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
@@ -145,7 +145,8 @@ class HDL:
 
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
-        regex: Pattern = compile(r".*[\d]{4,9}/[\w\d-]+(?:[@\w=]+)?$")
+        regex: Pattern = compile(
+            r".*(?:hdl:|hdl.handle.net/)(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
         if match(regex, hdl_string):
             return True
         else:

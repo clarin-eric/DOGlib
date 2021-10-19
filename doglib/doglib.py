@@ -5,7 +5,7 @@ from typing import List, Union, Optional
 from . import curl
 from .repos import RegRepo
 from .parsers import CMDIParser, JSONParser, XMLParser
-from .pid import PID
+from .pid import pid_factory, PID
 
 
 class DOG:
@@ -16,7 +16,7 @@ class DOG:
         """
         Method that takes care of parser construction and parse call
 
-        :param pid_string: str, collection PID to fetch resources from
+        :param pid: PID, class instance of PID protocol
         :return: dict, return fetch result in a format:
             {
                 "ref_files": [{"filename": str, "pid": str}],
@@ -65,7 +65,7 @@ class DOG:
         """
         Check if pid matches any registered repository
 
-        :param pid: PID, PID to match with hosting repository
+        :param pid: PID, class instance of PID protocol
         :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
         """
         sniffed_repos: list = []
@@ -79,7 +79,7 @@ class DOG:
         Matches PID with hosting repo. Method used by DOG._sniff()
 
         :param sniffed_repos: list, registered repositories possibly hosting referenced PID metadata
-        :param pid: PID, PID to match with hosting repository
+        :param pid: PID, class instance of PID protocol
         :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
         """
         for matching_repo in sniffed_repos:
@@ -88,9 +88,10 @@ class DOG:
                     candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(), True)[0]
                 except curl.RequestError:
                     continue
-                url: PID = PID(candidate)
-                if matching_repo.match_pid(url):
-                    return matching_repo
+                url: PID = pid_factory(candidate)
+                if url:
+                    if matching_repo.match_pid(url):
+                        return matching_repo
             else:
                 return matching_repo
         return None
@@ -129,9 +130,8 @@ class DOG:
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
-        try:
-            pid = PID(pid_string)
-        except ValueError:
+        pid = pid_factory(pid_string)
+        if not pid:
             return False
         return bool(self._sniff(pid))
 
@@ -144,11 +144,10 @@ class DOG:
         """
         if self.is_host_registered(pid_string):
             if not self.is_downloadable(pid_string):
-                try:
-                    pid = PID(pid_string)
+                pid: PID = pid_factory(pid_string)
+                if pid:
                     return bool(self._fetch(pid))
-                except ValueError:
-                    return False
+
         else:
             return False
 
@@ -166,7 +165,12 @@ class DOG:
         if format not in accepted_formats:
             raise ValueError(f"Format {format} not supported, use one of {accepted_formats}")
 
-        pid: PID = PID(pid_string)
+        pid: PID = pid_factory(pid_string)
+        if not pid:
+            if format == 'dict':
+                return {}
+            elif format == 'jsons' or format == 'str':
+                return ""
         sniff_result: RegRepo = self._sniff(pid)
         if format == 'dict':
             return sniff_result.__dict__()
@@ -196,7 +200,12 @@ class DOG:
         if format not in accepted_formats:
             raise ValueError(f"Format {format} not supported, use one of {accepted_formats}")
 
-        pid: PID = PID(pid_string)
+        pid: PID = pid_factory(pid_string)
+        if not pid:
+            if format == 'dict':
+                return {}
+            elif format == 'jsons' or format == 'str':
+                return ""
         fetch_result: dict = self._fetch(pid)
         if format == 'dict':
             return fetch_result

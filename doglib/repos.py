@@ -6,7 +6,7 @@ from typing import List, Any
 from urllib.parse import urlencode
 
 from . import curl
-from .pid import PID, URL, HDL, DOI
+from .pid import pid_factory, DOI, HDL, PID, URL
 
 
 class RegRepo(object):
@@ -40,25 +40,25 @@ class RegRepo(object):
         """
         # Request to repo providing CMDI metadata
         if self.parser["type"] == 'cmdi':
-            if pid.get_pid_type() == HDL:
+            if type(pid) == HDL:
                 return self.hdl["format"].replace("$hdl", pid.get_resolvable())
-            if pid.get_pid_type() == DOI:
+            if type(pid) == DOI:
                 return self.doi["format"].replace("$doi", pid.get_resolvable())
-            if pid.get_pid_type() == URL and "regex" not in self.url.keys():
+            if type(pid) == URL and "regex" not in self.url.keys():
                 return self.url["format"].replace("$url", pid.get_resolvable())
 
         # Generic case
         request_config: dict = {}
-        if pid.get_pid_type() == HDL:
+        if type(pid) == HDL:
             request_config = self.hdl
-        elif pid.get_pid_type() == DOI:
+        elif type(pid) == DOI:
             request_config = self.doi
-        elif pid.get_pid_type() == URL:
+        elif type(pid) == URL:
             request_config = self.url
 
         # follow redirects
         if request_config["format"] == "redirect":
-            target_url: PID = PID(curl.get(pid.get_resolvable(), self.get_headers(), follow_redirects=True)[0])
+            target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(), follow_redirects=True)[0])
             return self.get_request_url(target_url)
         # parse id
         elif "regex" in request_config.keys():
@@ -122,24 +122,24 @@ class RegRepo(object):
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
         # Match HDL with repo
-        if pid.get_pid_type() == HDL:
+        if type(pid) == HDL:
             if "id" in self.hdl.keys():
                 if type(self.hdl["id"]) == str:
-                    return pid.pid.repo_id == self.hdl["id"]
+                    return type(pid) == self.hdl["id"]
                 else:
                     for _id in self.hdl["id"]:
-                        if pid.pid.repo_id == _id:
+                        if type(pid) == _id:
                             return True
 
         # Match URL with repo
-        elif pid.get_pid_type() == URL:
+        elif type(pid) == URL:
             return self.host_netloc.replace('https://', '').replace('http://', '') == \
-                   pid.pid.host_netloc.replace('https://', '').replace('http://', '')
+                   pid.get_host_netloc().replace('https://', '').replace('http://', '')
 
         # Match DOI with repo
-        elif pid.get_pid_type() == DOI:
+        elif type(pid) == DOI:
             if "id" in self.doi.keys():
-                return pid.pid.repo_id in self.doi["id"]
+                return pid.get_repo_id in self.doi["id"]
         return False
 
     def __str__(self):
