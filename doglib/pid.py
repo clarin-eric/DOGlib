@@ -1,79 +1,41 @@
 from re import compile, match
-from typing import Match, NamedTuple, Pattern, Sequence
+from typing import Match, NamedTuple, Pattern, Protocol
 from urllib.parse import urlparse, urlsplit, ParseResult
 
 
-class PID(object):
+class PID(Protocol):
     """
-    Class wrapping possible parses of input string (HDL, DOI, URL)
-
-    Attributes:
-        pid: type,      type of underlying parsed PID class instance
+    Abstract interface (a protocol) for PID instances
     """
-    def __init__(self, pid_string: str):
-        """
-        :param pid_string:  str, PID string that is a URL, handle or doi.
-        """
-        pid_types: list = [HDL, DOI, URL]
-        self.pid: object = None
-        for pid_type in pid_types:
-            # Try to create new instance of pid type
-            try:
-                self.pid = pid_type(pid_string)
-            except ValueError:
-                continue
-            if self.pid:
-                break
-        if not self.pid:
-            raise ValueError(f"Provided string {self.pid} is in invalid PID format")
-
     def __str__(self):
-        return str(self.pid)
-
-    def get_pid_type(self) -> type:
-        """
-        Get underlying type of PID
-
-        :return: type, one of classes: URL, HDL, DOI
-        """
-        return type(self.pid)
+        """Each PID has str representation"""
+        ...
 
     def get_record_id(self) -> str:
-        """
-        Get the ID
-
-        :return: str, record/entity #TODO nomenclature
-        """
-        return self.pid.get_record_id()
+        """Each PID has ability to parse record ID according its format"""
+        ...
 
     def get_repo_id(self) -> str:
-        return self.pid.get_repo_id()
+        """Each PID has ability to parse repo ID from itself"""
+        ...
 
     def get_resolvable(self) -> str:
-        return self.pid.resolvable()
+        """Each PID has to be resolvable"""
+        ...
 
-    def get_collection(self) -> str:
-        if hasattr(self.pid, 'get_collection'):
-            return self.pid.get_collection()
-        else:
-            return ""
 
-    def to_url(self):
-        """
-        Cast underlying PID to URL
-
-        :return: None
-        """
-        url = self.pid.resolve_to_url()
-        self.pid = URL(url)
-
-    @classmethod
-    def is_pid(cls, pid_string: str):
-        return HDL.is_hdl(pid_string) or URL.is_url(pid_string) or DOI.is_doi(pid_string)
-
-    @classmethod
-    def is_hdl_or_doi(cls, pid_string: str):
-        return HDL.is_hdl(pid_string) or DOI.is_doi(pid_string)
+def pid_factory(pid_string: str) -> object:
+    """
+    Function for constructing relevant instance of PID
+    """
+    if HDL.is_hdl(pid_string):
+        return HDL(pid_string)
+    elif DOI.is_doi(pid_string):
+        return DOI(pid_string)
+    elif URL.is_url(pid_string):
+        return URL(pid_string)
+    else:
+        return None
 
 
 class URL:
@@ -96,14 +58,11 @@ class URL:
     def resolvable(self):
         return self.__str__()
 
-    def get_collection(self):
+    def get_repo_id(self):
         return self.collection
 
     def get_record_id(self):
         return self.record_id
-
-    def resolve_to_url(self) -> str:
-        return self.__str__()
 
     @staticmethod
     def is_url(url_string: str) -> bool:
@@ -146,6 +105,9 @@ class DOI:
 
     def get_repo_id(self):
         return self.repo_id
+
+    def get_collection(self):
+        return ""
 
     @staticmethod
     def is_doi(doi_string: str) -> bool:

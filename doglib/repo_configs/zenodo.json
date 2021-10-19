@@ -15,8 +15,7 @@
         "items_root": "files",
         "description": "metadata/description",
         "ref_file": {
-          "filename": "key",
-          "pid": "links/self"
+          "path": "links/self"
         }
       }
     }

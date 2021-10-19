@@ -20,14 +20,13 @@ class JSONParser:
         """
         super().__init__()
         self.dos_root: str = parser_config['items_root']
-        self.pid_path: str = parser_config['ref_file']['pid']
-        self.pid_format: str = ''
-        if 'pid_api' in parser_config['ref_file'].keys():
-            self.pid_format = parser_config['ref_file']['pid_api']
-        # TODO possible filename handling
-        #self.filename_path: str = parser_config['ref_file']['filename']
+        self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
+        if 'resource_format' in parser_config['ref_file'].keys():
+            self.resource_format = parser_config['ref_file']['resource_format']
+        else:
+            self.resource_format = ""
 
     def fetch(self, response: str, reg_repo: RegRepo) -> dict:
         """
@@ -55,22 +54,16 @@ class JSONParser:
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
         ret = []
-        # TODO possible filename handling
-        #filenames = list(self.fetchall_path_in_dict(ref_files_root, self.filename_path))
-        pids = self.fetchall_path_in_dict(ref_files_root, self.pid_path)
-        #for _pid in zip(filenames, pids):
+        pids = self.fetchall_path_in_dict(ref_files_root, self.resource_path)
         for _pid in pids:
             try:
                 pid: PID = PID(_pid)
             except ValueError:
                 continue
-            if self.pid_format:
-                # TODO generic pid formatting for downloadable resource
-                pid: str = f'{reg_repo.get_host_netloc()}{self.pid_format.replace("$pid", str(pid))}'
+            if self.resource_format:
+                pid: str = f'{reg_repo.get_host_netloc()}{self.resource_format.replace("$pid", str(pid))}'
             else:
                 pid: str = pid.get_resolvable()
-            # TODO possible filename handling
-            #ret.append({"filename": filename, "pid": pid})
             ret.append({"pid": pid})
         return ret
 
@@ -178,12 +171,12 @@ class XMLParser:
         if 'resource_type' in parser_config.keys():
             self.accept_resource_type = parser_config['accept_resource_type']
 
-        self.pid_path: str = parser_config['ref_file']['pid']
+        self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
-        self.pid_format: str = ''
-        if 'pid_api' in parser_config['ref_file'].keys():
-            self.pid_format = parser_config['ref_file']['pid_api']
+        self.resource_format: str = ''
+        if 'resource_format' in parser_config['ref_file'].keys():
+            self.resource_format = parser_config['ref_file']['resource_format']
 
     def fetch(self, response: str) -> dict:
         """
@@ -218,10 +211,10 @@ class XMLParser:
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
         fetched_resources: dict = {}
-        ref_resource_basename: str = self.pid_path.split("/")[-1]
+        ref_resource_basename: str = self.resource_path.split("/")[-1]
         ret: list = []
         for resource_type in self.accept_resource_type:
-            ref_resources: list = xml_tree.findall(self.pid_path.replace("$resource_type", resource_type), nsmap)
+            ref_resources: list = xml_tree.findall(self.resource_path.replace("$resource_type", resource_type), nsmap)
 
             """ 
             check if lxml compatible XPath refers to an attribute, as lxml does not support full XPath (@attribute value 
@@ -233,8 +226,8 @@ class XMLParser:
             else:
                 ref_resources = [ref_resource.text for ref_resource in ref_resources]
 
-            if self.pid_format:
-                ref_resources = [self.pid_format.replace("$pid", ref_resource) for ref_resource in ref_resources]
+            if self.resource_format:
+                ref_resources = [self.resource_format.replace("$resource", ref_resource) for ref_resource in ref_resources]
 
             ret.extend([{"resource_type": resource_type, "filename": "", "pid": ref_resource,} for ref_resource in ref_resources])
         return ret

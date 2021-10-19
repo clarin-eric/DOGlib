@@ -22,12 +22,10 @@
           "dc": "http://purl.org/dc/elements/1.1/",
           "ore": "http://www.openarchives.org/ore/terms/"
         },
-        "items_root": "files",
         "license": ".//edm:rights",
         "description": ".//dc:description",
         "ref_file": {
-          "filename": "",
-          "pid": ".//edm:WebResource[@rdf:about]"
+          "path": ".//edm:WebResource[@rdf:about]"
         }
       }
     }

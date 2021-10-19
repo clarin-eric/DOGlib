@@ -27,6 +27,7 @@ class RegRepo(object):
         self.host_netloc: str = ''
         self.name: str = ''
         self.parser: dict = {}
+        self.test_collections: dict = {}
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
@@ -67,6 +68,12 @@ class RegRepo(object):
             # get API call
             request_url = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
             return request_url
+
+    def get_test_collection(self, pid_type: str) -> str:
+        if pid_type in self.test_collections.keys():
+            return self.test_collections[pid_type]
+        else:
+            return ""
 
     def get_host_netloc(self) -> str:
         """
