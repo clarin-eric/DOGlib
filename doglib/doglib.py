@@ -25,10 +25,7 @@ class DOG:
             }
         """
         matching_repo: RegRepo = self._sniff(pid)
-        print("HERE")
-        print(matching_repo)
         if not matching_repo:
-            print("NOT")
             return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
