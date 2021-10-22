@@ -129,7 +129,7 @@ class HDL(PID):
         self.record_id: str = hdl_match.group("record_id")
 
     def __str__(self):
-        return self.resolvable()
+        return self.get_resolvable()
 
     def get_resolvable(self) -> str:
         return f"https://hdl.handle.net/{self.repo_id}/{self.record_id}"

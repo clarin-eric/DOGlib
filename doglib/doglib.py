@@ -212,6 +212,7 @@ class DOG:
             elif format == 'jsons' or format == 'str':
                 return ""
         fetch_result: dict = self._fetch(pid)
+        print(fetch_result)
         if format == 'dict':
             return fetch_result
         elif format == 'jsons' or format == 'str':

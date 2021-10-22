@@ -40,10 +40,6 @@ class RegRepo(object):
         """
         if pid is None:
             return ""
-        print("HERE###")
-        print(pid.get_resolvable())
-        print(pid)
-        print(type(pid))
         # Request to repo providing CMDI metadata
         if self.parser["type"] == 'cmdi':
             if type(pid) == HDL:
@@ -131,10 +127,10 @@ class RegRepo(object):
         if type(pid) == HDL:
             if "id" in self.hdl.keys():
                 if type(self.hdl["id"]) == str:
-                    return type(pid) == self.hdl["id"]
+                    return pid.get_repo_id() == self.hdl["id"]
                 else:
                     for _id in self.hdl["id"]:
-                        if type(pid) == _id:
+                        if pid.get_repo_id() == _id:
                             return True
 
         # Match URL with repo
