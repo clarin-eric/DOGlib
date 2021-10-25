@@ -33,10 +33,10 @@ class RegRepo(object):
 
     def get_request_url(self, pid: PID) -> str:
         """
-        Resolve the persistent identifier in case of URL and HDL and generate URL for GET request
+        Prepare URL to call to resolve to collection
 
-        :param pid: PID, PID object instance
-        :return: Response, the response from PID call
+        :param pid: PID, class instance of PID protocol
+        :return: str, URL to be called by DOG in order to resolve the PID
         """
         if pid is None:
             return ""
@@ -72,6 +72,10 @@ class RegRepo(object):
             return request_url
 
     def get_test_collection(self, pid_type: str) -> str:
+        """
+        Get test case for the repository
+        #TODO
+        """
         if pid_type in self.test_collections.keys():
             return self.test_collections[pid_type]
         else:
