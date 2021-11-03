@@ -9,5 +9,5 @@ setup(
     package_data={"": ["*.json"]},
     description='Digital Object Gate Python library',
     author='Michał Gawor',
-    install_requires=['certifi', 'pycurl>7', 'lxml>=4.6'],
+    install_requires=['certifi', 'pycurl>7.x.x', 'lxml>=4.6'],
 )
