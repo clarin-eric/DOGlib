@@ -62,10 +62,17 @@ Checks whether PID is hosted by registered repository or not. Note that it may b
 Checkes whether PID is a collection hosted by registered repository. Note that this method tries to resolve the PID in order to verify whether it is a collection, therefor may be slow.
 
 ## Installation
-It is recommended to install DOGlib in the virtual environment to avoid dependency clash. In order to install DOGlib enter cloned directory and install it via pip with explicit requirements.txt from the project.  
+It is recommended to install DOGlib in the virtual environment to avoid dependency clash. In order to install DOGlib enter cloned directory and install it via pip with explicit requirements.txt from the project.
 Clone the repository and enter the directory:
 ```bash
 git clone https://github.com/clarin-eric/DOGlib.git
 cd DOGlib
 pip install ./ -r ./requirements.txt
 ```
+DOGlib utilises `lxml` which requires `libxml2` and `libxslt` system libraries. Use your system package manager, on Debian/Ubuntu:
+```bash
+sudo apt-get install libxml2-dev libxslt-dev
+```
+
+
+
