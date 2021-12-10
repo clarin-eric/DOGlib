@@ -1,0 +1,30 @@
+{
+  "repository": {
+    "name": "MPI for Psycholinguistics",
+    "host_name": "MPI for Psycholinguistics",
+    "host_netloc": "https://archive.mpi.nl",
+    "hdl": {"id": "1839", "format": "$hdl"},
+    "api": {"base": "https://archive.mpi.nl/objects/tla:1839_$record_id/datastreams/CMD/content"},
+    "url": {"format": "$api", "regex":  ".*/tla:1839_(?P<record_id>[^?\\/]+)(.*)$"},
+    "parser": {
+      "nsmap": {
+        "ms": "http://www.clarin.eu/cmd/",
+        "olac": "http://www.clarin.eu/cmd/"
+      },
+      "type": "xml",
+      "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//MdCollectionDisplayName",
+        "description": ".//descriptions",
+        "license": ".//ms:licence",
+        "ref_file": {
+          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+        }
+      }
+    },
+    "test_examples": {
+      "url": "https://archive.mpi.nl/tla/islandora/object/lat:1839_00_0000_0000_0016_9C15_3",
+      "hdl": "https://hdl.handle.net/1839/00-0000-0000-0016-9C15-3"}
+  }
+}
+
