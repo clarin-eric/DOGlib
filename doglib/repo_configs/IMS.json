@@ -12,13 +12,18 @@
         "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1320657629644"
       },
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmdp:Description",
         "license": ".//cmd:licenseInfo/cmd:license",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "http://clarin04.ims.uni-stuttgart.de/fedora/objects/clarind-ims:1/datastreams/CMDI/content",
+      "hdl": "http://hdl.handle.net/11022/1007-0000-0000-8DEE-6"}
   }
 }
 

@@ -14,13 +14,18 @@
       },
       "type": "cmdi",
       "config": {
-        "description": ".//cmd:descriptions/cmd:Description",
-        "license": ".//cmd:License/cmd:LicenseName",
+        "reverse_pid": ".//MdSelfLink",
+        "collection_title": ".//MdCollectionDisplayName",
+        "description": ".//descriptions/cmd:Description",
+        "license": ".//License/cmd:LicenseName",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": ".//ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://sla.talkbank.org/TBB/ca/Goodwin/cinco.cha",
+      "hdl": "http://hdl.handle.net/hdl:11312/t-00016625-1"}
   }
 }
 

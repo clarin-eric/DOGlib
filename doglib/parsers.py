@@ -171,6 +171,8 @@ class XMLParser:
         if 'resource_type' in parser_config.keys():
             self.accept_resource_type = parser_config['accept_resource_type']
 
+        self.collection_title_path: str = parser_config['collection_title']
+        self.reverse_pid_path: str = parser_config['reverse_pid']
         self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
@@ -193,15 +195,36 @@ class XMLParser:
         """
         xml_tree: ElementTree = fromstring(response.encode('utf-8'))
 
-        nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}
-        # for parsing default namespace
-        nsmap: dict = {**nsmap, **xml_tree.nsmap}
+        nsmap = self._prepare_namespaces(response, xml_tree)
 
         resources: list = self._fetch_resources(xml_tree, nsmap)
         description: str = self._fetch_description(xml_tree, nsmap)
         _license: str = self._fetch_license(xml_tree, nsmap)
 
         return {"ref_files": resources, "description": description, "license": _license}
+
+    def identify_collection(self, response) -> dict:
+        """
+        Retrieces title and reverse pid to a collection
+        """
+        xml_tree: ElementTree = fromstring(response.encode('utf-8'))
+
+        nsmap: dict = self._prepare_namespaces(response, xml_tree)
+
+        collection_title: str = self._fetch_collection_title(xml_tree, nsmap)
+        reverse_pid: str = self._fetch_reversepid(xml_tree, nsmap)
+
+        return {"collection_title": collection_title, "reverse_pid": reverse_pid}
+
+    def _fetch_collection_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
+        """
+        Retrieves collection title according to xPath location specified in config
+        """
+        try:
+            collection_title: str = xml_tree.find(self.collection_title_path, nsmap)
+            return collection_title
+        except SyntaxError:
+            return ''
 
     def _fetch_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
@@ -231,6 +254,18 @@ class XMLParser:
 
             ret.extend([{"resource_type": resource_type, "filename": "", "pid": ref_resource,} for ref_resource in ref_resources])
         return ret
+
+    def _fetch_reversepid(self, xml_tree: ElementTree, nsmap: dict) -> str:
+        """
+        Retrieves reverse pid according to xPath location specified in config
+        """
+        try:
+            reverse_pid: str = xml_tree.find(self.reverse_pid_path, nsmap).text
+
+        except SyntaxError:
+            return ''
+
+        return reverse_pid
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -290,6 +325,12 @@ class XMLParser:
         attrib_key_match: Match = match(lxml_attrib_pattern, xpath_basename)
         namespace_tag, attrib_name = attrib_key_match.group("attrib_name").split(':')
         return namespace_tag, attrib_name
+
+    def _prepare_namespaces(self, response: str, xml_tree: ElementTree) -> dict:
+        nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}
+        # for parsing default namespace
+        nsmap: dict = {**nsmap, **xml_tree.nsmap}
+        return nsmap
 
 
 class CMDIParser(XMLParser):

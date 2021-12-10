@@ -11,13 +11,18 @@
         "nsmap": {
           "cmd": "http://www.clarin.eu/cmd/"
         },
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//MdCollectionDisplayName",
         "description": ".//cmd:description",
         "license": ".//cmd:licenceInfo/cmd:licence",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "http://fedora.clarin-d.uni-saarland.de/fedora/objects/clarind-uds:poldilemma-105794/datastreams/CMDI/content",
+      "hdl": "https://hdl:11858/00-246C-0000-0023-8CD6-3"}
   }
 }
 

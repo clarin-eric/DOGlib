@@ -18,6 +18,9 @@
           "path": "links/self"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "",
+      "hdl": ""}
   }
 }

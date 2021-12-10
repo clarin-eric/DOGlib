@@ -12,13 +12,18 @@
         "olac": "http://www.clarin.eu/cmd/"
       },
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//olac:description",
         "license": ".//ms:licenceInfo/ms:licence",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://repo.clarino.uib.no/xmlui/handle/11509/3?format=cmdi",
+      "hdl": "http://hdl.handle.net/11509/3@format=cmdi"}
   }
 }
 

@@ -19,6 +19,9 @@
           "path": ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "",
+      "hdl": ""}
   }
 }

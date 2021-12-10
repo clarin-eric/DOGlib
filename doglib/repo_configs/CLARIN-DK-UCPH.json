@@ -15,13 +15,18 @@
       },
       "type": "cmdi",
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmdp:description",
         "license": ".//cmdp:license/cmdp:uri",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://repository.clarin.dk/repository/xmlui/handle/20.500.12115/8",
+      "hdl": "http://hdl.handle.net/20.500.12115/8@format=cmdi\n"}
   }
 }
 

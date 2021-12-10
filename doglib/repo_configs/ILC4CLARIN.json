@@ -8,13 +8,18 @@
     "parser": {
       "type": "cmdi",
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmd:description",
         "license": ".//cmd:license/cmd:uri",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://dspace-clarin-it.ilc.cnr.it/repository/xmlui/handle/20.500.11752/ILC-57?format=cmdi",
+      "hdl": "https://hdl.handle.net/20.500.11752/ILC-57@format=cmdi"}
   }
 }
 

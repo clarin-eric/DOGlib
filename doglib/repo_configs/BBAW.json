@@ -8,14 +8,23 @@
     "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",
+      "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/",
+        "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1403526079380"
+      },
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmd:Description",
-        "license": "",
+        "license": ".//cmdp:licence/cmdp:p",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://clarin.bbaw.de:8088/fedora/objects/dta:2907/datastreams/cmdi/content?asOfDateTime=2020-03-04T10:41:31Z",
+      "hdl": "http://hdl.handle.net/21.11120/0000-0006-29B9-C"}
   }
 }
 

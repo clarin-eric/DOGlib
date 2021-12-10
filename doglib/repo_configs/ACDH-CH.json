@@ -16,13 +16,18 @@
       },
       "type": "cmdi",
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
         "description": "",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "license": ".//cmdp:rights",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "",
+      "hdl": "http://hdl.handle.net/21.11115/0000-000C-4E21-8"}
   }
 }
 

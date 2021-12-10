@@ -11,13 +11,18 @@
         "cmd": "http://www.clarin.eu/cmd/"
       },
       "config": {
-        "description": ".//cmd:Description",
-        "license": ".//cmd:License",
+        "reverse_pid": ".//MdSelfLink",
+        "collection_title": ".//MdCollectionDisplayName",
+        "description": ".//Description",
+        "license": ".//License",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": ".//ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "http://repos.ids-mannheim.de/fedora/objects/clarin-ids:AD--4.AD--.cmdi/datastreams/CMDI/content",
+      "hdl": "http://hdl.handle.net/10932/00-03BC-7338-01E0-6701-2"}
   }
 }
 

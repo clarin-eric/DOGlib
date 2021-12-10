@@ -8,12 +8,17 @@
     "parser": {
       "type": "cmdi",
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmd:description",
         "license": ".//cmd:license/cmd:uri",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://www.meertens.knaw.nl/flat/islandora/object/lat:10744_677c2f8d_865a_48a1_8c1d_54b8025a9bcc",
+      "hdl": "https://hdl.handle.net/10744/677c2f8d-865a-48a1-8c1d-54b8025a9bcc"}
   }
 }

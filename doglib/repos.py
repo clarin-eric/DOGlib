@@ -22,7 +22,6 @@ class RegRepo(object):
         self.doi: dict = {}
         self.hdl: dict = {}
         self.url: dict = {}
-        self.metadata: str = ''
         self.host_name: str = ''
         self.host_netloc: str = ''
         self.name: str = ''
@@ -147,6 +146,9 @@ class RegRepo(object):
             if "id" in self.doi.keys():
                 return pid.get_repo_id in self.doi["id"]
         return False
+
+    def get_test_examples(self):
+        return self.test_collections
 
     def __str__(self):
         return f"Name: {self.name}\n" \

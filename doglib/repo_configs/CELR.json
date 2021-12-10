@@ -18,6 +18,8 @@
         "nsmap": {
           "cmd": "http://www.clarin.eu/cmd/"
         },
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmd:identificationInfo/cmd:description",
         "license": ".//cmd:licenceInfo/cmd:licence",
         "ref_file": {
@@ -25,6 +27,9 @@
           "resource_format": "https://metashare.ut.ee/repository/download/$resource"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://clarin.bbaw.de:8088/fedora/objects/dta:2907/datastreams/cmdi/content?asOfDateTime=2020-03-04T10:41:31Z",
+      "hdl": "http://hdl.handle.net/11297/0-00-0000-0000-0000-01427L"}
   }
 }

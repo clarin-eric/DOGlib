@@ -12,6 +12,7 @@
     "parser": {
       "type": "json",
       "config":{
+        "reverse_pid": "",
         "items_root": "files",
         "license": "metadata/license/license",
         "description": "metadata/descriptions/description",

@@ -8,13 +8,18 @@
     "parser": {
       "type": "cmdi",
       "config": {
-        "description": "",
+        "reverse_pid": ".//MdSelfLink",
+        "description": ".//media-session/Description",
+        "collection_title": ".//MdCollectionDisplayName",
         "license": "",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "",
+      "hdl": "http://hdl.handle.net/11022/1009-0000-0000-DD18-D@format=cmdi"}
   }
 }
 

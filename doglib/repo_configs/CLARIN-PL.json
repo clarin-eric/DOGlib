@@ -12,13 +12,18 @@
       },
       "type": "xml",
       "config": {
-        "description": "",
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
+        "description": ".//olac:description",
         "license": ".//ms:licence",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://clarin-pl.eu/dspace/handle/11321/6?format=cmdi",
+      "hdl": "http://hdl.handle.net/20.500.12115/8@format=cmdi"}
   }
 }
 

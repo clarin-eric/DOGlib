@@ -28,6 +28,9 @@
           "path": ".//edm:WebResource[@rdf:about]"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "",
+      "hdl": ""}
   }
 }

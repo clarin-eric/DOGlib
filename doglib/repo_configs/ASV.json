@@ -15,13 +15,18 @@
       },
       "type": "cmdi",
       "config": {
+        "reverse_pid": ".//cmd:MdSelfLink",
         "description": ".//cmdp:Description",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "license": ".//cmdp:LicenseName",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://clarinws.informatik.uni-leipzig.de/cmdi2/cmdi/11022/0000-0000-20E0-E",
+      "hdl": "http://hdl.handle.net/hdl:11022/0000-0000-20E0-E"}
   }
 }
 

@@ -11,6 +11,8 @@
         "nsmap": {
           "cmd": "http://www.clarin.eu/cmd/"
         },
+        "reverse_pid": ".//cmd:MdSelfLink",
+        "collection_title": ".//cmd:MdCollectionDisplayName",
         "description": ".//cmd:description",
         "license": ".//cmd:licenceInfo/cmd:licence",
         "ref_file": {
@@ -18,7 +20,10 @@
           "resource_format": "https://portulanclarin.net/repository/download/$resource"
         }
       }
-    }
+    },
+    "test_examples": {
+      "url": "https://portulanclarin.net/repository/browse/uimau-compare-apertium-pos-tagger/7c508aa8bea911e1a404080027e73ea2abb5e2fadb4143b2ae4c15c250af7c78/",
+      "hdl": "https://hdl.handle.net/21.11129/0000-000B-D301-5"}
   }
 }
 
