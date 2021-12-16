@@ -216,6 +216,17 @@ class XMLParser:
 
         return {"collection_title": collection_title, "description": description}
 
+    def reverse_pid(self, response) -> dict:
+        """
+        Retrieves reverse pid pointing to the collection specified in metadata
+        """
+        xml_tree: ElementTree = fromstring(response.encode('utf-8'))
+
+        nsmap: dict = self._prepare_namespaces(response, xml_tree)
+
+        reverse_pid: str = self._fetch_reversepid(response, nsmap)
+        return {"reverse_pid": reverse_pid}
+
     def _fetch_collection_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves collection title according to xPath location specified in config
