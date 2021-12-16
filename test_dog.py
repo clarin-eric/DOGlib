@@ -1,7 +1,7 @@
 from collections import defaultdict
 import os
 from typing import Callable
-from unittest import TestCase
+import unittest
 
 from doglib import DOG
 from doglib.curl import get
@@ -9,14 +9,16 @@ from doglib.pid import PID, URL, HDL, DOI
 from doglib.repos import RegRepo
 
 
-class TestDOG(TestCase):
-    @classmethod
-    def setUpTestData(cls) -> None:
-        cls.dog = DOG()
-        cls.repos: list[RegRepo] = cls.dog._load_repos()
+class TestDOG(unittest.TestCase):
+    def setUp(self) -> None:
+        self.dog: DOG = DOG()
+        self.repos: list[RegRepo] = self.dog._load_repos()
 
 
 class TestRegisteredRepositories(TestDOG):
+    def setUp(self) -> None:
+        super(TestRegisteredRepositories, self).setUp()
+
     def test_configs_against_schema(self):
         """
         Config still changes, no stable schema yet
@@ -27,7 +29,7 @@ class TestRegisteredRepositories(TestDOG):
         """
         Tests whether repositories are loaded
         """
-        self.assertTrue(self.repos)
+        self.assertTrue(all(self.repos))
 
     def test_fidelity_loaded_repos(self):
         """
@@ -35,13 +37,13 @@ class TestRegisteredRepositories(TestDOG):
         """
         config_dir = self.dog.config_dir
         #TODO align loaded repos with config files and report missing repos
-        self.assertTrue(len(os.listdir(config_dir)) == len(config_dir))
+        self.assertTrue((len(os.listdir(config_dir)) - 1), len(config_dir))
 
 
 class TestResolvingAndParsing(TestDOG):
-    @classmethod
-    def setUpTestData(cls) -> None:
-        cls.repos_testcases: dict = {repo: repo.get_test_examples() for repo in cls.repos}
+    def setUp(self) -> None:
+        super(TestResolvingAndParsing, self).setUp()
+        self.repos_testcases: dict = {repo: repo.get_test_examples() for repo in self.repos}
 
     def _find_failures(self, test_results, conditions: [Callable[[dict], bool]]) -> dict:
         """
@@ -93,7 +95,7 @@ class TestResolvingAndParsing(TestDOG):
         Test fetch() over repos supporting CMDI content negotiation
         """
         cmdi_repos_test_cases: dict = dict(filter(lambda repo_testcases: repo_testcases[0].get_parser_type() == "cmdi",
-                                                  self.repos_testcases))
+                                                  self.repos_testcases.items()))
         fetch_results: dict = self._map_func_over_testcases(self.dog.fetch, cmdi_repos_test_cases)
         failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
         self.assertFalse(failures)
@@ -103,7 +105,11 @@ class TestResolvingAndParsing(TestDOG):
         Test fetch() over repos not supporting CMDI content negotiation (outside CLARIN infrastructure)
         """
         repos_test_cases_3rdparty: dict = dict(filter(lambda repo_testcases: repo_testcases[0].get_parser_type() != "cmdi",
-                                                  self.repos_testcases))
+                                                  self.repos_testcases.items()))
         fetch_results: dict = self._map_func_over_testcases(self.dog.fetch, repos_test_cases_3rdparty)
         failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
         self.assertFalse(failures)
+
+
+if __name__ == '__main__':
+    unittest.main()
