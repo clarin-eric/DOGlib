@@ -212,7 +212,7 @@ class XMLParser:
         nsmap: dict = self._prepare_namespaces(response, xml_tree)
 
         collection_title: str = self._fetch_collection_title(xml_tree, nsmap)
-        description: str = pass
+        description: str = self._fetch_description(xml_tree, nsmap)
 
         return {"collection_title": collection_title, "description": description}
 

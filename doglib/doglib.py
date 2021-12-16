@@ -99,7 +99,7 @@ class DOG:
 
     def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser, None]:
         """
-        Mathod wraping parser constrution
+        Method wrapping parser construction
 
         :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
         :param parser_config: dict, Parser configuration dictionary
@@ -149,7 +149,17 @@ class DOG:
         elif format == 'jsons' or format == 'str':
             return json.dumps(fetch_result)
 
-    def identify_collection(self, pid_string: str) -> dict:
+    def identify(self, pid_string: str) -> dict:
+        """
+        Identifies collection with its title and description, functionality requested for Virtual Content Registry
+
+        :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
+        :return: dict, return identification result in a format:
+                {
+                    "title": str,
+                    "description": str
+                }
+        """
         pid: PID = pid_factory(pid_string)
         if not pid:
             return {}
@@ -165,8 +175,6 @@ class DOG:
                 parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                          matching_repo.get_parser_config())
                 return parser.identify_collection(response)
-
-    def identify(self, pid_string: str) -> :
 
     def is_collection(self, pid_string: str) -> bool:
         """
