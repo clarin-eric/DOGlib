@@ -29,6 +29,6 @@ jobs:
         python -m pip install --upgrade pip
         
     - name: Build package
-      run: pip install .
+      run: pip install . -r ./requirements.txt
     - name: Publish package
       run: python test_dog.py

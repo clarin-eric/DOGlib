@@ -166,6 +166,8 @@ class DOG:
                                                                          matching_repo.get_parser_config())
                 return parser.identify_collection(response)
 
+    def identify(self, pid_string: str) -> :
+
     def is_collection(self, pid_string: str) -> bool:
         """
         Method wrap over _sniff() for recognition whether provided PID is a collection hosted by registered repository

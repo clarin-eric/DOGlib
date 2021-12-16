@@ -205,16 +205,16 @@ class XMLParser:
 
     def identify_collection(self, response) -> dict:
         """
-        Retrieces title and reverse pid to a collection
+        Retrieves title and description
         """
         xml_tree: ElementTree = fromstring(response.encode('utf-8'))
 
         nsmap: dict = self._prepare_namespaces(response, xml_tree)
 
         collection_title: str = self._fetch_collection_title(xml_tree, nsmap)
-        reverse_pid: str = self._fetch_reversepid(xml_tree, nsmap)
+        description: str = pass
 
-        return {"collection_title": collection_title, "reverse_pid": reverse_pid}
+        return {"collection_title": collection_title, "description": description}
 
     def _fetch_collection_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
