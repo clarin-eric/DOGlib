@@ -7,12 +7,12 @@
     "api": {"base": "https://archive.mpi.nl/objects/tla:1839_$record_id/datastreams/CMD/content"},
     "url": {"format": "$api", "regex":  ".*/tla:1839_(?P<record_id>[^?\\/]+)(.*)$"},
     "parser": {
-      "nsmap": {
-        "ms": "http://www.clarin.eu/cmd/",
-        "olac": "http://www.clarin.eu/cmd/"
-      },
-      "type": "xml",
+      "type": "cmdi",
       "config": {
+        "nsmap": {
+          "ms": "http://www.clarin.eu/cmd/",
+          "olac": "http://www.clarin.eu/cmd/"
+        },
         "reverse_pid": ".//cmd:MdSelfLink",
         "collection_title": ".//MdCollectionDisplayName",
         "description": ".//descriptions",

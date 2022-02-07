@@ -46,7 +46,7 @@ class RegRepo(object):
             if type(pid) == DOI:
                 return self.doi["format"].replace("$doi", pid.get_resolvable())
             if type(pid) == URL and "regex" not in self.url.keys():
-                return self.url["format"].replace("$url", pid.get_resolvable())
+                return self.url["format"].replace("$url", pid.get_resolvable().replace("$api", self.api))
 
         # Generic case
         request_config: dict = {}
@@ -127,6 +127,7 @@ class RegRepo(object):
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
         # Match HDL with repo
+        print(type(pid))
         if type(pid) == HDL:
             if "id" in self.hdl.keys():
                 if type(self.hdl["id"]) == str:

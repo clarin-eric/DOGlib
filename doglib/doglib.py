@@ -27,11 +27,14 @@ class DOG:
             }
         """
         matching_repo: RegRepo = self._sniff(pid)
+        print(matching_repo)
+        print(pid)
         if not matching_repo:
             return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
             headers: dict = matching_repo.get_headers()
+            print("r url" + request_url)
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
