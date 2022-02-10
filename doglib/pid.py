@@ -17,6 +17,9 @@ class PID(Protocol):
     def get_resolvable(self) -> str:
         ...
 
+    def get_host_netloc(self) -> str:
+        ...
+
 
 def pid_factory(pid_string: str) -> Union[PID, None]:
     """
@@ -94,6 +97,12 @@ class DOI(PID):
     def __str__(self):
         return f'doi:{self.repo_id}/{self.collection}{self.repo_record_sep}{self.record_id}'
 
+    def get_collection(self):
+        return ""
+
+    def get_host_netloc(self) -> str:
+        pass
+
     def get_resolvable(self) -> str:
         return 'https://doi.org/' + self.__str__()
 
@@ -102,9 +111,6 @@ class DOI(PID):
 
     def get_repo_id(self):
         return self.repo_id
-
-    def get_collection(self):
-        return ""
 
     @staticmethod
     def is_doi(doi_string: str) -> bool:
@@ -130,6 +136,9 @@ class HDL(PID):
 
     def __str__(self):
         return self.get_resolvable()
+
+    def get_host_netloc(self) -> str:
+        pass
 
     def get_resolvable(self) -> str:
         return f"https://hdl.handle.net/{self.repo_id}/{self.record_id}"

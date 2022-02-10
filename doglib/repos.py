@@ -46,7 +46,7 @@ class RegRepo(object):
             if type(pid) == DOI:
                 return self.doi["format"].replace("$doi", pid.get_resolvable())
             if type(pid) == URL and "regex" not in self.url.keys():
-                return self.url["format"].replace("$url", pid.get_resolvable().replace("$api", self.api))
+                return self.url["format"].replace("$url", pid.get_resolvable().replace("$api", self.api["base"]))
 
         # Generic case
         request_config: dict = {}
@@ -72,7 +72,7 @@ class RegRepo(object):
 
     def get_test_collection(self, pid_type: str) -> str:
         """
-        Get test case for the repository
+        Get test case for specific pid type
         #TODO
         """
         if pid_type in self.test_collections.keys():
@@ -88,13 +88,17 @@ class RegRepo(object):
         """
         return self.host_netloc
 
-    def get_parser_type(self) -> str:
+    def get_headers(self) -> dict:
         """
-        Return parser type relevant for this repository
-
-        :return: str, string representation of parser type, see JSON schema for possible values # TODO ref JSON schema
+        Return dict with repo specific headers
+        :return: dict, headers for http request to the repository
         """
-        return self.parser['type']
+        if self.parser['type'] == "cmdi":
+            return {"Accept": "application/x-cmdi+xml"}
+        elif "headers" in self.api.keys():
+            return self.api["headers"]
+        else:
+            return {}
 
     def get_parser_config(self) -> dict:
         """
@@ -107,17 +111,16 @@ class RegRepo(object):
         else:
             return {}
 
-    def get_headers(self) -> dict:
+    def get_parser_type(self) -> str:
         """
-        Return dict with repo specific headers
-        :return: dict, headers for http request to the repository
+        Return parser type relevant for this repository
+
+        :return: str, string representation of parser type, see JSON schema for possible values # TODO ref JSON schema
         """
-        if self.parser['type'] == "cmdi":
-            return {"Accept": "application/x-cmdi+xml"}
-        elif "headers" in self.api.keys():
-            return self.api["headers"]
-        else:
-            return {}
+        return self.parser['type']
+
+    def get_test_examples(self):
+        return self.test_collections
 
     def match_pid(self, pid: PID) -> bool:
         """
@@ -147,9 +150,6 @@ class RegRepo(object):
             if "id" in self.doi.keys():
                 return pid.get_repo_id in self.doi["id"]
         return False
-
-    def get_test_examples(self):
-        return self.test_collections
 
     def __str__(self):
         return f"Name: {self.name}\n" \
