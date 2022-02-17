@@ -60,14 +60,16 @@ class TestResolvingAndParsing(TestDOG):
                     failures[repo].append(pidtype)
         return failures
 
-    def _filter_empty_testcases(self, test_cases: dict) -> filter:
+    def _filter_empty_testcases(self, test_cases: dict) -> dict:
         """
-        Filter out empty test cases
+        Filter out empty test cases from test cases dictionary
 
         :param test_cases: dict, dictionary containing test cases for repositories pid types in format {repo:{pids: resolvable_pid}}
         :return: filter, an iterator over input dict without pids with no resolvable test cases
         """
-        return filter(lambda pidtype_resolvable: pidtype_resolvable[1] != "", test_cases.items())
+        return {repo:
+                    {pidtype: resolvable for pidtype, resolvable in pidtype_resolvable.items() if resolvable}
+                for repo, pidtype_resolvable in test_cases.items()}
 
     def _map_func_over_testcases(self, func: Callable, test_cases: dict) -> dict:
         """
@@ -78,9 +80,8 @@ class TestResolvingAndParsing(TestDOG):
         :return: dict, dictionary with results of function application to test cases
         """
         return {repo:
-                    {pid_type: func(resolvable)
-                     for pid_type, resolvable in pidtype_resolvable}
-                for repo, pidtype_resolvable in self._filter_empty_testcases(test_cases)}
+                    {pid_type: func(resolvable) for pid_type, resolvable in pidtype_resolvable.items()}
+                for repo, pidtype_resolvable in self._filter_empty_testcases(test_cases).items()}
 
     def test_sniff(self):
         """

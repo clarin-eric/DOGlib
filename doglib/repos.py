@@ -1,9 +1,4 @@
-import json
-from collections import namedtuple
-import os
 from re import match, Match
-from typing import List, Any
-from urllib.parse import urlencode
 
 from . import curl
 from .pid import pid_factory, DOI, HDL, PID, URL
@@ -26,7 +21,7 @@ class RegRepo(object):
         self.host_netloc: str = ''
         self.name: str = ''
         self.parser: dict = {}
-        self.test_collections: dict = {}
+        self.test_examples: dict = {}
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
@@ -119,8 +114,8 @@ class RegRepo(object):
         """
         return self.parser['type']
 
-    def get_test_examples(self):
-        return self.test_collections
+    def get_test_examples(self) -> dict:
+        return self.test_examples
 
     def match_pid(self, pid: PID) -> bool:
         """
@@ -130,7 +125,6 @@ class RegRepo(object):
         :return: bool, True if PID points to collection in this repository, False otherwise
         """
         # Match HDL with repo
-        print(type(pid))
         if type(pid) == HDL:
             if "id" in self.hdl.keys():
                 if type(self.hdl["id"]) == str:

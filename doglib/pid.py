@@ -23,7 +23,7 @@ class PID(Protocol):
 
 def pid_factory(pid_string: str) -> Union[PID, None]:
     """
-    Function for constructing relevant instance of PID
+    Function for constructing relevant instance of PID protocol
     """
     if HDL.is_hdl(pid_string):
         return HDL(pid_string)
