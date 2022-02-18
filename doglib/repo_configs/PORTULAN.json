@@ -3,7 +3,7 @@
     "name": "PORTULAN-CLARIN",
     "host_name": "PORTULAN CLARIN",
     "host_netloc": "https://portulanclarin.net",
-    "hdl": {"id": "11129", "format": "$hdl"},
+    "hdl": {"id": "21.11129", "format": "$hdl"},
     "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",

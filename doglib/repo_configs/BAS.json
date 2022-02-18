@@ -2,7 +2,7 @@
   "repository": {
     "name": "Bayerisches Archiv für Sprachsignale",
     "host_name": "Ludwig-Maximilians-Universität München",
-    "host_netloc": " https://clarin.phonetik.uni-muenchen.de",
+    "host_netloc": "https://clarin.phonetik.uni-muenchen.de",
     "hdl": { "id": "11022", "format": "$hdl@format=cmdi"},
     "url": {"format":  "$url"},
     "parser": {

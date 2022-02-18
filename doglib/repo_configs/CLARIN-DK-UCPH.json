@@ -2,7 +2,7 @@
   "repository": {
     "name": "The CLARIN Centre at the University of Copenhagen",
     "host_name": "The CLARIN Centre at the University of Copenhagen",
-    "host_netloc": "http://clarin.dk",
+    "host_netloc": "https://repository.clarin.dk",
     "hdl": {
       "id": ["20.500.12115", "11221"],
       "format": "$hdl@format=cmdi"
