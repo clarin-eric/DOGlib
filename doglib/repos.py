@@ -85,6 +85,13 @@ class RegRepo(object):
         else:
             return {}
 
+    def get_name(self) -> str:
+        """
+        Return repository's name
+        :return: str, name of the repository
+        """
+        return self.name
+
     def get_parser_config(self) -> dict:
         """
         Return dict with parser configuration, this dict is passed to relevant parser constructor
