@@ -7,7 +7,7 @@
         "base": "https://collections.clarin.eu/service/v1/collections/$record_id"
     },
     "hdl": {"id": "11372", "format": "$hdl"},
-    "url": {"format": "$api", "regex": ".*/(?P<record_id>[^?]+).*$", "headers": {
+    "url": {"format": "https://collections.clarin.eu/service/v1/collections/$record_id", "regex": ".*/(?P<record_id>[^?]+).*$", "headers": {
       "Accept": "application/xml"}
     },
     "parser": {

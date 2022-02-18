@@ -41,7 +41,7 @@ class RegRepo(object):
             if type(pid) == DOI:
                 return self.doi["format"].replace("$doi", pid.get_resolvable())
             if type(pid) == URL and "regex" not in self.url.keys():
-                return self.url["format"].replace("$url", pid.get_resolvable().replace("$api", self.api["base"]))
+                return self.url["format"].replace("$url", pid.get_resolvable())
 
         # Generic case
         request_config: dict = {}
@@ -62,18 +62,24 @@ class RegRepo(object):
             rmatch: Match = match(regex, pid.get_resolvable())
             record_id = rmatch.group("record_id")
             # get API call
-            request_url = request_config["format"].replace("$api", self.api["base"].replace("$record_id", record_id))
+            request_url = request_config["format"].replace("$api", self.api["base"]).replace("$record_id", record_id)
             return request_url
 
-    def get_test_collection(self, pid_type: str) -> str:
+    def get_test_example(self, pid_type: str) -> str:
         """
         Get test case for specific pid type
         #TODO
         """
-        if pid_type in self.test_collections.keys():
-            return self.test_collections[pid_type]
+        if pid_type in self.test_examples.keys():
+            return self.test_examples[pid_type]
         else:
             return ""
+
+    def get_test_examples(self) -> dict:
+        """
+        Get all test cases
+        """
+        return self.test_examples
 
     def get_host_netloc(self) -> str:
         """
@@ -113,9 +119,6 @@ class RegRepo(object):
         :return: str, string representation of parser type, see JSON schema for possible values # TODO ref JSON schema
         """
         return self.parser['type']
-
-    def get_test_examples(self) -> dict:
-        return self.test_examples
 
     def match_pid(self, pid: PID) -> bool:
         """
