@@ -65,22 +65,6 @@ class RegRepo(object):
             request_url = request_config["format"].replace("$api", self.api["base"]).replace("$record_id", record_id)
             return request_url
 
-    def get_test_example(self, pid_type: str) -> str:
-        """
-        Get test case for specific pid type
-        #TODO
-        """
-        if pid_type in self.test_examples.keys():
-            return self.test_examples[pid_type]
-        else:
-            return ""
-
-    def get_test_examples(self) -> dict:
-        """
-        Get all test cases
-        """
-        return self.test_examples
-
     def get_host_netloc(self) -> str:
         """
         Return repository's host netloc
@@ -119,6 +103,22 @@ class RegRepo(object):
         :return: str, string representation of parser type, see JSON schema for possible values # TODO ref JSON schema
         """
         return self.parser['type']
+
+    def get_test_example(self, pid_type: str) -> str:
+        """
+        Get test case for specific pid type
+        #TODO
+        """
+        if pid_type in self.test_examples.keys():
+            return self.test_examples[pid_type]
+        else:
+            return ""
+
+    def get_test_examples(self) -> dict:
+        """
+        Get all test cases
+        """
+        return self.test_examples
 
     def match_pid(self, pid: PID) -> bool:
         """
