@@ -23,7 +23,7 @@
     },
     "test_examples": {
       "url": "https://clarin-pl.eu/dspace/handle/11321/6?format=cmdi",
-      "hdl": "http://hdl.handle.net/20.500.12115/8@format=cmdi"}
+      "hdl": "https://hdl.handle.net/11321/6@format=cmdi"}
   }
 }
 

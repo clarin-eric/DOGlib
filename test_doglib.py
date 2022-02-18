@@ -109,6 +109,9 @@ class TestResolvingAndParsing(TestDOG):
         failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
         self.assertFalse(failures)
 
+    #TODO
+    def test_identify(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()

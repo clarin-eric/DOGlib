@@ -2,7 +2,7 @@
   "repository": {
     "name": "GAMS - Asset Management System for the Humanities",
     "host_name": "ZIM Centre for Information Modelling",
-    "host_netloc": "https://zim.uni-graz.at/",
+    "host_netloc": "http://gams.uni-graz.at/",
     "hdl": {"id": "11471", "format":  "$hdl"},
     "url": {"format":  "$url"},
     "parser": {
@@ -22,8 +22,8 @@
       }
     },
     "test_examples": {
-      "url": "http://gams.uni-graz.at/o:aaif.itaaaif/sdef:CMDI/get",
-      "hdl": "https://hdl.handle.net/11471/513.30.3?index=3"}
+      "url": "",
+      "hdl": ""}
   }
 }
 

@@ -2,7 +2,7 @@
   "repository": {
     "name": "CLARINO Bergen Center",
     "host_name": "CLARINO Bergen Center",
-    "host_netloc": "http://clarino.uib.no",
+    "host_netloc": "https://repo.clarino.uib.no",
     "hdl": {"id": "11509", "format": "$hdl@format=cmdi"},
     "url": {"format":  "$url"},
     "parser": {
@@ -22,7 +22,7 @@
       }
     },
     "test_examples": {
-      "url": "https://repo.clarino.uib.no/xmlui/handle/11509/3?format=cmdi",
+      "url": "https://repo.clarino.uib.no/xmlui/handle/11509/3",
       "hdl": "http://hdl.handle.net/11509/3@format=cmdi"}
   }
 }

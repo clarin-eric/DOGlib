@@ -3,8 +3,8 @@
     "name": "EKUT Tuebingen",
     "host_name": "EKUT Tuebingen",
     "host_netloc": "https://talar.sfb833.uni-tuebingen.de",
-    "hdl": {"id": "11022", "format": "$hdl"},
-    "url": {"format":  "$url"},
+    "hdl": {"id": "11022", "format": "$hdl", "headers": {"Accept": "application/xml"}},
+    "url": {"format":  "$url", "headers": {"Accept": "application/xml"}},
     "parser": {
       "type": "cmdi",
       "nsmap": {

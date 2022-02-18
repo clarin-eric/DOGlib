@@ -3,7 +3,7 @@
     "name": "ILC-CNR for CLARIN-IT",
     "host_name": "Institute for Computational Linguistics \"A. Zampolli\", National Research Council, in Pisa",
     "host_netloc": "https://dspace-clarin-it.ilc.cnr.it",
-    "hdl": {"id": "200.50.11752", "format": "$hdl@format=cmdi"},
+    "hdl": {"id": "20.500.11752", "format": "$hdl"},
     "url": {"format":  "$url"},
     "parser": {
       "type": "cmdi",
@@ -18,8 +18,8 @@
       }
     },
     "test_examples": {
-      "url": "https://dspace-clarin-it.ilc.cnr.it/repository/xmlui/handle/20.500.11752/ILC-57?format=cmdi",
-      "hdl": "https://hdl.handle.net/20.500.11752/ILC-57@format=cmdi"}
+      "url": "https://dspace-clarin-it.ilc.cnr.it/repository/xmlui/handle/20.500.11752/ILC-57",
+      "hdl": "https://hdl.handle.net/20.500.11752/ILC-57"}
   }
 }
 
