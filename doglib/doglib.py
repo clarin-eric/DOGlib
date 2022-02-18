@@ -19,11 +19,11 @@ class DOG:
         Method that takes care of parser construction and parse call
 
         :param pid: PID, class instance of PID protocol
-        :return: dict, return fetch result in a format:
+        :return: dict, return fetch result in a dict format:
             {
                 "ref_files": [{"filename": str, "pid": str}],
                 "description": str,
-                "license: str
+                "license": str
             }
         """
         matching_repo: RegRepo = self._sniff(pid)
@@ -31,7 +31,8 @@ class DOG:
             return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid)
-            headers: dict = matching_repo.get_headers()
+            # cast generated request URL to PID to decide which header from config shall be used
+            headers: dict = matching_repo.get_headers(pid_factory(request_url))
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
@@ -86,7 +87,7 @@ class DOG:
         for matching_repo in sniffed_repos:
             if len(sniffed_repos) > 1:
                 try:
-                    candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(), True)[0]
+                    candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(pid), True)[0]
                 except curl.RequestError:
                     continue
                 url: PID = pid_factory(candidate)
@@ -179,7 +180,6 @@ class DOG:
     def is_collection(self, pid_string: str) -> bool:
         """
         Method wrap over _sniff() for recognition whether provided PID is a collection hosted by registered repository
-
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """

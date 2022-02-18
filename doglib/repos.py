@@ -73,11 +73,20 @@ class RegRepo(object):
         """
         return self.host_netloc
 
-    def get_headers(self) -> dict:
+    def get_headers(self, pid: PID) -> dict:
         """
         Return dict with repo specific headers
         :return: dict, headers for http request to the repository
         """
+        if type(pid) == HDL:
+            if "headers" in self.hdl.keys():
+                return self.hdl["headers"]
+        if type(pid) == DOI:
+            if "headers" in self.doi.keys():
+                return self.doi["headers"]
+        if type(pid) == URL:
+            if "headers" in self.url.keys():
+                return self.url["headers"]
         if self.parser['type'] == "cmdi":
             return {"Accept": "application/x-cmdi+xml"}
         elif "headers" in self.api.keys():
@@ -152,7 +161,7 @@ class RegRepo(object):
         # Match DOI with repo
         elif type(pid) == DOI:
             if "id" in self.doi.keys():
-                return pid.get_repo_id in self.doi["id"]
+                return pid.get_repo_id() in self.doi["id"]
         return False
 
     def __str__(self):
