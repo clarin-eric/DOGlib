@@ -13,7 +13,7 @@
         "collection_title": ".//MdCollectionDisplayName",
         "license": "",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
         }
       }
     },
