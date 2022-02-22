@@ -7,8 +7,9 @@
       "id": "11297",
       "format": "$hdl"
     },
-    "url": {"format": "https://metashare.ut.ee/oai_pmh/?verb=GetRecord&metadataPrefix=cmdi&identifier=$record_id",
-            "regex": ".*/(?P<record_id>[]+).*$"},
+    "api": {"base": "https://metashare.ut.ee/oai_pmh/?verb=GetRecord&metadataPrefix=cmdi&identifier=$record_id"},
+    "url": {"format": "$api",
+            "regex": ".*\\/(?P<record_id>[\\w]+)(\\/)?$"},
     "doi": {
       "id": "10.15155",
       "format": "$doi"
@@ -30,8 +31,8 @@
       }
     },
     "test_examples": {
-      "url": "https://metashare.ut.ee/repository/browse/a-corpus-of-elderly-estonian-speech-under-development/e86a29c89c6311eba6e4fa163e9d4547eff978375ea24c29a5f3bc1c24362713/",
+      "url": "https://metashare.ut.ee/repository/browse/a-corpus-of-elderly-estonian-speech-under-development/e86a29c89c6311eba6e4fa163e9d4547eff978375ea24c29a5f3bc1c24362713",
       "hdl": "http://hdl.handle.net/11297/0-00-0000-0000-0000-01427L",
-      "doi": "https://doi.org/10.15155/9-00-0000-0000-0000-00220L"}
+      "doi": ""}
   }
 }
