@@ -4,7 +4,7 @@
     "host_name": "Ludwig-Maximilians-Universität München",
     "host_netloc": "https://clarin.phonetik.uni-muenchen.de",
     "hdl": { "id": "11022", "format": "$hdl@format=cmdi"},
-    "url": {"format":  "$url"},
+    "url": {"format":  "https://clarin.phonetik.uni-muenchen.de/BASRepository/$record_id", "regex": "^.*target=(?P<record_id>[\\w/]+)$"},
     "parser": {
       "type": "cmdi",
       "config": {
