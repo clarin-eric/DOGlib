@@ -6,13 +6,16 @@
     "api": {
         "base": "https://collections.clarin.eu/service/v1/collections/$record_id"
     },
-    "hdl": {"id": "11372", "format": "$hdl"},
-    "url": {"format": "https://collections.clarin.eu/service/v1/collections/$record_id", "regex": ".*/(?P<record_id>[^?]+).*$", "headers": {
-      "Accept": "application/xml"}
+    "hdl": {"id": "11372", "format": "$hdl", "headers": {"Accept": "application/x-cmdi+xml"}},
+    "url": {"format": "https://collections.clarin.eu/service/v1/collections/$record_id", "regex": ".*/(?P<record_id>[^?;]+).*$", "headers": {
+      "Accept": "application/x-cmdi+xml"}
     },
     "parser": {
       "type": "cmdi",
       "config": {
+        "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/"
+        },
         "reverse_pid": ".//MdSelfLink",
         "description": ".//VirtualCollection/Description",
         "collection_title": ",.//VirtualCollection/Name",

@@ -9,11 +9,11 @@
     },
     "url": {"format":  "$url"},
     "parser": {
-      "nsmap": {
-        "cmd": "http://www.clarin.eu/cmd/"
-      },
       "type": "cmdi",
       "config": {
+        "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/"
+        },
         "reverse_pid": ".//MdSelfLink",
         "collection_title": ".//MdCollectionDisplayName",
         "description": ".//descriptions/cmd:Description",
@@ -24,7 +24,7 @@
       }
     },
     "test_examples": {
-      "url": "https://sla.talkbank.org/TBB/ca/Goodwin/cinco.cha",
+      "url": "",
       "hdl": "http://hdl.handle.net/hdl:11312/t-00016625-1"}
   }
 }

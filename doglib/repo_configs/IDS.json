@@ -6,11 +6,11 @@
     "hdl": {"id": "10932", "format": "$hdl"},
     "url": {"format":  "$url"},
     "parser": {
-      "type": "cmdi",
-      "nsmap": {
-        "cmd": "http://www.clarin.eu/cmd/"
+      "type": "cmdi"
       },
       "config": {
+        "nsmap": {
+          "cmd": "http://www.clarin.eu/cmd/"},
         "reverse_pid": ".//MdSelfLink",
         "collection_title": ".//MdCollectionDisplayName",
         "description": ".//Description",
@@ -23,6 +23,6 @@
     "test_examples": {
       "url": "http://repos.ids-mannheim.de/fedora/objects/clarin-ids:AD--4.AD--.cmdi/datastreams/CMDI/content",
       "hdl": "http://hdl.handle.net/10932/00-03BC-7338-01E0-6701-2"}
-  }
 }
+
 
