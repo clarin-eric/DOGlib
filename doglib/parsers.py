@@ -1,3 +1,4 @@
+import html
 import json
 from lxml.etree import fromstring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern

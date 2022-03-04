@@ -33,6 +33,7 @@ class DOG:
             request_url: str = matching_repo.get_request_url(pid)
             # cast generated request URL to PID to decide which header from config shall be used
             headers: dict = matching_repo.get_headers(pid_factory(request_url))
+
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
@@ -88,12 +89,12 @@ class DOG:
             if len(sniffed_repos) > 1:
                 try:
                     candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(pid), True)[0]
+                    url: PID = pid_factory(candidate)
+                    if url:
+                        if matching_repo.match_pid(url):
+                            return matching_repo
                 except curl.RequestError:
                     continue
-                url: PID = pid_factory(candidate)
-                if url:
-                    if matching_repo.match_pid(url):
-                        return matching_repo
             else:
                 return matching_repo
         return None

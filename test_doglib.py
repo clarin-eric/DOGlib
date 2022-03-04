@@ -93,21 +93,22 @@ class TestResolvingAndParsing(TestDOG):
         """
         Test fetch() over repos supporting CMDI content negotiation
         """
-        cmdi_repos_test_cases: dict = dict(filter(lambda repo_testcases: repo_testcases[0].get_parser_type() == "cmdi",
-                                                  self.repos_testcases.items()))
+        cmdi_repos_test_cases: dict = {repo: pidtype_resolvable for repo, pidtype_resolvable
+                                       in self._filter_empty_testcases(self.repos_testcases).items()
+                                       if repo.get_parser_type() == "cmdi"}
         fetch_results: dict = self._map_func_over_testcases(self.dog.fetch, cmdi_repos_test_cases)
         failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
         self.assertFalse(failures)
 
-    def test_fetch_3rd_party(self):
-        """
-        Test fetch() over repos not supporting CMDI content negotiation (outside CLARIN infrastructure)
-        """
-        repos_test_cases_3rdparty: dict = dict(filter(
-            lambda repo_testcases: repo_testcases[0].get_parser_type() != "cmdi", self.repos_testcases.items()))
-        fetch_results: dict = self._map_func_over_testcases(self.dog.fetch, repos_test_cases_3rdparty)
-        failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
-        self.assertFalse(failures)
+    # def test_fetch_3rd_party(self):
+    #     """
+    #     Test fetch() over repos not supporting CMDI content negotiation (outside CLARIN infrastructure)
+    #     """
+    #     repos_test_cases_3rdparty: dict = dict(filter(
+    #         lambda repo_testcases: repo_testcases[0].get_parser_type() != "cmdi", self.repos_testcases.items()))
+    #     fetch_results: dict = self._map_func_over_testcases(self.dog.fetch, repos_test_cases_3rdparty)
+    #     failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
+    #     self.assertFalse(failures)
 
     #TODO
     def test_identify(self):

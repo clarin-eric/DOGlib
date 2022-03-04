@@ -34,7 +34,7 @@ class RegRepo(object):
         """
         if pid is None:
             return ""
-        # Request to repo providing CMDI metadata
+        # Request to repository providing CMDI metadata
         if self.parser["type"] == 'cmdi':
             if type(pid) == HDL:
                 return self.hdl["format"].replace("$hdl", pid.get_resolvable())
@@ -54,7 +54,7 @@ class RegRepo(object):
 
         # follow redirects
         if request_config["format"] == "redirect":
-            target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(), follow_redirects=True)[0])
+            target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(pid), follow_redirects=True)[0])
             return self.get_request_url(target_url)
         # parse id
         elif "regex" in request_config.keys():
@@ -81,10 +81,10 @@ class RegRepo(object):
         if type(pid) == HDL:
             if "headers" in self.hdl.keys():
                 return self.hdl["headers"]
-        if type(pid) == DOI:
+        elif type(pid) == DOI:
             if "headers" in self.doi.keys():
                 return self.doi["headers"]
-        if type(pid) == URL:
+        elif type(pid) == URL:
             if "headers" in self.url.keys():
                 return self.url["headers"]
         if self.parser['type'] == "cmdi":
@@ -155,8 +155,8 @@ class RegRepo(object):
 
         # Match URL with repo
         elif type(pid) == URL:
-            return self.host_netloc.replace('https://', '').replace('http://', '') == \
-                   pid.get_host_netloc().replace('https://', '').replace('http://', '')
+            return self.host_netloc.replace('https://', '').replace('http://', '') in \
+                   pid.get_resolvable().replace('https://', '').replace('http://', '')
 
         # Match DOI with repo
         elif type(pid) == DOI:
@@ -168,8 +168,12 @@ class RegRepo(object):
         return f"Name: {self.name}\n" \
                f"Host name: {self.host_name}\n" \
                f"Host netloc: {self.host_netloc}\n" \
+               f"url: {self.url}\n" \
                f"hdl: {self.hdl}\n" \
                f"doi: {self.doi}"
+
+    def __repr__(self):
+        return self.__str__()
 
     def __dict__(self):
         return {"name": self.name, "host_name": self.host_name, "host_netloc": self.host_netloc}
