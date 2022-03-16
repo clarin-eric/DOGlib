@@ -110,9 +110,23 @@ class TestResolvingAndParsing(TestDOG):
     #     failures: dict = self._find_failures(fetch_results, [bool, lambda result: bool(result["ref_files"])])
     #     self.assertFalse(failures)
 
-    #TODO
     def test_identify(self):
-        pass
+        """
+        Test identify() over all registered repositories
+        """
+        identify_results: dict = self._map_func_over_testcases(self.dog.identify, self.repos_testcases)
+        failures: dict = self._find_failures(identify_results, [bool])
+        self.assertFalse(failures)
+
+    # TODO add downloadable resource test cases to repo configs and test against them
+    # def test_is_collection(self):
+    #     """
+    #     Test is_collection over all registered repositories
+    #     """
+    #     is_collection_results: dict = self._map_func_over_testcases(self.dog.is_collection, self.repos_testcases)
+    #     failures: dict = self._find_failures(is_collection_results, [bool])
+    #     self.assertFalse(failures)
+
 
 if __name__ == '__main__':
     unittest.main()

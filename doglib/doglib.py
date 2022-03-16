@@ -171,7 +171,7 @@ class DOG:
                 return {}
             elif matching_repo:
                 request_url: str = matching_repo.get_request_url(pid)
-                headers: dict = matching_repo.get_headers()
+                headers: dict = matching_repo.get_headers(pid)
                 final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
                 parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
@@ -184,24 +184,40 @@ class DOG:
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
-        if self.is_host_registered(pid_string):
+        pid: PID = pid_factory(pid_string)
+        matching_repo = self.is_host_registered(pid)
+        if matching_repo:
             if not self.is_downloadable(pid_string):
-                pid: PID = pid_factory(pid_string)
                 if pid:
                     return bool(self._fetch(pid))
 
         else:
             return False
 
-    def is_downloadable(self, pid_string: str) -> bool:
+    def is_downloadable(self, pid_string: str, matching_repo: RegRepo = None) -> bool:
         """
         Method checks if reference link is downloadable by investigating Content-Disposition header of the response
 
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
+        :param matching_repo: RegRepo, optional parameter, if not provided will _sniff() the repo
         :return: bool, true if downloadable, false otherwise
         """
-        _, response_headers = curl.head(pid_string, follow_redirects=True)
+        pid: PID = pid_factory(pid_string)
+        if not matching_repo:
+            matching_repo = self._sniff(pid)
+        request_headers: dict = matching_repo.get_headers(pid)
+        _, response_headers = curl.head(pid_string, headers=request_headers, follow_redirects=True)
         return "Content-Disposition: attachment" in response_headers
+
+    def _is_host_registered(self, pid: PID) -> Union[RegRepo, None]:
+        """
+        Method for recognition whether provided PID reference is hosted by registered repository
+
+        :param pid: PID, persistent identifier in a format of URL, DOI or HDL
+        :return: bool, True if PID belongs to registered repository, False otherwise
+        """
+        matching_repo = self._sniff(pid)
+        return matching_repo
 
     def is_host_registered(self, pid_string: str) -> bool:
         """
@@ -210,10 +226,8 @@ class DOG:
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
-        pid = pid_factory(pid_string)
-        if not pid:
-            return False
-        return bool(self._sniff(pid))
+        pid: PID = pid_factory(pid_string)
+        return bool(self._is_host_registered(pid))
 
     def sniff(self, pid_string: str, format='dict') -> Union[dict, str]:
         """

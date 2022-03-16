@@ -10,7 +10,7 @@
         "ms": "http://www.clarin.eu/cmd/",
         "olac": "http://www.clarin.eu/cmd/"
       },
-      "type": "xml",
+      "type": "cmdi",
       "config": {
         "reverse_pid": ".//cmd:MdSelfLink",
         "collection_title": ".//cmd:MdCollectionDisplayName",

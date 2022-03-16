@@ -214,10 +214,11 @@ class XMLParser:
 
         collection_title: str = self._fetch_collection_title(xml_tree, nsmap)
         description: str = self._fetch_description(xml_tree, nsmap)
+        reverse_pid: str = self._reverse_pid(xml_tree, nsmap)
 
-        return {"collection_title": collection_title, "description": description}
+        return {"collection_title": collection_title, "description": description, "reverse_pid": reverse_pid}
 
-    def reverse_pid(self, response) -> dict:
+    def reverse_pid(self, response) -> str:
         """
         Retrieves reverse pid pointing to the collection specified in metadata
         """
@@ -225,8 +226,8 @@ class XMLParser:
 
         nsmap: dict = self._prepare_namespaces(response, xml_tree)
 
-        reverse_pid: str = self._fetch_reversepid(response, nsmap)
-        return {"reverse_pid": reverse_pid}
+        reverse_pid: str = self._reverse_pid(xml_tree, nsmap)
+        return reverse_pid
 
     def _fetch_collection_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -267,13 +268,12 @@ class XMLParser:
             ret.extend([{"resource_type": resource_type, "filename": "", "pid": ref_resource,} for ref_resource in ref_resources])
         return ret
 
-    def _fetch_reversepid(self, xml_tree: ElementTree, nsmap: dict) -> str:
+    def _reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves reverse pid according to xPath location specified in config
         """
         try:
-            reverse_pid: str = xml_tree.find(self.reverse_pid_path, nsmap).text
-
+            reverse_pid = xml_tree.find(self.reverse_pid_path, nsmap)
         except SyntaxError:
             return ''
 
