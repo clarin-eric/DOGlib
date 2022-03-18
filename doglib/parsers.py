@@ -233,10 +233,10 @@ class XMLParser:
         """
         Retrieves collection title according to xPath location specified in config
         """
-        try:
-            collection_title: str = xml_tree.find(self.collection_title_path, nsmap).text
+        collection_title: str = xml_tree.find(self.collection_title_path, nsmap)
+        if collection_title is not None:
             return collection_title
-        except SyntaxError:
+        else:
             return ''
 
     def _fetch_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
@@ -273,9 +273,12 @@ class XMLParser:
         Retrieves reverse pid according to xPath location specified in config
         """
         if self.reverse_pid_path:
-            return xml_tree.find(self.reverse_pid_path, nsmap).text
-        else:
-            return ''
+            reverse_pid = xml_tree.find(self.reverse_pid_path, nsmap)
+            if reverse_pid is not None:
+                return reverse_pid
+            else:
+                return ''
+        return ''
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
