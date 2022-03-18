@@ -234,7 +234,7 @@ class XMLParser:
         Retrieves collection title according to xPath location specified in config
         """
         try:
-            collection_title: str = xml_tree.find(self.collection_title_path, nsmap)
+            collection_title: str = xml_tree.find(self.collection_title_path, nsmap).text
             return collection_title
         except SyntaxError:
             return ''
@@ -272,12 +272,10 @@ class XMLParser:
         """
         Retrieves reverse pid according to xPath location specified in config
         """
-        try:
-            reverse_pid = xml_tree.find(self.reverse_pid_path, nsmap)
-        except SyntaxError:
+        if self.reverse_pid_path:
+            return xml_tree.find(self.reverse_pid_path, nsmap).text
+        else:
             return ''
-
-        return reverse_pid
 
     def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
