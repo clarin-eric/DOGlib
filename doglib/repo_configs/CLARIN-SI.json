@@ -8,8 +8,8 @@
     "parser": {
       "type": "cmdi",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
+        "reverse_pid": ".//cmd:mdSelfLink",
+        "collection_title": ".//cmd:MmCollectionDisplayName",
         "description": ".//cmd:dataInfo/cmd:description",
         "license": ".//cmd:license/cmd:uri",
         "ref_file": {
