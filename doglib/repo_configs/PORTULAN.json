@@ -2,28 +2,28 @@
   "repository": {
     "name": "PORTULAN-CLARIN",
     "host_name": "PORTULAN CLARIN",
-    "host_netloc": "https://portulanclarin.net",
+    "host_netloc": "https://portulanclarin.net/repository/",
     "hdl": {"id": "21.11129", "format": "$hdl"},
-    "url": {"format":  "$url"},
+    "api": {"base": "https://portulanclarin.net/repository/browse/$record_id"},
+    "url": {"format": "$api", "regex": ".*(?P<record_id>[\\w\\W]+/[\\w\\W]+)(?:\\/)?$"},
     "parser": {
       "type": "cmdi",
       "config": {
         "nsmap": {
           "cmd": "http://www.clarin.eu/cmd/"
         },
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//cmd:description",
-        "license": ".//cmd:licenceInfo/cmd:licence",
+        "reverse_pid": ".//MdSelfLink",
+        "collection_title": ".//identificationInfo/resourceName",
+        "description": ".//identificationInfo/description",
+        "license": ".//licenceInfo/licence",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef",
-          "resource_format": "https://portulanclarin.net/repository/download/$resource"
+          "path": ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
         }
       }
     },
     "test_examples": {
-      "url": "https://portulanclarin.net/repository/browse/uimau-compare-apertium-pos-tagger/7c508aa8bea911e1a404080027e73ea2abb5e2fadb4143b2ae4c15c250af7c78/",
-      "hdl": ""}
+      "url": "https://portulanclarin.net/repository/browse/uimau-compare-apertium-pos-tagger/7c508aa8bea911e1a404080027e73ea2abb5e2fadb4143b2ae4c15c250af7c78",
+      "hdl": "https://hdl.handle.net/21.11129/0000-000D-F8E4-A"}
   }
 }
 

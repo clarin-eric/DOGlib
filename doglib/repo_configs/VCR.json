@@ -14,7 +14,7 @@
       "type": "cmdi",
       "config": {
         "nsmap": {
-        "cmd": "http://www.clarin.eu/cmd/"
+          "cmd": "http://www.clarin.eu/cmd/"
         },
         "reverse_pid": ".//MdSelfLink",
         "description": ".//VirtualCollection/Description",

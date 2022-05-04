@@ -1,17 +1,26 @@
 import json
 import os
-from typing import List, Union, Optional
+from typing import AnyStr, IO, List, Union, Optional
 
 from . import curl
-from .repos import RegRepo
+from .repos import RegRepo, warn_europeana
 from .parsers import CMDIParser, JSONParser, XMLParser
-from .pid import pid_factory, PID
+from .pid import pid_factory, PID, URL
 
 
 class DOG:
     config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")
 
-    def __init__(self):
+    def __init__(self, secrets: Optional[dict] = None):
+        self.secrets = {}
+        if "EUROPEANA_WSKEY" in os.environ:
+            self.secrets["EUROPEANA_WSKEY"] = os.environ.get("EUROPEANA_WSKEY")
+        if secrets is not None:
+            if "EUROPEANA_WSKEY" in secrets.keys():
+                self.secrets["EUROPEANA_WSKEY"] = secrets["EUROPEANA_WSKEY"]
+
+        if "EUROPEANA_WSKEY" not in self.secrets.keys():
+            warn_europeana()
         self.reg_repos: List[RegRepo] = self._load_repos()
 
     def _fetch(self, pid: PID) -> dict:
@@ -30,12 +39,10 @@ class DOG:
         if not matching_repo:
             return {}
         elif matching_repo:
-            request_url: str = matching_repo.get_request_url(pid)
+            request_url: str = matching_repo.get_request_url(pid, self.secrets)
             # cast generated request URL to PID to decide which header from config shall be used
             headers: dict = matching_repo.get_headers(pid_factory(request_url))
-
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-
             parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                      matching_repo.get_parser_config())
             return parser.fetch(response)
@@ -88,7 +95,7 @@ class DOG:
         for matching_repo in sniffed_repos:
             if len(sniffed_repos) > 1:
                 try:
-                    candidate = curl.get(matching_repo.get_request_url(pid), matching_repo.get_headers(pid), True)[0]
+                    candidate = curl.get(matching_repo.get_request_url(pid, self.secrets), matching_repo.get_headers(pid), True)[0]
                     url: PID = pid_factory(candidate)
                     if url:
                         if matching_repo.match_pid(url):
@@ -148,10 +155,11 @@ class DOG:
         fetch_result: dict = self._fetch(pid)
         if format == 'dict':
             return fetch_result
-        elif format == 'jsons' or format == 'str':
+        elif format == 'jsoherens' or format == 'str':
             return json.dumps(fetch_result)
 
     def identify(self, pid_string: str) -> dict:
+        print(pid_string)
         """
         Identifies collection with its title and description, functionality requested for Virtual Content Registry
 
@@ -170,13 +178,13 @@ class DOG:
             if not matching_repo:
                 return {}
             elif matching_repo:
-                request_url: str = matching_repo.get_request_url(pid)
+                request_url: str = matching_repo.get_request_url(pid, self.secrets)
                 headers: dict = matching_repo.get_headers(pid)
                 final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
 
                 parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                          matching_repo.get_parser_config())
-                return parser.identify_collection(response)
+                return parser.identify(response)
 
     def is_collection(self, pid_string: str) -> bool:
         """
@@ -185,7 +193,7 @@ class DOG:
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
         pid: PID = pid_factory(pid_string)
-        matching_repo = self.is_host_registered(pid)
+        matching_repo = self._is_host_registered(pid)
         if matching_repo:
             if not self.is_downloadable(pid_string):
                 if pid:

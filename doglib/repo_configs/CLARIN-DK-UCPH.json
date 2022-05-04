@@ -5,7 +5,7 @@
     "host_netloc": "https://repository.clarin.dk",
     "hdl": {
       "id": ["20.500.12115", "11221"],
-      "format": "$hdl@format=cmdi"
+      "format": "$hdl"
     },
     "url": {"format":  "$url"},
     "parser": {

@@ -4,8 +4,8 @@
     "host_name": "MPI, The Language Archive/Psycholinguistics Archive",
     "host_netloc": "https://archive.mpi.nl/tla",
     "hdl": {"id": "1839", "format": "$hdl"},
-    "api": {"base": "https://archive.mpi.nl/objects/lat:1839_$record_id/datastreams/CMD/content"},
-    "url": {"format": "$api", "regex":  ".*/lat:1839_(?P<record_id>[^?\\/]+)(.*)$"},
+    "api": {"base": "https://archive.mpi.nl/objects/$record_id/datastreams/CMD/content"},
+    "url": {"format": "$api", "regex": ".*/(?P<record_id>[^?\\/]+)(?:.*)?$"},
     "parser": {
       "type": "cmdi",
       "config": {

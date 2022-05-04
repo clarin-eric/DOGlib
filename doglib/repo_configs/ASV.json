@@ -2,7 +2,7 @@
   "repository": {
     "name": "ASV Leipzig",
     "host_name": "ASV Leipzig",
-    "host_netloc": "https://clarinws.informatik.uni-leipzig.de",
+    "host_netloc": "repo.data.saw-leipzig.de",
     "hdl": {
       "id": "11022",
       "format": "$hdl"
@@ -25,8 +25,8 @@
       }
     },
     "test_examples": {
-      "url": "https://clarinws.informatik.uni-leipzig.de/cmdi2/cmdi/11022/0000-0000-20E0-E",
-      "hdl": "http://hdl.handle.net/hdl:11022/0000-0000-20E0-E"}
+      "url": "",
+      "hdl": ""}
   }
 }
 

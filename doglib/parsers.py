@@ -1,6 +1,6 @@
 import html
 import json
-from lxml.etree import fromstring, Element, ElementTree
+from lxml.etree import fromstring, tostring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern
 from typing import Any, Generator, List, NamedTuple, Type, Union
 
@@ -168,11 +168,12 @@ class XMLParser:
 
         # In case no accepted resource type is provided make sure to not leave the list empty, so the body of main
         # for loop in self._fetch_resources can be executed anyway
-        self.accept_resource_type: list = ['']
+        self.accept_resource_type: list = ['LandingPage', 'Resource']
         if 'resource_type' in parser_config.keys():
             self.accept_resource_type = parser_config['accept_resource_type']
-
-        self.collection_title_path: str = parser_config['collection_title']
+        self.item_title_path: str = ''
+        if 'collection_title' in parser_config.keys():
+            self.item_title_path = parser_config['collection_title']
         self.reverse_pid_path: str = parser_config['reverse_pid']
         self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
@@ -204,7 +205,7 @@ class XMLParser:
 
         return {"ref_files": resources, "description": description, "license": _license}
 
-    def identify_collection(self, response) -> dict:
+    def identify(self, response) -> dict:
         """
         Retrieves title and description
         """
@@ -212,11 +213,11 @@ class XMLParser:
 
         nsmap: dict = self._prepare_namespaces(response, xml_tree)
 
-        collection_title: str = self._fetch_collection_title(xml_tree, nsmap)
+        item_title: str = self._fetch_item_title(xml_tree, nsmap)
         description: str = self._fetch_description(xml_tree, nsmap)
         reverse_pid: str = self._reverse_pid(xml_tree, nsmap)
 
-        return {"collection_title": collection_title, "description": description, "reverse_pid": reverse_pid}
+        return {"item_title": item_title, "description": description, "reverse_pid": reverse_pid}
 
     def reverse_pid(self, response) -> str:
         """
@@ -229,13 +230,13 @@ class XMLParser:
         reverse_pid: str = self._reverse_pid(xml_tree, nsmap)
         return reverse_pid
 
-    def _fetch_collection_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
+    def _fetch_item_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves collection title according to xPath location specified in config
         """
-        collection_title: str = xml_tree.find(self.collection_title_path, nsmap)
-        if collection_title is not None:
-            return collection_title
+        item_title: str = xml_tree.find(self.item_title_path, nsmap)
+        if item_title is not None:
+            return item_title
         else:
             return ''
 
@@ -275,7 +276,7 @@ class XMLParser:
         if self.reverse_pid_path:
             reverse_pid = xml_tree.find(self.reverse_pid_path, nsmap)
             if reverse_pid is not None:
-                return reverse_pid
+                return reverse_pid.text
             else:
                 return ''
         return ''
@@ -308,9 +309,9 @@ class XMLParser:
         join all collection descriptions
         """
         try:
-            descriptions: list = xml_tree.findall(self.description_path, nsmap)
+            descriptions = xml_tree.findall(self.description_path, nsmap)
         except SyntaxError:
-            return ''
+            descriptions = []
 
         if descriptions:
             if len(descriptions) == 1:

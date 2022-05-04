@@ -1,7 +1,25 @@
 from re import match, Match
+from typing import AnyStr, Optional
+import warnings
 
 from . import curl
 from .pid import pid_factory, DOI, HDL, PID, URL
+
+
+def warn_europeana() -> None:
+    warnings.warn("EUROPEANA_WSKEY not provided.\n"
+                  "To access Digital Objects hosted by Europeana generate your access key at "
+                  "https://pro.europeana.eu/pages/get-api and set it as environment variable "
+                  "or pass it as optional argument DOG(secrets={'EUROPEANA_WSKEY': <SECRET>})",
+                  NoSecretWarning)
+
+
+class NoSecretWarning(Warning):
+    def __init__(self, message):
+        self.message: AnyStr = message
+
+    def __repr__(self):
+        self.message.__repr__()
 
 
 class RegRepo(object):
@@ -25,15 +43,17 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request_url(self, pid: PID) -> str:
+    def get_request_url(self, pid: PID, secrets: Optional[dict]) -> str:
         """
         Prepare URL to call to resolve to collection
 
         :param pid: PID, class instance of PID protocol
+        :param secrets: Optional[dict], optional map of access tokens, e.g. EUROPEANA_WSKEY
         :return: str, URL to be called by DOG in order to resolve the PID
         """
         if pid is None:
             return ""
+
         # Request to repository providing CMDI metadata
         if self.parser["type"] == 'cmdi':
             if type(pid) == HDL:
@@ -43,7 +63,7 @@ class RegRepo(object):
             if type(pid) == URL and "regex" not in self.url.keys():
                 return self.url["format"].replace("$url", pid.get_resolvable())
 
-        # Generic case
+        # Generic cases
         request_config: dict = {}
         if type(pid) == HDL:
             request_config = self.hdl
@@ -55,15 +75,27 @@ class RegRepo(object):
         # follow redirects
         if request_config["format"] == "redirect":
             target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(pid), follow_redirects=True)[0])
-            return self.get_request_url(target_url)
+            return self.get_request_url(target_url, secrets)
         # parse id
         elif "regex" in request_config.keys():
             regex = request_config["regex"]
             rmatch: Match = match(regex, pid.get_resolvable())
+
             record_id = rmatch.group("record_id")
+
             # get API call
-            request_url = request_config["format"].replace("$api", self.api["base"]).replace("$record_id", record_id)
+            request_url = request_config["format"].replace("$api", self.api["base"])
+            request_url = request_url.replace("$record_id", record_id)
+            if secrets is not None:
+                if self.name == 'Europeana':
+                    if "EUROPEANA_WSKEY" in secrets.keys():
+                        request_url = request_url.replace("$europeana_wskey", secrets["EUROPEANA_WSKEY"])
+                    else:
+                        warn_europeana()
             return request_url
+        else:
+            if type(pid) == HDL:
+                return self.hdl["format"].replace("$hdl", pid.get_resolvable())
 
     def get_host_netloc(self) -> str:
         """

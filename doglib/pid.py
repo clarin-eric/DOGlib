@@ -83,14 +83,15 @@ class DOI(PID):
             raise ValueError(f"Provided string {doi_string} is not a DOI")
 
         doi_pattern: Pattern = compile(
-            r".*(?:10\.)(?P<repo_id>[\w.]+)/(?P<record_id>[\w-]+)$")
+            r"(?:https://doi.org/)?.*(?:10\.)(?P<repo_id>[\w\W]+)/(?P<record_id>[\w\W]+)$")
         doi_match: Match = doi_pattern.match(doi_string)
         matched_groups: dict = doi_match.groupdict()
         self.repo_id: str = "10." + doi_match.group("repo_id")
         self.repo_record_sep: str = ''
         self.record_id: str = ''
-        if "repo_record_sep" in matched_groups and "record_id" in matched_groups:
+        if "repo_record_sep" in matched_groups:
             self.repo_record_sep: str = doi_match.group("repo_record_sep")
+        if "record_id" in matched_groups:
             self.record_id: str = doi_match.group("record_id")
 
     def __str__(self):

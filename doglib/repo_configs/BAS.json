@@ -4,12 +4,13 @@
     "host_name": "Ludwig-Maximilians-Universität München",
     "host_netloc": "https://clarin.phonetik.uni-muenchen.de",
     "hdl": { "id": "11022", "format": "$hdl@format=cmdi"},
-    "url": {"format":  "https://clarin.phonetik.uni-muenchen.de/BASRepository/$record_id", "regex": "^.*target=(?P<record_id>[\\w/]+)$"},
+    "api": {"base": "https://clarin.phonetik.uni-muenchen.de/BASRepository/$record_id.cmdi.xml"},
+    "url": {"format": "$api", "regex": ".*BASRepository/(index\\.php\\?target=)?(?P<record_id>[\\w\\W\\/]+)(?:.php|.cmdi.xml)$"},
     "parser": {
       "type": "cmdi",
       "config": {
         "reverse_pid": ".//MdSelfLink",
-        "description": ".//media-session/Description",
+        "description": ".//media-session/Description/Description",
         "collection_title": ".//MdCollectionDisplayName",
         "license": "",
         "ref_file": {
@@ -18,7 +19,7 @@
       }
     },
     "test_examples": {
-      "url": "",
+      "url": "https://clarin.phonetik.uni-muenchen.de/BASRepository/index.php?target=Public/Corpora/SK-Public/w421_pa.3.php",
       "hdl": "http://hdl.handle.net/11022/1009-0000-0000-DD18-D@format=cmdi"}
   }
 }
