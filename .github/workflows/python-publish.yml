@@ -19,9 +19,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Load env secrets
-      env: 
-        EUROPEANA_WSKEY = ${{ secrets.EUROPEANA_WSKEY }}
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -34,4 +31,6 @@ jobs:
     - name: Build package
       run: pip install . -r ./requirements.txt
     - name: Test package
+      env: 
+        EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
       run: python test_doglib.py
