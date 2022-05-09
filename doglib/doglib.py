@@ -159,7 +159,6 @@ class DOG:
             return json.dumps(fetch_result)
 
     def identify(self, pid_string: str) -> dict:
-        print(pid_string)
         """
         Identifies collection with its title and description, functionality requested for Virtual Content Registry
 

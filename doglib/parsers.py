@@ -2,9 +2,9 @@ import html
 import json
 from lxml.etree import fromstring, tostring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern
-from typing import Any, Generator, List, NamedTuple, Type, Union
+from typing import Any, AnyStr, Generator, List, NamedTuple, Type, Union
 
-from .pid import PID
+from .pid import PID, pid_factory
 from .repos import RegRepo
 
 
@@ -20,7 +20,7 @@ class JSONParser:
         :param parser_config: dict, parser configuration retrieved from repository JSON config
         """
         super().__init__()
-        self.dos_root: str = parser_config['items_root']
+        self.dois_root: str = parser_config['items_root']
         self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
@@ -28,8 +28,10 @@ class JSONParser:
             self.resource_format = parser_config['ref_file']['resource_format']
         else:
             self.resource_format = ""
+        self.item_title_path = parser_config["collection_title"]
+        self.reverse_pid_path = parser_config["reverse_pid"]
 
-    def fetch(self, response: str, reg_repo: RegRepo) -> dict:
+    def fetch(self, response: str) -> dict:
         """
 
         :param response: dict, json response from call to repository
@@ -39,16 +41,46 @@ class JSONParser:
             license: str
         """
         response: dict = json.loads(response)
-        ref_files_root: dict = self.traverse_path_in_dict(response, self.dos_root)
-        ref_files: list = self._fetch_resources(ref_files_root, reg_repo)
+        ref_files_root: dict = self.traverse_path_in_dict(response, self.dois_root)
+        ref_files: list = self._parse_resources(ref_files_root)
         descriptions: str = self._parse_description(response)
-        _license: str = str(self._parse_license(response))
+        _license: str = self._parse_license(response)
+        item_title: str = self._parse_item_title(response)
 
         return {"ref_files": ref_files,
                 "description": descriptions,
+                "title": item_title,
                 "license": _license}
 
-    def _fetch_resources(self, ref_files_root: dict, reg_repo: RegRepo) -> list:
+    def identify(self, response: str) -> dict:
+        """
+        Retrieves title and description
+        """
+        response: dict = json.loads(response)
+
+        item_title: str = self._parse_item_title(response)
+        description: str = self._parse_description(response)
+        reverse_pid: str = self._parse_reverse_pid(response)
+
+        return {"item_title": item_title,
+                "description": description,
+                "reverse_pid": reverse_pid}
+
+    def _parse_item_title(self, response: dict) -> Union[str, List[str]]:
+        titles = self.fetchall_path_in_dict(response, self.item_title_path)
+        if not titles:
+            return ""
+        else:
+            return '\n'.join(titles)
+
+    def _parse_reverse_pid(self, response: dict) -> str:
+        reverse_pid = self.fetchall_path_in_dict(response, self.reverse_pid_path)
+        if not reverse_pid:
+            return ""
+        else:
+            return reverse_pid[0]
+
+    def _parse_resources(self, ref_files_root: dict) -> list:
         """
         Find all direct references/download links to referenced resources and if possible their filenames/labels
         :param ref_files_root: dict, subdict of JSON response that is a root dict of referenced resources
@@ -58,13 +90,11 @@ class JSONParser:
         pids = self.fetchall_path_in_dict(ref_files_root, self.resource_path)
         for _pid in pids:
             try:
-                pid: PID = PID(_pid)
+                # curate PID if possible before sending it to str
+                pid: PID = pid_factory(_pid)
+                pid: str = str(pid)
             except ValueError:
-                continue
-            if self.resource_format:
-                pid: str = f'{reg_repo.get_host_netloc()}{self.resource_format.replace("$pid", str(pid))}'
-            else:
-                pid: str = pid.get_resolvable()
+                pid: AnyStr = _pid
             ret.append({"pid": pid})
         return ret
 
@@ -87,7 +117,11 @@ class JSONParser:
         :return: str, license
         """
         if self.license_path:
-            return list(self.fetchall_path_in_dict(response, self.license_path))[0]
+            licence_fields_found: List[str] = self.fetchall_path_in_dict(response, self.license_path)
+            if len(licence_fields_found) > 1:
+                return ", ".join(licence_fields_found)
+            elif licence_fields_found:
+                return licence_fields_found[0]
         else:
             return ""
 
@@ -199,9 +233,9 @@ class XMLParser:
 
         nsmap = self._prepare_namespaces(response, xml_tree)
 
-        resources: list = self._fetch_resources(xml_tree, nsmap)
-        description: str = self._fetch_description(xml_tree, nsmap)
-        _license: str = self._fetch_license(xml_tree, nsmap)
+        resources: list = self._parse_resources(xml_tree, nsmap)
+        description: str = self._parse_description(xml_tree, nsmap)
+        _license: str = self._parse_license(xml_tree, nsmap)
 
         return {"ref_files": resources, "description": description, "license": _license}
 
@@ -213,9 +247,9 @@ class XMLParser:
 
         nsmap: dict = self._prepare_namespaces(response, xml_tree)
 
-        item_title: str = self._fetch_item_title(xml_tree, nsmap)
-        description: str = self._fetch_description(xml_tree, nsmap)
-        reverse_pid: str = self._reverse_pid(xml_tree, nsmap)
+        item_title: str = self._parse_item_title(xml_tree, nsmap)
+        description: str = self._parse_description(xml_tree, nsmap)
+        reverse_pid: str = self._parse_reverse_pid(xml_tree, nsmap)
 
         return {"item_title": item_title, "description": description, "reverse_pid": reverse_pid}
 
@@ -227,10 +261,10 @@ class XMLParser:
 
         nsmap: dict = self._prepare_namespaces(response, xml_tree)
 
-        reverse_pid: str = self._reverse_pid(xml_tree, nsmap)
+        reverse_pid: str = self._parse_reverse_pid(xml_tree, nsmap)
         return reverse_pid
 
-    def _fetch_item_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
+    def _parse_item_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves collection title according to xPath location specified in config
         """
@@ -240,7 +274,7 @@ class XMLParser:
         else:
             return ''
 
-    def _fetch_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
+    def _parse_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
         Find all direct references/download links to referenced resources and if possible their filenames/labels
         :param xml_tree: ElementTree, lxml tree object from HTML XML response
@@ -269,7 +303,7 @@ class XMLParser:
             ret.extend([{"resource_type": resource_type, "filename": "", "pid": ref_resource,} for ref_resource in ref_resources])
         return ret
 
-    def _reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
+    def _parse_reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves reverse pid according to xPath location specified in config
         """
@@ -281,7 +315,7 @@ class XMLParser:
                 return ''
         return ''
 
-    def _fetch_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
+    def _parse_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Find collection license if path provided
         :param response: dict, JSON response from repository
@@ -301,7 +335,7 @@ class XMLParser:
             _licenses = [_license.text for _license in _licenses]
             return "\n".join(_licenses)
 
-    def _fetch_description(self, xml_tree: ElementTree, nsmap: dict) -> str:
+    def _parse_description(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Find collection description if path provided
         :param response: dict, JSON response from repository

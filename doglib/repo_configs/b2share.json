@@ -6,16 +6,17 @@
     "api": {
         "base": "https://b2share.eudat.eu/api/records/$record_id"
     },
-    "doi": {"id": "10.23728", "regex": "^.*\\/([\\w]+)(\\/|\\.)(?P<record_id>[\\w]+)$", "format": "$api"},
+    "doi": {"id": "10.23728", "regex": "^.*b2share.(?P<record_id>[\\w]+)$", "format": "$api"},
     "hdl": {"id": "11304", "regex": "", "format": "redirect"},
     "url": {"regex": "^.*\/([\\w]+)\/(?P<record_id>[\\w\\W]+)$", "format": "$api"},
     "parser": {
       "type": "json",
       "config":{
-        "reverse_pid": "",
+        "reverse_pid": "metadata/DOI",
         "items_root": "files",
         "license": "metadata/license/license",
         "description": "metadata/descriptions/description",
+        "collection_title": "metadata/titles/title",
         "ref_file": {
           "path": "ePIC_PID"
         }
