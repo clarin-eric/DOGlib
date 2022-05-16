@@ -25,6 +25,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: test env secrets
       run: echo $EUROPEANA_WSKEY
+      env:
+        EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
