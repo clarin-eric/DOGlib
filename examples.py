@@ -15,3 +15,7 @@ if __name__ == "__main__":
     print("This is fetch() output")
     print(ret)
     print("\n")
+    ret = dog.identify(url)
+    print("This is identify() output")
+    print(ret)
+    print("\n")
