@@ -68,9 +68,9 @@ By default, returns dictionary, if format=='jsons' returns a JSON string.
 returns:
 ```JSON
 {
-	'item_title': 'LINDAT / CLARIAH-CZ Data & Tools', 
-	'description': 'Etalon is a manually annotated corpus of contemporary Czech. The corpus contains 1,885,589 words (2,265,722 tokens) and is annotated in the same way as SYN2020 of the Czech National Corpus. The corpus includes fiction (ca 24%), professional and scientific literature (ca 40%) and newspapers (ca 36%). \r\n\r\nThe corpus is provided in a vertical format, where sentence boundaries are marked with a blank line. Every word form is written on a separate line, followed by five tab-separated attributes: syntactic word, lemma, sublemma, tag and verbtag. The texts are shuffled in random chunks of 100 words at maximum (respecting sentence boundaries).', 
-	'reverse_pid': 'https://hdl.handle.net/11234/1-3698@format=cmdi'}
+  {"item_title": "LINDAT / CLARIAH-CZ Data & Tools", 
+  {"description": "Etalon is a manually annotated corpus of contemporary Czech. The corpus contains 1,885,589 words (2,265,722 tokens) and is annotated in the same way as SYN2020 of the Czech National Corpus. The corpus includes fiction (ca 24%), professional and scientific literature (ca 40%) and newspapers (ca 36%). \r\n\r\nThe corpus is provided in a vertical format, where sentence boundaries are marked with a blank line. Every word form is written on a separate line, followed by five tab-separated attributes: syntactic word, lemma, sublemma, tag and verbtag. The texts are shuffled in random chunks of 100 words at maximum (respecting sentence boundaries).", 
+	"reverse_pid": "https://hdl.handle.net/11234/1-3698@format=cmdi"}
 ```
 
 #### is_host_registered(pid: str) -> bool
