@@ -2,9 +2,9 @@
   "repository": {
     "name": "GAMS - Asset Management System for the Humanities",
     "host_name": "ZIM Centre for Information Modelling",
-    "host_netloc": "http://gams.uni-graz.at/",
-    "hdl": {"id": "11471", "format":  "$hdl"},
-    "url": {"format":  "$url"},
+    "host_netloc": "http://gams.uni-graz.at",
+    "hdl": {"id": "11471", "format":  "$hdl?index=3"},
+    "url": {"format":  "$url/sdef:CMDI/get"},
     "parser": {
       "nsmap": {
         "cmd": "http://www.clarin.eu/cmd/1",
@@ -22,8 +22,8 @@
       }
     },
     "test_examples": {
-      "url": "",
-      "hdl": ""}
+      "url": "http://gams.uni-graz.at/o:aaif.itaaaif",
+      "hdl": "https://hdl.handle.net/11471/513.30.3"}
   }
 }
 

@@ -126,7 +126,7 @@ class HDL(PID):
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
         hdl_pattern: Pattern = compile(
-            r"(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
+            r"(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-.]+)(?:@format=cmdi+)?(?:@view+)?(?:\?index=[\d])?$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         if not hdl_match:
 
@@ -152,7 +152,7 @@ class HDL(PID):
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
         regex: Pattern = compile(
-            r"(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
+            r"(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-.]+)(?:@format=cmdi+)?(?:@view+)?(?:\?index=[\d])?$")
         if match(regex, hdl_string):
             return True
         else:
