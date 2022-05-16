@@ -13,16 +13,18 @@ on:
 defaults:
     run:
         shell: bash
+
+env:
+  EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
+
+
 jobs:
   deploy:
-    env:
-      EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
     runs-on: ubuntu-latest
 
     steps:
     - name: test env secrets
       run: echo $EUROPEANA_WSKEY
-    - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -36,3 +38,6 @@ jobs:
       run: pip install . -r ./requirements.txt
     - name: Test package
       run: python test_doglib.py
+      env:
+        EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
+
