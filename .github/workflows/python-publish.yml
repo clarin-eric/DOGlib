@@ -13,11 +13,10 @@ on:
 defaults:
     run:
         shell: bash
-env:
-    EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
 jobs:
   deploy:
-
+    env:
+      EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
     runs-on: ubuntu-latest
 
     steps:
