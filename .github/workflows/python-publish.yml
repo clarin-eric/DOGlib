@@ -32,6 +32,6 @@ jobs:
     - name: Build package
       run: pip install . -r ./requirements.txt
     - name: Test package
-      env: 
+      with: 
         EUROPEANA_WSKEY: ${{ secrets.EUROPEANA_WSKEY }}
       run: python test_doglib.py
