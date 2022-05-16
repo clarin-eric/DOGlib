@@ -1,0 +1,31 @@
+{
+  "repository": {
+    "name": "National Library of Medicine",
+    "host_name": "pubmed",
+    "host_netloc": "https://pubmed.ncbi.nlm.nih.gov",
+
+    "url": {"format":  "$api", "regex": ".*/(?P<record_id>[\\W\\w]+)(?:\/)?$"},
+    "api": {"base": "https://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:pubmedcentral.nih.gov:$record_id"},
+    "doi": {"id": "10.1515", "format": "$api", "regex": ".*/(?P<record_id>[\\W\\w]+)(?:\/)?$"},
+    "parser": {
+      "type": "xml",
+      "config": {
+        "nsmap": {
+          "oai": "http://www.openarchives.org/OAI/2.0/",
+          "oai_dc": "http://www.openarchives.org/OAI/2.0/oai_dc/"
+        },
+        "reverse_pid": "//oai_dc:header/oai_dc:identifier/text()",
+        "description": "//oai_dc:dc/dc:description/text()",
+        "collection_title": "//oai_dc:dc/dc:title/text()",
+        "license": "//oai_dc:dc/dc:rights/text()",
+        "ref_file": {
+          "path": ""
+        }
+      }
+    },
+    "test_examples": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29746254/",
+      "doi": "10.1515/jib-2017-0030 "}
+  }
+}
+

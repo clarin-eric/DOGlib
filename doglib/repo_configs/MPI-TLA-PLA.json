@@ -13,12 +13,12 @@
           "ms": "http://www.clarin.eu/cmd/",
           "olac": "http://www.clarin.eu/cmd/"
         },
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//MdCollectionDisplayName",
-        "description": ".//descriptions",
-        "license": ".//ms:licence",
+        "reverse_pid": "//cmd:MdSelfLink/text()",
+        "collection_title": "//cmd:MdCollectionDisplayName/text()",
+        "description": "//cmd:Project/cmd:descriptions/cmd:Description/text()",
+        "license": "//ms:licence/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": "//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },

@@ -8,16 +8,18 @@
     "parser": {
       "nsmap": {
         "ms": "http://www.clarin.eu/cmd/",
-        "olac": "http://www.clarin.eu/cmd/"
+        "olac": "http://www.clarin.eu/cmd/",
+        "cmd": "http://www.clarin.eu/cmd/",
+        "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1403526079380"
       },
       "type": "cmdi",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//olac:description",
-        "license": ".//ms:licence",
+        "reverse_pid": "//cmd:MdSelfLink/text()",
+        "collection_title": "//cmd:MdCollectionDisplayName/text()",
+        "description": "//olac:description/text()",
+        "license": "//ms:licence/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": "//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },

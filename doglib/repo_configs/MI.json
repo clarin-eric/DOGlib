@@ -11,12 +11,12 @@
         "nsmap": {
           "cmd": "http://www.clarin.eu/cmd/"
         },
-        "description": ".//cmd:description",
-        "collection_title": ".//cmd:title",
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "license": ".//cmd:rights",
+        "description": ".//cmd:description/text()",
+        "collection_title": ".//cmd:title/text()",
+        "reverse_pid": ".//cmd:MdSelfLink/text()",
+        "license": ".//cmd:rights/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },

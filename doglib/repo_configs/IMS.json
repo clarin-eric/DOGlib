@@ -12,12 +12,12 @@
         "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1320657629644"
       },
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//cmdp:Description",
-        "license": ".//cmd:licenseInfo/cmd:license",
+        "reverse_pid": "//cmd:MdSelfLink/text()",
+        "collection_title": "//cmd:MdCollectionDisplayName/text()",
+        "description": "//cmdp:Description/text()",
+        "license": "//cmd:licenseInfo/cmd:license/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": "//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },

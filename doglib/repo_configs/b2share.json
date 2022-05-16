@@ -4,14 +4,24 @@
     "host_name": "b2share",
     "host_netloc": "https://b2share.eudat.eu",
     "api": {
-        "base": "https://b2share.eudat.eu/api/records/$record_id"
+      "base": "https://b2share.eudat.eu/api/records/$record_id"
     },
-    "doi": {"id": "10.23728", "regex": "^.*b2share.(?P<record_id>[\\w]+)$", "format": "$api"},
-    "hdl": {"id": "11304", "regex": "", "format": "redirect"},
-    "url": {"regex": "^.*\/([\\w]+)\/(?P<record_id>[\\w\\W]+)$", "format": "$api"},
+    "doi": {
+      "id": "10.23728",
+      "regex": "^.*b2share.(?P<record_id>[\\w]+)$",
+      "format": "$api"
+    },
+    "hdl": {
+      "id": "11304",
+      "format": "redirect"
+    },
+    "url": {
+      "regex": "^.*\/([\\w]+)\/(?P<record_id>[\\w\\W]+)$",
+      "format": "$api"
+    },
     "parser": {
       "type": "json",
-      "config":{
+      "config": {
         "reverse_pid": "metadata/DOI",
         "items_root": "files",
         "license": "metadata/license/license",
@@ -21,6 +31,11 @@
           "path": "ePIC_PID"
         }
       }
+    },
+    "test_examples": {
+      "url": "https://b2share.eudat.eu/records/f8463256235f46039cf1bb60c4357cc8",
+      "doi": "10.23728/b2share.f8463256235f46039cf1bb60c4357cc8",
+      "hdl": "11304/cef4ec34-4efc-4101-bd5b-074fa2fb4605"
     }
   }
 }

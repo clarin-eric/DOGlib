@@ -71,7 +71,6 @@ class RegRepo(object):
             request_config = self.doi
         elif type(pid) == URL:
             request_config = self.url
-
         # follow redirects
         if request_config["format"] == "redirect":
             target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(pid), follow_redirects=True)[0])
@@ -189,7 +188,6 @@ class RegRepo(object):
         elif type(pid) == URL:
             return self.host_netloc.replace('https://', '').replace('http://', '') in \
                    pid.get_resolvable().replace('https://', '').replace('http://', '')
-
         # Match DOI with repo
         elif type(pid) == DOI:
             if "id" in self.doi.keys():

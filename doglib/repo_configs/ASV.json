@@ -9,24 +9,24 @@
     },
     "url": {"format":  "$url"},
     "parser": {
-      "nsmap": {
-        "cmd": "http://www.clarin.eu/cmd/",
-        "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1403526079380"
-      },
       "type": "cmdi",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "description": ".//cmdp:Description",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "license": ".//cmdp:LicenseName",
+        "nsmap": {
+          "cmd": "http://www.clarin.eu/cmd/",
+          "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1403526079380"
+        },
+        "reverse_pid": "//cmd:MdSelfLink/text()",
+        "description": "//cmdp:Description/text()",
+        "collection_title": "//cmd:MdCollectionDisplayName/text()",
+        "license": "//cmdp:LicenseName/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": "//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },
     "test_examples": {
-      "url": "",
-      "hdl": ""}
+      "url": "https://repo.data.saw-leipzig.de/resources/de?identifier=lcc/corpora/110220000000020E0E",
+      "hdl": "http://hdl.handle.net/hdl:11022/0000-0000-20E0-E"}
   }
 }
 

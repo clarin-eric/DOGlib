@@ -12,12 +12,12 @@
       },
       "type": "cmdi",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//cmdp:p",
-        "license": ".//cmdp:licence",
+        "reverse_pid": ".//cmd:MdSelfLink/text()",
+        "collection_title": ".//cmd:MdCollectionDisplayName/text()",
+        "description": ".//cmdp:p/text()",
+        "license": ".//cmdp:licence/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },

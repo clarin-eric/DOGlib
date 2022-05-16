@@ -1,6 +1,6 @@
 import html
 import json
-from lxml.etree import fromstring, tostring, Element, ElementTree
+from lxml.etree import fromstring, tostring, Element, ElementTree, _ElementUnicodeResult
 from re import compile, match, findall, Match, Pattern
 from typing import Any, AnyStr, Generator, List, NamedTuple, Type, Union
 
@@ -253,26 +253,17 @@ class XMLParser:
 
         return {"item_title": item_title, "description": description, "reverse_pid": reverse_pid}
 
-    def reverse_pid(self, response) -> str:
+    def reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves reverse pid pointing to the collection specified in metadata
         """
-        xml_tree: ElementTree = fromstring(response.encode('utf-8'))
-
-        nsmap: dict = self._prepare_namespaces(response, xml_tree)
-
-        reverse_pid: str = self._parse_reverse_pid(xml_tree, nsmap)
-        return reverse_pid
+        return self._parse_field(xml_tree, field_path=self.reverse_pid_path, nsmap=nsmap)
 
     def _parse_item_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves collection title according to xPath location specified in config
         """
-        item_title: str = xml_tree.find(self.item_title_path, nsmap)
-        if item_title is not None:
-            return item_title
-        else:
-            return ''
+        return self._parse_field(xml_tree, field_path=self.item_title_path, nsmap=nsmap)
 
     def _parse_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
@@ -282,38 +273,20 @@ class XMLParser:
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
         """
         fetched_resources: dict = {}
-        ref_resource_basename: str = self.resource_path.split("/")[-1]
-        ret: list = []
         for resource_type in self.accept_resource_type:
-            ref_resources: list = xml_tree.findall(self.resource_path.replace("$resource_type", resource_type), nsmap)
-
-            """ 
-            check if lxml compatible XPath refers to an attribute, as lxml does not support full XPath (@attribute value 
-            retrieval) and XPath does not support default {None: <ns_uri>} namespace
-            """
-            if "@" in ref_resource_basename:
-                namespace, attrib_key = self._xpath_basename_to_attr_key(ref_resource_basename)
-                fetched_resources[resource_type] = [ref_resource.get(f"{{{nsmap[namespace]}}}{attrib_key}") for ref_resource in ref_resources]
-            else:
-                ref_resources = [ref_resource.text for ref_resource in ref_resources]
-
+            fetched_resources[resource_type] = xml_tree.xpath(self.resource_path.replace("$resource_type", resource_type), namespaces=nsmap)
             if self.resource_format:
-                ref_resources = [self.resource_format.replace("$resource", ref_resource) for ref_resource in ref_resources]
+                fetched_resources[resource_type] = [self.resource_format.replace('$resource', resource)
+                                                    for resource in fetched_resources[resource_type]]
 
-            ret.extend([{"resource_type": resource_type, "filename": "", "pid": ref_resource,} for ref_resource in ref_resources])
-        return ret
+        return [{"resource_type": resource_type, "pid": resource_pid}
+                for resource_type, resource_pid in fetched_resources.items() if resource_pid]
 
     def _parse_reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves reverse pid according to xPath location specified in config
         """
-        if self.reverse_pid_path:
-            reverse_pid = xml_tree.find(self.reverse_pid_path, nsmap)
-            if reverse_pid is not None:
-                return reverse_pid.text
-            else:
-                return ''
-        return ''
+        return self._parse_field(xml_tree, field_path=self.reverse_pid_path, nsmap=nsmap)
 
     def _parse_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -321,19 +294,7 @@ class XMLParser:
         :param response: dict, JSON response from repository
         :return: str, license
         """
-        if self.license_path != '':
-            _licenses: List[Element] = xml_tree.findall(self.license_path, nsmap)
-        else:
-            return ""
-
-        if _licenses:
-            if len(_licenses) == 1:
-                return _licenses[0].text
-            else:
-                return ""
-        else:
-            _licenses = [_license.text for _license in _licenses]
-            return "\n".join(_licenses)
+        return self._parse_field(xml_tree, field_path=self.license_path, nsmap=nsmap)
 
     def _parse_description(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -342,23 +303,17 @@ class XMLParser:
         :return: str, description text, if description spread into multiple tags (e.g. Trolling)
         join all collection descriptions
         """
-        try:
-            descriptions = xml_tree.findall(self.description_path, nsmap)
-        except SyntaxError:
-            descriptions = []
+        return self._parse_field(xml_tree, field_path=self.description_path, nsmap=nsmap)
 
-        if descriptions:
-            if len(descriptions) == 1:
-                if hasattr(descriptions[0], "text"):
-                    return descriptions[0].text
-                else:
-                    return ''
-            else:
-                descriptions = [description.text for description in descriptions]
-                return "\n".join(descriptions)
+    def _parse_field(self, xml_tree: ElementTree, field_path: str, nsmap: dict, join_by: str = ', ') -> str:
+        if field_path != '':
+            found_element_values = xml_tree.xpath(field_path, namespaces=nsmap)
+            return join_by.join([str(found_element_value.text) if type(found_element_value) == Element else
+                                 str(found_element_value)
+                                 for found_element_value in found_element_values if found_element_value is not None])
 
     def _parse_nested_namespaces(self, response_text: str) -> dict:
-        """
+        """ else found_element_value
         Utility method for finding not-default
         :param response_text:
         :return:
@@ -378,6 +333,9 @@ class XMLParser:
         nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}
         # for parsing default namespace
         nsmap: dict = {**nsmap, **xml_tree.nsmap}
+        # xPath does not support ampty namespaces
+        if None in nsmap.keys():
+            nsmap.pop(None)
         return nsmap
 
 

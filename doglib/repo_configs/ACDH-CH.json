@@ -17,12 +17,12 @@
       },
       "type": "",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
+        "reverse_pid": "//cmd:MdSelfLink",
         "description": "",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "license": ".//cmdp:rights",
+        "collection_title": "//cmd:MdCollectionDisplayName",
+        "license": "//cmdp:rights",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": "//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }
       }
     },

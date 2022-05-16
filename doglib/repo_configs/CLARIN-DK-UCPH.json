@@ -15,10 +15,10 @@
       },
       "type": "cmdi",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//cmdp:description",
-        "license": ".//cmdp:license/cmdp:uri",
+        "reverse_pid": "//cmd:MdSelfLink/text()",
+        "collection_title": "//cmd:MdCollectionDisplayName/text()",
+        "description": "//cmdp:description/text()",
+        "license": "//cmdp:license/cmdp:uri/text()",
         "ref_file": {
           "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
         }

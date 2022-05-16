@@ -8,12 +8,12 @@
     "parser": {
       "type": "cmdi",
       "config": {
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//cmd:description",
-        "license": ".//cmd:license/cmd:uri",
+        "reverse_pid": ".//cmd:MdSelfLink/text()",
+        "collection_title": ".//cmd:MdCollectionDisplayName/text()",
+        "description": ".//cmd:description/text()",
+        "license": ".//cmd:license/cmd:uri/text()",
         "ref_file": {
-          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef"
+          "path": ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']/cmd:ResourceRef/text()"
         }
       }
     },

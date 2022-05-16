@@ -155,7 +155,7 @@ class DOG:
         fetch_result: dict = self._fetch(pid)
         if format == 'dict':
             return fetch_result
-        elif format == 'jsoherens' or format == 'str':
+        elif format == 'jsons' or format == 'str':
             return json.dumps(fetch_result)
 
     def identify(self, pid_string: str) -> dict:
@@ -180,7 +180,6 @@ class DOG:
                 request_url: str = matching_repo.get_request_url(pid, self.secrets)
                 headers: dict = matching_repo.get_headers(pid)
                 final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-
                 parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
                                                                          matching_repo.get_parser_config())
                 return parser.identify(response)

@@ -19,14 +19,15 @@
       "type": "xml",
       "config": {
         "nsmap": {
-          "cmd": "http://www.clarin.eu/cmd/"
+          "cmd": "http://www.clarin.eu/cmd/",
+          "oai": "http://www.openarchives.org/OAI/2.0/"
         },
-        "reverse_pid": ".//cmd:MdSelfLink",
-        "collection_title": ".//cmd:MdCollectionDisplayName",
-        "description": ".//cmd:identificationInfo/cmd:description",
-        "license": ".//cmd:licenceInfo/cmd:licence",
+        "reverse_pid": ".//cmd:MdSelfLink/text()",
+        "collection_title": ".//cmd:MdCollectionDisplayName/text()",
+        "description": ".//cmd:identificationInfo/cmd:description/text()",
+        "license": ".//cmd:licenceInfo/cmd:licence/text()",
         "ref_file": {
-          "path": ".//header/identifier",
+          "path": ".//oai:header/oai:identifier/text()",
           "resource_format": "https://metashare.ut.ee/repository/download/$resource"
         }
       }

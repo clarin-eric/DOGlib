@@ -25,10 +25,10 @@ def pid_factory(pid_string: str) -> Union[PID, None]:
     """
     Function for constructing relevant instance of PID protocol
     """
-    if HDL.is_hdl(pid_string):
-        return HDL(pid_string)
-    elif DOI.is_doi(pid_string):
+    if DOI.is_doi(pid_string):
         return DOI(pid_string)
+    elif HDL.is_hdl(pid_string):
+        return HDL(pid_string)
     elif URL.is_url(pid_string):
         return URL(pid_string)
     else:
@@ -83,7 +83,7 @@ class DOI(PID):
             raise ValueError(f"Provided string {doi_string} is not a DOI")
 
         doi_pattern: Pattern = compile(
-            r"(?:https://doi.org/)?.*(?:10\.)(?P<repo_id>[\w\W]+)/(?P<record_id>[\w\W]+)$")
+            r"(?:https://doi.org/)?.*(?:10\.)(?P<repo_id>[\w\W]+)/(?P<record_id>[\w\W.]+)$")
         doi_match: Match = doi_pattern.match(doi_string)
         matched_groups: dict = doi_match.groupdict()
         self.repo_id: str = "10." + doi_match.group("repo_id")
@@ -114,7 +114,7 @@ class DOI(PID):
 
     @staticmethod
     def is_doi(doi_string: str) -> bool:
-        regex: Pattern = compile(r".*10\.[\d]+/[\w-]+$")
+        regex: Pattern = compile(r"(?:https://doi.org/)?.*(?:10\.)(?P<repo_id>[\w\W]+)/(?P<record_id>[\w\W.]+)$")
         if match(regex, doi_string):
             return True
         else:
@@ -126,7 +126,7 @@ class HDL(PID):
         if not self.is_hdl(hdl_string):
             raise ValueError(f"Provided string {hdl_string} is not a HDL")
         hdl_pattern: Pattern = compile(
-            r".*(?:hdl:|hdl.handle.net/)(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
+            r"(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
         hdl_match: Match = hdl_pattern.fullmatch(hdl_string)
         if not hdl_match:
 
@@ -152,7 +152,7 @@ class HDL(PID):
     @staticmethod
     def is_hdl(hdl_string: str) -> bool:
         regex: Pattern = compile(
-            r".*(?:hdl:|hdl.handle.net/)(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
+            r"(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\w.]+)/(?P<record_id>[\w\-]+)(?:@format=cmdi+)?(?:@view+)?$")
         if match(regex, hdl_string):
             return True
         else:
