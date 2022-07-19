@@ -3,13 +3,13 @@ import os
 from typing import AnyStr, IO, List, Union, Optional
 
 from . import curl
-from .repos import RegRepo, warn_europeana
 from .parsers import CMDIParser, JSONParser, XMLParser
 from .pid import pid_factory, PID, URL
-
+from .repos import RegRepo, warn_europeana
+from .schemas import SchemaProtocol
 
 class DOG:
-    config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")
+    config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
 
     def __init__(self, secrets: Optional[dict] = None):
         self.secrets = {}
@@ -70,6 +70,17 @@ class DOG:
                     reg_repo: RegRepo = RegRepo(repo_config)
                     reg_repos.append(reg_repo)
         return reg_repos
+
+
+    def _load_schemas(self, schema_dir):
+        schemas: List[SchemaProtocol] = []
+        if not os.path.exists(schema_dir):
+            raise FileNotFoundError(f"Config dir {schema_dir} does not exist")
+
+        for schema_file in os.listdir(schema_dir):
+            if schema_file.endswith(".json"):
+                with open(os.path.join(schema_dir, schema_file)):
+
 
     def _sniff(self, pid: PID) -> Optional[RegRepo]:
         """
