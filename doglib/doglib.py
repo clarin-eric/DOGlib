@@ -7,10 +7,12 @@ from .repos import RegRepo, warn_europeana
 from .parsers import CMDIParser, JSONParser, XMLParser
 from .pid import pid_factory, PID, URL
 
+REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
+SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
+STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
+
 
 class DOG:
-    config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "repo_configs")
-
     def __init__(self, secrets: Optional[dict] = None):
         self.secrets = {}
         if "EUROPEANA_WSKEY" in os.environ:
@@ -21,19 +23,21 @@ class DOG:
 
         if "EUROPEANA_WSKEY" not in self.secrets.keys():
             warn_europeana()
-        self.reg_repos: List[RegRepo] = self._load_repos()
+        self.reg_repos: List[RegRepo] = self.load_repos()
 
     def _fetch(self, pid: PID) -> dict:
         """
         Method that takes care of parser construction and parse call
 
-        :param pid: PID, class instance of PID protocol
-        :return: dict, return fetch result in a dict format:
+        :param pid: class instance of PID protocol
+        :type pid: PID
+        :return: return fetch result in a dict format:
             {
                 "ref_files": [{"filename": str, "pid": str}],
                 "description": str,
                 "license": str
             }
+        :rtype: dict
         """
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
@@ -48,7 +52,7 @@ class DOG:
             return parser.fetch(response)
 
     @classmethod
-    def _load_repos(cls, config_dir=config_dir) -> List[RegRepo]:
+    def load_repos(cls, config_dir=REPO_CONFIG_DIR) -> List[RegRepo]:
         """
         Method for constructor taking care of loading repository configurations
 
@@ -265,5 +269,3 @@ class DOG:
             return sniff_result.__dict__()
         elif format == 'jsons' or format == 'str':
             return json.dumps(sniff_result.__dict__())
-
-

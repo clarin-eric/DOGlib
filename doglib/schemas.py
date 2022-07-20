@@ -18,11 +18,11 @@ class SchemaProtocol(Protocol):
 
 class SchemaError(Exception):
     """
-    Exception risen if JSON/XML schema is not valid
+    Exception risen if .SCHEMA.JSON/.XSD schema is not valid
     """
     def __init__(self, schema_location, message="Schema is incorrect"):
         self.schema_location = schema_location
-        self.message = message 
+        self.message = message
         super().__init__(self.message)
 
 

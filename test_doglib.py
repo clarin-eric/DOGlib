@@ -12,7 +12,7 @@ from doglib.repos import RegRepo
 class TestDOG(unittest.TestCase):
     def setUp(self) -> None:
         self.dog: DOG = DOG()
-        self.repos: list[RegRepo] = self.dog._load_repos()
+        self.repos: list[RegRepo] = self.dog.load_repos()
 
 
 class TestRegisteredRepositories(TestDOG):

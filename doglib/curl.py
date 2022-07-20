@@ -57,15 +57,20 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
         Tuple[str, str]:
     """
     Performs http HEAD request using PyCurl
-    :param url: Union[str, PID], request url
-    :param headers: dict, request headers
-    :param follow_redirects: bool, whether to follow redirects, False by default
-    :param verbose: int,
+    :param url: request url
+    :type url: Union[str, PID]
+    :param headers: request headers
+    :type headers: dict
+    :param follow_redirects: whether to follow redirects, False by default
+    :type follow_redirects: bool
+    :param verbose:
         0: no std output other than exceptions
         1: PyCurl verbose
-    :return: Tuple[str, str, str],
+    :type verbose: int
+    :returns: ,
         0: effective url request (final redirection landing url)
         1: response headers
+    :rtype: Tuple[str, str]
     """
     if headers is None:
         headers = {}
