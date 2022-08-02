@@ -4,7 +4,7 @@
     "host_name": "europeana",
     "host_netloc": "https://europeana.eu",
     "api": {
-        "base": "https://api.europeana.eu/record/v2/$record_id.rdf?wskey=$europeana_wskey"
+        "base": "https://api.europeana.eu/record/v2/$record_id.rdf?wskey=$EUROPEANA_WSKEY"
     },
     "url": {"regex": "^.*/(?P<record_id>[\\w\\W]+/[\\w\\W]+)$", "format": "$api"},
     "hdl_id": "11304",

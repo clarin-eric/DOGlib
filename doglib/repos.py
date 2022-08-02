@@ -13,7 +13,6 @@ def warn_europeana() -> None:
                   "or pass it as optional argument DOG(secrets={'EUROPEANA_WSKEY': <SECRET>})",
                   NoSecretWarning)
 
-
 class NoSecretWarning(Warning):
     def __init__(self, message):
         self.message: AnyStr = message
@@ -43,7 +42,7 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request_url(self, pid: PID, secrets: Optional[dict]) -> str:
+    def get_request_url(self, pid: PID, secrets: Optional[dict] = None) -> str:
         """
         Prepare URL to call to resolve to collection
 
@@ -57,11 +56,17 @@ class RegRepo(object):
         # Request to repository providing CMDI metadata
         if self.parser["type"] == 'cmdi':
             if type(pid) == HDL:
-                return self.hdl["format"].replace("$hdl", pid.get_resolvable())
+                return self._set_secrets(self.hdl["format"].replace("$hdl",
+                                                                    pid.get_resolvable()),
+                                         secrets)
             if type(pid) == DOI:
-                return self.doi["format"].replace("$doi", pid.get_resolvable())
+                return self._set_secrets(self.doi["format"].replace("$doi",
+                                                                    pid.get_resolvable()),
+                                         secrets)
             if type(pid) == URL and "regex" not in self.url.keys():
-                return self.url["format"].replace("$url", pid.get_resolvable())
+                return self._set_secrets(self.url["format"].replace("$url",
+                                                                    pid.get_resolvable()),
+                                         secrets)
 
         # Generic cases
         request_config: dict = {}
@@ -86,11 +91,7 @@ class RegRepo(object):
             request_url = request_config["format"].replace("$api", self.api["base"])
             request_url = request_url.replace("$record_id", record_id)
             if secrets is not None:
-                if self.name == 'Europeana':
-                    if "EUROPEANA_WSKEY" in secrets.keys():
-                        request_url = request_url.replace("$europeana_wskey", secrets["EUROPEANA_WSKEY"])
-                    else:
-                        warn_europeana()
+                request_url = self._set_secrets(request_url, secrets)
             return request_url
         else:
             if type(pid) == HDL:
@@ -193,6 +194,13 @@ class RegRepo(object):
             if "id" in self.doi.keys():
                 return pid.get_repo_id() in self.doi["id"]
         return False
+
+    def _set_secrets(self, pid: AnyStr, secrets:dict):
+        if secrets is not None:
+            for k, v in secrets.items():
+                return pid.replace(f"${k}", v)
+        else:
+            return pid
 
     def __str__(self):
         return f"Name: {self.name}\n" \
