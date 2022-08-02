@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "BAS",
     "name": "Bayerisches Archiv für Sprachsignale",
     "host_name": "Ludwig-Maximilians-Universität München",
     "host_netloc": "https://clarin.phonetik.uni-muenchen.de",

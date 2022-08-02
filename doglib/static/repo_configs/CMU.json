@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "CMU",
     "name": "CMU-TalkBank",
     "host_name": "CMU-TalkBank",
     "host_netloc": "https://sla.talkbank.org",

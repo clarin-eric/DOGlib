@@ -13,8 +13,6 @@ parser.add_argument('--local',
 parser.set_defaults(feature=False)
 args = parser.parse_args()
 
-print(STATIC_TEST_FILES_DIR)
-
 if args.local:
     STATIC_TEST_FILES_DIR = "./doglib/static/"
 
@@ -24,29 +22,27 @@ def fetch_static_test_examples():
     secrets = dog.secrets
     repos = DOG.load_repos(REPO_CONFIG_DIR)
     for repo in repos:
+        print(f"Processing {repo.name}")
         test_examples = repo.get_test_examples()
-        repo_name = repo.name
-        print(repo_name)
-        if not os.path.exists(f"{STATIC_TEST_FILES_DIR}/{repo_name}"):
-            os.makedirs(f"{STATIC_TEST_FILES_DIR}/{repo_name}")
-            print("HERE")
+        repo_id = repo.id
+        if not os.path.exists(f"{STATIC_TEST_FILES_DIR}/{repo_id}"):
+            os.makedirs(f"{STATIC_TEST_FILES_DIR}/{repo_id}")
         for pid_type, test_pid in test_examples.items():
             if test_pid:
+                print(f"Fetching {pid_type} response")
                 fetch_static_test_example(repo, pid_type, test_pid, secrets)
 
 
 def fetch_static_test_example(repo, pid_type, test_pid, secrets):
-    repo_name = repo.name
+    repo_id = repo.id
     test_pid = pid_factory(test_pid)
-    with open(f"{STATIC_TEST_FILES_DIR}/{repo_name}/{pid_type}", "w") as pid_response:
+    with open(f"{STATIC_TEST_FILES_DIR}/{repo_id}/{pid_type}", "w") as pid_response:
         target_url = repo.get_request_url(test_pid, secrets)
         headers = repo.get_headers(test_pid)
         effective_url, decoded_body, decoded_response = curl.get(target_url,
                                                                  headers,
                                                                  follow_redirects=True)
         pid_response.write(decoded_body)
-
-
 
 
 if __name__ == "__main__":

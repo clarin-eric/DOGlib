@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "IDS",
     "name": "Leibniz-Institut für Deutsche Sprache",
     "host_name": "Leibniz-Institut für Deutsche Sprache",
     "host_netloc": "http://repos.ids-mannheim.de",

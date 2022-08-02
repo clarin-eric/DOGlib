@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "CLARINO",
     "name": "CLARINO Bergen Center",
     "host_name": "CLARINO Bergen Center",
     "host_netloc": "https://repo.clarino.uib.no",

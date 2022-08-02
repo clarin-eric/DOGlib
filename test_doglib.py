@@ -1,9 +1,9 @@
 from collections import defaultdict
 import os
-from typing import Callable
+from typing import Callable, List, Tuple
 import unittest
 
-from doglib import DOG
+from doglib import DOG, STATIC_TEST_FILES_DIR, REPO_CONFIG_DIR
 from doglib.curl import get
 from doglib.pid import PID, URL, HDL, DOI
 from doglib.repos import RegRepo
@@ -12,12 +12,30 @@ from doglib.repos import RegRepo
 class TestDOG(unittest.TestCase):
     def setUp(self) -> None:
         self.dog: DOG = DOG()
-        self.repos: list[RegRepo] = self.dog.load_repos()
+        self.repos: list[RegRepo] = DOG.load_repos()
+        self.static_responses: dict = self._load_static_responses()
 
+    def _load_static_responses(self, static_dir=STATIC_TEST_FILES_DIR) -> dict:
+        """
+        Loads static responses from repositories for static testing
 
-class TestRegisteredRepositories(TestDOG):
+        {repo_id:
+            {pid_type: static_response}
+        }
+        """
+
+        repo_ids = [repo.id for repo in self.repos]
+        return {repo_id: self._load_static_response(repo_id, static_dir) for repo_id in repo_ids}
+
+    def _load_static_response(self, repo_id, static_dir):
+        for _, _, static_response_pid_type in os.walk(f"{static_dir}/{repo_id}"):
+            for pid_type in static_response_pid_type:
+                with open(f"{static_dir}/{repo_id}/{pid_type}") as static_response:
+                    return {pid_type: static_response.read()}
+
+class TestRegisteredRepositoriesStatic(TestDOG):
     def setUp(self) -> None:
-        super(TestRegisteredRepositories, self).setUp()
+        super(TestRegisteredRepositoriesStatic, self).setUp()
 
     def test_configs_against_schema(self):
         """
@@ -31,18 +49,18 @@ class TestRegisteredRepositories(TestDOG):
         """
         self.assertTrue(all(self.repos))
 
-    def test_fidelity_loaded_repos(self):
+    def test_fidelity_loaded_repos(self, repo_config_dir=REPO_CONFIG_DIR):
         """
         Checks whether all repositories have been loaded
         """
-        config_dir = self.dog.config_dir
+        config_dir = REPO_CONFIG_DIR
         #TODO align loaded repos with config files and report missing repos
         self.assertTrue((len(os.listdir(config_dir)) - 1), len(config_dir))
 
 
-class TestResolvingAndParsing(TestDOG):
+class TestResolvingAndParsingLive(TestDOG):
     def setUp(self) -> None:
-        super(TestResolvingAndParsing, self).setUp()
+        super(TestResolvingAndParsingLive, self).setUp()
         self.repos_testcases: dict = {repo: repo.get_test_examples() for repo in self.repos}
 
     def _find_failures(self, test_results, conditions: [Callable[[dict], bool]]) -> dict:

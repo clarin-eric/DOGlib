@@ -52,6 +52,23 @@ class DOG:
             return parser.fetch(response)
 
     @classmethod
+    def load_repo(cls, repo_id: str, config_dir=REPO_CONFIG_DIR) -> RegRepo:
+        """
+        Method for loading specific repo config, used mainly for testing
+        """
+
+        config_path = f"{config_dir}/{repo_id}"
+        if not os.path.exists(config_path):
+            raise FileNotFoundError(f"Config file {config_dir} does not exists")
+        with open(f"{REPO_CONFIG_DIR}/{repo_id}") as  cfile:
+            try:
+                repo_config: dict = json.load(cfile)["repository"]
+            except json.decoder.JSONDecodeError as error:
+                raise RuntimeError(f"{error}\nConfig failing to load: {cfile}")
+            reg_repo: RegRepo = RegRepo(repo_config)
+        return reg_repo
+
+    @classmethod
     def load_repos(cls, config_dir=REPO_CONFIG_DIR) -> List[RegRepo]:
         """
         Method for constructor taking care of loading repository configurations
@@ -66,13 +83,7 @@ class DOG:
 
         for config_file in os.listdir(config_dir):
             if config_file.endswith(".json"):
-                with open(os.path.join(config_dir, config_file)) as cfile:
-                    try:
-                        repo_config: dict = json.load(cfile)["repository"]
-                    except json.decoder.JSONDecodeError as error:
-                        raise RuntimeError(f"{error}\nConfig failing to load: {cfile}")
-                    reg_repo: RegRepo = RegRepo(repo_config)
-                    reg_repos.append(reg_repo)
+                reg_repos.append(cls.load_repo(repo_id=config_file, config_dir=config_dir))
         return reg_repos
 
     def _sniff(self, pid: PID) -> Optional[RegRepo]:

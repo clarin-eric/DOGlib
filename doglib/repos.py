@@ -30,6 +30,7 @@ class RegRepo(object):
 
         :param config_dict: dict, JSON dict with repository configuration
         """
+        self.id: str = ''
         self.api: dict = {}
         self.doi: dict = {}
         self.hdl: dict = {}
@@ -78,7 +79,9 @@ class RegRepo(object):
             request_config = self.url
         # follow redirects
         if request_config["format"] == "redirect":
-            target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(pid), follow_redirects=True)[0])
+            target_url: PID = pid_factory(curl.get(pid.get_resolvable(),
+                                                   self.get_headers(pid),
+                                                   follow_redirects=True)[0])
             return self.get_request_url(target_url, secrets)
         # parse id
         elif "regex" in request_config.keys():
