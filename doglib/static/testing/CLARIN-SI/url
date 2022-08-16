@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?><cmd:CMD xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:lindat="http://lindat.mff.cuni.cz/ns/experimental/cmdi" xmlns:olac="http://www.clarin.eu/cmd/" xmlns:ms="http://www.clarin.eu/cmd/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CMDVersion="1.1" xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1403526079380/xsd">
+    <cmd:Header>
+        <cmd:MdCreationDate>2019-10-10</cmd:MdCreationDate>
+        <cmd:MdSelfLink>https://hdl.handle.net/11356/1025@format=cmdi</cmd:MdSelfLink>
+        <cmd:MdProfile>clarin.eu:cr1:p_1403526079380</cmd:MdProfile>
+        <cmd:MdCollectionDisplayName>CLARIN.SI data &amp; tools</cmd:MdCollectionDisplayName>
+    </cmd:Header>
+    <cmd:Resources>
+        <cmd:ResourceProxyList>
+            <cmd:ResourceProxy id="lp_1532">
+                <cmd:ResourceType>LandingPage</cmd:ResourceType>
+                <cmd:ResourceRef>https://hdl.handle.net/11356/1025</cmd:ResourceRef>
+            </cmd:ResourceProxy>
+            <cmd:ResourceProxy id="uri_1">
+                <cmd:ResourceType mimetype="text/html">Resource</cmd:ResourceType>
+                <cmd:ResourceRef>http://nl.ijs.si/imp/index-en.html</cmd:ResourceRef>
+            </cmd:ResourceProxy>
+            <cmd:ResourceProxy id="_1625">
+                <cmd:ResourceType mimetype="application/zip">Resource</cmd:ResourceType>
+                <cmd:ResourceRef lindat:md5_checksum="0b00b76b6708f0672b754ab80af42f0d">https://www.clarin.si/repository/xmlui/bitstream/handle/11356/1025/goo300k-tei.zip?sequence=1</cmd:ResourceRef>
+            </cmd:ResourceProxy>
+            <cmd:ResourceProxy id="_1627">
+                <cmd:ResourceType mimetype="application/zip">Resource</cmd:ResourceType>
+                <cmd:ResourceRef lindat:md5_checksum="05842bd344e742b79d69d26556d737f7">https://www.clarin.si/repository/xmlui/bitstream/handle/11356/1025/goo300k-vert.zip?sequence=2</cmd:ResourceRef>
+            </cmd:ResourceProxy>
+        </cmd:ResourceProxyList>
+        <cmd:JournalFileProxyList />
+        <cmd:ResourceRelationList />
+    </cmd:Resources>
+    <cmd:Components>
+        <cmd:LINDAT_CLARIN>
+            <cmd:bibliographicInfo>
+                <cmd:projectUrl>http://nl.ijs.si/imp/index-en.html</cmd:projectUrl>
+                <cmd:titles>
+                    <cmd:title xml:lang="en">Reference corpus of historical Slovene goo300k 1.2</cmd:title>
+                </cmd:titles>
+                <cmd:authors>
+                    <author xmlns="http://www.clarin.eu/cmd/">
+                        <lastName>Erjavec</lastName>
+                        <firstName> Tomaž</firstName>
+                    </author>
+                </cmd:authors>
+                <cmd:dates>
+                    <cmd:dateIssued>2015-05-05</cmd:dateIssued>
+                </cmd:dates>
+                <cmd:identifiers>
+                    <cmd:identifier type="Handle">https://hdl.handle.net/11356/1025</cmd:identifier>
+                </cmd:identifiers>
+                <cmd:funds>
+                    <funding xmlns="http://www.clarin.eu/cmd/">
+                        <organization>EU</organization>
+                        <code>FP7-ICT-215064</code>
+                        <projectName>IMPACT "Improving Access to Text"</projectName>
+                        <fundsType>euFunds</fundsType>
+                    </funding>
+                    <funding xmlns="http://www.clarin.eu/cmd/">
+                        <organization>Google Inc.</organization>
+                        <code>Google research award</code>
+                        <projectName>Developing Language Models of Historical Slovene</projectName>
+                        <fundsType>Other</fundsType>
+                    </funding>
+                </cmd:funds>
+                <contactPerson xmlns="http://www.clarin.eu/cmd/">
+                    <firstName>Tomaž</firstName>
+                    <lastName>Erjavec</lastName>
+                    <email>tomaz.erjavec@ijs.si</email>
+                    <affiliation>Jožef Stefan Institute</affiliation>
+                </contactPerson>
+                <cmd:publishers>
+                    <cmd:publisher>Jožef Stefan Institute</cmd:publisher>
+                </cmd:publishers>
+            </cmd:bibliographicInfo>
+            <cmd:dataInfo>
+                <cmd:type>corpus</cmd:type>
+                <cmd:description>goo300k is a manually annotated reference corpus of historical Slovene. It contains 1,100 pages (about 300,000 tokens) sampled from 89 texts from the period 1584-1899.&#xd;
+&#xd;
+Each text contains extensive meta-data and  per-page links to facsimiles, while the word tokens in the texts are annotated with their modernised word-form, lemma, part-of-speech, and, for archaic words, their nearest modern synonyms or short explanation. &#xd;
+&#xd;
+The corpus is available in source TEI P5 XML and in the simpler and smaller vertical format, used by various concordancers. Note that the vertical format does not contain all the information from the source TEI.</cmd:description>
+                <cmd:languages>
+                    <cmd:language>
+                        <cmd:code>slv</cmd:code>
+                        <cmd:name>Slovenian</cmd:name>
+                    </cmd:language>
+                </cmd:languages>
+                <cmd:keywords>
+                    <cmd:keyword>historical language</cmd:keyword>
+                    <cmd:keyword>word modernisation</cmd:keyword>
+                    <cmd:keyword>lemmatisation</cmd:keyword>
+                    <cmd:keyword>part-of-speech tagging</cmd:keyword>
+                    <cmd:keyword>manual annotation</cmd:keyword>
+                    <cmd:keyword>TEI</cmd:keyword>
+                </cmd:keywords>
+                <cmd:sizeInfo>
+                    <size xmlns="http://www.clarin.eu/cmd/">
+                        <size>293919</size>
+                        <unit>words</unit>
+                    </size>
+                </cmd:sizeInfo>
+            </cmd:dataInfo>
+            <cmd:licenseInfo>
+                <cmd:license>
+                    <cmd:uri>https://creativecommons.org/licenses/by/4.0/</cmd:uri>
+                </cmd:license>
+            </cmd:licenseInfo>
+        </cmd:LINDAT_CLARIN>
+    </cmd:Components>
+</cmd:CMD>

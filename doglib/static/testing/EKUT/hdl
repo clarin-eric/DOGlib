@@ -1,0 +1,702 @@
+<?xml-stylesheet type='text/xsl' href='/cmdixsl/templates.xsl'?>
+<CMD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.clarin.eu/cmd/1" xmlns:cmdp="http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1527668176126" CMDVersion="1.2" xsi:schemaLocation="http://www.clarin.eu/cmd/1 https://infra.clarin.eu/CMDI/1.x/xsd/cmd-envelop.xsd http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1527668176126 https://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/1.x/profiles/clarin.eu:cr1:p_1527668176126/xsd">
+  <Header>
+    <MdCreator>Thorsten Trippel</MdCreator>
+    <MdCreationDate>2018-01-19</MdCreationDate>
+    <MdSelfLink>https://hdl.handle.net/11022/0000-0007-C4B7-D</MdSelfLink>
+    <MdProfile>clarin.eu:cr1:p_1527668176126</MdProfile>
+    <MdCollectionDisplayName>Tübingen Archive of Language Resources (TALAR)</MdCollectionDisplayName>
+  </Header>
+  <Resources>
+    <ResourceProxyList>
+      <ResourceProxy id="originalExperiment1Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment1/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment1Strafzumessungsinformationen">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment1/Strafzumessungsinformationen.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment1Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment1/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment1Vignette">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment1/Vignette.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment2Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment2/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment2Strafzumessungsinformationen">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment2/Strafzumessungsinformationen.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment2Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment2/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment2Vignette">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment2/Vignette.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment3Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment3/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment3Strafzumessungsinformationen">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment3/Strafzumessungsinformationen.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment3Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment3/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment3Vignette">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment3/Vignette.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment4Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment4/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment4Strafzumessungsinformationen">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment4/Strafzumessungsinformationen.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment4Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment4/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalExperiment4Vignette">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Experiment4/Vignette.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie1Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie1/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie1Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie1/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie2Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie2/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie2Strafzumessungsinformationen">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie2/Strafzumessungsinformationen.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie2Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie2/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie2Vignette">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie2/Vignette.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie3Daten">
+        <ResourceType mimetype="text/plain">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie3/Daten.csv</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie3Strafzumessungsinformationen">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie3/Strafzumessungsinformationen.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie3Studienmaterial">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie3/Studienmaterial.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="originalVorstudie3Vignette">
+        <ResourceType mimetype="application/pdf">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@original/Vorstudie3/Vignette.pdf</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="zipfile">
+        <ResourceType mimetype="application/zip">Resource</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D@RohmannPackage.zip</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="landingpage-11022-0000-0007-C4B7-D">
+        <ResourceType mimetype="application/xml">LandingPage</ResourceType>
+        <ResourceRef>https://hdl.handle.net/11022/0000-0007-C4B7-D</ResourceRef>
+      </ResourceProxy>
+    </ResourceProxyList>
+    <JournalFileProxyList/>
+    <ResourceRelationList/>
+  </Resources>
+  <IsPartOfList/>
+  <Components>
+    <ExperimentProfile xmlns="http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1527668176126">
+      <GeneralInfo>
+        <ResourceName xml:lang="de">Dissertation Rohmann: Experimentelle Daten</ResourceName>
+        <ResourceTitle xml:lang="de">Dissertation Rohmann: Experimentelle Daten</ResourceTitle>
+        <ResourceClass>Experimental Data</ResourceClass>
+        <LifeCycleStatus>archived</LifeCycleStatus>
+        <StartYear>2014</StartYear>
+        <CompletionYear>2017</CompletionYear>
+        <PublicationDate>2019-12-31</PublicationDate>
+        <LastUpdate>2018-01-18</LastUpdate>
+        <LegalOwner xml:lang="de">Florian Rohmann</LegalOwner>
+        <Genre/>
+        <FieldOfResearch>Psychologie</FieldOfResearch>
+        <Location>
+          <Address>Graduiertenkolleg 1808, Universität Tübingen, Keplerstr. 2, 72074 Tübingen</Address>
+          <Country>
+            <CountryName xml:lang="de">Deutschland</CountryName>
+            <CountryCoding>DE</CountryCoding>
+          </Country>
+        </Location>
+        <Descriptions>
+          <Description type="long" xml:lang="de">Eine typische Verhaltensweise beim Fällen numerischer Urteile ist die Ausrichtung an Vergleichswerten. 
+                        Inwieweit dabei deren Quellen berücksichtigt werden, insbesondere soziale Charakteristika, war Ausgangspunkt von vier Experimenten. 
+                        Experiment 1 liefert einen Beleg für die Relevanz der Quelle insofern, als die Anpassungen an die Anker stärker im Fall einer glaubwürdigen 
+                        (vs. unglaubwürdigen) Quelle ausfielen. Anhand von Experiment 2 und 3 wurde geprüft, ob sich die Ankerquelle auch auf die Richtung des Effekts 
+                        auswirken, also nicht nur unterschiedlich starke Assimilation, sondern ebenso Kontrast nach sich ziehen kann. Um dies zu testen, wurde auf 
+                        Quellen zurückgegriffen, die als voreingenommen gelten konnten, wobei der jeweils gesetzte Anker diese Erwartung entweder bestätigte oder verletzte. 
+                        Dabei wurde der Eindruck über die Voreingenommenheit zunächst durch Salientmachung von Quellen-Merkmalen (Experiment 2) und später indirekt 
+                        durch die Erzeugung einer epistemisch ambigen Urteilskonstellation (Experiment 3) verstärkt. 
+                        Während ein Effekt der Quelle in Experiment 2 ausblieb, wurde in Experiment 3 das vorhergesagte Muster gezeigt: Waren Quellen-Hinweisreiz und Anker 
+                        inkongruent (Verletzung der Erwartung), kam es zu einer Assimilation, im Fall von Kongruenz (Bestätigung) hingegen zu Kontrast. 
+                        Schließlich offenbarte Experiment 4, dass die in Experiment 3 gefundenen Effekte nicht durch eine Warnung vor dem Anker neutralisiert werden konnten.
+                    </Description>
+        </Descriptions>
+        <tags>
+          <tag xml:lang="de">Psychologie</tag>
+          <tag xml:lang="de">Experiment</tag>
+          <tag xml:lang="de">Urteilen und Entscheiden</tag>
+          <tag xml:lang="de">Ankereffekte</tag>
+          <tag xml:lang="de">Glaubwürdigkeit</tag>
+        </tags>
+        <ModalityInfo>
+          <Modalities>notapplicable</Modalities>
+        </ModalityInfo>
+      </GeneralInfo>
+      <Project>
+        <ProjectName xml:lang="de">Ankereffekte in komplexen Urteilssituationen: Die Glaubwürdigkeit der Quelle als Determinante für Assimilation und Kontrast</ProjectName>
+        <ProjectTitle xml:lang="de">Ankereffekte in komplexen Urteilssituationen: Die Glaubwürdigkeit der Quelle als Determinante für Assimilation und Kontrast</ProjectTitle>
+        <ProjectID/>
+        <Url/>
+        <Funder>
+          <fundingAgency>DFG</fundingAgency>
+        </Funder>
+        <Institution>
+          <Department>Mathematisch-Naturwissenschaftliche Fakultät</Department>
+          <Organisation>
+            <name>Eberhard Karls Universität Tübingen</name>
+            <AuthoritativeIDs>
+              <AuthoritativeID>
+                <id>http://viaf.org/viaf/155435537</id>
+                <issuingAuthority>VIAF</issuingAuthority>
+              </AuthoritativeID>
+              <AuthoritativeID>
+                <id>http://d-nb.info/gnd/36187-2</id>
+                <issuingAuthority>GND</issuingAuthority>
+              </AuthoritativeID>
+              <AuthoritativeID>
+                <id>http://isni.org/isni/0000000121901447</id>
+                <issuingAuthority>ISNI</issuingAuthority>
+              </AuthoritativeID>
+            </AuthoritativeIDs>
+          </Organisation>
+          <Descriptions>
+            <Description type="short"/>
+          </Descriptions>
+        </Institution>
+        <Person>
+          <firstName>Florian</firstName>
+          <lastName>Rohmann</lastName>
+          <role>Forschender</role>
+          <AuthoritativeIDs>
+            <AuthoritativeID>
+              <id>http://d-nb.info/gnd/1148693866</id>
+              <issuingAuthority>GND</issuingAuthority>
+            </AuthoritativeID>
+            <AuthoritativeID>
+              <id>https://viaf.org/viaf/6779151353540852720002</id>
+              <issuingAuthority>VIAF</issuingAuthority>
+            </AuthoritativeID>
+          </AuthoritativeIDs>
+        </Person>
+      </Project>
+      <Publications>
+        <Publication>
+          <PublicationTitle>Ankereffekte in komplexen Urteilssituationen: die Glaubwürdigkeit der Quelle als Determinante für Assimilation und Kontrast</PublicationTitle>
+          <resolvablePID/>
+          <Author>
+            <firstName>Florian</firstName>
+            <lastName>Rohmann</lastName>
+            <AuthoritativeIDs>
+              <AuthoritativeID>
+                <id>http://d-nb.info/gnd/1148693866</id>
+                <issuingAuthority>GND</issuingAuthority>
+              </AuthoritativeID>
+              <AuthoritativeID>
+                <id>https://viaf.org/viaf/6779151353540852720002</id>
+                <issuingAuthority>VIAF</issuingAuthority>
+              </AuthoritativeID>
+            </AuthoritativeIDs>
+          </Author>
+          <Descriptions>
+            <Description xml:lang="de">Eine typische Verhaltensweise beim Fällen numerischer Urteile ist die Ausrichtung an Vergleichswerten. 
+                            Inwieweit dabei deren Quellen berücksichtigt werden, insbesondere soziale Charakteristika, war Ausgangspunkt von vier Experimenten. 
+                            Experiment 1 liefert einen Beleg für die Relevanz der Quelle insofern, als die Anpassungen an die Anker stärker im Fall einer glaubwürdigen 
+                            (vs. unglaubwürdigen) Quelle ausfielen. Anhand von Experiment 2 und 3 wurde geprüft, ob sich die Ankerquelle auch auf die Richtung des Effekts 
+                            auswirken, also nicht nur unterschiedlich starke Assimilation, sondern ebenso Kontrast nach sich ziehen kann. Um dies zu testen, wurde auf 
+                            Quellen zurückgegriffen, die als voreingenommen gelten konnten, wobei der jeweils gesetzte Anker diese Erwartung entweder bestätigte oder verletzte. 
+                            Dabei wurde der Eindruck über die Voreingenommenheit zunächst durch Salientmachung von Quellen-Merkmalen (Experiment 2) und später indirekt 
+                            durch die Erzeugung einer epistemisch ambigen Urteilskonstellation (Experiment 3) verstärkt. 
+                            Während ein Effekt der Quelle in Experiment 2 ausblieb, wurde in Experiment 3 das vorhergesagte Muster gezeigt: Waren Quellen-Hinweisreiz und Anker 
+                            inkongruent (Verletzung der Erwartung), kam es zu einer Assimilation, im Fall von Kongruenz (Bestätigung) hingegen zu Kontrast. 
+                            Schließlich offenbarte Experiment 4, dass die in Experiment 3 gefundenen Effekte nicht durch eine Warnung vor dem Anker neutralisiert werden konnten.</Description>
+          </Descriptions>
+        </Publication>
+      </Publications>
+      <Creation>
+        <Creators>
+          <Person>
+            <firstName>Florian</firstName>
+            <lastName>Rohmann</lastName>
+            <role>Forschender</role>
+            <AuthoritativeIDs>
+              <AuthoritativeID>
+                <id>http://d-nb.info/gnd/1148693866</id>
+                <issuingAuthority>GND</issuingAuthority>
+              </AuthoritativeID>
+              <AuthoritativeID>
+                <id>https://viaf.org/viaf/6779151353540852720002</id>
+                <issuingAuthority>VIAF</issuingAuthority>
+              </AuthoritativeID>
+            </AuthoritativeIDs>
+          </Person>
+          <Descriptions>
+            <Description/>
+          </Descriptions>
+        </Creators>
+        <CreationToolInfo/>
+        <Source>
+          <MediaFiles>
+            <MediaFile>
+              <CatalogueLink/>
+              <Type>Unknown</Type>
+              <Quality>Unknown</Quality>
+              <RecordingConditions/>
+              <Position>
+                <PositionType/>
+                <StartPosition/>
+                <EndPosition/>
+              </Position>
+              <Access>
+                <cmdp:Availability>request required</cmdp:Availability>
+                <Contact>
+                  <email/>
+                  <role/>
+                  <Address>
+                    <street/>
+                    <ZIPCode/>
+                    <city/>
+                  </Address>
+                </Contact>
+              </Access>
+            </MediaFile>
+          </MediaFiles>
+        </Source>
+      </Creation>
+      <Documentations>
+        <Documentation/>
+      </Documentations>
+      <ExperimentContext>
+        <Descriptions>
+          <Description type="long" xml:lang="de">Eine vollständige Beschreibung der Daten findet sich in der angegebenen Publikation.</Description>
+        </Descriptions>
+        <ExperimentalStudy>
+          <Experiment/>
+        </ExperimentalStudy>
+      </ExperimentContext>
+      <Access>
+        <Availability xml:lang="de">Auf Anfrage</Availability>
+        <Contact>
+          <firstname>Florian</firstname>
+          <lastname>Rohmann</lastname>
+          <email>florian.rohmann@uni-konstanz.de</email>
+          <role>Forschender</role>
+          <Address>
+            <street/>
+            <ZIPCode/>
+            <city/>
+          </Address>
+        </Contact>
+      </Access>
+      <ResourceProxyListInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="zipfile">
+          <ResProxItemName/>
+          <ResProxFileName> RohmannPackage.zip </ResProxFileName>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment1Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment1/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 151515 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 3496cb4b9f8c2610798f7377389d51e9 </md5>
+            <sha1> c82cf363e0933f041ec47b27f28ce1a2c4d4e8eb </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment1Strafzumessungsinformationen">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment1/Strafzumessungsinformationen.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 482359 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f4e19f126f69d260c69804f3e3b1cc67 </md5>
+            <sha1> 7e35e6a517f9dfdf56e45dcdf5015cb2399432a5 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment1Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment1/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 637931 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 42b4119dcc313c335a48b97cc9713774 </md5>
+            <sha1> 4db081056d0cd347431c963af05e2734b8996d2f </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment1Vignette">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment1/Vignette.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 214656 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> d5fd2b8061338e0806de9dc43d93c382 </md5>
+            <sha1> d7d8e08b41628c1a3adc59efbb08b5fa27c67171 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment2Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment2/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 183874 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> ed2733ea767b681292efe07ae4161f08 </md5>
+            <sha1> e60362d6868264cdb992d68b2eb065b398877fb3 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment2Strafzumessungsinformationen">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment2/Strafzumessungsinformationen.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 482359 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f4e19f126f69d260c69804f3e3b1cc67 </md5>
+            <sha1> 7e35e6a517f9dfdf56e45dcdf5015cb2399432a5 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment2Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment2/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 491713 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 875ea9a68d02d9c823271d10bed8af47 </md5>
+            <sha1> af931af4678ecbcf6b90f63dfb9a0dbbc73fb4af </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment2Vignette">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment2/Vignette.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 214600 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f75b32c842ab57ed4648988f8d134dc0 </md5>
+            <sha1> 8fd555bb7c2354fe2d8d2c7b78a08162578ea85e </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment3Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment3/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 197663 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 9046a04e30189d7d56014014bd3faa03 </md5>
+            <sha1> 7a47061756214ecc0f208265dd5c2be8eaa139f8 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment3Strafzumessungsinformationen">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment3/Strafzumessungsinformationen.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 482359 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f4e19f126f69d260c69804f3e3b1cc67 </md5>
+            <sha1> 7e35e6a517f9dfdf56e45dcdf5015cb2399432a5 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment3Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment3/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 639759 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> b22d117ffd8bafbae988752d3dfb1895 </md5>
+            <sha1> 60b2649bfa902c8ab2d736dfa21c823214c1f1a6 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment3Vignette">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment3/Vignette.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 214480 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 51fd4c09489ee33fb4196831ef7b88b8 </md5>
+            <sha1> 86ed701c659330342f1bc2312ca14c3ab469316a </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment4Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment4/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 210226 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 1d1fc7d29564010407e07449cbf73e63 </md5>
+            <sha1> 3610230c0b06dbf7446cb5ad6f37e75238e7e6fb </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment4Strafzumessungsinformationen">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment4/Strafzumessungsinformationen.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 482359 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f4e19f126f69d260c69804f3e3b1cc67 </md5>
+            <sha1> 7e35e6a517f9dfdf56e45dcdf5015cb2399432a5 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment4Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment4/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 643673 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 94f5183ae1426dd247dc2b6b2d16eba1 </md5>
+            <sha1> eb751b72cc9615243a17a630181069d1e358eb90 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalExperiment4Vignette">
+          <ResProxItemName/>
+          <ResProxFileName> original/Experiment4/Vignette.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 214480 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 51fd4c09489ee33fb4196831ef7b88b8 </md5>
+            <sha1> 86ed701c659330342f1bc2312ca14c3ab469316a </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie1Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie1/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 4256 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> cce880b45cbf19a768e80f735448317f </md5>
+            <sha1> e814abbfb555921ed9474639ccb60d8f60f6c22c </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie1Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie1/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 501782 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> bf06b8f269e643391edefd44247e14a4 </md5>
+            <sha1> 80579dacc8d29439c7100b0ccd439d9ea5d1be2b </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie2Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie2/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 30119 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 695b23b0cd1735ef6b1d95ab5f852d43 </md5>
+            <sha1> d15016c07e07064d7f02e6679277c0d6414bcaea </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie2Strafzumessungsinformationen">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie2/Strafzumessungsinformationen.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 482359 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f4e19f126f69d260c69804f3e3b1cc67 </md5>
+            <sha1> 7e35e6a517f9dfdf56e45dcdf5015cb2399432a5 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie2Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie2/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 639606 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 999cc5948d20b7b0a1498a28e01b3019 </md5>
+            <sha1> 3e520f4b7214e5f759bb8039ee59b0b3dc4cada1 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie2Vignette">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie2/Vignette.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 214656 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> d5fd2b8061338e0806de9dc43d93c382 </md5>
+            <sha1> d7d8e08b41628c1a3adc59efbb08b5fa27c67171 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie3Daten">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie3/Daten.csv </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 34234 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 93c89ad5fe4a936447a4426f834a8013 </md5>
+            <sha1> 28ef2da1d5d73d3d769da33a225760c07e83e16e </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie3Strafzumessungsinformationen">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie3/Strafzumessungsinformationen.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 482359 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> f4e19f126f69d260c69804f3e3b1cc67 </md5>
+            <sha1> 7e35e6a517f9dfdf56e45dcdf5015cb2399432a5 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie3Studienmaterial">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie3/Studienmaterial.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 639606 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 999cc5948d20b7b0a1498a28e01b3019 </md5>
+            <sha1> 3e520f4b7214e5f759bb8039ee59b0b3dc4cada1 </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+        <ResourceProxyInfo xmlns:ns1="http://www.clarin.eu/cmd/1" ns1:ref="originalVorstudie3Vignette">
+          <ResProxItemName/>
+          <ResProxFileName> original/Vorstudie3/Vignette.pdf </ResProxFileName>
+          <SizeInfo>
+            <TotalSize>
+              <Size> 214480 </Size>
+              <SizeUnit>B</SizeUnit>
+            </TotalSize>
+          </SizeInfo>
+          <Checksums>
+            <md5> 51fd4c09489ee33fb4196831ef7b88b8 </md5>
+            <sha1> 86ed701c659330342f1bc2312ca14c3ab469316a </sha1>
+          </Checksums>
+        </ResourceProxyInfo>
+      </ResourceProxyListInfo>
+    </ExperimentProfile>
+  </Components>
+</CMD>

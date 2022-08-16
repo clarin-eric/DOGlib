@@ -3,8 +3,7 @@ import os
 from typing import AnyStr, IO, List, Union, Optional
 
 from . import curl
-from .repos import RegRepo, warn_europeana
-from .parsers import CMDIParser, JSONParser, XMLParser
+from .repos import RegRepo, warn_europeana, JSONParser, XMLParser
 from .pid import pid_factory, PID, URL
 
 REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
@@ -47,8 +46,7 @@ class DOG:
             # cast generated request URL to PID to decide which header from config shall be used
             headers: dict = matching_repo.get_headers(pid_factory(request_url))
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-            parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
-                                                                     matching_repo.get_parser_config())
+            parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
             return parser.fetch(response)
 
     @classmethod
@@ -121,22 +119,7 @@ class DOG:
                 return matching_repo
         return None
 
-    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser, None]:
-        """
-        Method wrapping parser construction
 
-        :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
-        :param parser_config: dict, Parser configuration dictionary
-        :return: Union[JSONParser, XMLParser], repo specific parser type object
-        """
-        if parser_type == "json":
-            return JSONParser(parser_config)
-        elif parser_type == "xml":
-            return XMLParser(parser_config)
-        elif parser_type == "cmdi":
-            return CMDIParser(parser_config)
-        else:
-            return None
 
     def fetch(self, pid_string: str, format='dict') -> Union[dict, str]:
         """
@@ -195,8 +178,7 @@ class DOG:
                 request_url: str = matching_repo.get_request_url(pid, self.secrets)
                 headers: dict = matching_repo.get_headers(pid)
                 final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-                parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
-                                                                         matching_repo.get_parser_config())
+                parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
                 return parser.identify(response)
 
     def is_collection(self, pid_string: str) -> bool:

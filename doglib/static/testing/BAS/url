@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD xmlns="http://www.clarin.eu/cmd/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CMDVersion="1.1" xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1336550377513/xsd">
+    <Header>
+        <MdCreator>COALA v2.5.2</MdCreator>
+        <MdCreationDate>2015-12-17</MdCreationDate>
+        <MdSelfLink>http://hdl.handle.net/11022/1009-0000-0000-DD18-D@format=cmdi</MdSelfLink>
+        <MdProfile>clarin.eu:cr1:p_1336550377513</MdProfile>
+        <MdCollectionDisplayName>Bavarian Archive for Speech Signals (BAS)</MdCollectionDisplayName>
+    </Header>
+    <Resources>
+        <ResourceProxyList>
+   <ResourceProxy id="lp_0000000001">
+    <ResourceType mimetype="application/x-httpd-php">LandingPage</ResourceType>
+    <ResourceRef>http://hdl.handle.net/11022/1009-0000-0000-DD18-D</ResourceRef>
+   </ResourceProxy>
+            <ResourceProxy id="m_0000000153">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa.ges</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000000334">
+                <ResourceType mimetype="text/plain">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa.mar</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000000980">
+                <ResourceType mimetype="text/xml">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa_AJS.ags</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000000981">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa_AJS.par,2</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000000982">
+                <ResourceType mimetype="text/xml">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa_SMA.ags</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000000983">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa_SMA.par</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000001254">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa.trl</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000001438">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa.trp</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000001617">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa.ush</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="m_0000001796">
+                <ResourceType mimetype="text/plain-bas">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa.usm</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001812">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa1.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001813">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa2.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001814">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa3.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001815">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pa4.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001816">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_paa.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001817">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pab.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001818">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pad.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001819">
+                <ResourceType mimetype="video/avi">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pag.avi</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001820">
+                <ResourceType mimetype="video/quicktime">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pai.mov</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001821">
+                <ResourceType mimetype="video/quicktime">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pal.mov</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001822">
+                <ResourceType mimetype="video/quicktime">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pam.mov</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001823">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_pap.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001824">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_paq.wav</ResourceRef>
+            </ResourceProxy>
+            <ResourceProxy id="r_0000001825">
+                <ResourceType mimetype="audio/vnd.wave">Resource</ResourceType>
+                <ResourceRef>https://clarin.phonetik.uni-muenchen.de/BASRepository/Corpora/SK-Public/w421_pa/w421_paw.wav</ResourceRef>
+            </ResourceProxy>
+        </ResourceProxyList>
+        <JournalFileProxyList />
+        <ResourceRelationList />
+        <IsPartOfList>
+    <IsPartOf>http://hdl.handle.net/11022/1009-0000-0000-DB6B-2@format=cmdi</IsPartOf>
+        </IsPartOfList>
+    </Resources>
+    <Components>
+        <media-session-profile>
+            <media-session>
+                <Name>w421_pa</Name>
+                <PID>11022/1009-0000-0000-DD18-D</PID>
+                <NumberOfSpeakers>2</NumberOfSpeakers>
+                <Corpus>SmartKom Public</Corpus>
+                <Environment>public place</Environment>
+                <RecordingDate>2002-11-19</RecordingDate>
+                <AcousticBackground>stationary noise</AcousticBackground>
+                <VisualBackground>artificial/man-made</VisualBackground>
+                <Experimenter>Sibylle Tiedemann</Experimenter>
+                <NumberOfRecordings>1</NumberOfRecordings>
+                <NumberMediaFiles>14</NumberMediaFiles>
+                <SubjectLanguages>
+                    <SubjectLanguage>
+                        <Dominant>true</Dominant>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                    </SubjectLanguage>
+                </SubjectLanguages>
+                <media-session-actors>
+                    <media-session-actor id="s_0000000072">
+                        <Role>user of the SmartKom system</Role>
+                        <Code>AJS</Code>
+                        <Age>32</Age>
+                        <BirthYear>1970</BirthYear>
+                        <Sex>Male</Sex>
+                        <Education>(Fach-)Hochschulreife</Education>
+                        <Profession>Dipl. Ingenieur</Profession>
+                        <Anonymized>true</Anonymized>
+                        <PlaceElementarySchool>BY (Bayern)</PlaceElementarySchool>
+                        <Height>170</Height>
+                        <Weight>69</Weight>
+                        <ProfessionalActor>false</ProfessionalActor>
+                        <Smoker>false</Smoker>
+                        <Bilingual>false</Bilingual>
+                        <Handedness>right</Handedness>
+                        <Dialect>unknown</Dialect>
+                        <TrainedSinger>false</TrainedSinger>
+                        <ComputerExpert>true</ComputerExpert>
+                        <DialogSystemExperience>false</DialogSystemExperience>
+                        <Glasses>false</Glasses>
+                        <Beard>true</Beard>
+                        <Piercing>false</Piercing>
+                        <Jewellery>false</Jewellery>
+                        <SpeechDisorder>none</SpeechDisorder>
+                        <BirthCountry>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                        </BirthCountry>
+                        <ActorLanguages>
+                            <ActorLanguage>
+                                <HomeLanguage>true</HomeLanguage>
+                                <MotherTongue>true</MotherTongue>
+                                <PrimaryLanguage>true</PrimaryLanguage>
+                                <Language>
+                                    <LanguageName>German</LanguageName>
+                                    <ISO639>
+                                        <iso-639-3-code>deu</iso-639-3-code>
+                                    </ISO639>
+                                </Language>
+                            </ActorLanguage>
+                            <ActorLanguage>
+                                <HomeLanguage>false</HomeLanguage>
+                                <MotherTongue>false</MotherTongue>
+                                <PrimaryLanguage>false</PrimaryLanguage>
+                                <Language>
+                                    <LanguageName>English</LanguageName>
+                                    <ISO639>
+                                        <iso-639-3-code>eng</iso-639-3-code>
+                                    </ISO639>
+                                </Language>
+                            </ActorLanguage>
+                            <ActorLanguage>
+                                <HomeLanguage>false</HomeLanguage>
+                                <MotherTongue>false</MotherTongue>
+                                <PrimaryLanguage>false</PrimaryLanguage>
+                                <Language>
+                                    <LanguageName>French</LanguageName>
+                                    <ISO639>
+                                        <iso-639-3-code>fra</iso-639-3-code>
+                                    </ISO639>
+                                </Language>
+                            </ActorLanguage>
+                            <ActorLanguage>
+                                <HomeLanguage>false</HomeLanguage>
+                                <MotherTongue>false</MotherTongue>
+                                <PrimaryLanguage>false</PrimaryLanguage>
+                                <Language>
+                                    <LanguageName>Italian</LanguageName>
+                                    <ISO639>
+                                        <iso-639-3-code>ita</iso-639-3-code>
+                                    </ISO639>
+                                </Language>
+                            </ActorLanguage>
+                            <ActorLanguage>
+                                <HomeLanguage>false</HomeLanguage>
+                                <MotherTongue>false</MotherTongue>
+                                <PrimaryLanguage>false</PrimaryLanguage>
+                                <Language>
+                                    <LanguageName>Latin</LanguageName>
+                                    <ISO639>
+                                        <iso-639-3-code>lat</iso-639-3-code>
+                                    </ISO639>
+                                </Language>
+                            </ActorLanguage>
+                        </ActorLanguages>
+                        <Keys>
+                            <Key Name="BAS.SK.Actor.Anger-Emotion_Outcome">some</Key>
+                            <Key Name="BAS.SK.Actor.Gesture_Outcome">some</Key>
+                            <Key Name="BAS.SK.Actor.Joy-Emotion_Outcome">some</Key>
+                            <Key Name="BAS.SK.Actor.Overall-Emotion_Outcome">some</Key>
+                            <Key Name="BAS.SK.Actor.Personal-Relation_Outcome">none</Key>
+                            <Key Name="BAS.SK.Actor.Surprise-Emotion_Outcome">none</Key>
+                            <Key Name="BAS.SK.Actor.Uncertainty-Emotion_Outcome">none</Key>
+                        </Keys>
+                        <LanguageMother>
+                            <Language>
+                                <LanguageName>German</LanguageName>
+                                <ISO639>
+                                    <iso-639-3-code>deu</iso-639-3-code>
+                                </ISO639>
+                            </Language>
+                        </LanguageMother>
+                        <LanguageFather>
+                            <Language>
+                                <LanguageName>German</LanguageName>
+                                <ISO639>
+                                    <iso-639-3-code>deu</iso-639-3-code>
+                                </ISO639>
+                            </Language>
+                        </LanguageFather>
+                    </media-session-actor>
+                    <media-session-actor id="s_0000000087">
+                        <Role>wizard</Role>
+                        <Name>Smartakus</Name>
+                        <Code>WOZ</Code>
+                        <Anonymized>true</Anonymized>
+                    </media-session-actor>
+                </media-session-actors>
+                <Content>
+                    <Genre>Discourse</Genre>
+                    <Task>event planning</Task>
+                    <Modality>
+                        <Modality>Spoken</Modality>
+                        <Modality>Gestures</Modality>
+                        <Modality>Pointing-gestures</Modality>
+                        <Modality>Facial-expressions</Modality>
+                        <Modality>Emotional-state</Modality>
+                    </Modality>
+                    <CommunicationContext>
+                        <Interactivity>interactive</Interactivity>
+                        <PlanningType>spontaneous</PlanningType>
+                        <Involvement>elicited</Involvement>
+                        <SocialContext>Controlled environment</SocialContext>
+                        <EventStructure>Dialogue</EventStructure>
+                        <Channel>wizard-of-oz</Channel>
+                    </CommunicationContext>
+                </Content>
+                <Description>
+                    <Description LanguageID="ISO639-3:eng">wizard-of-oz session</Description>
+                </Description>
+                <Location>
+                    <Address>LMU Munich: BAS (Schellingstr. 3, 80799 München, Germany)</Address>
+                    <Region>Munich, Bavaria</Region>
+                    <Country>
+                        <Code>DE</Code>
+                    </Country>
+                    <Continent>
+                        <Code>EU</Code>
+                    </Continent>
+                </Location>
+                <Keys>
+                    <Key Name="BAS.SK.Domain_Planned">Telefonie</Key>
+                    <Key Name="BAS.SK.Domain_Recorded">Kino/Telefonie</Key>
+                    <Key Name="BAS.SK.Tactile_UserInterface-InputMode">finger/pen</Key>
+                    <Key Name="BAS.SK.Wizard_Setup">wizard3</Key>
+                    <Key Name="BAS.SK.Wizard_SpeechOutput-Distortion">normal distortion</Key>
+                </Keys>
+                <media-annotation-bundle>
+                    <Identifier>w421_pa</Identifier>
+                    <media-file ref="r_0000001812" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>4</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Microphone #1 in microphone array</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001813" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>4</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Microphone #2 in microphone array</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001814" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>4</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Microphone #3 in microphone array</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001815" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>4</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Microphone #4 in microphone array</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001816" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>5</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>close microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">clip-on microphone, channel 1</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001817" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>5</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>close microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">clip-on microphone, channel 2</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001818" actor-ref="s_0000000072">
+                        <Type>audio</Type>
+                        <Quality>5</Quality>
+                        <RecordingConditions>Sennheiser ME 66 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">directional microphone</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001819" actor-ref="s_0000000072 s_0000000087">
+                        <Type>video</Type>
+                        <Type>audio</Type>
+                        <Quality>3</Quality>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>279</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">This is a composite video of (in most cases) four different angles of the recording session and the orthographic transcription as sub-titles. Additionally the audio channels of the actor and wizard are embedded into the avi container.</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>22050</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                        </SpeechTechnicalMetadata>
+                        <video-technical-metadata>
+                            <FrameRate>25</FrameRate>
+                            <ImageResolution>720x640</ImageResolution>
+                            <ColorDepth>24</ColorDepth>
+                            <VideoCodec>cvid</VideoCodec>
+                            <MimeType>
+                                <MimeType>video/avi</MimeType>
+                            </MimeType>
+                        </video-technical-metadata>
+                    </media-file>
+                    <media-file ref="r_0000001820" actor-ref="s_0000000072">
+                        <Type>video</Type>
+                        <Quality>5</Quality>
+                        <RecordingConditions>SIVIT unit, digitized by Conrad AV-486 which is connected to a PC (Pentium III/500 MHz) with MotoDV FireWire-card</RecordingConditions>
+                        <RecordingPlatformSoftware>MotoDV Capture Utility</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium III/500 MHz) with MotoDV FireWire-card</RecordingPlatformHardware>
+                        <Capture>digitized by analog-DV-converter</Capture>
+                        <CaptureDevice>video analog</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>929</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">infrared video of interaction area</Description>
+                        </Description>
+                        <video-technical-metadata>
+                            <FrameRate>25</FrameRate>
+                            <ImageResolution>720x576</ImageResolution>
+                            <ColorDepth>24</ColorDepth>
+                            <VideoCodec>dvsd</VideoCodec>
+                            <MimeType>
+                                <MimeType>video/quicktime</MimeType>
+                            </MimeType>
+                        </video-technical-metadata>
+                    </media-file>
+                    <media-file ref="r_0000001821" actor-ref="s_0000000072">
+                        <Type>video</Type>
+                        <Quality>4</Quality>
+                        <RecordingConditions>Sony DSR-PD1P connected over FireWire (with two repeaters) to a PC (Pentium III/500 MHz) with MotoDV FireWire-card</RecordingConditions>
+                        <RecordingPlatformSoftware>MotoDV Capture Utility</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium III/500 MHz) with MotoDV FireWire-card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>video digital</CaptureDevice>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>929</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">left lateral capture (upper body)</Description>
+                        </Description>
+                        <video-technical-metadata>
+                            <FrameRate>25</FrameRate>
+                            <ImageResolution>720x576</ImageResolution>
+                            <ColorDepth>24</ColorDepth>
+                            <VideoCodec>dvsd</VideoCodec>
+                            <MimeType>
+                                <MimeType>video/quicktime</MimeType>
+                            </MimeType>
+                        </video-technical-metadata>
+                    </media-file>
+                    <media-file ref="r_0000001822" actor-ref="s_0000000072">
+                        <Type>video</Type>
+                        <Quality>4</Quality>
+                        <RecordingConditions>Sony DSR PD100 connected over FireWire to a PC (Pentium III/500 MHz) with MotoDV FireWire-card</RecordingConditions>
+                        <RecordingPlatformSoftware>MotoDV Capture Utility</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium III/500 MHz) with MotoDV FireWire-card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>video digital</CaptureDevice>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>929</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">front capture (face)</Description>
+                        </Description>
+                        <video-technical-metadata>
+                            <FrameRate>25</FrameRate>
+                            <ImageResolution>720x480</ImageResolution>
+                            <ColorDepth>24</ColorDepth>
+                            <VideoCodec>dvsd</VideoCodec>
+                            <MimeType>
+                                <MimeType>video/quicktime</MimeType>
+                            </MimeType>
+                        </video-technical-metadata>
+                    </media-file>
+                    <media-file ref="r_0000001823" actor-ref="">
+                        <Type>audio</Type>
+                        <Quality>5</Quality>
+                        <RecordingConditions>digital audio feeded into a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">faked environment audio (front channel)</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001824" actor-ref="">
+                        <Type>audio</Type>
+                        <Quality>5</Quality>
+                        <RecordingConditions>digital audio feeded into a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">faked environment audio (back channel)</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <media-file ref="r_0000001825" actor-ref="s_0000000087">
+                        <Type>audio</Type>
+                        <Quality>3</Quality>
+                        <RecordingConditions>Sennheiser ME104 connected to a Mackie 1604 VLZ Pro audio mixer connected to a PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingConditions>
+                        <RecordingPlatformSoftware>Samplitude Studio</RecordingPlatformSoftware>
+                        <RecordingPlatformHardware>PC (Pentium 233 MMX) with Terratec EWS 88 MT audio card</RecordingPlatformHardware>
+                        <Capture>digitally recorded</Capture>
+                        <CaptureDevice>microphone</CaptureDevice>
+                        <TransmissionChannel>short analog cable (&lt;10m, default)</TransmissionChannel>
+                        <Language>
+                            <LanguageName>German</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>deu</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Location>
+                            <Address>Bayerisches Archiv für Sprachsignale, Schellingstr. 3, 80799 München, Germany</Address>
+                            <Region>Bayern</Region>
+                            <Country>
+                                <Code>DE</Code>
+                            </Country>
+                            <Continent>
+                                <Code>EU</Code>
+                            </Continent>
+                        </Location>
+                        <Size>
+                            <TotalSize>
+                                <Number>8</Number>
+                                <SizeUnit>MiB</SizeUnit>
+                            </TotalSize>
+                            <TotalSize>
+                                <Number>5</Number>
+                                <SizeUnit>minutes</SizeUnit>
+                            </TotalSize>
+                        </Size>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">wizard output</Description>
+                        </Description>
+                        <SpeechTechnicalMetadata>
+                            <SamplingFrequency>16000</SamplingFrequency>
+                            <NumberOfChannels>1</NumberOfChannels>
+                            <ByteOrder>little endian</ByteOrder>
+                            <Compression>none</Compression>
+                            <BitResolution>16</BitResolution>
+                            <SpeechCoding>pcm</SpeechCoding>
+                            <MimeType>
+                                <MimeType>audio/vnd.wave</MimeType>
+                            </MimeType>
+                        </SpeechTechnicalMetadata>
+                    </media-file>
+                    <WrittenResource ref="m_0000000153" actor-ref="s_0000000072">
+                        <Name>w421_pa.ges</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>ISO-8859-1</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Gesture</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>3</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Labeling and segmentation of 2D gestures. Note that this annotation is also contained in the BPF files in the tier GES.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000000334" actor-ref="s_0000000072 s_0000000087">
+                        <Name>w421_pa.mar</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>ISO-8859-1</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Speaker turn</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>530</Number>
+                            <SizeUnit>B</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Segmentation in turns. Note that this segmentation is also contained in the BPF files in the tier TRN.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000000980" actor-ref="s_0000000072">
+                        <Name>w421_pa_AJS.ags</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>UTF-8</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Phonetics</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/xml</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>366</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">BPF represented as an annotation graph (XML) to recording of the actor. All other annotations are summarized and time aligned in this file.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000000981" actor-ref="s_0000000072">
+                        <Name>w421_pa_AJS.par</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Automatic/Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>US-ASCII</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Phonetics</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>30</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">BAS Partitur Format (BPF) file to recording of the actor. All other annotations are summarized and time aligned in this file.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000000982" actor-ref="s_0000000087">
+                        <Name>w421_pa_SMA.ags</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>UTF-8</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Phonetics</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/xml</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>49</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">BPF represented as an annotation graph (XML) to recording of the wizard. All other annotations are summarized and time aligned in this file.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000000983" actor-ref="s_0000000087">
+                        <Name>w421_pa_SMA.par</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Automatic/Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>US-ASCII</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Phonetics</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>6</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">BAS Partitur Format (BPF) file to recording of the wizard. All other annotations are summarized and time aligned in this file.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000001254" actor-ref="s_0000000072 s_0000000087">
+                        <Name>w421_pa.trl</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>ISO-8859-1</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Prosody</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>3</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Orthographic transliteration according to Verbmobil standard. Note that the transliteration is also contained in the BPF files.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000001438" actor-ref="s_0000000072 s_0000000087">
+                        <Name>w421_pa.trp</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>ISO-8859-1</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Prosody</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>3</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Labeling of meta-lingustic features (mostly prosodic) with the aim to recognize the (emotional) user-state from the speech signal. Note that the TRP labeling is also contained in the BPF files in the USP tier.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000001617" actor-ref="s_0000000072">
+                        <Name>w421_pa.ush</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>ISO-8859-1</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Non-speech events</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>3</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Labeling and segmentation of user states (holistic). Note that this annotation is also contained in the BPF files in the tier USH.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <WrittenResource ref="m_0000001796" actor-ref="s_0000000072">
+                        <Name>w421_pa.usm</Name>
+                        <CreationYear>2004</CreationYear>
+                        <Derivation>Annotation</Derivation>
+                        <DerivationMode>Manual</DerivationMode>
+                        <AnnotationStyle>stand-off</AnnotationStyle>
+                        <CharacterEncoding>ISO-8859-1</CharacterEncoding>
+                        <Anonymized>false</Anonymized>
+                        <AnnotationType>
+                            <AnnotationType>Non-speech events</AnnotationType>
+                        </AnnotationType>
+                        <AnnotationFormat>
+                            <AnnotationFormat>text/plain-bas</AnnotationFormat>
+                        </AnnotationFormat>
+                        <TotalSize>
+                            <Number>3</Number>
+                            <SizeUnit>KiB</SizeUnit>
+                        </TotalSize>
+                        <Language>
+                            <LanguageName>English</LanguageName>
+                            <ISO639>
+                                <iso-639-3-code>eng</iso-639-3-code>
+                            </ISO639>
+                        </Language>
+                        <Description>
+                            <Description LanguageID="ISO639-3:eng">Labeling and segmentation of user states (mimic). Note that this annotation is also contained in the BPF files in the tier USM.</Description>
+                        </Description>
+                    </WrittenResource>
+                    <Elicitation>
+                        <Type>instruction</Type>
+                        <Instruction>Do a phone call with the aid of Smartakus!</Instruction>
+                        <Medium>face-to-face</Medium>
+                    </Elicitation>
+                </media-annotation-bundle>
+            </media-session>
+        </media-session-profile>
+    </Components>
+</CMD>

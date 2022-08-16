@@ -1,0 +1,114 @@
+{
+  "created": "2022-05-02T12:43:03.069455+00:00", 
+  "files": [
+    {
+      "bucket": "8848d3b1-c374-4f4a-898f-f6152bab19b8", 
+      "checksum": "md5:d09240eb33953c1d897aa3ed3cdd5875", 
+      "ePIC_PID": "http://hdl.handle.net/11304/6d12259b-4e1c-4212-bece-2b68a43b4d53", 
+      "key": "Fig2.zip", 
+      "size": 149210848, 
+      "version_id": "d85d7369-b61b-44bf-9c14-b484e39b6cab"
+    }, 
+    {
+      "bucket": "8848d3b1-c374-4f4a-898f-f6152bab19b8", 
+      "checksum": "md5:bd37e38bdb9d52593326284b084910d4", 
+      "ePIC_PID": "http://hdl.handle.net/11304/13eca637-55ae-4d08-bd1f-78f34dad4a26", 
+      "key": "Fig3.zip", 
+      "size": 536793675, 
+      "version_id": "59ff8589-f5f7-45c8-97cf-ced74bb07df0"
+    }, 
+    {
+      "bucket": "8848d3b1-c374-4f4a-898f-f6152bab19b8", 
+      "checksum": "md5:ebca7178542cb67bbeb946114dd984b5", 
+      "ePIC_PID": "http://hdl.handle.net/11304/17af12d3-1cc0-46ca-8fb0-e5d2b34f3aa8", 
+      "key": "Fig4.zip", 
+      "size": 709511956, 
+      "version_id": "0f612b92-06d0-4fd8-a120-9e3e796938f4"
+    }, 
+    {
+      "bucket": "8848d3b1-c374-4f4a-898f-f6152bab19b8", 
+      "checksum": "md5:ee70a1a255b69002b0643ef559328349", 
+      "ePIC_PID": "http://hdl.handle.net/11304/190ee9f7-2790-4cf8-a0b9-7d00ff126a02", 
+      "key": "Fig5.zip", 
+      "size": 415384615, 
+      "version_id": "6ea349ac-07dc-49ee-9854-52fb5cae8ee6"
+    }
+  ], 
+  "id": "f8463256235f46039cf1bb60c4357cc8", 
+  "links": {
+    "files": "https://b2share.eudat.eu/api/files/8848d3b1-c374-4f4a-898f-f6152bab19b8", 
+    "self": "https://b2share.eudat.eu/api/records/f8463256235f46039cf1bb60c4357cc8", 
+    "versions": "https://b2share.eudat.eu/api/records/3382a3ed59a246738ad99f3d59d30582/versions"
+  }, 
+  "metadata": {
+    "$schema": "https://b2share.eudat.eu/api/communities/e9b9792e-79fb-4b07-b6b4-b9c2bd06d095/schemas/1#/json_schema", 
+    "DOI": "http://doi.org/10.23728/b2share.f8463256235f46039cf1bb60c4357cc8", 
+    "community": "e9b9792e-79fb-4b07-b6b4-b9c2bd06d095", 
+    "community_specific": {}, 
+    "contact_email": "jkind@thielelab.de", 
+    "creators": [
+      {
+        "creator_name": "Timo Imhof", 
+        "family_name": "Timo Imhof", 
+        "given_name": ""
+      }, 
+      {
+        "creator_name": "Jonas Kind", 
+        "family_name": "Jonas Kind", 
+        "given_name": ""
+      }, 
+      {
+        "creator_name": "Christina M. Thiele", 
+        "family_name": "Christina M. Thiele", 
+        "given_name": ""
+      }
+    ], 
+    "descriptions": [
+      {
+        "description": "Raw data belonging to the publication \"Solvent self-diffusion gives insight into thermo-responsive be-havior of lyotropic liquid crystalline media: An NMR study.\" by T. Imhof, J. Kind and C. M. Thiele submitted to macromolecules in 2022", 
+        "description_type": "Other"
+      }
+    ], 
+    "disciplines": [
+      {
+        "classification_code": "3.2.2", 
+        "discipline_identifier": "3.2.2 \u2192 Chemistry \u2192 Analytical chemistry", 
+        "discipline_name": "3.2.2 \u2192 Chemistry \u2192 Analytical chemistry", 
+        "scheme": "b2share.legacy", 
+        "scheme_uri": "http://b2share.eudat.eu/suggest/disciplines.json"
+      }
+    ], 
+    "ePIC_PID": "http://hdl.handle.net/11304/cef4ec34-4efc-4101-bd5b-074fa2fb4605", 
+    "embargo_date": "2022-05-15T12:01:32.078Z", 
+    "keywords": [
+      {
+        "keyword": "Nuclear Magnetic Resonance"
+      }, 
+      {
+        "keyword": "Lyotropic liquid cristall"
+      }, 
+      {
+        "keyword": "Diffusion"
+      }
+    ], 
+    "license": {
+      "license": "Creative Commons Attribution-NonCommercial-ShareAlike (CC-BY-NC-SA)", 
+      "license_identifier": "cc-by-nc-sa", 
+      "license_uri": "http://creativecommons.org/licenses/by-nc-sa/4.0/", 
+      "scheme": "b2share.legacy", 
+      "scheme_uri": "http://b2share.eudat.eu/suggest/licenses.json"
+    }, 
+    "open_access": true, 
+    "owners": [
+      1527
+    ], 
+    "publication_date": "2022-05-02T12:01:32.078Z", 
+    "publication_state": "published", 
+    "titles": [
+      {
+        "title": "Raw Data Solvent self-diffusion gives insight into thermo-responsive be-havior of lyotropic liquid crystalline media: An NMR study."
+      }
+    ]
+  }, 
+  "updated": "2022-05-16T00:02:01.542122+00:00"
+}

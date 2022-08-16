@@ -1,8 +1,9 @@
 from re import match, Match
-from typing import AnyStr, Optional
+from typing import AnyStr, Union, Optional
 import warnings
 
 from . import curl
+from .parsers import CMDIParser, JSONParser, XMLParser
 from .pid import pid_factory, DOI, HDL, PID, URL
 
 
@@ -154,6 +155,29 @@ class RegRepo(object):
         :return: str, string representation of parser type, see JSON schema for possible values # TODO ref JSON schema
         """
         return self.parser['type']
+
+    def get_parser(self, parser_type: str = None, parser_config: dict = None) -> Union[JSONParser, XMLParser, None]:
+        """
+        Method wrapping parser construction
+
+        :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
+        :param parser_config: dict, Parser configuration dictionary
+        :return: Union[JSONParser, XMLParser], repo specific parser type object
+        """
+        if parser_type is None:
+            parser_type = self.get_parser_type()
+
+        if parser_config is None:
+            parser_config = self.get_parser_config()
+
+        if parser_type == "json":
+            return JSONParser(parser_config)
+        elif parser_type == "xml":
+            return XMLParser(parser_config)
+        elif parser_type == "cmdi":
+            return CMDIParser(parser_config)
+        else:
+            return None
 
     def get_test_example(self, pid_type: str) -> str:
         """
