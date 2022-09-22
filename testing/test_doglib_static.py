@@ -1,9 +1,7 @@
-from collections import defaultdict
 import os
-from typing import Callable, List, Tuple
 import unittest
 
-from abc_test import TestDOG
+from testing import TestDOG
 from doglib import STATIC_TEST_FILES_DIR, REPO_CONFIG_DIR
 
 

@@ -1,6 +1,6 @@
 import unittest
 
-from abc_test import TestDOG
+from testing import TestDOG
 
 
 class TestResolvingAndParsingLive(TestDOG):

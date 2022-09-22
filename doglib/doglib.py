@@ -6,6 +6,7 @@ from . import curl
 from .repos import RegRepo, warn_europeana, JSONParser, XMLParser
 from .pid import pid_factory, PID, URL
 
+
 REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
 SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
 STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
@@ -13,16 +14,24 @@ STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file
 
 class DOG:
     def __init__(self, secrets: Optional[dict] = None):
-        self.secrets = {}
+        self.secrets: dict = self._load_secrets(secrets)
+        self.reg_repos: List[RegRepo] = self.load_repos()
+
+    def _load_secrets(self, secrets: Optional[dict] = None):
+        """
+        Loads secrets from environment. Allows for passing explicit secrets that overwrite env vars.
+        """
+        _secrets = {}
         if "EUROPEANA_WSKEY" in os.environ:
-            self.secrets["EUROPEANA_WSKEY"] = os.environ.get("EUROPEANA_WSKEY")
+            _secrets["EUROPEANA_WSKEY"] = os.environ.get("EUROPEANA_WSKEY")
         if secrets is not None:
             if "EUROPEANA_WSKEY" in secrets.keys():
-                self.secrets["EUROPEANA_WSKEY"] = secrets["EUROPEANA_WSKEY"]
+                _secrets["EUROPEANA_WSKEY"] = secrets["EUROPEANA_WSKEY"]
 
-        if "EUROPEANA_WSKEY" not in self.secrets.keys():
+        if "EUROPEANA_WSKEY" not in _secrets.keys():
             warn_europeana()
-        self.reg_repos: List[RegRepo] = self.load_repos()
+
+        return _secrets
 
     def _fetch(self, pid: PID) -> dict:
         """
@@ -71,8 +80,9 @@ class DOG:
         """
         Method for constructor taking care of loading repository configurations
 
-        :param config_dir: str, path to directory with repository configs, defaults to path './repo_configs' relative
+        :param config_dir: path to directory with repository configs, defaults to path './repo_configs' relative
             to doglib.py location
+        :type config_dir: str
         :return: List[RegRepo], list of RegRepo objects
         """
         reg_repos: List[RegRepo] = []
@@ -118,8 +128,6 @@ class DOG:
             else:
                 return matching_repo
         return None
-
-
 
     def fetch(self, pid_string: str, format='dict') -> Union[dict, str]:
         """

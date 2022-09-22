@@ -14,6 +14,7 @@ def warn_europeana() -> None:
                   "or pass it as optional argument DOG(secrets={'EUROPEANA_WSKEY': <SECRET>})",
                   NoSecretWarning)
 
+
 class NoSecretWarning(Warning):
     def __init__(self, message):
         self.message: AnyStr = message
@@ -52,6 +53,7 @@ class RegRepo(object):
         :param secrets: Optional[dict], optional map of access tokens, e.g. EUROPEANA_WSKEY
         :return: str, URL to be called by DOG in order to resolve the PID
         """
+
         if pid is None:
             return ""
 
@@ -94,8 +96,10 @@ class RegRepo(object):
             # get API call
             request_url = request_config["format"].replace("$api", self.api["base"])
             request_url = request_url.replace("$record_id", record_id)
+            # request_url = request_url.replace("$EUROPEANA_WSKEY", "ABC")
             if secrets is not None:
-                request_url = self._set_secrets(request_url, secrets)
+                for k, v in secrets.items():
+                    request_url = request_url.replace(f"${k}", v)
             return request_url
         else:
             if type(pid) == HDL:
@@ -222,11 +226,14 @@ class RegRepo(object):
                 return pid.get_repo_id() in self.doi["id"]
         return False
 
-    def _set_secrets(self, pid: AnyStr, secrets:dict):
+    def _set_secrets(self, pid: str, secrets: dict):
         if secrets is not None:
             for k, v in secrets.items():
-                return pid.replace(f"${k}", v)
-        else:
+                print(type(pid))
+                pid.replace(f"${k}", v)
+                pid.replace("$EUROPEANA_WSKEY", "abc")
+                print(pid)
+
             return pid
 
     def __str__(self):
