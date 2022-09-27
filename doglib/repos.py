@@ -96,10 +96,7 @@ class RegRepo(object):
             # get API call
             request_url = request_config["format"].replace("$api", self.api["base"])
             request_url = request_url.replace("$record_id", record_id)
-            # request_url = request_url.replace("$EUROPEANA_WSKEY", "ABC")
-            if secrets is not None:
-                for k, v in secrets.items():
-                    request_url = request_url.replace(f"${k}", v)
+            request_url = self._set_secrets(request_url, secrets)
             return request_url
         else:
             if type(pid) == HDL:
@@ -229,11 +226,7 @@ class RegRepo(object):
     def _set_secrets(self, pid: str, secrets: dict):
         if secrets is not None:
             for k, v in secrets.items():
-                print(type(pid))
-                pid.replace(f"${k}", v)
-                pid.replace("$EUROPEANA_WSKEY", "abc")
-                print(pid)
-
+                pid = pid.replace(f"${k}", v)
             return pid
 
     def __str__(self):

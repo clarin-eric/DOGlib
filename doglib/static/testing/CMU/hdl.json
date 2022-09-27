@@ -6,7 +6,7 @@
                 xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/1.1/profiles/clarin.eu:cr1:p_1475136016232/xsd">
   <Header>
     <MdCreator>CLAN cmdi</MdCreator>
-    <MdCreationDate>2022-04-22</MdCreationDate>
+    <MdCreationDate>2022-09-06</MdCreationDate>
     <MdSelfLink>hdl:11312/t-00016625-1</MdSelfLink>
     <MdProfile>clarin.eu:cr1:p_1475136016232</MdProfile>
     <MdCollectionDisplayName>TalkBank</MdCollectionDisplayName>

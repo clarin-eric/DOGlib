@@ -1,6 +1,6 @@
 import unittest
 
-from testing import TestDOG
+from doglib.testing import TestDOG
 
 
 class TestResolvingAndParsingLive(TestDOG):

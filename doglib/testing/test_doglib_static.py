@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from testing import TestDOG
+from doglib.testing import TestDOG
 from doglib import STATIC_TEST_FILES_DIR, REPO_CONFIG_DIR
 
 
