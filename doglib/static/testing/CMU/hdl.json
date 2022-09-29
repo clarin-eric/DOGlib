@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD CMDVersion="1.1" xmlns="http://www.clarin.eu/cmd/"
+                xmlns:MPI="http://www.mpi.nl/"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/1.1/profiles/clarin.eu:cr1:p_1475136016232/xsd">
+  <Header>
+    <MdCreator>CLAN cmdi</MdCreator>
+    <MdCreationDate>2022-09-06</MdCreationDate>
+    <MdSelfLink>hdl:11312/t-00016625-1</MdSelfLink>
+    <MdProfile>clarin.eu:cr1:p_1475136016232</MdProfile>
+    <MdCollectionDisplayName>TalkBank</MdCollectionDisplayName>
+  </Header>
+  <Resources>
+    <ResourceProxyList>
+      <ResourceProxy id="Transcript_file">
+        <ResourceType mimetype="text/x-chat">Resource</ResourceType>
+        <ResourceRef>hdl:11312/t-00016625-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="Media_file">
+        <ResourceType mimetype="audio/x-mpeg">Resource</ResourceType>
+        <ResourceRef>hdl:11312/t-00016625-3</ResourceRef>
+      </ResourceProxy>
+    </ResourceProxyList>
+    <JournalFileProxyList/>
+    <ResourceRelationList/>
+  </Resources>
+  <Components>
+    <talkbank-license-session>
+    <License>
+      <DistributionType>public</DistributionType>
+      <LicenseName>CC BY-NC-SA 3</LicenseName>
+      <LicenseURL>https://creativecommons.org/licenses/by-nc-sa/3.0/</LicenseURL>
+    </License>
+    <Session>
+      <Name>282-2</Name>
+      <Title>"DementiaBank English Pitt Corpus - 282-2"</Title>
+      <Date>Unspecified</Date>
+      <MDGroup>
+        <Location>
+          <Continent>North-America</Continent>
+          <Country>United States</Country>
+          <Region/>
+          <Address/>
+        </Location>
+        <Project>
+          <Name>DementiaBank</Name>
+          <Title>DementiaBank</Title>
+          <Id>DOI doi:10.21415/T5CS3J</Id>
+          <Contact>
+            <Name>Prof. Brian MacWhinney</Name>
+            <Address>Psychology Dept., 5000 Forbes av., Pittsburgh, PA 15213</Address>
+            <Email>macw@cmu.edu</Email>
+            <Organisation>CMU</Organisation>
+          </Contact>
+          <descriptions>
+            <Description LanguageId="">DementiaBank is the component of TalkBank dedicated to data on language in dementia</Description>
+          </descriptions>
+        </Project>
+        <Keys/>
+        <Content>
+          <Genre>Discourse</Genre>
+          <SubGenre/>
+          <Task>Unspecified</Task>
+          <Modalities>Spoken</Modalities>
+          <Subject>Unspecified</Subject>
+          <CommunicationContext>
+            <Interactivity>interactive</Interactivity>
+            <PlanningType>spontaneous</PlanningType>
+            <Involvement>non-elicited</Involvement>
+            <SocialContext>Family</SocialContext>
+            <EventStructure>Conversation</EventStructure>
+          </CommunicationContext>
+          <Content_Languages>
+            <Content_Language>
+              <Id>ISO639-3:eng</Id>
+              <Name>English</Name>
+              <Dominant>Unspecified</Dominant>
+              <SourceLanguage>Unspecified</SourceLanguage>
+              <TargetLanguage>Unspecified</TargetLanguage>
+            </Content_Language>
+            </Content_Languages>
+            <Keys>
+            </Keys>
+          </Content>
+          <Actors>
+            <Actor>
+              <Role/>
+              <Name>Standard Actor</Name>
+              <FullName/>
+              <Code>PAR</Code>
+              <FamilySocialRole>Participant</FamilySocialRole>
+              <EthnicGroup>Unspecified</EthnicGroup>
+              <Age>74</Age>
+              <BirthDate>Unspecified</BirthDate>
+              <Sex>Female</Sex>
+              <Education>23</Education>
+              <Anonymized>true</Anonymized>
+              <Contact>
+                <Name/>
+                <Address/>
+                <Email/>
+                <Organisation/>
+              </Contact>
+              <Keys/>
+              <Actor_Languages>
+                <Actor_Language>
+                  <Id>ISO639-3:eng</Id>
+                  <Name>English</Name>
+                  <MotherTongue>Unspecified</MotherTongue>
+                  <PrimaryLanguage>Unspecified</PrimaryLanguage>
+                </Actor_Language>
+              </Actor_Languages>
+            </Actor>
+            <Actor>
+              <Role/>
+              <Name>Standard Actor</Name>
+              <FullName/>
+              <Code>INV</Code>
+              <FamilySocialRole>Investigator</FamilySocialRole>
+              <EthnicGroup>Unspecified</EthnicGroup>
+              <Age>Unspecified</Age>
+              <BirthDate>Unspecified</BirthDate>
+              <Sex>Unknown</Sex>
+              <Education>Unspecified</Education>
+              <Anonymized>true</Anonymized>
+              <Contact>
+                <Name/>
+                <Address/>
+                <Email/>
+                <Organisation/>
+              </Contact>
+              <Keys/>
+              <Actor_Languages>
+                <Actor_Language>
+                  <Id>ISO639-3:eng</Id>
+                  <Name>English</Name>
+                  <MotherTongue>Unspecified</MotherTongue>
+                  <PrimaryLanguage>Unspecified</PrimaryLanguage>
+                </Actor_Language>
+              </Actor_Languages>
+            </Actor>
+          </Actors>
+      </MDGroup>
+      <Resources>
+        <MediaFile ref="Media_file">
+          <ResourceLink>https://media.talkbank.org/dementia/English/Pitt/Dementia/sentence/282-2.mp3</ResourceLink>
+          <Type>audio</Type>
+          <Format>audio/x-mpeg</Format>
+          <Size/>
+          <Quality>5</Quality>
+          <RecordingConditions>Unspecified</RecordingConditions>
+          <TimePosition>
+            <Start>Unspecified</Start>
+            <End>Unspecified</End>
+          </TimePosition>
+          <Access>
+            <Availability>open access</Availability>
+            <Date>Unspecified</Date>
+            <Owner>Boller, Francois, Becker, James</Owner>
+            <Publisher>TalkBank</Publisher>
+            <Contact>
+              <Name>Prof. Brian MacWhinney</Name>
+              <Address>Psychology Dept., 5000 Forbes av., Pittsburgh, PA 15213</Address>
+              <Email>macw@cmu.edu</Email>
+              <Organisation>CMU</Organisation>
+            </Contact>
+          </Access>
+          <descriptions>
+            <Description LanguageId="">cookie theft, fluency, recall, and sentence tasks for patients and controls</Description>
+          </descriptions>
+          <Keys/>
+        </MediaFile>
+        <WrittenResource ref="Transcript_file">
+          <ResourceLink>https://dementia.talkbank.org/data-orig/English/Pitt/Dementia/sentence/282-2.cha</ResourceLink>
+          <MediaResourceLink/>
+          <Date>Unspecified</Date>
+          <Type>Annotation</Type>
+          <SubType/>
+          <Format>text/x-chat</Format>
+          <Size>4KB</Size>
+          <Derivation>Annotation</Derivation>
+          <CharacterEncoding>UTF-8</CharacterEncoding>
+          <ContentEncoding/>
+          <LanguageId/>
+          <Anonymized>true</Anonymized>
+          <Validation>
+            <Type>Formal/Content</Type>
+            <Methodology>Automatic</Methodology>
+            <Level>100</Level>
+          </Validation>
+          <Access>
+            <Availability>open access</Availability>
+            <Date>Unspecified</Date>
+            <Owner>Boller, Francois, Becker, James</Owner>
+            <Publisher>TalkBank</Publisher>
+            <Contact>
+              <Name>Prof. Brian MacWhinney</Name>
+              <Address>Psychology Dept., 5000 Forbes av., Pittsburgh, PA 15213</Address>
+              <Email>macw@cmu.edu</Email>
+              <Organisation>CMU</Organisation>
+            </Contact>
+          </Access>
+          <descriptions>
+            <Description LanguageId="">cookie theft, fluency, recall, and sentence tasks for patients and controls</Description>
+          </descriptions>
+          <Keys>
+          </Keys>
+        </WrittenResource>
+      </Resources>
+      <References>
+        <descriptions>
+        <Description LanguageId="">cookie theft, fluency, recall, and sentence tasks for patients and controls</Description>
+        </descriptions>
+      </References>
+    </Session>
+    </talkbank-license-session>
+  </Components>
+</CMD>

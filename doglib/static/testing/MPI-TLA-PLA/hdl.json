@@ -1,0 +1,206 @@
+
+<cmd:CMD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmd="http://www.clarin.eu/cmd/" CMDVersion="1.1" xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1407745712035/xsd">
+          <Header xmlns="http://www.clarin.eu/cmd/" xmlns:functx="http://www.functx.com" xmlns:imdi="http://www.mpi.nl/IMDI/Schema/IMDI" xmlns:iso="http://www.iso.org/" xmlns:lat="http://lat.mpi.nl/" xmlns:sil="http://www.sil.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <MdCreator>imdi2cmdi.xsl</MdCreator>
+            <MdCreationDate>2006-08-14</MdCreationDate>
+            <cmd:MdSelfLink lat:flatURI="lat:1839_00_0000_0000_0016_9C15_3">https://hdl.handle.net/1839/00-0000-0000-0016-9C15-3</cmd:MdSelfLink>
+            <MdProfile>clarin.eu:cr1:p_1407745712035</MdProfile>
+            <MdCollectionDisplayName>MPI corpora : Acquisition : L1 Acquisition : C. O Shannessy</MdCollectionDisplayName>
+          </Header>
+          <Resources xmlns="http://www.clarin.eu/cmd/" xmlns:functx="http://www.functx.com" xmlns:imdi="http://www.mpi.nl/IMDI/Schema/IMDI" xmlns:iso="http://www.iso.org/" xmlns:lat="http://lat.mpi.nl/" xmlns:sil="http://www.sil.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <ResourceProxyList>
+              <ResourceProxy id="d1661494e359">
+                <ResourceType mimetype="audio/x-wav">Resource</ResourceType>
+                <ResourceRef lat:flatURI="lat:1839_00_0000_0000_0017_8DCD_D">https://hdl.handle.net/1839/00-0000-0000-0017-8DCD-D</ResourceRef>
+              </ResourceProxy>
+              <cmd:ResourceProxy id="home-1839_00_0000_0000_0016_9C15_3">
+                <cmd:ResourceType mimetype="text/html">LandingPage</cmd:ResourceType>
+                <cmd:ResourceRef>https://archive.mpi.nl/islandora/object/lat%3A1839_00_0000_0000_0016_9C15_3#</cmd:ResourceRef>
+              </cmd:ResourceProxy>
+              
+              
+            </ResourceProxyList>
+            <JournalFileProxyList></JournalFileProxyList>
+            <ResourceRelationList></ResourceRelationList>
+          </Resources>
+          <Components xmlns="http://www.clarin.eu/cmd/" xmlns:functx="http://www.functx.com" xmlns:imdi="http://www.mpi.nl/IMDI/Schema/IMDI" xmlns:iso="http://www.iso.org/" xmlns:lat="http://lat.mpi.nl/" xmlns:sil="http://www.sil.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <lat-session>
+              
+              <History>NAME:IMDI_1_9_TO_3_0 DATE:2006-08-14T16:10:55-02:00. NAME:imdi2cmdi.xslt DATE:2016-09-09T16:06:08.218+02:00.</History>
+              <Name>ERGstoryLC41_LC39</Name>
+              <Title>ERGstoryLC41_LC39</Title>
+              <Date>2010-01-31</Date>
+              <descriptions>
+                <Description xml:lang="eng">elicited production</Description>
+              </descriptions>
+              <Location>
+                <Continent>Australia</Continent>
+                <Country>Australia</Country>
+                <Region></Region>
+                <Address></Address>
+              </Location>
+              <Project>
+                <Name>Language contact and child bilingual acquisition</Name>
+                <Title></Title>
+                <Id></Id>
+                <Contact></Contact>
+                <descriptions>
+                  <Description>Longitudinal and crossectional study of language contact and change. The study documents the emergence of a new mixed language, LightWarlpiri, and the forces that lead to its development.  Light Warlpiri is a systematic combination of elements from Warlpiri and Aboriginal English and Kriol.  The study examines variation in adult Warlpiri across age coherts; and similarities and differences between Warlpiri and Light Warlpiri in both adults and children. It also examines children&apos;s acquisition of comprehension and production in both Warlpiri and Light Warlpiri.</Description>
+                </descriptions>
+              </Project>
+              <Keys>
+                <Key Name="Community" Type="OpenVocabulary">Lajamanu Community</Key>
+              </Keys>
+              <Content>
+                <Genre>Narrative</Genre>
+                <SubGenre>Unspecified</SubGenre>
+                <Task>erg stories</Task>
+                <Modalities>speech</Modalities>
+                <CommunicationContext>
+                  <Interactivity>interactive</Interactivity>
+                  <PlanningType>planned</PlanningType>
+                  <Involvement>elicited</Involvement>
+                  <SocialContext>Unspecified</SocialContext>
+                  <EventStructure>Unspecified</EventStructure>
+                  <Channel>Unspecified</Channel>
+                </CommunicationContext>
+                <Content_Languages>
+                  <descriptions>
+                    <Description>Light Warlpiri</Description>
+                  </descriptions>
+                  <Content_Language>
+                    <Id>ISO639-3:wbp</Id>
+                    <Name>Warlpiri</Name>
+                    <Dominant>Unspecified</Dominant>
+                    <SourceLanguage>Unspecified</SourceLanguage>
+                    <TargetLanguage>Unspecified</TargetLanguage>
+                  </Content_Language>
+                </Content_Languages>
+                <descriptions>
+                  <Description xml:lang="eng">stories to elicit overt transitive subject NPs</Description>
+                  <Description>stories to elicit overt transitive subject NPs</Description>
+                </descriptions>
+              </Content>
+              <Actors>
+                <Actor>
+                  <Role>Unspecified</Role>
+                  <Name>C39</Name>
+                  <FullName></FullName>
+                  <Code></Code>
+                  <FamilySocialRole>Unspecified</FamilySocialRole>
+                  <EthnicGroup></EthnicGroup>
+                  <BirthDate>1998-07-06</BirthDate>
+                  <Sex>Unspecified</Sex>
+                  <Education></Education>
+                  <Anonymized>Unspecified</Anonymized>
+                  <Age>
+                    <EstimatedAge>Unspecified</EstimatedAge>
+                  </Age>
+                  <Contact></Contact>
+                  <Actor_Languages>
+                    <Actor_Language>
+                      <Id>ISO639-3:wbp</Id>
+                      <Name>Warlpiri</Name>
+                      <MotherTongue>Unspecified</MotherTongue>
+                      <PrimaryLanguage>Unspecified</PrimaryLanguage>
+                    </Actor_Language>
+                  </Actor_Languages>
+                </Actor>
+                <Actor>
+                  <Role>Collector</Role>
+                  <Name>Carmel O&apos;Shannessy</Name>
+                  <FullName>Carmel O&apos;Shannessy</FullName>
+                  <Code>Unspecified</Code>
+                  <FamilySocialRole>Unspecified</FamilySocialRole>
+                  <EthnicGroup></EthnicGroup>
+                  <BirthDate>Unspecified</BirthDate>
+                  <Sex>Unspecified</Sex>
+                  <Education></Education>
+                  <Anonymized>false</Anonymized>
+                  <Age>
+                    <EstimatedAge>Unspecified</EstimatedAge>
+                  </Age>
+                  <Contact>
+                    <Name>corpus.manager_at_mpi.nl</Name>
+                    <Address>corpus.manager_at_mpi.nl</Address>
+                  </Contact>
+                  <descriptions>
+                    <Description>Description</Description>
+                  </descriptions>
+                  <Actor_Languages></Actor_Languages>
+                </Actor>
+                <Actor>
+                  <Role>Annotator</Role>
+                  <Name>Carmel O&apos;Shannessy</Name>
+                  <FullName>Carmel O&apos;Shannessy</FullName>
+                  <Code>Unspecified</Code>
+                  <FamilySocialRole>Unspecified</FamilySocialRole>
+                  <EthnicGroup>Unspecified</EthnicGroup>
+                  <BirthDate>Unspecified</BirthDate>
+                  <Sex>Unspecified</Sex>
+                  <Education>Unspecified</Education>
+                  <Anonymized>false</Anonymized>        
+          <Age>
+                    <EstimatedAge>Unspecified</EstimatedAge>
+                  </Age>
+                  <Contact></Contact>
+                  <Actor_Languages></Actor_Languages>
+                </Actor>
+                <Actor>
+                  <Role>Unspecified</Role>
+                  <Name>C41</Name>
+                  <FullName></FullName>
+                  <Code></Code>
+                  <FamilySocialRole></FamilySocialRole>
+                  <EthnicGroup></EthnicGroup>
+                  <BirthDate>2000-05-15</BirthDate>
+                  <Sex>Unspecified</Sex>
+                  <Education>Unspecified</Education>
+                  <Anonymized>Unspecified</Anonymized>
+                  <Age>
+                    <EstimatedAge>Unspecified</EstimatedAge>
+                  </Age>
+                  <Contact></Contact>
+                  <Actor_Languages></Actor_Languages>
+                </Actor>
+              </Actors>
+              <Resources>
+                <MediaFile ref="d1661494e359">
+                  <Type>audio</Type>
+                  <Format>audio/x-wav</Format>
+                  <Size>240 MB</Size>
+                  <Quality>Unspecified</Quality>
+                  <RecordingConditions></RecordingConditions>
+                  <TimePosition>
+                    <Start>Unspecified</Start>
+                    <End>Unspecified</End>
+                  </TimePosition>
+                  <Access>
+                    <Availability></Availability>
+                    <Date>Unspecified</Date>
+                    <Owner></Owner>
+                    <Publisher></Publisher>
+                    <Contact></Contact>
+                  </Access>
+                </MediaFile>
+                <Source>
+                  <Id>ACOCAUP31Jan1004</Id>
+                  <Format>DV</Format>
+                  <Quality>1</Quality>
+                  <TimePosition>
+                    <Start>00:00:00:00</Start>
+                    <End>00:00:00:00</End>
+                  </TimePosition>
+                  <Access>
+                    <Availability></Availability>
+                    <Date>Unspecified</Date>
+                    <Owner></Owner>
+                    <Publisher></Publisher>
+                    <Contact></Contact>
+                  </Access>
+                </Source>
+              </Resources>
+              <References></References>
+            </lat-session>
+          </Components>
+        </cmd:CMD>

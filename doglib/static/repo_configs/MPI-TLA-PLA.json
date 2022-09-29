@@ -1,6 +1,7 @@
 {
   "repository": {
-    "name": "Max Plack Institute",
+    "id": "MPI-TLA-PLA",
+    "name": "Max Planck Institute",
     "host_name": "MPI, The Language Archive/Psycholinguistics Archive",
     "host_netloc": "https://archive.mpi.nl/tla",
     "hdl": {"id": "1839", "format": "$hdl"},

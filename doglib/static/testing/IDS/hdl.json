@@ -1,0 +1,1164 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="/xslt/clarin.eu.cr1.p_1455633534543.xsl"?><CMD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.clarin.eu/cmd/" CMDVersion="1.1" xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1455633534543/xsd">
+  <Header>
+    <MdCreator>DGD2CMDI</MdCreator>
+    <MdCreationDate>2018-01-08+01:00</MdCreationDate>
+    <MdSelfLink>http://hdl.handle.net/10932/00-03BC-7338-01E0-6701-2</MdSelfLink>
+    <MdProfile>clarin.eu:cr1:p_1455633534543</MdProfile>
+    <MdCollectionDisplayName>Archiv für Gesprochenes Deutsch</MdCollectionDisplayName>
+  </Header>
+  <Resources>
+    <ResourceProxyList>
+      <ResourceProxy id="cmdi_AD--_8554">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-EE40-CF01-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18265">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-A820-B601-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18266">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7343-C290-B701-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18267">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7343-D2F0-B801-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18268">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7343-E3D0-B901-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18269">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-5220-B201-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18270">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-62E0-B301-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18271">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-7390-B401-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18272">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-84A0-B501-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18274">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7343-F480-BA01-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18275">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-0560-BB01-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5570">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-9B81-0301-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5571">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-8AA1-0201-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5572">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-7941-0101-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5573">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-6861-0001-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5574">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-FF91-0701-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5575">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-EEF1-0601-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5576">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-DE71-0501-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6203">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-BE31-0401-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5578">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734C-6291-0901-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_5579">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734C-50E1-0801-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1595">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7349-A330-EB01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14286">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-CA40-8B01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1601">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-4FC0-E301-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7238">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-8660-7A01-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7239">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-7550-7901-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7240">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-64E0-7801-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7241">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-5420-7701-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7242">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-4350-7601-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7243">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-22E0-7501-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7244">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-01A0-7401-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7245">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733A-D640-7301-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7246">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733A-0920-7201-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7247">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7339-F850-7101-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22714">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-45F0-FE01-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8119">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-16A0-BC01-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22722">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-BF50-F601-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22723">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-D020-F701-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6857">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-1751-3001-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6858">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-2871-3101-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6859">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-F5B1-2E01-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6860">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-0681-2F01-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6861">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-D411-2C01-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6862">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-E491-2D01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6863">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-B201-2A01-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6864">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-C2C1-2B01-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6865">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-9071-2801-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_6866">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-A0F1-2901-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21367">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-A820-9801-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21368">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-9750-9701-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8549">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-74B0-D601-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8550">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-8610-D701-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21371">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-1DE0-9C01-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21372">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-FB20-9B01-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21373">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-DA70-9A01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21374">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-B930-9901-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8551">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-FF40-D001-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8552">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-0FB0-D101-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8553">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-CC60-CE01-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21376">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-4940-9D01-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8555">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-4340-D401-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8556">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-63E0-D501-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8557">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-20D0-D201-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8558">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-3210-D301-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8112">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-8C10-C301-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8113">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-7B50-C201-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8114">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-6A50-C101-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8115">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-59E0-C001-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8116">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-4930-BF01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8117">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-3830-BE01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8118">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-27B0-BD01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22715">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-5740-FF01-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22716">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-2470-FC01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22717">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-3510-FD01-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_63">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-0290-FA01-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22719">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734B-13E0-FB01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22720">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-E0C0-F801-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22721">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-F220-F901-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22215">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-ADF0-C501-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_8121">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-9CD0-C401-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24441">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733D-FFF0-8201-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24443">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-B910-7D01-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24444">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-CA10-7E01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24445">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-9700-7B01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24446">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733B-A810-7C01-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24447">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733D-DE50-8001-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24448">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733D-EF40-8101-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24449">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733D-BCA0-7F01-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21369">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-85D0-9601-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_21375">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-6A10-9E01-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9511">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-3CC1-2001-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24028">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-C001-3A01-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9513">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-0A31-1E01-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9514">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-2C11-1F01-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9515">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-CC71-2401-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9516">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-F781-2501-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9517">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-89E1-2201-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9518">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-A9C1-2301-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24031">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-49C1-3301-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24032">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-3961-3201-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24033">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-6B11-3501-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9520">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-4301-2701-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7978">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-8CB1-3701-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7979">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-7C01-3601-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_7980">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-AF41-3901-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24038">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-9D81-3801-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_13133">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-7BF0-A701-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11231">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-4810-A501-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11232">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-5970-A601-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11233">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-25D0-A301-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11234">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-37A0-A401-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11235">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-D950-A101-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11236">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-FAD0-A201-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11237">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-9560-9F01-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_11238">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7340-B700-A001-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_25807">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-4B00-CA01-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18293">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-3A30-C901-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_25809">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-5CD0-CB01-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_25810">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-FBA0-C701-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_25811">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7344-D940-C601-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_25812">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7345-4970-C801-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_25815">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-7F90-CD01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18301">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7346-6E70-CC01-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26800">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-30A1-1601-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12521">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-9CB0-F501-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12522">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-8C00-F401-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12523">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-1540-ED01-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12524">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7349-C400-EC01-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12525">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-37C0-EF01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12526">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-26F0-EE01-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12527">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-5A10-F101-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12528">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-4890-F001-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12529">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-7B20-F301-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_12530">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734A-6AD0-F201-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27172">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-E261-3C01-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27173">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-F381-3D01-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27174">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-0451-3E01-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27175">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-15A1-3F01-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27176">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-26D1-4001-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27177">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-37A1-4101-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27178">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-4891-4201-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_27179">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-5931-4301-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14278">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-64C0-8701-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14279">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-4260-8601-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14280">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-A930-8901-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14281">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-8650-8801-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1594">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7349-77D0-EA01-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14282">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-1050-8301-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14283">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-31B0-8501-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14284">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-2100-8401-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1596">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-E6C0-E601-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1597">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7349-07A0-E701-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1598">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7349-29D0-E801-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1599">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7349-5540-E901-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1600">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-3F40-E201-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_14287">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-B990-8A01-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1602">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-7690-E401-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1603">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-9730-E501-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26791">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-F9C1-1D01-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26792">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-E851-1C01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26793">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-7531-1901-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18145">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-6461-1801-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26795">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-9731-1B01-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26796">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-85F1-1A01-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26797">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-1FE1-1501-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26798">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-FF11-1401-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_26799">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734E-4111-1701-5</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4195">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-4240-9201-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4196">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-52F0-9301-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4197">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-6380-9401-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18683">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-FB30-DE01-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1172">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-40F0-B101-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1173">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-3010-B001-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1174">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-B8D0-A901-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1175">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-A790-A801-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1176">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-DAD0-AB01-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1177">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-CA00-AA01-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1178">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-FD00-AD01-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1179">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7341-EBE0-AC01-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1180">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-1F80-AF01-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1181">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7342-0E30-AE01-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15608">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734C-84F1-0A01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15609">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734C-A961-0B01-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15610">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734C-D4B1-0C01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15611">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734C-F721-0D01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15612">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-18A1-0E01-C</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15613">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-3A81-0F01-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15614">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-5BF1-1001-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15615">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-7CF1-1101-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15616">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-CD31-1201-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_15617">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734D-ED71-1301-4</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17356">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7339-A960-6F01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_22577">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7339-CD30-7001-0</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17358">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7338-78E0-6B01-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17359">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7338-8A10-6C01-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17360">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7338-AAE0-6D01-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17361">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7339-87D0-6E01-D</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17362">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7338-3190-6801-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17363">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7338-4200-6901-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_17364">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7338-5310-6A01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_24027">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-D131-3B01-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9512">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-734F-6841-2101-A</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_9519">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7350-1801-2601-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_1973">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7351-5A31-3401-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4189">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-DD50-8C01-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4190">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-EDE0-8D01-9</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4191">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733E-FEC0-8E01-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4192">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-0FC0-8F01-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4193">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-20E0-9001-F</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4194">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-31E0-9101-2</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18680">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-2E80-E101-3</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18681">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-1D40-E001-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18682">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7348-0BF0-DF01-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_4198">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-733F-7400-9501-7</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18684">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-EA10-DD01-B</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18685">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-D9A0-DC01-1</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18686">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-C920-DB01-8</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18687">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-B8F0-DA01-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18688">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-A810-D901-E</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="cmdi_AD--_18689">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Metadata</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7347-9730-D801-6</ResourceRef>
+      </ResourceProxy>
+      <ResourceProxy id="AD--_6161">
+        <ResourceType mimetype="application/xml;format-variant=cmdi">Resource</ResourceType>
+        <ResourceRef>http://hdl.handle.net/10932/00-03BC-7352-6A51-4401-3</ResourceRef>
+      </ResourceProxy>
+    </ResourceProxyList>
+    <JournalFileProxyList/>
+    <ResourceRelationList/>
+  </Resources>
+  <Components xmlns:xsi="http://www.w3.org/2001/XMLSchema">
+    <DGDCorpus>
+      <ID/>
+      <Collection>Archiv für Gesprochenes Deutsch</Collection>
+      <ProjectTitle xml:lang="deu">Monash Corpus of Australian German</ProjectTitle>
+      <Name>Australiendeutsch</Name>
+      <Institution xml:lang="deu">Monash University</Institution>
+      <RightsHolder>Institut für Deutsche Sprache</RightsHolder>
+      <PublicationYear>2014</PublicationYear>
+      <Description xml:lang="deu">Das Korpus Australiendeutsch wurde im Rahmen eines Projektes der Monash University in Melbourne erstellt. Projektleiter war Michael Clyne. Das Korpus umfasst 220 Tonaufnahmen mit einer Gesamtdauer von 64 Stunden und 19 Minuten aus der Zeit von 1966 bis 1973. Die im AGD restaurierten Aufnahmen stammen aus South Australia und Victoria. Sie enthalten Erzählungen, Interviews und Bildbeschreibungen von und mit 333 älteren Frauen und Männern, deren Familien z.T. seit drei Generationen in Südaustralien leben. 168 dieser Aufnahmen sind transkibiert. Die Transkripte (orthographische Transkription ; orthographische Normalisierung ; Lemmatisierung ; POS-Tagging) wurden im AGD überarbeitet und aligniert. Anhand der Metadaten wurden eine Themenliste erstellt. Außerdem gibt es alphabetisch und nach Frequenzen geordnete Wort- und Lemmalisten. Das Korpus AD-- wird in der Datenbank für Gesprochenes Deutsch (DGD) bereitgestellt, einzelne Tonaufnahmen können auch im persönlichen Service des AGD weitergegeben werden.</Description>
+      <TemporalCoverage xml:lang="deu">1966-1973</TemporalCoverage>
+      <License>CLARIN RES+BY+NC+NORED</License>
+      <ResourceType xml:lang="deu">Corpus</ResourceType>
+      <ResourceMediaType>Audio</ResourceMediaType>
+      <DistributionType xml:lang="deu">availabilityStatusRestricted</DistributionType>
+      <Continent/>
+      <Country xml:lang="deu">Australien</Country>
+      <Language xml:lang="deu">Deutsch</Language>
+      <Language xml:lang="deu">Englisch</Language>
+      <Genre xml:lang="deu">Erzählung</Genre>
+      <Genre xml:lang="deu">Interview</Genre>
+      <Genre xml:lang="deu">Bildbeschreibung</Genre>
+      <Modality xml:lang="deu">Face-to-face</Modality>
+      <Subject>vgl. Themenliste (Zusatzmaterial)</Subject>
+      <LastUpdate>2017-06-22</LastUpdate>
+      <ComponentProfile>clarin.eu:cr1:p_1455633534543</ComponentProfile>
+      <Text xml:lang="deu"/>
+      <SelfLink>http://hdl.handle.net/10932/00-03BC-7338-01E0-6701-2</SelfLink>
+      <Keywords>
+        <Keyword xml:lang="deu">gesprochene deutsche Sprache</Keyword>
+        <Keyword xml:lang="deu">Dialekt</Keyword>
+        <Keyword xml:lang="deu">Sprachinsel</Keyword>
+        <Keyword xml:lang="deu">Australien</Keyword>
+        <Keyword xml:lang="deu">Tonaufnahme</Keyword>
+        <Keyword xml:lang="deu">Transkript</Keyword>
+        <Keyword xml:lang="deu">Wortliste</Keyword>
+        <Keyword xml:lang="deu">Lemmaliste</Keyword>
+      </Keywords>
+      <dc-inter-relations>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-EE40-CF01-4">Event: AD--_E_00111</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-A820-B601-E">Event: AD--_E_00084</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7343-C290-B701-4">Event: AD--_E_00085</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7343-D2F0-B801-A">Event: AD--_E_00086</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7343-E3D0-B901-A">Event: AD--_E_00087</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-5220-B201-5">Event: AD--_E_00080</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-62E0-B301-E">Event: AD--_E_00081</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-7390-B401-A">Event: AD--_E_00082</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-84A0-B501-9">Event: AD--_E_00083</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7343-F480-BA01-6">Event: AD--_E_00088</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-0560-BB01-0">Event: AD--_E_00089</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-9B81-0301-D">Event: AD--_E_00163</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-8AA1-0201-5">Event: AD--_E_00162</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-7941-0101-8">Event: AD--_E_00161</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-6861-0001-D">Event: AD--_E_00160</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-FF91-0701-2">Event: AD--_E_00167</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-EEF1-0601-A">Event: AD--_E_00166</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-DE71-0501-9">Event: AD--_E_00165</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-BE31-0401-B">Event: AD--_E_00164</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734C-6291-0901-9">Event: AD--_E_00169</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734C-50E1-0801-E">Event: AD--_E_00168</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7349-A330-EB01-A">Event: AD--_E_00139</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-CA40-8B01-A">Event: AD--_E_00039</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-4FC0-E301-9">Event: AD--_E_00131</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-8660-7A01-4">Event: AD--_E_00019</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-7550-7901-4">Event: AD--_E_00018</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-64E0-7801-F">Event: AD--_E_00017</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-5420-7701-6">Event: AD--_E_00016</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-4350-7601-3">Event: AD--_E_00015</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-22E0-7501-2">Event: AD--_E_00014</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-01A0-7401-6">Event: AD--_E_00013</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733A-D640-7301-5">Event: AD--_E_00012</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733A-0920-7201-1">Event: AD--_E_00011</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7339-F850-7101-6">Event: AD--_E_00010</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-45F0-FE01-2">Event: AD--_E_00158</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-16A0-BC01-2">Event: AD--_E_00090</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-BF50-F601-A">Event: AD--_E_00150</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-D020-F701-9">Event: AD--_E_00151</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-1751-3001-1">Event: AD--_E_00208</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-2871-3101-B">Event: AD--_E_00209</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-F5B1-2E01-5">Event: AD--_E_00206</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-0681-2F01-C">Event: AD--_E_00207</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-D411-2C01-6">Event: AD--_E_00204</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-E491-2D01-9">Event: AD--_E_00205</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-B201-2A01-4">Event: AD--_E_00202</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-C2C1-2B01-F">Event: AD--_E_00203</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-9071-2801-8">Event: AD--_E_00200</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-A0F1-2901-1">Event: AD--_E_00201</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-A820-9801-A">Event: AD--_E_00053</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-9750-9701-B">Event: AD--_E_00052</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-74B0-D601-A">Event: AD--_E_00118</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-8610-D701-8">Event: AD--_E_00119</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-1DE0-9C01-3">Event: AD--_E_00057</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-FB20-9B01-5">Event: AD--_E_00056</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-DA70-9A01-A">Event: AD--_E_00055</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-B930-9901-4">Event: AD--_E_00054</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-FF40-D001-5">Event: AD--_E_00112</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-0FB0-D101-4">Event: AD--_E_00113</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-CC60-CE01-7">Event: AD--_E_00110</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-4940-9D01-F">Event: AD--_E_00058</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-4340-D401-E">Event: AD--_E_00116</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-63E0-D501-2">Event: AD--_E_00117</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-20D0-D201-E">Event: AD--_E_00114</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-3210-D301-4">Event: AD--_E_00115</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-8C10-C301-5">Event: AD--_E_00097</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-7B50-C201-6">Event: AD--_E_00096</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-6A50-C101-0">Event: AD--_E_00095</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-59E0-C001-6">Event: AD--_E_00094</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-4930-BF01-D">Event: AD--_E_00093</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-3830-BE01-9">Event: AD--_E_00092</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-27B0-BD01-9">Event: AD--_E_00091</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-5740-FF01-3">Event: AD--_E_00159</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-2470-FC01-A">Event: AD--_E_00156</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-3510-FD01-2">Event: AD--_E_00157</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-0290-FA01-3">Event: AD--_E_00154</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734B-13E0-FB01-9">Event: AD--_E_00155</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-E0C0-F801-2">Event: AD--_E_00152</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-F220-F901-2">Event: AD--_E_00153</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-ADF0-C501-1">Event: AD--_E_00099</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-9CD0-C401-E">Event: AD--_E_00098</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733D-FFF0-8201-0">Event: AD--_E_00029</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-B910-7D01-5">Event: AD--_E_00022</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-CA10-7E01-D">Event: AD--_E_00023</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-9700-7B01-D">Event: AD--_E_00020</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733B-A810-7C01-0">Event: AD--_E_00021</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733D-DE50-8001-A">Event: AD--_E_00026</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733D-EF40-8101-1">Event: AD--_E_00027</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733D-BCA0-7F01-6">Event: AD--_E_00024</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-85D0-9601-2">Event: AD--_E_00051</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-6A10-9E01-C">Event: AD--_E_00059</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-3CC1-2001-2">Event: AD--_E_00192</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-C001-3A01-B">Event: AD--_E_00218</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-0A31-1E01-5">Event: AD--_E_00190</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-2C11-1F01-B">Event: AD--_E_00191</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-CC71-2401-0">Event: AD--_E_00196</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-F781-2501-7">Event: AD--_E_00197</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-89E1-2201-6">Event: AD--_E_00194</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-A9C1-2301-5">Event: AD--_E_00195</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-49C1-3301-C">Event: AD--_E_00211</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-3961-3201-A">Event: AD--_E_00210</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-6B11-3501-D">Event: AD--_E_00213</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-4301-2701-1">Event: AD--_E_00199</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-8CB1-3701-4">Event: AD--_E_00215</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-7C01-3601-8">Event: AD--_E_00214</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-AF41-3901-0">Event: AD--_E_00217</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-9D81-3801-C">Event: AD--_E_00216</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-7BF0-A701-7">Event: AD--_E_00068</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-4810-A501-A">Event: AD--_E_00066</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-5970-A601-3">Event: AD--_E_00067</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-25D0-A301-D">Event: AD--_E_00064</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-37A0-A401-8">Event: AD--_E_00065</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-D950-A101-6">Event: AD--_E_00062</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-FAD0-A201-0">Event: AD--_E_00063</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-9560-9F01-2">Event: AD--_E_00060</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7340-B700-A001-7">Event: AD--_E_00061</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-4B00-CA01-6">Event: AD--_E_00105</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-3A30-C901-7">Event: AD--_E_00104</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-5CD0-CB01-1">Event: AD--_E_00106</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-FBA0-C701-0">Event: AD--_E_00101</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7344-D940-C601-F">Event: AD--_E_00100</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7345-4970-C801-B">Event: AD--_E_00103</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-7F90-CD01-9">Event: AD--_E_00109</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7346-6E70-CC01-6">Event: AD--_E_00108</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-30A1-1601-C">Event: AD--_E_00182</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-9CB0-F501-4">Event: AD--_E_00149</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-8C00-F401-3">Event: AD--_E_00148</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-1540-ED01-8">Event: AD--_E_00141</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7349-C400-EC01-8">Event: AD--_E_00140</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-37C0-EF01-D">Event: AD--_E_00143</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-26F0-EE01-C">Event: AD--_E_00142</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-5A10-F101-1">Event: AD--_E_00145</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-4890-F001-5">Event: AD--_E_00144</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-7B20-F301-C">Event: AD--_E_00147</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734A-6AD0-F201-A">Event: AD--_E_00146</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-E261-3C01-7">Event: AD--_E_00220</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-F381-3D01-7">Event: AD--_E_00221</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7352-0451-3E01-8">Event: AD--_E_00222</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7352-15A1-3F01-E">Event: AD--_E_00223</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7352-26D1-4001-D">Event: AD--_E_00224</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7352-37A1-4101-4">Event: AD--_E_00225</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7352-4891-4201-F">Event: AD--_E_00226</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7352-5931-4301-E">Event: AD--_E_00227</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-64C0-8701-6">Event: AD--_E_00035</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-4260-8601-3">Event: AD--_E_00034</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-A930-8901-8">Event: AD--_E_00037</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-8650-8801-D">Event: AD--_E_00036</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7349-77D0-EA01-8">Event: AD--_E_00138</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-1050-8301-A">Event: AD--_E_00030</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-31B0-8501-B">Event: AD--_E_00033</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-2100-8401-6">Event: AD--_E_00032</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-E6C0-E601-D">Event: AD--_E_00134</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7349-07A0-E701-5">Event: AD--_E_00135</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7349-29D0-E801-2">Event: AD--_E_00136</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7349-5540-E901-F">Event: AD--_E_00137</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-3F40-E201-7">Event: AD--_E_00130</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-B990-8A01-5">Event: AD--_E_00038</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-7690-E401-4">Event: AD--_E_00132</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-9730-E501-C">Event: AD--_E_00133</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-F9C1-1D01-7">Event: AD--_E_00189</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-E851-1C01-A">Event: AD--_E_00188</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-7531-1901-9">Event: AD--_E_00185</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-6461-1801-1">Event: AD--_E_00184</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-9731-1B01-B">Event: AD--_E_00187</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-85F1-1A01-1">Event: AD--_E_00186</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-1FE1-1501-E">Event: AD--_E_00181</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-FF11-1401-4">Event: AD--_E_00180</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734E-4111-1701-5">Event: AD--_E_00183</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-4240-9201-C">Event: AD--_E_00046</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-52F0-9301-4">Event: AD--_E_00047</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-6380-9401-1">Event: AD--_E_00048</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-FB30-DE01-1">Event: AD--_E_00126</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-40F0-B101-2">Event: AD--_E_00079</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-3010-B001-3">Event: AD--_E_00078</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-B8D0-A901-A">Event: AD--_E_00071</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-A790-A801-7">Event: AD--_E_00070</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-DAD0-AB01-C">Event: AD--_E_00073</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-CA00-AA01-0">Event: AD--_E_00072</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-FD00-AD01-3">Event: AD--_E_00075</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7341-EBE0-AC01-E">Event: AD--_E_00074</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-1F80-AF01-B">Event: AD--_E_00077</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7342-0E30-AE01-C">Event: AD--_E_00076</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734C-84F1-0A01-D">Event: AD--_E_00170</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734C-A961-0B01-3">Event: AD--_E_00171</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734C-D4B1-0C01-A">Event: AD--_E_00172</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734C-F721-0D01-A">Event: AD--_E_00173</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-18A1-0E01-C">Event: AD--_E_00174</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-3A81-0F01-A">Event: AD--_E_00175</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-5BF1-1001-0">Event: AD--_E_00176</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-7CF1-1101-4">Event: AD--_E_00177</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-CD31-1201-0">Event: AD--_E_00178</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734D-ED71-1301-4">Event: AD--_E_00179</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7339-A960-6F01-D">Event: AD--_E_00008</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7339-CD30-7001-0">Event: AD--_E_00009</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7338-78E0-6B01-1">Event: AD--_E_00004</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7338-8A10-6C01-3">Event: AD--_E_00005</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7338-AAE0-6D01-6">Event: AD--_E_00006</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7339-87D0-6E01-D">Event: AD--_E_00007</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7338-3190-6801-9">Event: AD--_E_00001</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7338-4200-6901-7">Event: AD--_E_00002</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7338-5310-6A01-9">Event: AD--_E_00003</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-D131-3B01-E">Event: AD--_E_00219</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-734F-6841-2101-A">Event: AD--_E_00193</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7350-1801-2601-1">Event: AD--_E_00198</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7351-5A31-3401-9">Event: AD--_E_00212</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-DD50-8C01-B">Event: AD--_E_00040</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-EDE0-8D01-9">Event: AD--_E_00041</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733E-FEC0-8E01-F">Event: AD--_E_00042</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-0FC0-8F01-E">Event: AD--_E_00043</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-20E0-9001-F">Event: AD--_E_00044</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-31E0-9101-2">Event: AD--_E_00045</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-2E80-E101-3">Event: AD--_E_00129</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-1D40-E001-1">Event: AD--_E_00128</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7348-0BF0-DF01-7">Event: AD--_E_00127</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-733F-7400-9501-7">Event: AD--_E_00049</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-EA10-DD01-B">Event: AD--_E_00125</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-D9A0-DC01-1">Event: AD--_E_00124</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-C920-DB01-8">Event: AD--_E_00123</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-B8F0-DA01-E">Event: AD--_E_00122</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-A810-D901-E">Event: AD--_E_00121</hasPart>
+        <hasPart href="http://hdl.handle.net/10932/00-03BC-7347-9730-D801-6">Event: AD--_E_00120</hasPart>
+        <isVersionOf href="http://hdl.handle.net/10932/00-0332-BCE7-2383-3001-B">Version 0</isVersionOf>
+        <source href="http://hdl.handle.net/10932/00-03BC-7352-6A51-4401-3">AGD: AD--</source>
+      </dc-inter-relations>
+    </DGDCorpus>
+  </Components>
+</CMD>

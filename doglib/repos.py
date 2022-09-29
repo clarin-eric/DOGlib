@@ -1,8 +1,9 @@
 from re import match, Match
-from typing import AnyStr, Optional
+from typing import AnyStr, Union, Optional
 import warnings
 
 from . import curl
+from .parsers import CMDIParser, JSONParser, XMLParser
 from .pid import pid_factory, DOI, HDL, PID, URL
 
 
@@ -31,6 +32,7 @@ class RegRepo(object):
 
         :param config_dict: dict, JSON dict with repository configuration
         """
+        self.id: str = ''
         self.api: dict = {}
         self.doi: dict = {}
         self.hdl: dict = {}
@@ -43,7 +45,7 @@ class RegRepo(object):
         for key in config_dict:
             setattr(self, key, config_dict[key])
 
-    def get_request_url(self, pid: PID, secrets: Optional[dict]) -> str:
+    def get_request_url(self, pid: PID, secrets: Optional[dict] = None) -> str:
         """
         Prepare URL to call to resolve to collection
 
@@ -51,17 +53,24 @@ class RegRepo(object):
         :param secrets: Optional[dict], optional map of access tokens, e.g. EUROPEANA_WSKEY
         :return: str, URL to be called by DOG in order to resolve the PID
         """
+
         if pid is None:
             return ""
 
         # Request to repository providing CMDI metadata
         if self.parser["type"] == 'cmdi':
             if type(pid) == HDL:
-                return self.hdl["format"].replace("$hdl", pid.get_resolvable())
+                return self._set_secrets(self.hdl["format"].replace("$hdl",
+                                                                    pid.get_resolvable()),
+                                         secrets)
             if type(pid) == DOI:
-                return self.doi["format"].replace("$doi", pid.get_resolvable())
+                return self._set_secrets(self.doi["format"].replace("$doi",
+                                                                    pid.get_resolvable()),
+                                         secrets)
             if type(pid) == URL and "regex" not in self.url.keys():
-                return self.url["format"].replace("$url", pid.get_resolvable())
+                return self._set_secrets(self.url["format"].replace("$url",
+                                                                    pid.get_resolvable()),
+                                         secrets)
 
         # Generic cases
         request_config: dict = {}
@@ -73,7 +82,9 @@ class RegRepo(object):
             request_config = self.url
         # follow redirects
         if request_config["format"] == "redirect":
-            target_url: PID = pid_factory(curl.get(pid.get_resolvable(), self.get_headers(pid), follow_redirects=True)[0])
+            target_url: PID = pid_factory(curl.get(pid.get_resolvable(),
+                                                   self.get_headers(pid),
+                                                   follow_redirects=True)[0])
             return self.get_request_url(target_url, secrets)
         # parse id
         elif "regex" in request_config.keys():
@@ -85,12 +96,7 @@ class RegRepo(object):
             # get API call
             request_url = request_config["format"].replace("$api", self.api["base"])
             request_url = request_url.replace("$record_id", record_id)
-            if secrets is not None:
-                if self.name == 'Europeana':
-                    if "EUROPEANA_WSKEY" in secrets.keys():
-                        request_url = request_url.replace("$europeana_wskey", secrets["EUROPEANA_WSKEY"])
-                    else:
-                        warn_europeana()
+            request_url = self._set_secrets(request_url, secrets)
             return request_url
         else:
             if type(pid) == HDL:
@@ -151,6 +157,29 @@ class RegRepo(object):
         """
         return self.parser['type']
 
+    def get_parser(self, parser_type: str = None, parser_config: dict = None) -> Union[JSONParser, XMLParser, None]:
+        """
+        Method wrapping parser construction
+
+        :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
+        :param parser_config: dict, Parser configuration dictionary
+        :return: Union[JSONParser, XMLParser], repo specific parser type object
+        """
+        if parser_type is None:
+            parser_type = self.get_parser_type()
+
+        if parser_config is None:
+            parser_config = self.get_parser_config()
+
+        if parser_type == "json":
+            return JSONParser(parser_config)
+        elif parser_type == "xml":
+            return XMLParser(parser_config)
+        elif parser_type == "cmdi":
+            return CMDIParser(parser_config)
+        else:
+            return None
+
     def get_test_example(self, pid_type: str) -> str:
         """
         Get test case for specific pid type
@@ -193,6 +222,12 @@ class RegRepo(object):
             if "id" in self.doi.keys():
                 return pid.get_repo_id() in self.doi["id"]
         return False
+
+    def _set_secrets(self, pid: str, secrets: dict):
+        if secrets is not None:
+            for k, v in secrets.items():
+                pid = pid.replace(f"${k}", v)
+            return pid
 
     def __str__(self):
         return f"Name: {self.name}\n" \

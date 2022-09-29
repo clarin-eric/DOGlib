@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "BBAW",
     "name": "Berlin-Brandenburg Academy of Sciences and Humanities",
     "host_name": "BBAW",
     "host_netloc": "https://clarin.bbaw.de",

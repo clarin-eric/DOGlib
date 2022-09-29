@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "ILC4CLARIN",
     "name": "ILC-CNR for CLARIN-IT",
     "host_name": "Institute for Computational Linguistics \"A. Zampolli\", National Research Council, in Pisa",
     "host_netloc": "https://dspace-clarin-it.ilc.cnr.it",

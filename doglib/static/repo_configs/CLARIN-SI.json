@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "CLARIN-SI",
     "name": "Slovenian language resource repository CLARIN.SI",
     "host_name": "CLARIN.SI",
     "host_netloc": "http://www.clarin.si",

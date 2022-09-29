@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "ZENODO",
     "name": "Zenodo",
     "host_name": "zenodo",
     "host_netloc": "https://zenodo.org",

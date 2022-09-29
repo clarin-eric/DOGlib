@@ -1,11 +1,10 @@
 import html
 import json
-from lxml.etree import fromstring, tostring, Element, ElementTree, _ElementUnicodeResult
+from lxml.etree import fromstring, Element, ElementTree
 from re import compile, match, findall, Match, Pattern
 from typing import Any, AnyStr, Generator, List, NamedTuple, Type, Union
 
 from .pid import PID, pid_factory
-from .repos import RegRepo
 
 
 class JSONParser:

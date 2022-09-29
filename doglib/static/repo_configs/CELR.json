@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "CELR",
     "name": "Center of Estonian Language Resources",
     "host_name": "Eesti Keeleressursside Keskus",
     "host_netloc": "https://metashare.ut.ee",

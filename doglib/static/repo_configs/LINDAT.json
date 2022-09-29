@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "LINDAT",
     "name": "LINDAT/CLARIAH-CZ",
     "host_name": "LINDAT/CLARIAH-CZ",
     "host_netloc": "https://lindat.mff.cuni.cz",

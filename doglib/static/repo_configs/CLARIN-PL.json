@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "CLARIN-PL",
     "name": "CLARIN-PL Language Technology Centre",
     "host_name": "Wroclaw University of Science and Technology",
     "host_netloc": "https://clarin-pl.eu",

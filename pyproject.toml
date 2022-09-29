@@ -1,0 +1,25 @@
+[project]
+name = "doglib"
+description = "Digital Object Gate Python library"
+version = "1.0.1"
+authors = [
+    { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
+]
+dependencies = [
+    "certifi",
+    "lxml>=4.6",
+    "pycurl>7.x.x"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = ["*.json"]
+
+[tool.setuptools.package-dir]
+doglib = "doglib"
+
+[tools.setuptools.packages.find]
+where = ["doglib"]
+

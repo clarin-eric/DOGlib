@@ -1,39 +1,35 @@
 import json
 import os
-from typing import AnyStr, IO, List, Union, Optional
+from typing import List, Union, Optional
 
 from . import curl
-from .parsers import CMDIParser, JSONParser, XMLParser
-from .pid import pid_factory, PID, URL
+from .repos import JSONParser, XMLParser
+from .pid import pid_factory, PID
 from .repos import RegRepo, warn_europeana
-from .schemas import SchemaProtocol
+
+REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
+SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
+STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
+
 
 class DOG:
-    config_dir: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
-
     def __init__(self, secrets: Optional[dict] = None):
-        self.secrets = {}
-        if "EUROPEANA_WSKEY" in os.environ:
-            self.secrets["EUROPEANA_WSKEY"] = os.environ.get("EUROPEANA_WSKEY")
-        if secrets is not None:
-            if "EUROPEANA_WSKEY" in secrets.keys():
-                self.secrets["EUROPEANA_WSKEY"] = secrets["EUROPEANA_WSKEY"]
-
-        if "EUROPEANA_WSKEY" not in self.secrets.keys():
-            warn_europeana()
-        self.reg_repos: List[RegRepo] = self._load_repos()
+        self.secrets: dict = self._load_secrets(secrets)
+        self.reg_repos: List[RegRepo] = self.load_repos()
 
     def _fetch(self, pid: PID) -> dict:
         """
         Method that takes care of parser construction and parse call
 
-        :param pid: PID, class instance of PID protocol
-        :return: dict, return fetch result in a dict format:
+        :param pid: class instance of PID protocol
+        :type pid: PID
+        :return: return fetch result in a dict format:
             {
                 "ref_files": [{"filename": str, "pid": str}],
                 "description": str,
                 "license": str
             }
+        :rtype: dict
         """
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
@@ -43,96 +39,8 @@ class DOG:
             # cast generated request URL to PID to decide which header from config shall be used
             headers: dict = matching_repo.get_headers(pid_factory(request_url))
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-            parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
-                                                                     matching_repo.get_parser_config())
+            parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
             return parser.fetch(response)
-
-    @classmethod
-    def _load_repos(cls, config_dir=config_dir) -> List[RegRepo]:
-        """
-        Method for constructor taking care of loading repository configurations
-
-        :param config_dir: str, path to directory with repository configs, defaults to path './repo_configs' relative
-            to doglib.py location
-        :return: List[RegRepo], list of RegRepo objects
-        """
-        reg_repos: List[RegRepo] = []
-        if not os.path.exists(config_dir):
-            raise FileNotFoundError(f"Config dir {config_dir} does not exist")
-
-        for config_file in os.listdir(config_dir):
-            if config_file.endswith(".json"):
-                with open(os.path.join(config_dir, config_file)) as cfile:
-                    try:
-                        repo_config: dict = json.load(cfile)["repository"]
-                    except json.decoder.JSONDecodeError as error:
-                        raise RuntimeError(f"{error}\nConfig failing to load: {cfile}")
-                    reg_repo: RegRepo = RegRepo(repo_config)
-                    reg_repos.append(reg_repo)
-        return reg_repos
-
-
-    def _load_schemas(self, schema_dir):
-        schemas: List[SchemaProtocol] = []
-        if not os.path.exists(schema_dir):
-            raise FileNotFoundError(f"Config dir {schema_dir} does not exist")
-
-        for schema_file in os.listdir(schema_dir):
-            if schema_file.endswith(".json"):
-                with open(os.path.join(schema_dir, schema_file)):
-
-
-    def _sniff(self, pid: PID) -> Optional[RegRepo]:
-        """
-        Check if pid matches any registered repository
-
-        :param pid: PID, class instance of PID protocol
-        :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
-        """
-        sniffed_repos: list = []
-        for reg_repo in self.reg_repos:
-            if reg_repo.match_pid(pid):
-                sniffed_repos.append(reg_repo)
-        return self._match_sniffed(sniffed_repos, pid)
-
-    def _match_sniffed(self, sniffed_repos: list, pid: PID) -> Optional[RegRepo]:
-        """
-        Matches PID with hosting repo. Method used by DOG._sniff()
-
-        :param sniffed_repos: list, registered repositories possibly hosting referenced PID metadata
-        :param pid: PID, class instance of PID protocol
-        :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
-        """
-        for matching_repo in sniffed_repos:
-            if len(sniffed_repos) > 1:
-                try:
-                    candidate = curl.get(matching_repo.get_request_url(pid, self.secrets), matching_repo.get_headers(pid), True)[0]
-                    url: PID = pid_factory(candidate)
-                    if url:
-                        if matching_repo.match_pid(url):
-                            return matching_repo
-                except curl.RequestError:
-                    continue
-            else:
-                return matching_repo
-        return None
-
-    def _make_parser(self, parser_type: str, parser_config: dict) -> Union[JSONParser, XMLParser, None]:
-        """
-        Method wrapping parser construction
-
-        :param parser_type: str, Repository response format (json, cmdi) dependent Parser type
-        :param parser_config: dict, Parser configuration dictionary
-        :return: Union[JSONParser, XMLParser], repo specific parser type object
-        """
-        if parser_type == "json":
-            return JSONParser(parser_config)
-        elif parser_type == "xml":
-            return XMLParser(parser_config)
-        elif parser_type == "cmdi":
-            return CMDIParser(parser_config)
-        else:
-            return None
 
     def fetch(self, pid_string: str, format='dict') -> Union[dict, str]:
         """
@@ -191,8 +99,7 @@ class DOG:
                 request_url: str = matching_repo.get_request_url(pid, self.secrets)
                 headers: dict = matching_repo.get_headers(pid)
                 final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-                parser: Union[JSONParser, XMLParser] = self._make_parser(matching_repo.get_parser_type(),
-                                                                         matching_repo.get_parser_config())
+                parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
                 return parser.identify(response)
 
     def is_collection(self, pid_string: str) -> bool:
@@ -246,6 +153,94 @@ class DOG:
         pid: PID = pid_factory(pid_string)
         return bool(self._is_host_registered(pid))
 
+    @classmethod
+    def load_repo(cls, repo_id: str, config_dir=REPO_CONFIG_DIR) -> RegRepo:
+        """
+        Method for loading specific repo config, used mainly for testing
+        """
+
+        config_path = f"{config_dir}/{repo_id}"
+        if not os.path.exists(config_path):
+            raise FileNotFoundError(f"Config file {config_dir} does not exists")
+        with open(f"{REPO_CONFIG_DIR}/{repo_id}") as  cfile:
+            try:
+                repo_config: dict = json.load(cfile)["repository"]
+            except json.decoder.JSONDecodeError as error:
+                raise RuntimeError(f"{error}\nConfig failing to load: {cfile}")
+            reg_repo: RegRepo = RegRepo(repo_config)
+        return reg_repo
+
+    @classmethod
+    def load_repos(cls, config_dir=REPO_CONFIG_DIR) -> List[RegRepo]:
+        """
+        Method for constructor taking care of loading repository configurations
+
+        :param config_dir: path to directory with repository configs, defaults to path './repo_configs' relative
+            to doglib.py location
+        :type config_dir: str
+        :return: List[RegRepo], list of RegRepo objects
+        """
+        reg_repos: List[RegRepo] = []
+        if not os.path.exists(config_dir):
+            raise FileNotFoundError(f"Config dir {config_dir} does not exist")
+
+        for config_file in os.listdir(config_dir):
+            if config_file.endswith(".json"):
+                reg_repos.append(cls.load_repo(repo_id=config_file, config_dir=config_dir))
+        return reg_repos
+
+    def _load_secrets(self, secrets: Optional[dict] = None):
+        """
+        Loads secrets from environment. Allows for passing explicit secrets that overwrite env vars.
+        """
+        _secrets = {}
+        if "EUROPEANA_WSKEY" in os.environ:
+            _secrets["EUROPEANA_WSKEY"] = os.environ.get("EUROPEANA_WSKEY")
+
+        if secrets is not None:
+            if "EUROPEANA_WSKEY" in secrets.keys():
+                _secrets["EUROPEANA_WSKEY"] = secrets["EUROPEANA_WSKEY"]
+
+        if "EUROPEANA_WSKEY" not in _secrets.keys():
+            warn_europeana()
+
+        return _secrets
+
+    def _match_sniffed(self, sniffed_repos: list, pid: PID) -> Optional[RegRepo]:
+        """
+        Matches PID with hosting repo. Method used by DOG._sniff()
+
+        :param sniffed_repos: list, registered repositories possibly hosting referenced PID metadata
+        :param pid: PID, class instance of PID protocol
+        :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
+        """
+        for matching_repo in sniffed_repos:
+            if len(sniffed_repos) > 1:
+                try:
+                    candidate = curl.get(matching_repo.get_request_url(pid, self.secrets), matching_repo.get_headers(pid), True)[0]
+                    url: PID = pid_factory(candidate)
+                    if url:
+                        if matching_repo.match_pid(url):
+                            return matching_repo
+                except curl.RequestError:
+                    continue
+            else:
+                return matching_repo
+        return None
+
+    def _sniff(self, pid: PID) -> Optional[RegRepo]:
+        """
+        Check if pid matches any registered repository
+
+        :param pid: PID, class instance of PID protocol
+        :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
+        """
+        sniffed_repos: list = []
+        for reg_repo in self.reg_repos:
+            if reg_repo.match_pid(pid):
+                sniffed_repos.append(reg_repo)
+        return self._match_sniffed(sniffed_repos, pid)
+
     def sniff(self, pid_string: str, format='dict') -> Union[dict, str]:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information
@@ -276,5 +271,3 @@ class DOG:
             return sniff_result.__dict__()
         elif format == 'jsons' or format == 'str':
             return json.dumps(sniff_result.__dict__())
-
-

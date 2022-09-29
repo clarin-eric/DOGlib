@@ -1,0 +1,203 @@
+
+<cmd:CMD xmlns:cmd="http://www.clarin.eu/cmd/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CMDVersion="1.1" xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1407745712035/xsd">
+  <cmd:Header xmlns:lat="http://lat.mpi.nl/">
+    <cmd:MdCreator>imdi2cmdi.xsl</cmd:MdCreator>
+    <cmd:MdCreationDate>2006-08-14</cmd:MdCreationDate>
+    <cmd:MdSelfLink lat:flatURI="lat:1839_00_0000_0000_0016_9C15_3">https://hdl.handle.net/1839/00-0000-0000-0016-9C15-3</cmd:MdSelfLink>
+    <cmd:MdProfile>clarin.eu:cr1:p_1407745712035</cmd:MdProfile>
+    <cmd:MdCollectionDisplayName>MPI corpora : Acquisition : L1 Acquisition : C. O Shannessy</cmd:MdCollectionDisplayName>
+  </cmd:Header>
+  <cmd:Resources xmlns:lat="http://lat.mpi.nl/">
+    <cmd:ResourceProxyList>
+      <cmd:ResourceProxy id="d1661494e359">
+        <cmd:ResourceType mimetype="audio/x-wav">Resource</cmd:ResourceType>
+        <cmd:ResourceRef lat:flatURI="lat:1839_00_0000_0000_0017_8DCD_D">https://hdl.handle.net/1839/00-0000-0000-0017-8DCD-D</cmd:ResourceRef>
+      </cmd:ResourceProxy>
+      <cmd:ResourceProxy id="home-1839_00_0000_0000_0016_9C15_3">
+        <cmd:ResourceType mimetype="text/html">LandingPage</cmd:ResourceType>
+        <cmd:ResourceRef>https://archive.mpi.nl/islandora/object/lat%3A1839_00_0000_0000_0016_9C15_3#</cmd:ResourceRef>
+      </cmd:ResourceProxy>
+    </cmd:ResourceProxyList>
+    <cmd:JournalFileProxyList></cmd:JournalFileProxyList>
+    <cmd:ResourceRelationList></cmd:ResourceRelationList>
+  </cmd:Resources>
+  <cmd:Components xmlns:lat="http://lat.mpi.nl/">
+    <cmd:lat-session>
+      <cmd:History>NAME:IMDI_1_9_TO_3_0 DATE:2006-08-14T16:10:55-02:00. NAME:imdi2cmdi.xslt DATE:2016-09-09T16:06:08.218+02:00.</cmd:History>
+      <cmd:Name>ERGstoryLC41_LC39</cmd:Name>
+      <cmd:Title>ERGstoryLC41_LC39</cmd:Title>
+      <cmd:Date>2010-01-31</cmd:Date>
+      <cmd:descriptions>
+        <cmd:Description xml:lang="eng">elicited production</cmd:Description>
+      </cmd:descriptions>
+      <cmd:Location>
+        <cmd:Continent>Australia</cmd:Continent>
+        <cmd:Country>Australia</cmd:Country>
+        <cmd:Region></cmd:Region>
+        <cmd:Address></cmd:Address>
+      </cmd:Location>
+      <cmd:Project>
+        <cmd:Name>Language contact and child bilingual acquisition</cmd:Name>
+        <cmd:Title></cmd:Title>
+        <cmd:Id></cmd:Id>
+        <cmd:Contact></cmd:Contact>
+        <cmd:descriptions>
+          <cmd:Description>Longitudinal and crossectional study of language contact and change. The study documents the emergence of a new mixed language, LightWarlpiri, and the forces that lead to its development.  Light Warlpiri is a systematic combination of elements from Warlpiri and Aboriginal English and Kriol.  The study examines variation in adult Warlpiri across age coherts; and similarities and differences between Warlpiri and Light Warlpiri in both adults and children. It also examines children&apos;s acquisition of comprehension and production in both Warlpiri and Light Warlpiri.</cmd:Description>
+        </cmd:descriptions>
+      </cmd:Project>
+      <cmd:Keys>
+        <cmd:Key Name="Community" Type="OpenVocabulary">Lajamanu Community</cmd:Key>
+      </cmd:Keys>
+      <cmd:Content>
+        <cmd:Genre>Discourse</cmd:Genre>
+        <cmd:SubGenre>Narrative</cmd:SubGenre>
+        <cmd:Task>erg stories</cmd:Task>
+        <cmd:Modalities>speech</cmd:Modalities>
+        <cmd:CommunicationContext>
+          <cmd:Interactivity>interactive</cmd:Interactivity>
+          <cmd:PlanningType>planned</cmd:PlanningType>
+          <cmd:Involvement>elicited</cmd:Involvement>
+          <cmd:SocialContext>Unspecified</cmd:SocialContext>
+          <cmd:EventStructure>Unspecified</cmd:EventStructure>
+          <cmd:Channel>Unspecified</cmd:Channel>
+        </cmd:CommunicationContext>
+        <cmd:Content_Languages>
+          <cmd:descriptions>
+            <cmd:Description>Light Warlpiri</cmd:Description>
+          </cmd:descriptions>
+          <cmd:Content_Language>
+            <cmd:Id>ISO639-3:wbp</cmd:Id>
+            <cmd:Name>Warlpiri</cmd:Name>
+            <cmd:Dominant>Unspecified</cmd:Dominant>     
+       <cmd:SourceLanguage>Unspecified</cmd:SourceLanguage>
+            <cmd:TargetLanguage>Unspecified</cmd:TargetLanguage>
+          </cmd:Content_Language>
+        </cmd:Content_Languages>
+        <cmd:descriptions>
+          <cmd:Description xml:lang="eng">stories to elicit overt transitive subject NPs</cmd:Description>
+          <cmd:Description>stories to elicit overt transitive subject NPs</cmd:Description>
+        </cmd:descriptions>
+      </cmd:Content>
+      <cmd:Actors>
+        <cmd:Actor>
+          <cmd:Role>Unspecified</cmd:Role>
+          <cmd:Name>C39</cmd:Name>
+          <cmd:FullName></cmd:FullName>
+          <cmd:Code></cmd:Code>
+          <cmd:FamilySocialRole>Unspecified</cmd:FamilySocialRole>
+          <cmd:EthnicGroup></cmd:EthnicGroup>
+          <cmd:BirthDate>1998-07-06</cmd:BirthDate>
+          <cmd:Sex>Unspecified</cmd:Sex>
+          <cmd:Education></cmd:Education>
+          <cmd:Anonymized>Unspecified</cmd:Anonymized>
+          <cmd:Age>
+            <cmd:EstimatedAge>Unspecified</cmd:EstimatedAge>
+          </cmd:Age>
+          <cmd:Contact></cmd:Contact>
+          <cmd:Actor_Languages>
+            <cmd:Actor_Language>
+              <cmd:Id>ISO639-3:wbp</cmd:Id>
+              <cmd:Name>Warlpiri</cmd:Name>
+              <cmd:MotherTongue>Unspecified</cmd:MotherTongue>
+              <cmd:PrimaryLanguage>Unspecified</cmd:PrimaryLanguage>
+            </cmd:Actor_Language>
+          </cmd:Actor_Languages>
+        </cmd:Actor>
+        <cmd:Actor>
+          <cmd:Role>Collector</cmd:Role>
+          <cmd:Name>Carmel O&apos;Shannessy</cmd:Name>
+          <cmd:FullName>Carmel O&apos;Shannessy</cmd:FullName>
+          <cmd:Code>Unspecified</cmd:Code>
+          <cmd:FamilySocialRole>Unspecified</cmd:FamilySocialRole>
+          <cmd:EthnicGroup></cmd:EthnicGroup>
+          <cmd:BirthDate>Unspecified</cmd:BirthDate>
+          <cmd:Sex>Unspecified</cmd:Sex>
+          <cmd:Education></cmd:Education>
+          <cmd:Anonymized>false</cmd:Anonymized>
+          <cmd:Age>
+            <cmd:EstimatedAge>Unspecified</cmd:EstimatedAge>
+          </cmd:Age>
+          <cmd:Contact>
+            <cmd:Name>corpus.manager_at_mpi.nl</cmd:Name>
+            <cmd:Address>corpus.manager_at_mpi.nl</cmd:Address>
+          </cmd:Contact>
+          <cmd:descriptions>
+            <cmd:Description>Description</cmd:Description>
+          </cmd:descriptions>
+          <cmd:Actor_Languages></cmd:Actor_Languages>
+        </cmd:Actor>
+        <cmd:Actor>
+          <cmd:Role>Annotator</cmd:Role>
+          <cmd:Name>Carmel O&apos;Shannessy</cmd:Name>
+          <cmd:FullName>Carmel O&apos;Shannessy</cmd:FullName>
+          <cmd:Code>Unspecified</cmd:Code>
+          <cmd:FamilySocialRole>Unspecified</cmd:FamilySocialRole>
+          <cmd:EthnicGroup>Unspecified</cmd:EthnicGroup>
+          <cmd:BirthDate>Unspecified</cmd:BirthDate>
+          <cmd:Sex>Unspecified</cmd:Sex>
+          <cmd:Education>Unspecified</cmd:Education>
+          <cmd:Anonymized>false</cmd:Anonymized>
+          <cmd:Age>
+            <cmd:EstimatedAge>Unspecified</cmd:EstimatedAge>
+          </cmd:Age>
+          <cmd:Contact></cmd:Contact>
+          <cmd:Actor_Languages></cmd:Actor_Languages>
+        </cmd:Actor>
+        <cmd:Actor>
+          <cmd:Role>Unspecified</cmd:Role>
+          <cmd:Name>C41</cmd:Name>
+          <cmd:FullName></cmd:FullName>
+          <cmd:Code></cmd:Code>
+          <cmd:FamilySocialRole></cmd:FamilySocialRole>
+          <cmd:EthnicGroup></cmd:EthnicGroup>
+          <cmd:BirthDate>2000-05-15</cmd:BirthDate>
+          <cmd:Sex>Unspecified</cmd:Sex>
+          <cmd:Education>Unspecified</cmd:Education>
+          <cmd:Anonymized>Unspecified</cmd:Anonymized>
+          <cmd:Age>
+            <cmd:EstimatedAge>Unspecified</cmd:EstimatedAge>
+          </cmd:Age>
+          <cmd:Contact></cmd:Contact>
+          <cmd:Actor_Languages></cmd:Actor_Languages>
+        </cmd:Actor>
+      </cmd:Actors>
+      <cmd:Resources>
+        <cmd:MediaFile ref="d1661494e359">
+          <cmd:Type>audio</cmd:Type>
+          <cmd:Format>audio/x-wav</cmd:Format>
+          <cmd:Size>240 MB</cmd:Size>
+          <cmd:Quality>Unspecified</cmd:Quality>
+          <cmd:RecordingConditions></cmd:RecordingConditions>
+          <cmd:TimePosition>
+            <cmd:Start>Unspecified</cmd:Start>
+            <cmd:End>Unspecified</cmd:End>
+          </cmd:TimePosition>
+          <cmd:Access> 
+           <cmd:Availability></cmd:Availability>
+            <cmd:Date>Unspecified</cmd:Date>
+            <cmd:Owner></cmd:Owner>
+            <cmd:Publisher></cmd:Publisher>
+            <cmd:Contact></cmd:Contact>
+          </cmd:Access>
+        </cmd:MediaFile>
+        <cmd:Source>
+          <cmd:Id>ACOCAUP31Jan1004</cmd:Id>
+          <cmd:Format>DV</cmd:Format>
+          <cmd:Quality>1</cmd:Quality>
+          <cmd:TimePosition>
+            <cmd:Start>00:00:00:00</cmd:Start>
+            <cmd:End>00:00:00:00</cmd:End>
+          </cmd:TimePosition>
+          <cmd:Access>
+            <cmd:Availability></cmd:Availability>
+            <cmd:Date>Unspecified</cmd:Date>
+            <cmd:Owner></cmd:Owner>
+            <cmd:Publisher></cmd:Publisher>
+            <cmd:Contact></cmd:Contact>
+          </cmd:Access>
+        </cmd:Source>
+      </cmd:Resources>
+      <cmd:References></cmd:References>
+    </cmd:lat-session>
+  </cmd:Components>
+</cmd:CMD>

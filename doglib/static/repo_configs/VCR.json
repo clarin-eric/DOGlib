@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "VCR",
     "name": "Virtual Collection Registry",
     "host_name": "clarin",
     "host_netloc": "https://collections.clarin.eu",

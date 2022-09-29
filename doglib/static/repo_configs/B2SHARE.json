@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "B2SHARE",
     "name": "B2SHARE",
     "host_name": "b2share",
     "host_netloc": "https://b2share.eudat.eu",

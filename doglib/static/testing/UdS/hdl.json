@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/ressources/olac2cmdi2html.xsl"?>
+<CMD CMDVersion="1.1" xmlns="http://www.clarin.eu/cmd/" xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcterms="http://purl.org/dc/terms/" xmlns:defns="http://www.openarchives.org/OAI/2.0/"
+  xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:olac="http://www.language-archives.org/OLAC/1.0/"
+  xmlns:olac11="http://www.language-archives.org/OLAC/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614026/xsd">
+  <Header>
+    <MdCreator>olac2cmdi.xsl</MdCreator>
+    <MdCreationDate>2014-05-09</MdCreationDate>
+    <MdSelfLink>hdl:11858/00-246C-0000-0023-8CD6-3</MdSelfLink>
+    <MdProfile>clarin.eu:cr1:p_1288172614026</MdProfile>
+    <MdCollectionDisplayName>Universität des Saarlandes CLARIN-D-Zentrum, Saarbrücken</MdCollectionDisplayName>
+  </Header>
+  <Resources>
+    <ResourceProxyList>
+      <ResourceProxy id="clarind-uds-poldilemma-105794-d66e28">
+        <ResourceType>LandingPage</ResourceType>
+        <ResourceRef>hdl:11858/00-246C-0000-0023-8C44-B</ResourceRef>
+      </ResourceProxy>
+    </ResourceProxyList>
+    <JournalFileProxyList/>
+    <ResourceRelationList/>
+    <IsPartOfList>
+      <IsPartOf>hdl:11858/00-246C-0000-0023-8C45-9</IsPartOf>
+    </IsPartOfList>
+  </Resources>
+  <Components>
+    <OLAC-DcmiTerms>
+      <coverage>1601/1700</coverage>
+      <creator>Piekarski, Adam (15..-1625)</creator>
+      <date>1623</date>
+      <description xml:lang="pl">Lubomirska, Anna ( -1639). Adr. ded.</description>
+      <format>application/xml</format>
+      <identifier>clarind-uds:poldilemma-105794</identifier>
+      <identifier>hdl:11858/00-246C-0000-0023-8CD6-3</identifier>
+      <language olac-language="pol">pol</language>
+      <publisher>Drukarnia Andrzeja Piotrkowczyka</publisher>
+      <relation>http://jbc.bj.uj.edu.pl/Content/105794</relation>
+      <relation>oai:jbc.bj.uj.edu.pl:publication:113146</relation>
+      <rights>https://creativecommons.org/licenses/by-nc-sa/4.0/</rights>
+      <rights>CC-BY-NC-SA-4.0</rights>
+      <source>Biblioteka Jagiellońska, BJ St. Dr. 53545 I</source>
+      <subject xml:lang="pl">starodruki 17 w.</subject>
+      <title xml:lang="pl">Smętny Wyiazd Z Połonnego Jaśnie Wielmożney Iey Mści Paniey Zofiey Z Ostroga Lvbomierzkiey; Podczaszyney Koronney, Sędomierskiey, Spiskiey [...] Starośćiney : Ktorą Ludzi zacnych wielki Orszak dnia 16. Stycznia z Ukrainy wyiachawszy aż do Wiśnicza nie bez serdecznego żalu prowadził</title>
+      <type>starodruk</type>
+    </OLAC-DcmiTerms>
+  </Components>
+</CMD>
+<?xml-stylesheet type="text/xsl" href="/ressources/olac2cmdi2html.xsl"?>

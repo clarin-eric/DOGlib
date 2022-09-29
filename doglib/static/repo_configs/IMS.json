@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "IMS",
     "name": "Institut für Maschinelle Sprachverarbeitung",
     "host_name": "Institut für Maschinelle Sprachverarbeitung",
     "host_netloc": "http://clarin04.ims.uni-stuttgart.de",

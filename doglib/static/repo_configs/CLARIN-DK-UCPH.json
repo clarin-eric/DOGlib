@@ -1,5 +1,6 @@
 {
   "repository": {
+    "id": "CLARIN-DK-UCPH",
     "name": "The CLARIN Centre at the University of Copenhagen",
     "host_name": "The CLARIN Centre at the University of Copenhagen",
     "host_netloc": "https://repository.clarin.dk",
