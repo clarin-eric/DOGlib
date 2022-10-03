@@ -9,7 +9,10 @@ class TestRegisteredRepositoriesStatic(TestDOG):
     def setUp(self) -> None:
         super(TestRegisteredRepositoriesStatic, self).setUp()
         self.repos_map: dict = {repo.id: repo for repo in self.repos}
+        # Loads static responses
         self.static_responses: dict = self._load_static_responses()
+        # Loads PIDs to the resources
+        self.repos_testcases: dict = {repo: repo.get_test_examples() for repo in self.repos}
 
     def _load_static_response(self, repo_id, static_dir):
         """
@@ -63,7 +66,6 @@ class TestRegisteredRepositoriesStatic(TestDOG):
         """
         Test sniff() over all registered repositories
         """
-        self.repos_testcases: dict = {repo: repo.get_test_examples() for repo in self.repos}
         sniff_results: dict = self._map_func_over_testcases(self.dog.sniff, self.repos_testcases)
         failures: dict = self._find_failures(sniff_results, [bool])
         self.assertFalse(failures)

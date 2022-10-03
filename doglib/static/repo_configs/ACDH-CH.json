@@ -6,18 +6,17 @@
     "host_netloc": "https://arche.acdh.oeaw.ac.at",
 
     "url": {"format":  "$url"},
-    "api": {"base": "https://metashare.ut.ee/oai_pmh/?verb=GetRecord&metadataPrefix=cmdi&identifier=$record_id"},
+    "api": {"base": "https://arche.acdh.oeaw.ac.at/oai?verb=GetRecord&metadataPrefix=cmdi&identifier=https://hdl.handle.net/$record_id"},
     "hdl": {"format": "$api",
             "id": "21.11115",
-            "regex": ".*"},
-    "type": "cmdi",
+            "regex": "(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\\w.]+)/(?P<record_id>[\\w\\-.]+)(?:@format=cmdi+)?$"},
+
     "parser": {
-      "nsmap": {
-        "cmd": "http://www.clarin.eu/cmd/",
-        "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1403526079380"
-      },
-      "type": "",
+      "type": "xml",
       "config": {
+        "nsmap": {
+        "cmd": "http://www.clarin.eu/cmd/",
+        "cmdp": "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1403526079380"},
         "reverse_pid": "//cmd:MdSelfLink",
         "description": "",
         "collection_title": "//cmd:MdCollectionDisplayName",
@@ -29,7 +28,7 @@
     },
     "test_examples": {
       "url": "",
-      "hdl": ""}
+      "hdl": "https://hdl.handle.net/21.11115/0000-000E-7538-0"}
   }
 }
 
