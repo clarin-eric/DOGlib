@@ -6,7 +6,7 @@
     "host_netloc": "https://arche.acdh.oeaw.ac.at",
 
     "url": {"format":  "$url"},
-    "api": {"base": "https://arche.acdh.oeaw.ac.at/oai?verb=GetRecord&metadataPrefix=cmdi&identifier=https://hdl.handle.net/$record_id"},
+    "api": {"base": "https://arche.acdh.oeaw.ac.at/oai?verb=GetRecord&metadataPrefix=cmdi&identifier=https://hdl.handle.net/21.11115/$record_id"},
     "hdl": {"format": "$api",
             "id": "21.11115",
             "regex": "(?:http://|https://)?(?:hdl.handle.net/)?(?:hdl:)?(?P<repo_id>[\\w.]+)/(?P<record_id>[\\w\\-.]+)(?:@format=cmdi+)?$"},
