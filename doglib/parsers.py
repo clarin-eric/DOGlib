@@ -277,9 +277,9 @@ class XMLParser:
             if self.resource_format:
                 fetched_resources[resource_type] = [self.resource_format.replace('$resource', resource)
                                                     for resource in fetched_resources[resource_type]]
-
-        return [{"resource_type": resource_type, "pid": resource_pid}
-                for resource_type, resource_pid in fetched_resources.items() if resource_pid]
+        return [{"resource_type": resource_type, "pid": [resource_pid if isinstance(resource_pid, str) else
+                                                         resource_pid.text for resource_pid in resource_pids]}
+                for resource_type, resource_pids in fetched_resources.items() if resource_pids]
 
     def _parse_reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -307,8 +307,11 @@ class XMLParser:
     def _parse_field(self, xml_tree: ElementTree, field_path: str, nsmap: dict, join_by: str = ', ') -> str:
         if field_path != '':
             found_element_values = xml_tree.xpath(field_path, namespaces=nsmap)
-            return join_by.join([str(found_element_value.text) if type(found_element_value) == Element else
-                                 str(found_element_value)
+            for found_element_value in found_element_values:
+                if found_element_value is not None:
+                    print(found_element_value)
+            return join_by.join([str(found_element_value) if isinstance(found_element_value, str) else
+                                 str(found_element_value.text)
                                  for found_element_value in found_element_values if found_element_value is not None])
 
     def _parse_nested_namespaces(self, response_text: str) -> dict:
