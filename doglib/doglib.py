@@ -7,6 +7,7 @@ from .repos import JSONParser, XMLParser
 from .pid import pid_factory, PID
 from .repos import RegRepo, warn_europeana
 
+
 REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/repo_configs")
 SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
 STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
@@ -42,7 +43,7 @@ class DOG:
             parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
             return parser.fetch(response)
 
-    def fetch(self, pid_string: str, format='dict') -> Union[dict, str]:
+    def fetch(self, pid_string: Union[str, PID], format='dict') -> Union[dict, str]:
         """
         Method for fetch call, tries to match pid with registered repositories and returns dict with collection's
             license and description, and links to referenced resources within the collection, if pid does not match
@@ -77,7 +78,7 @@ class DOG:
         elif format == 'jsons' or format == 'str':
             return json.dumps(fetch_result)
 
-    def identify(self, pid_string: str) -> dict:
+    def identify(self, pid_string: Union[str, PID]) -> dict:
         """
         Identifies collection with its title and description, functionality requested for Virtual Content Registry
 
@@ -103,7 +104,7 @@ class DOG:
                 parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
                 return parser.identify(response)
 
-    def is_collection(self, pid_string: str) -> bool:
+    def is_collection(self, pid_string: Union[str, PID]) -> bool:
         """
         Method wrap over _sniff() for recognition whether provided PID is a collection hosted by registered repository
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
@@ -119,7 +120,7 @@ class DOG:
         else:
             return False
 
-    def is_downloadable(self, pid_string: str, matching_repo: RegRepo = None) -> bool:
+    def is_downloadable(self, pid_string: Union[str, PID], matching_repo: RegRepo = None) -> bool:
         """
         Method checks if reference link is downloadable by investigating Content-Disposition header of the response
 
@@ -144,7 +145,7 @@ class DOG:
         matching_repo = self._sniff(pid)
         return matching_repo
 
-    def is_host_registered(self, pid_string: str) -> bool:
+    def is_host_registered(self, pid_string: Union[str, PID]) -> bool:
         """
         Method for recognition whether provided PID reference is hosted by registered repository
 
@@ -242,7 +243,7 @@ class DOG:
                 sniffed_repos.append(reg_repo)
         return self._match_sniffed(sniffed_repos, pid)
 
-    def sniff(self, pid_string: str, format='dict') -> Union[dict, str]:
+    def sniff(self, pid_string: Union[str, PID], format='dict') -> Union[dict, str]:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information
         about repository, if pid is not matched returns empty dict. If there are multiple repositories using the same
