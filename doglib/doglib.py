@@ -97,7 +97,6 @@ class DOG:
             if not matching_repo:
                 return {}
             elif matching_repo is not None:
-                print(matching_repo)
                 request_url: str = matching_repo.get_request_url(pid, self.secrets)
                 headers: dict = matching_repo.get_headers(pid)
                 final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
