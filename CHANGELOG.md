@@ -1,5 +1,12 @@
 # Changelog
 
+
+## [1.0.2] - 
+
+### Changed features
+- Allow PID instance as argument to sniff fetch and identify and pid_factory
+- CI migrated from Travis to GitActions
+
 ## [1.0.1] - 3.10.2022
 
 ### Changed features
