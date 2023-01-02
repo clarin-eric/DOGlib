@@ -307,9 +307,6 @@ class XMLParser:
     def _parse_field(self, xml_tree: ElementTree, field_path: str, nsmap: dict, join_by: str = ', ') -> str:
         if field_path != '':
             found_element_values = xml_tree.xpath(field_path, namespaces=nsmap)
-            for found_element_value in found_element_values:
-                if found_element_value is not None:
-                    print(found_element_value)
             return join_by.join([str(found_element_value) if isinstance(found_element_value, str) else
                                  str(found_element_value.text)
                                  for found_element_value in found_element_values if found_element_value is not None])
