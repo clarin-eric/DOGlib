@@ -272,3 +272,10 @@ class DOG:
             return sniff_result.__dict__()
         elif format == 'jsons' or format == 'str':
             return json.dumps(sniff_result.__dict__())
+
+    def is_pid(self, pid_string: Union[str, PID]) -> bool:
+        """
+        Checks whether provided string is PID acceptable by DOG. For PID instance always returns True.
+        """
+        pid = pid_factory(pid_string)
+        return True if pid is not None else False

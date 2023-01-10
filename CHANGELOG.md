@@ -6,6 +6,7 @@
 ### Changed features
 - Allow PID instance as argument to sniff fetch and identify and pid_factory
 - CI migrated from Travis to GitActions
+- added is_pid(Union[str, PID]) -> bool to core functionalities
 
 ## [1.0.1] - 3.10.2022
 

@@ -1,7 +1,7 @@
 [project]
 name = "doglib"
 description = "Digital Object Gate Python library"
-version = "1.0.2-dev0"
+version = "1.0.2-dev1"
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
 ]
