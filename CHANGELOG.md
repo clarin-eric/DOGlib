@@ -1,12 +1,13 @@
 # Changelog
 
 
-## [1.0.2] - 
+## [1.0.2] - 23.01.2023
 
 ### Changed features
 - Allow PID instance as argument to sniff fetch and identify and pid_factory
 - CI migrated from Travis to GitActions
 - added is_pid(Union[str, PID]) -> bool to core functionalities
+- remove EKUT from testing due to Forbidden access to the repository for over a month
 
 ## [1.0.1] - 3.10.2022
 
