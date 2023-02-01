@@ -8,7 +8,7 @@ authors = [
 dependencies = [
     "certifi",
     "lxml>=4.6",
-    "pycurl>7.x.x"
+    "pycurl>=7.43.0"
 ]
 
 [tool.setuptools]
