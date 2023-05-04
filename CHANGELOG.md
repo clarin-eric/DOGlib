@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.3] - 4.05.2023
+
+### Changed features
+- Added ```resolve_identifier_conflicts``` bool flag for clashing repo identifiers resolution
 
 ## [1.0.2] - 23.01.2023
 
