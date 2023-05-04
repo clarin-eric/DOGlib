@@ -229,20 +229,27 @@ class DOG:
                 return matching_repo
         return None
 
-    def _sniff(self, pid: PID) -> Optional[RegRepo]:
+    def _sniff(self, pid: PID, resolve_identifier_conflicts: bool = True) -> Union[Optional[RegRepo], Optional[List[RegRepo]]]:
         """
         Check if pid matches any registered repository
 
         :param pid: PID, class instance of PID protocol
+        :param resolve_identifier_conflicts: bool, in case of repository identifier clash (e.g. German repositories),
+            if True resolve headers and return repo matching, otherwise return list of registered repositories
+            with matching identifier
         :return: Optional[RegRepo, None], returns matching RegRepo if found, None otherwise
         """
         sniffed_repos: list = []
         for reg_repo in self.reg_repos:
             if reg_repo.match_pid(pid):
                 sniffed_repos.append(reg_repo)
-        return self._match_sniffed(sniffed_repos, pid)
+        if resolve_identifier_conflicts:
+            ret = self._match_sniffed(sniffed_repos, pid)
+        else:
+            ret = sniffed_repos
+        return ret
 
-    def sniff(self, pid_string: Union[str, PID], format='dict') -> Union[dict, str]:
+    def sniff(self, pid_string: Union[str, PID], format='dict', resolve_identifier_conflicts: bool = True) -> Union[dict, str, List[str]]:
         """
         Method for sniff call, tries to match pid with registered repositories and returns dict with information
         about repository, if pid is not matched returns empty dict. If there are multiple repositories using the same
@@ -250,6 +257,9 @@ class DOG:
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
         :param format: str={'dict', 'jsons'}, format of output, 'dict' by default
+        :param resolve_identifier_conflicts: bool, in case of repository identifier clash (e.g. German repositories),
+            if True resolve headers and return repo matching, otherwise return list of registered repositories
+            with matching identifier
         :return: str, repository description of matching registered repository, '' if pid not matched
         """
         accepted_formats: set = {'dict', 'jsons', 'str'}
@@ -262,15 +272,20 @@ class DOG:
                 return {}
             elif format == 'jsons' or format == 'str':
                 return ""
-        sniff_result: RegRepo = self._sniff(pid)
+        sniff_result: Union[RegRepo, List[RegRepo]] = self._sniff(
+            pid, resolve_identifier_conflicts=resolve_identifier_conflicts)
         if not sniff_result:
             if format == 'dict':
                 return {}
             elif format == 'jsons' or format == 'str':
                 return ''
         if format == 'dict':
+            if isinstance(sniff_result, List):
+                return [sniff_r.__dict__() for sniff_r in sniff_result]
             return sniff_result.__dict__()
         elif format == 'jsons' or format == 'str':
+            if isinstance(sniff_result, List):
+                return [json.dumps(sniff_r.__dict__()) for sniff_r in sniff_result]
             return json.dumps(sniff_result.__dict__())
 
     def is_pid(self, pid_string: Union[str, PID]) -> bool:
