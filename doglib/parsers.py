@@ -277,8 +277,8 @@ class XMLParser:
             if self.resource_format:
                 fetched_resources[resource_type] = [self.resource_format.replace('$resource', resource)
                                                     for resource in fetched_resources[resource_type]]
-        return [{"resource_type": resource_type, "pid": [resource_pid if isinstance(resource_pid, str) else
-                                                         resource_pid.text for resource_pid in resource_pids]}
+        return [{"resource_type": resource_type, "pid": list([resource_pid if isinstance(resource_pid, str) else
+                                                              resource_pid.text for resource_pid in resource_pids])}
                 for resource_type, resource_pids in fetched_resources.items() if resource_pids]
 
     def _parse_reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
