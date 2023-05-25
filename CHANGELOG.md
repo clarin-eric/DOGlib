@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] - TBD
+
+### Changed features
+- Standarise on Poetry backend build, setuptools is legacy
+- Fetch now always returns List instance not comprehension (DOGapp issue with context type filtering in Django templates)
+
 ## [1.0.3] - 4.05.2023
 
 ### Changed features
