@@ -8,6 +8,8 @@ class PID(Protocol):
     """
     Abstract interface (a protocol) for PID instances
     """
+    def __str__(self):
+        ...
 
     def get_record_id(self) -> str:
         ...

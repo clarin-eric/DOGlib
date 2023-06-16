@@ -113,9 +113,10 @@ class DOG:
         pid: PID = pid_factory(pid_string)
         matching_repo = self._is_host_registered(pid)
         if matching_repo:
-            if not self.is_downloadable(pid_string):
-                if pid:
-                    ret = bool(self._fetch(pid))
+            if not self.is_downloadable(str(pid)):
+                ret = bool(self._fetch(pid))
+            else:
+                ret = False
         else:
             ret = False
         return ret
