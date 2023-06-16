@@ -85,8 +85,9 @@ class DOG:
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
         :return: dict, return identification result in a format:
                 {
-                    "title": str,
-                    "description": str
+                    "item_title": str,
+                    "description": str,
+                    "reverse_pid": str
                 }
         """
         pid: PID = pid_factory(pid_string)
