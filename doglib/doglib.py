@@ -109,15 +109,16 @@ class DOG:
         :param pid_string: str, persistent identifier in a format of URL, DOI or HDL
         :return: bool, True if PID belongs to registered repository, False otherwise
         """
+        ret: bool
         pid: PID = pid_factory(pid_string)
         matching_repo = self._is_host_registered(pid)
         if matching_repo:
             if not self.is_downloadable(pid_string):
                 if pid:
-                    return bool(self._fetch(pid))
-
+                    ret = bool(self._fetch(pid))
         else:
-            return False
+            ret = False
+        return ret
 
     def is_downloadable(self, pid_string: Union[str, PID], matching_repo: RegRepo = None) -> bool:
         """
