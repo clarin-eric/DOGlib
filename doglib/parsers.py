@@ -201,7 +201,7 @@ class XMLParser:
 
         # In case no accepted resource type is provided make sure to not leave the list empty, so the body of main
         # for loop in self._fetch_resources can be executed anyway
-        self.accept_resource_type: list = ['LandingPage', 'Resource']
+        self.accept_resource_type: list = ['LandingPage', 'Resource', 'Metadata', 'SearchPage', 'SearchService']
         if 'resource_type' in parser_config.keys():
             self.accept_resource_type = parser_config['accept_resource_type']
         self.item_title_path: str = ''
