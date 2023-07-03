@@ -46,7 +46,7 @@ class JSONParser:
         _license: str = self._parse_license(response)
         item_title: str = self._parse_item_title(response)
 
-        return {"ref_files": ref_files,
+        return {"ref_files": {'resource_type': 'unknown', 'pid': ref_files},
                 "description": descriptions,
                 "title": item_title,
                 "license": _license}
@@ -94,7 +94,8 @@ class JSONParser:
                 pid: str = str(pid)
             except ValueError:
                 pid: AnyStr = _pid
-            ret.append({"pid": pid})
+            #TODO add item title parsing for JSON parser
+            ret.append(pid)
         return ret
 
     def _parse_description(self, response: dict) -> str:
@@ -344,7 +345,7 @@ class CMDIParser(XMLParser):
         if 'resource_type' in parser_config.keys():
             self.accept_resource_type = parser_config["accept_resource_type"]
         else:
-            self.accept_resource_type = ["Resource", "LandingPage", "Metadata"]
+            self.accept_resource_type = ['LandingPage', 'Resource', 'Metadata', 'SearchPage', 'SearchService']
         if "pid" in parser_config["ref_file"].keys():
             self.pid_path = parser_config["ref_file"]["pid"]
         else:
