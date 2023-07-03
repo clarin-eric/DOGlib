@@ -6,6 +6,7 @@
 - Standarise on Poetry backend build, setuptools is legacy
 - Fetch now always returns List instance not comprehension (DOGapp issue with context type filtering in Django templates)
 - Minor changes and improvements
+- Fixed inconsistent output format for cases where no resource type is linked
 
 
 ## [1.0.3] - 4.05.2023

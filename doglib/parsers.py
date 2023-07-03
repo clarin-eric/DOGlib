@@ -46,7 +46,7 @@ class JSONParser:
         _license: str = self._parse_license(response)
         item_title: str = self._parse_item_title(response)
 
-        return {"ref_files": {'resource_type': 'unknown', 'pid': ref_files},
+        return {"ref_files": [{'resource_type': 'unknown', 'pid': ref_files}],
                 "description": descriptions,
                 "title": item_title,
                 "license": _license}
