@@ -14,7 +14,11 @@ class RequestError(CurlError):
     pass
 
 
-def get(url: Union[str, PID], headers: dict = None, follow_redirects: bool = False, verbose: int = 0, SSL_validation: bool = False) -> Tuple[str, str, str]:
+def get(url: Union[str, PID],
+        headers: dict = None,
+        follow_redirects: bool = False,
+        verbose: int = 0,
+        ssl_validation: bool = False) -> Tuple[str, str, str]:
     """
     Performs http GET request using PyCurl
     :param url: Union[str, PID], request url
@@ -23,6 +27,7 @@ def get(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fal
     :param verbose: int,
         0: no std output other than exceptions
         1: PyCurl verbose
+    :param ssl_validation: bool
     :return: Tuple[str, str, str],
         0: effective url request (final redirection landing url)
         1: response body
@@ -36,7 +41,7 @@ def get(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fal
     c.setopt(c.URL, url)
     if headers:
         c.setopt(c.HTTPHEADER, [k + ': ' + v for k, v in list(headers.items())])
-    if SSL_validation:
+    if ssl_validation:
         c.setopt(pycurl.SSL_VERIFYPEER, 1)
         c.setopt(pycurl.SSL_VERIFYHOST, 2)
     else:

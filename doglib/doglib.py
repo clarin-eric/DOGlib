@@ -3,8 +3,9 @@ import os
 from typing import List, Union, Optional
 
 from . import curl
-from .repos import JSONParser, XMLParser
+from .dtr import expand_type
 from .pid import pid_factory, PID
+from .repos import JSONParser, XMLParser
 from .repos import RegRepo, warn_europeana
 
 
@@ -14,9 +15,10 @@ STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file
 
 
 class DOG:
-    def __init__(self, secrets: Optional[dict] = None):
+    def __init__(self, secrets: Optional[dict] = None, dtr: bool = True):
         self.secrets: dict = self._load_secrets(secrets)
         self.reg_repos: List[RegRepo] = self.load_repos()
+        self.dtr: bool = dtr
 
     def _fetch(self, pid: PID) -> dict:
         """
@@ -73,6 +75,10 @@ class DOG:
             elif format == 'jsons' or format == 'str':
                 return ""
         fetch_result: dict = self._fetch(pid)
+        if self.dtr:
+            for entry in fetch_result['ref_files']:
+                for resource in entry['ref_resources']:
+                    resource['data_type_taxonomy'] = expand_type(resource['data_type'])
         if format == 'dict':
             return fetch_result
         elif format == 'jsons' or format == 'str':

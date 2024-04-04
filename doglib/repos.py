@@ -27,7 +27,7 @@ class RegRepo(object):
     """
     Class wrapping registered repository configuration, all objects of this class are loaded on the DOGlib object init
     """
-    def __init__(self, config_dict: dict):
+    def __init__(self, config_dict: dict, dtr: bool = True):
         """
 
         :param config_dict: dict, JSON dict with repository configuration
@@ -35,6 +35,7 @@ class RegRepo(object):
         self.id: str = ''
         self.api: dict = {}
         self.doi: dict = {}
+        self.dtr: bool = dtr
         self.hdl: dict = {}
         self.url: dict = {}
         self.host_name: str = ''

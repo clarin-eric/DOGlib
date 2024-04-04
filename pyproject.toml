@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "doglib"
 description = "Digital Object Gate Python library"
-version = "1.0.4"
+version = "1.1.0"
 authors = [
     "Michał Gawor <m.j.gawor@uu.nl>"
 ]
@@ -9,6 +9,12 @@ authors = [
 packages = [
     { include = "doglib" }
 ]
+
+[tool.poetry.urls]
+changelog = "https://github.com/clarin-eric/DOGlib/blob/master/CHANGELOG.md"
+documentation = "https://github.com/clarin-eric/DOGlib/blob/master/README.md"
+homepage = ""
+repository = "https://github.com/clarin-eric/DOGlib"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -18,6 +24,4 @@ build-backend = "poetry.core.masonry.api"
 certifi = "*"
 lxml = ">=4.6"
 pycurl = ">=7.43.0"
-
-
 

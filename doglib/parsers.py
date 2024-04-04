@@ -209,19 +209,29 @@ class XMLParser:
         if 'collection_title' in parser_config.keys():
             self.item_title_path = parser_config['collection_title']
         self.reverse_pid_path: str = parser_config['reverse_pid']
-        self.resource_path: str = parser_config['ref_file']['path']
+        if "path" in parser_config["ref_file"].keys():
+            self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
         self.license_path: str = parser_config['license']
         self.resource_format: str = ''
         if 'resource_format' in parser_config['ref_file'].keys():
             self.resource_format = parser_config['ref_file']['resource_format']
 
+        if "ref_file" in parser_config.keys():
+            if "resource_root_path" in parser_config["ref_file"].keys():
+                self.resource_root_path: str = parser_config["ref_file"]["resource_root_path"]
+            if "resource_path" in parser_config["ref_file"].keys():
+                self.resource_type_path: str = parser_config["ref_file"]["resource_path"]
+            if "resource_type_path" in parser_config["ref_file"].keys():
+                self.resource_path: str = parser_config["ref_file"]["resource_type_path"]
+            if "data_type_path" in parser_config["ref_file"].keys():
+                self.data_type_path: str = parser_config["ref_file"]["data_type_path"]
+
     def fetch(self, response: str) -> dict:
         """
         Method wrapping fetch logic
 
         :param response: Response, response from repository
-        :param reg_repo: RegRepo, object of Registered Repository for providing necessary repo-specific behaviour
         :return: dict, return fetch reimport ossult in a format:
             {
                 "ref_files": [{"filename": str, "pid": str}],
@@ -242,6 +252,13 @@ class XMLParser:
     def identify(self, response) -> dict:
         """
         Retrieves title and description
+
+        :param response: Response, response from repository
+            {
+                "ref_files": [{"filename": str, "pid": str}],
+                "description": str,
+                "license: str
+            }
         """
         xml_tree: ElementTree = fromstring(response.encode('utf-8'))
 
@@ -257,17 +274,19 @@ class XMLParser:
         """
         Retrieves reverse pid pointing to the collection specified in metadata
         """
-        return self._parse_field(xml_tree, field_path=self.reverse_pid_path, nsmap=nsmap)
+        return self._parse_field(xml_tree, nsmap=nsmap)
+
 
     def _parse_item_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves collection title according to xPath location specified in config
         """
-        return self._parse_field(xml_tree, field_path=self.item_title_path, nsmap=nsmap)
+        return self._parse_reverse_pid(xml_tree, nsmap=nsmap)
 
     def _parse_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
         Find all direct references/download links to referenced resources and if possible their filenames/labels
+
         :param xml_tree: ElementTree, lxml tree object from HTML XML response
         :param nsmap: dict, map of namespace tags to namespace URIs
         :return: list, list of dictionaries [{"filename": str, "pid": str}]
@@ -278,20 +297,26 @@ class XMLParser:
             if self.resource_format:
                 fetched_resources[resource_type] = [self.resource_format.replace('$resource', resource)
                                                     for resource in fetched_resources[resource_type]]
-        return [{"resource_type": resource_type, "pid": list([resource_pid if isinstance(resource_pid, str) else
-                                                              resource_pid.text for resource_pid in resource_pids])}
+        return [{"resource_type": resource_type, "pid": [resource_pid if isinstance(resource_pid, str) else
+                                                         resource_pid.text for resource_pid in resource_pids]}
                 for resource_type, resource_pids in fetched_resources.items() if resource_pids]
 
     def _parse_reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves reverse pid according to xPath location specified in config
+
+        :param xml_tree: ElementTree, lxml tree object from HTML XML response
+        :param nsmap: dict, map of namespace tags to namespace URIs
+        :return: str, reverse PID pointing to the metadata
         """
         return self._parse_field(xml_tree, field_path=self.reverse_pid_path, nsmap=nsmap)
 
     def _parse_license(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Find collection license if path provided
-        :param response: dict, JSON response from repository
+
+        :param xml_tree: ElementTree, lxml tree object from HTML XML response
+        :param nsmap: dict, map of namespace tags to namespace URIs
         :return: str, license
         """
         return self._parse_field(xml_tree, field_path=self.license_path, nsmap=nsmap)
@@ -299,6 +324,7 @@ class XMLParser:
     def _parse_description(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Find collection description if path provided
+
         :param response: dict, JSON response from repository
         :return: str, description text, if description spread into multiple tags (e.g. Trolling)
         join all collection descriptions
@@ -313,8 +339,9 @@ class XMLParser:
                                  for found_element_value in found_element_values if found_element_value is not None])
 
     def _parse_nested_namespaces(self, response_text: str) -> dict:
-        """ else found_element_value
+        """
         Utility method for finding not-default
+
         :param response_text:
         :return:
         """
@@ -340,13 +367,71 @@ class XMLParser:
 
 
 class CMDIParser(XMLParser):
+    """
+    CMDI metadata parser
+    """
     def __init__(self, parser_config: dict):
+        """
+
+        :param parser_config: dict, parser configuration retrieved from repository JSON config
+        """
         super().__init__(parser_config)
+        self.accept_resource_type: set = {'LandingPage', 'Resource', 'Metadata', 'SearchPage', 'SearchService'}
+
         if 'resource_type' in parser_config.keys():
-            self.accept_resource_type = parser_config["accept_resource_type"]
-        else:
-            self.accept_resource_type = ['LandingPage', 'Resource', 'Metadata', 'SearchPage', 'SearchService']
-        if "pid" in parser_config["ref_file"].keys():
-            self.pid_path = parser_config["ref_file"]["pid"]
-        else:
-            self.pid_path: str = ".//ResourceProxy[ResourceType='$resource_type']/ResourceRef"
+            self.accept_resource_type: set = parser_config["accept_resource_type"]
+
+        self.resource_root_path: str = ".//cmd:ResourceProxy[cmd:ResourceType='$resource_type']"
+        self.resource_path: str = "./cmd:ResourceRef/text()"
+        self.resource_type_path: str = "./cmd:ResourceType/text()"
+        self.data_type_path: str = "./cmd:ResourceType/@mimetype"
+
+        if "ref_file" in parser_config.keys():
+            if "resource_root_path" in parser_config["ref_file"].keys():
+                self.resource_root_path: str = parser_config["ref_file"]["resource_root_path"]
+            if "resource_path" in parser_config["ref_file"].keys():
+                self.resource_path: str = parser_config["ref_file"]["resource_path"]
+            if "resource_type_path" in parser_config["ref_file"].keys():
+                self.resource_type_path: str = parser_config["ref_file"]["resource_type_path"]
+            if "data_type_path" in parser_config["ref_file"].keys():
+                self.data_type_path: str = parser_config["ref_file"]["data_type_path"]
+
+    def _parse_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
+        """
+        Find all direct references/download links to referenced resources and if possible their filenames/labels
+
+        :param xml_tree: ElementTree, lxml tree object from HTML XML response
+        :param nsmap: dict, map of namespace tags to namespace URIs
+        :return: list, list of dictionaries [{"filename": str, "pid": str}]
+        """
+        fetched_resources: dict = {}
+
+        for resource_type in self.accept_resource_type:
+            fetched_resources[resource_type] = []
+            # Standard CMDI
+            resource_nodes = xml_tree.xpath(
+                self.resource_root_path.replace("$resource_type", resource_type),
+                namespaces=nsmap)
+
+            for resource_node in resource_nodes:
+                resource = resource_node.xpath(self.resource_path, namespaces=nsmap)[0]
+
+                data_type = resource_node.xpath(self.data_type_path, namespaces=nsmap)
+                # datatype may be empty, xpath returns a list, get string or cast to empty string
+                if not data_type:
+                    data_type = ""
+                else:
+                    data_type = data_type[0]
+
+                fetched_resources[resource_type].append((resource, data_type))
+
+            if self.resource_format:
+                fetched_resources[resource_type] = [(self.resource_format.replace('$resource', resource), data_type)
+                                                    for resource, data_type in fetched_resources[resource_type]]
+
+        return [{"resource_type": resource_type,
+                 "ref_resources": [{"pid": resource_pid, "data_type": resource_data_type}
+                                   if isinstance(resource_pid, str) else
+                                   {"pid": resource_pid.text, "data_type": resource_data_type}
+                                   for resource_pid, resource_data_type in ref_resources]}
+                for resource_type, ref_resources in fetched_resources.items()]
