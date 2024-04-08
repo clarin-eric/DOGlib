@@ -3,7 +3,7 @@ import os
 from typing import List, Union, Optional
 
 from . import curl
-from .dtr import expand_type
+from .dtr import expand_datatype
 from .pid import pid_factory, PID
 from .repos import JSONParser, XMLParser
 from .repos import RegRepo, warn_europeana
@@ -78,7 +78,7 @@ class DOG:
         if self.dtr:
             for entry in fetch_result['ref_files']:
                 for resource in entry['ref_resources']:
-                    resource['data_type_taxonomy'] = expand_type(resource['data_type'])
+                    resource['data_type_taxonomy'] = expand_datatype(resource['data_type'])
         if format == 'dict':
             return fetch_result
         elif format == 'jsons' or format == 'str':

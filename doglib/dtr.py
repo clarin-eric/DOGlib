@@ -8,7 +8,7 @@ class DataTypeRegistryResolver:
         pass
 
 
-def expand_type(data_type: str):
+def expand_datatype(data_type: str):
     taxonomy_dict: dict = {data_type: {}}
     dtr_query_endpoint = f'https://typeregistry.org/search?query=/name:"{data_type}"'
     url, dtr_query_response, header = get(dtr_query_endpoint)
@@ -20,5 +20,5 @@ def expand_type(data_type: str):
             properties = content['properties']
             for _property in properties:
                 property_name = _property['name']
-                taxonomy_dict[data_type] = expand_type(property_name)
+                taxonomy_dict[data_type] = expand_datatype(property_name)
     return taxonomy_dict
