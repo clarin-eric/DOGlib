@@ -1,6 +1,17 @@
 # Changelog
 
-## [1.0.4] - TBD
+
+## [1.0.6] - TBD
+- DOGlib distribution as a wheel for internal CLARIN use
+- Data Type Registry integration adjusted for taxonomies from latest development instace of DTR
+
+## [1.0.5] - 4.04.2024
+
+### Changed features
+- First DTR integration release
+
+
+## [1.0.4] - 3.07.2023
 
 ### Changed features
 - Standarise on Poetry backend build, setuptools is legacy
