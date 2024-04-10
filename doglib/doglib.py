@@ -15,10 +15,9 @@ STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file
 
 
 class DOG:
-    def __init__(self, secrets: Optional[dict] = None, dtr: bool = True):
+    def __init__(self, secrets: Optional[dict] = None):
         self.secrets: dict = self._load_secrets(secrets)
         self.reg_repos: List[RegRepo] = self.load_repos()
-        self.dtr: bool = dtr
 
     def _fetch(self, pid: PID) -> dict:
         """
@@ -45,7 +44,8 @@ class DOG:
             parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
             return parser.fetch(response)
 
-    def fetch(self, pid_string: Union[str, PID], format='dict') -> Union[dict, str]:
+    def fetch(self, pid_string: Union[str, PID], format: str = 'dict',
+              dtr: bool = False) -> Union[dict, str]:
         """
         Method for fetch call, tries to match pid with registered repositories and returns dict with collection's
             license and description, and links to referenced resources within the collection, if pid does not match
@@ -54,6 +54,8 @@ class DOG:
 
         :param pid_string: str, persistent identifier of collection, may be in a format of URL, DOI or HDL
         :param format: str={'dict', 'jsons'}, format of output, 'dict' by default
+        :param dtr: bool, whether to expand MIME types in fetch response by their Data Type Registry
+        taxonomy
         :return: dict, return fetch result in a format:
                 {
                     "ref_files": [{"filename": str, "pid": str}],
@@ -75,7 +77,7 @@ class DOG:
             elif format == 'jsons' or format == 'str':
                 return ""
         fetch_result: dict = self._fetch(pid)
-        if self.dtr:
+        if dtr:
             for entry in fetch_result['ref_files']:
                 for resource in entry['ref_resources']:
                     resource['data_type_taxonomy'] = expand_datatype(resource['data_type'])

@@ -9,8 +9,11 @@ class DataTypeRegistryResolver:
 
 
 def expand_datatype(data_type: str):
+    # TODO expose config for easy DTR access
+    dtr_base_url = "http://typeregistry.lab.pidconsortium.net/search?query=/name:"
+    dtr_query_endpoint = f'{dtr_base_url}{data_type}'
+
     taxonomy_dict: dict = {data_type: {}}
-    dtr_query_endpoint = f'https://typeregistry.org/search?query=/name:"{data_type}"'
     url, dtr_query_response, header = get(dtr_query_endpoint)
 
     dtr_query_response = json.loads(dtr_query_response)
