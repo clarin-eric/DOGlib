@@ -29,7 +29,7 @@ returns:
 
 ```
  
-#### fetch(pid: str, format='dict') -> Union\[dict, str\]
+#### fetch(pid: str, format='dict', dtr: bool = False) -> Union\[dict, str\]
 
 Tries to match PID with registered repositories and returns dict/string with collection's title, license and description, and links to referenced resources within the collection, otherwise returns empty dict/string.  
 By default, returns dictionary, if format=='jsons' returns a JSON string.

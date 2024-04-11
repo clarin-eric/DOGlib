@@ -4,6 +4,8 @@
 ## [1.0.6] - TBD
 - DOGlib distribution as a wheel for internal CLARIN use
 - Data Type Registry integration adjusted for taxonomies from latest development instace of DTR
+- GPL3.0 license file
+
 
 ## [1.0.5] - 4.04.2024
 

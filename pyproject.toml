@@ -5,6 +5,8 @@ version = "1.0.6-rc1"
 authors = [
     "Michał Gawor <m.j.gawor@uu.nl>"
 ]
+license = "LICENSE.txt"
+
 
 packages = [
     { include = "doglib" }
