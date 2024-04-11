@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "doglib"
 description = "Digital Object Gate Python library"
-version = "0.0.0-dev"
+version = "0.0.0dev"
 authors = [
     "Michał Gawor <m.j.gawor@uu.nl>"
 ]
@@ -28,3 +28,18 @@ lxml = ">=4.9.3"
 pycurl = ">=7.43.0"
 python = ">=3.11.*"
 
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+pattern  = "^(?P<base>\\d+\\.\\d+\\.\\d+)(-?((?P<stage>[a-zA-Z]+)\\.?(?P<revision>\\d+)?))?"
+format-jinja = """
+    {%- if distance == 0 -%}
+        {{ serialize_pep440(base, stage, revision) }}
+    {%- else -%}
+        {{ serialize_pep440(base, stage, revision, dev=distance, metadata=[commit]) }}
+    {%- endif -%}
+"""
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
