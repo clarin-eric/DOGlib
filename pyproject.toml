@@ -18,10 +18,6 @@ documentation = "https://github.com/clarin-eric/DOGlib/blob/master/README.md"
 homepage = ""
 repository = "https://github.com/clarin-eric/DOGlib"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.poetry.dependencies]
 certifi = "*"
 lxml = ">=4.9.3"
@@ -43,3 +39,4 @@ format-jinja = """
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
 build-backend = "poetry_dynamic_versioning.backend"
+
