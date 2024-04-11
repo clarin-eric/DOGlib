@@ -86,6 +86,13 @@ class TestFunctionalities(TestDOGStatic):
         failures: dict = self._find_failures(sniff_results, [bool])
         self.assertFalse(failures)
 
+    def test_static_expand_datatype(self):
+        """
+        Test dtr.expand_datatype() over all registered repositories
+        """
+        pass
+        # TODO static testing when taxonomy dictionary is known
+
     def test_is_pid(self):
         """
         Test is_pid()
