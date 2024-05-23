@@ -7,6 +7,8 @@ Status of currently supported repositories can be found in [spreadsheet](https:/
 ## Usage
 In order to use Digital Object Gate functionalities, create an instance of doglib.DOG, which loads .json configurations of registered repositories. DOG offers the following methods:
 
+### DOGlib
+
 #### sniff(pid: str, format='dict') -> Union\[dict, str\]
 Tries to match PID with registered repositories and returns dict with information about repository, otherwise returns empty dict. If there are multiple repositories using the same identifier tries to resolve PID and match repo by host.  
 By default, returns dictionary, if format=='jsons' returns a JSON string.
@@ -82,13 +84,27 @@ Checks whether PID is hosted by registered repository or not. Note that it may b
 
 Checkes whether PID is a collection hosted by registered repository. Note that this method tries to resolve the PID in order to verify whether it is a collection, therefor may be slow.
 
+### Data Type Registry
+
+#### expand_datatype(data_type: str) -> dict
+
+Returns DTR MIME type taxonomy for a given MIME type
+```Python
+ from doglib import expand_datatype
+ expand_datatype("text/xml")
+```
+
+returns:
+```JSON
+{'21.T11969/372ea08cab33e71c02c6': {'date': 1714003200, 'reference': '', 'children': {'21.T11969/f33c32fa8246e2ca6d5c': 'text/xml'}, 'origin': 'Typeregistry-EOSC', 'name': 'text', 'description': '', 'id': '21.T11969/372ea08cab33e71c02c6', 'type': 'TaxonomyNode', 'authors': [], 'parents': {}}, '21.T11969/f33c32fa8246e2ca6d5c': {'date': 1714003200, 'reference': '', 'children': {'21.T11969/10e5cfe3b2a481871e10': 'application/x-cmdi+xml', '21.T11969/fe61e4792b37f2bbb26e': 'application/tei+xml'}, 'origin': 'Typeregistry-EOSC', 'name': 'text/xml', 'description': '', 'id': '21.T11969/f33c32fa8246e2ca6d5c', 'type': 'TaxonomyNode', 'authors': [], 'parents': {'21.T11969/372ea08cab33e71c02c6': 'text'}}, '21.T11969/fe61e4792b37f2bbb26e': {'date': 1714003200, 'reference': '', 'children': {}, 'origin': 'Typeregistry-EOSC', 'name': 'application/tei+xml', 'description': '', 'id': '21.T11969/fe61e4792b37f2bbb26e', 'type': 'TaxonomyNode', 'authors': [], 'parents': {'21.T11969/f33c32fa8246e2ca6d5c': 'text/xml'}}, '21.T11969/10e5cfe3b2a481871e10': {'date': 1714003200, 'reference': '', 'children': {}, 'origin': 'Typeregistry-EOSC', 'name': 'application/x-cmdi+xml', 'description': '', 'id': '21.T11969/10e5cfe3b2a481871e10', 'type': 'TaxonomyNode', 'authors': [], 'parents': {'21.T11969/f33c32fa8246e2ca6d5c': 'text/xml'}}}
+```
+
 ## Installation
 It is recommended to install DOGlib in the virtual environment to avoid dependency clash. In order to install DOGlib enter cloned directory and install it via pip with explicit requirements.txt from the project.
 Clone the repository and enter the directory:
 ```bash
 git clone https://github.com/clarin-eric/DOGlib.git
-cd DOGlib
-pip install ./ -r ./requirements.txt
+pip install ./DOGlib
 ```
 DOGlib utilises `lxml` which requires `libxml2` and `libxslt` system libraries. Use your system package manager, on Debian/Ubuntu:
 ```bash
