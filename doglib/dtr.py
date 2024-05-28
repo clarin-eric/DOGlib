@@ -33,12 +33,11 @@ def get_dtr_taxonomy_by_type(data_type: str) -> dict:
     except (IndexError, KeyError) as error:
         raise DataTypeNotFound(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
     parents = dtr_taxonomy_json[0]["parents"]
-    taxonomy_root_id = dtr_type_id
     if parents:
         for parent_id, parent_name in parents.items():
-            taxonomy_root_id = get_taxonomy_root_node_by_id(parent_id)
+            dtr_type_id = get_taxonomy_root_node_by_id(parent_id)
 
-    return get_taxonomy_subtree_from_root_id(taxonomy_root_id)
+    return get_taxonomy_subtree_from_root_id(dtr_type_id)
 
 
 def get_taxonomy_root_node_by_id(data_type_id: str) -> str:
@@ -57,11 +56,11 @@ def get_taxonomy_root_node_by_id(data_type_id: str) -> str:
         raise DataTypeNotFound(f"DataType with id <{data_type_id}> doesn't exist in the DTR taxonomy") from error
     parents = dtr_taxonomy_json["parents"]
     # Assumption of single parent
-    taxonomy_root = dtr_type_id
+    taxonomy_root_id = dtr_type_id
     if parents:
         for parent_id, parent_name in parents.items():
-            taxonomy_root = get_taxonomy_root_node_by_id(parent_id)
-    return taxonomy_root
+            taxonomy_root_id = get_taxonomy_root_node_by_id(parent_id)
+    return taxonomy_root_id
 
 
 def get_taxonomy_subtree_from_root_id(root_id: str) -> dict:

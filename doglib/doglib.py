@@ -302,6 +302,9 @@ class DOG:
     def is_pid(self, pid_string: Union[str, PID]) -> bool:
         """
         Checks whether provided string is PID acceptable by DOG. For PID instance always returns True.
+
+        :param pid_string: PID, string to validate
+        :return: True if PID, False otherwise
         """
         pid = pid_factory(pid_string)
         return True if pid is not None else False

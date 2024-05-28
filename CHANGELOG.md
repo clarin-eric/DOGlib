@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.7] - TBD
+- Data Type Registry integration. doglib.expand_datatype() returning MIME type taxonomy from DTR 
+- README
+- 
 
 ## [1.0.6] - TBD
 - DOGlib distribution as a wheel for internal CLARIN use
