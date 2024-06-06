@@ -1,9 +1,10 @@
 import json
+import logging
 import os
 from typing import List, Union, Optional
 
 from . import curl
-from .dtr import expand_datatype
+from .dtr import expand_datatype, DataTypeNotFoundException
 from .pid import pid_factory, PID
 from .repos import JSONParser, XMLParser
 from .repos import RegRepo, warn_europeana
@@ -78,9 +79,16 @@ class DOG:
                 return ""
         fetch_result: dict = self._fetch(pid)
         if dtr:
+            unique_data_types: set = set()
             for entry in fetch_result['ref_files']:
                 for resource in entry['ref_resources']:
-                    resource['data_type_taxonomy'] = expand_datatype(resource['data_type'])
+                    data_type = resource['data_type']
+                    unique_data_types.add(data_type)
+            for unique_type in unique_data_types:
+                try:
+                    fetch_result['dtr'][unique_type] = expand_datatype(unique_type)
+                except DataTypeNotFoundException:
+                    continue
         if format == 'dict':
             return fetch_result
         elif format == 'jsons' or format == 'str':
@@ -308,3 +316,6 @@ class DOG:
         """
         pid = pid_factory(pid_string)
         return True if pid is not None else False
+
+    def get_repository_report(self):
+

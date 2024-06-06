@@ -2,10 +2,12 @@ from enum import Enum
 import json
 from typing import List, Set, Union
 
+from requests import RequestException
+
 from .curl import get
 
 
-class DataTypeNotFound(Exception):
+class DataTypeNotFoundException(Exception):
     def __init__(self, message):
         self.message = message
 
@@ -25,13 +27,17 @@ def get_dtr_taxonomy_by_type(data_type: str) -> dict:
     :return: dict, a dictionary representation of the type's taxonomy
     """
     dtr_type_search_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/search?query={data_type}&name={data_type}"
-    url, dtr_taxonomy_search_response, header = get(dtr_type_search_endpoint)
+    try:
+        url, dtr_taxonomy_search_response, header = get(dtr_type_search_endpoint)
+    except RequestException as error:
+        raise DataTypeNotFoundException(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
+
     dtr_taxonomy_json = json.loads(dtr_taxonomy_search_response)
 
     try:
         dtr_type_id = dtr_taxonomy_json[0]["id"]
     except (IndexError, KeyError) as error:
-        raise DataTypeNotFound(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
+        raise DataTypeNotFoundException(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
     parents = dtr_taxonomy_json[0]["parents"]
     if parents:
         for parent_id, parent_name in parents.items():
@@ -53,7 +59,7 @@ def get_taxonomy_root_node_by_id(data_type_id: str) -> str:
     try:
         dtr_type_id = dtr_taxonomy_json["id"]
     except (IndexError, KeyError) as error:
-        raise DataTypeNotFound(f"DataType with id <{data_type_id}> doesn't exist in the DTR taxonomy") from error
+        raise DataTypeNotFoundException(f"DataType with id <{data_type_id}> doesn't exist in the DTR taxonomy") from error
     parents = dtr_taxonomy_json["parents"]
     # Assumption of single parent
     taxonomy_root_id = dtr_type_id
