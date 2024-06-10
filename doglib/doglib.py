@@ -317,5 +317,7 @@ class DOG:
         pid = pid_factory(pid_string)
         return True if pid is not None else False
 
-    def get_repository_report(self):
-
+    def get_all_repositories(self) -> List[dict]:
+        all_repos = [repo.__dict__() for repo in self.reg_repos]
+        all_repos.sort(reverse=True, key=lambda x: x["host_name"])
+        return all_repos
