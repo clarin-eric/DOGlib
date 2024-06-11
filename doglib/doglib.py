@@ -319,5 +319,5 @@ class DOG:
 
     def get_all_repositories(self) -> List[dict]:
         all_repos = [repo.__dict__() for repo in self.reg_repos]
-        all_repos.sort(reverse=True, key=lambda x: x["host_name"])
+        all_repos.sort(reverse=False, key=lambda x: x["host_name"])
         return all_repos
