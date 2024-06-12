@@ -42,7 +42,6 @@ def get_dtr_taxonomy_by_type(data_type: str) -> dict:
     if parents:
         for parent_id, parent_name in parents.items():
             dtr_type_id = get_taxonomy_root_node_by_id(parent_id)
-
     return get_taxonomy_subtree_from_root_id(dtr_type_id)
 
 
