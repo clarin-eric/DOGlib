@@ -27,13 +27,15 @@ def get_dtr_taxonomy_by_type(data_type: str) -> dict:
     :return: dict, a dictionary representation of the type's taxonomy
     """
     dtr_type_search_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/search?query={data_type}&name={data_type}"
+
     try:
         url, dtr_taxonomy_search_response, header = get(dtr_type_search_endpoint)
     except RequestException as error:
         raise DataTypeNotFoundException(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
 
     dtr_taxonomy_json = json.loads(dtr_taxonomy_search_response)
-
+    print("get_dtr_taxonomy_by_type: TAXONOMY")
+    print(dtr_taxonomy_json)
     try:
         dtr_type_id = dtr_taxonomy_json[0]["id"]
     except (IndexError, KeyError) as error:
@@ -55,6 +57,8 @@ def get_taxonomy_root_node_by_id(data_type_id: str) -> str:
     dtr_taxonomy_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/{data_type_id}"
     url, dtr_taxonomy_node_response, header = get(dtr_taxonomy_endpoint)
     dtr_taxonomy_json = json.loads(dtr_taxonomy_node_response)
+    print("get_taxonomy_root_node_by_id TAXONOMY:")
+    print(dtr_taxonomy_json)
     try:
         dtr_type_id = dtr_taxonomy_json["id"]
     except (IndexError, KeyError) as error:

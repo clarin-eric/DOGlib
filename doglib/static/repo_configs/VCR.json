@@ -11,6 +11,10 @@
     "url": {"format": "https://collections.clarin.eu/service/v1/collections/$record_id", "regex": ".*/(?P<record_id>[^?;]+).*$", "headers": {
       "Accept": "application/x-cmdi+xml"}
     },
+    "doi": {
+      "id": "10.34733",
+      "format": "redirect"
+    },
     "parser": {
       "type": "cmdi",
       "config": {
