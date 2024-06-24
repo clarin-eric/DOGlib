@@ -1,3 +1,4 @@
+import csv
 import json
 import logging
 import os
@@ -5,7 +6,7 @@ from typing import List, Union, Optional
 
 from . import curl
 from .dtr import expand_datatype, DataTypeNotFoundException
-from .pid import pid_factory, PID
+from .pid import pid_factory, PID, PID_TYPE_KEYS
 from .repos import JSONParser, XMLParser
 from .repos import RegRepo, warn_europeana
 
@@ -321,3 +322,44 @@ class DOG:
         all_repos = [repo.__dict__() for repo in self.reg_repos]
         all_repos.sort(reverse=False, key=lambda x: x["host_name"])
         return all_repos
+
+
+    def get_repository_status(self, reg_repo: RegRepo) -> dict:
+        """
+        #TODO docstring and status dict
+        """
+        status_dict: dict = {}
+        for pid_type in PID_TYPE_KEYS:
+            print(reg_repo.name)
+            test_pid = reg_repo.get_test_example(pid_type=pid_type)
+            print("TEST_PID")
+            print(test_pid)
+            if not test_pid:
+                status_dict[pid_type] = "NA"
+                print("NO PID")
+                print(status_dict)
+            else:
+                try:
+                    self.fetch(test_pid)
+                    status_dict[pid_type] = "SUCCESS"
+                except Exception as e:
+                    status_dict[pid_type] = e
+        return status_dict
+
+    def get_all_repositories_status(self):
+        """
+        #TODO docstring and report dict
+        """
+        return {reg_repo.get_name(): self.get_repository_status(reg_repo) for reg_repo in self.reg_repos}
+
+    def get_all_repositories_status_csv(self, output_path: Union[str, bytes, os.PathLike]):
+        """
+        #TODO docstring
+        """
+        status_report = self.get_all_repositories_status()
+        with open(output_path, "w", newline="") as csv_handle:
+            csv_writer = csv.writer(csv_handle, delimiter=';', quotechar='"')
+            csv_writer.writerow(["name", "doi", "hdl", "url"])
+            for repo_key, repo_status in status_report.items():
+                csv_writer.writerow([repo_key, repo_status["doi"], repo_status["hdl"],
+                repo_status["url"]])

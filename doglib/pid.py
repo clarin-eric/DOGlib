@@ -2,6 +2,8 @@ from re import compile, match
 from typing import Match, NamedTuple, Pattern, Protocol, Union, runtime_checkable
 from urllib.parse import urlparse, urlsplit, ParseResult
 
+PID_TYPE_KEYS = {"hdl", "doi", "url"}
+
 
 @runtime_checkable
 class PID(Protocol):
