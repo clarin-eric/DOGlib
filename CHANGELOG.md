@@ -1,10 +1,10 @@
 # Changelog
 
 ## [1.0.7] - 24.06.2024
-- Data Type Registry integration. doglib.expand_datatype() returning MIME type taxonomy from DTR 
-- better README 
 
 ### Changed features
+- Data Type Registry integration. doglib.expand_datatype() returning MIME type taxonomy from DTR 
+- better README 
 
 
 ## [1.0.6] - 11.04.2024
