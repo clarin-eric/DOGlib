@@ -330,14 +330,9 @@ class DOG:
         """
         status_dict: dict = {}
         for pid_type in PID_TYPE_KEYS:
-            print(reg_repo.name)
             test_pid = reg_repo.get_test_example(pid_type=pid_type)
-            print("TEST_PID")
-            print(test_pid)
             if not test_pid:
                 status_dict[pid_type] = "NA"
-                print("NO PID")
-                print(status_dict)
             else:
                 try:
                     self.fetch(test_pid)
