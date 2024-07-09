@@ -338,7 +338,7 @@ class DOG:
                     self.fetch(test_pid)
                     status_dict[pid_type] = "SUCCESS"
                 except Exception as e:
-                    status_dict[pid_type] = e
+                    status_dict[pid_type] = str(e)
         return status_dict
 
     def get_all_repositories_status(self):
