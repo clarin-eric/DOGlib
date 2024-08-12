@@ -21,7 +21,7 @@ repository = "https://github.com/clarin-eric/DOGlib"
 [tool.poetry.dependencies]
 certifi = "2024.7.4"
 lxml = "5.2.2"
-pycurl = "7.43.5"
+pycurl = "7.45.3"
 python = '>=3.11.*,<4.0'
 
 [tool.poetry-dynamic-versioning]
