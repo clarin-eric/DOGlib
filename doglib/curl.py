@@ -38,6 +38,7 @@ def get(url: Union[str, PID],
     response_body: BytesIO = BytesIO()
     response_headers: BytesIO = BytesIO()
     c: pycurl.Curl = pycurl.Curl()
+    print(url)
     c.setopt(c.URL, url)
     if headers:
         c.setopt(c.HTTPHEADER, [k + ': ' + v for k, v in list(headers.items())])

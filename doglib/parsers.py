@@ -1,6 +1,6 @@
-import html
 import json
-from lxml.etree import fromstring, Element, ElementTree
+from lxml.etree import fromstring, tostring, ElementTree
+from lxml.etree import HTMLParser as _HTMLParser
 from re import compile, match, findall, Match, Pattern
 from typing import Any, AnyStr, Generator, List, NamedTuple, Type, Union
 
@@ -435,3 +435,68 @@ class CMDIParser(XMLParser):
                                    {"pid": resource_pid.text, "data_type": resource_data_type}
                                    for resource_pid, resource_data_type in ref_resources]}
                 for resource_type, ref_resources in fetched_resources.items()]
+
+
+class HTMLParser(XMLParser):
+    def __init__(self, parser_config: dict):
+        """
+        Experimental HTML parser for Archeology Data Service
+        """
+        super().__init__(parser_config)
+        # lxml html parser instance from lxml.etree
+        self.parser = _HTMLParser()
+
+    def fetch(self, response: str) -> dict:
+        """
+
+        :param response: dict, json response from call to repository
+        :return: dict, result of response parsing:
+            digitalObjects: [{filename: str, pid: str}]
+            decriptions: [str]
+            license: str
+        """
+        html_tree = fromstring(response, self.parser)
+        print(html_tree)
+        pass
+
+    def identify(self, response: str) -> dict:
+        """
+        Retrieves title and description
+
+        :param response: Response, response from repository
+            {
+                "ref_files": [{"filename": str, "pid": str}],
+                "description": str,
+                "license: str
+            }
+        """
+
+        with open("/Users/gawor/Documents/clarin_projects/dog/ads_sanitised.html", "w+") as raw:
+            html_tree = fromstring(response.encode(), self.parser)
+            raw.write(tostring(html_tree).decode("utf-8"))
+
+        item_title: str = self._parse_item_title(html_tree)
+        description: str = self._parse_description(html_tree)
+        reverse_pid: str = self._parse_reverse_pid(html_tree)
+
+        return {"item_title": item_title, "reverse_pid": reverse_pid, "description": description}
+
+    def _parse_field(self, html_tree: ElementTree, field_path: str, nsmap: dict = None, join_by: str = ', ') -> str:
+        if field_path != '':
+            found_element_values = html_tree.xpath(field_path)
+            return join_by.join([str(found_element_value) if isinstance(found_element_value, str) else
+                                 str(found_element_value.text)
+                                 for found_element_value in found_element_values if found_element_value is not None])
+
+    def _parse_item_title(self, html_tree: ElementTree) -> str:
+        return self._parse_field(html_tree, self.item_title_path)
+
+    def _parse_resources(self, html_tree: ElementTree) -> List[dict]:
+        pass
+
+    def _parse_description(self, html_tree: ElementTree) -> str:
+        print(self.description_path)
+        return self._parse_field(html_tree, self.description_path)
+
+    def _parse_reverse_pid(self, html_tree: ElementTree) -> str:
+        return self._parse_field(html_tree, self.reverse_pid_path)

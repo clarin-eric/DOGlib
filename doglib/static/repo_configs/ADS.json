@@ -1,0 +1,29 @@
+{
+  "repository": {
+    "id": "ADS",
+    "name": "Archaeology Data Service",
+    "host_name": "Archaeology Data Service",
+    "host_netloc": "https://archaeologydataservice.ac.uk",
+    "url": {"format":  "$url"},
+    "doi": {
+      "id": "10.5284",
+      "format": "$doi"
+    },
+    "parser": {
+      "type": "html",
+      "config": {
+        "reverse_pid": "//tr[th[contains(text(), 'DOI')]]/td/table/tr/td/a/text()",
+        "description": "//tr[th[contains(text(), 'Abstract:')]]/td/text()",
+        "collection_title": "//tr[th[contains(text(), 'Title:')]]/td/text()",
+        "license": "",
+        "ref_file": {
+          "path": ""
+        }
+      }
+    },
+    "test_examples": {
+      "url": "https://archaeologydataservice.ac.uk/library/browse/details.xhtml?recordId=3210432",
+      "doi": "https://doi.org/10.5284/1059332"}
+  }
+}
+

@@ -3,7 +3,7 @@ from typing import AnyStr, Union, Optional
 import warnings
 
 from . import curl
-from .parsers import CMDIParser, JSONParser, XMLParser
+from .parsers import CMDIParser, HTMLParser, JSONParser, XMLParser
 from .pid import pid_factory, DOI, HDL, PID, URL
 
 
@@ -81,6 +81,10 @@ class RegRepo(object):
             request_config = self.doi
         elif type(pid) == URL:
             request_config = self.url
+            # if html scrapping return deposit URL
+            if self.parser["type"] == 'html':
+                return self.url["format"].replace("$url", pid.get_resolvable())
+
         # follow redirects
         if request_config["format"] == "redirect":
             target_url: PID = pid_factory(curl.get(pid.get_resolvable(),
@@ -172,12 +176,14 @@ class RegRepo(object):
         if parser_config is None:
             parser_config = self.get_parser_config()
 
-        if parser_type == "json":
+        if parser_type == "cmdi":
+            return CMDIParser(parser_config)
+        elif parser_type == "html":
+            return HTMLParser(parser_config)
+        elif parser_type == "json":
             return JSONParser(parser_config)
         elif parser_type == "xml":
             return XMLParser(parser_config)
-        elif parser_type == "cmdi":
-            return CMDIParser(parser_config)
         else:
             return None
 

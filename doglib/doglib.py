@@ -7,7 +7,7 @@ from typing import List, Union, Optional
 from . import curl
 from .dtr import expand_datatype, DataTypeNotFoundException
 from .pid import pid_factory, PID, PID_TYPE_KEYS
-from .repos import JSONParser, XMLParser
+from .repos import HTMLParser, JSONParser, XMLParser
 from .repos import RegRepo, warn_europeana
 
 
@@ -43,7 +43,7 @@ class DOG:
             # cast generated request URL to PID to decide which header from config shall be used
             headers: dict = matching_repo.get_headers(pid_factory(request_url))
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-            parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
+            parser: Union[JSONParser, XMLParser, HTMLParser] = matching_repo.get_parser()
             return parser.fetch(response)
 
     def fetch(self, pid_string: Union[str, PID], format: str = 'dict',
