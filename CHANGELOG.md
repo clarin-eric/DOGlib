@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.9] - TBD
+
+### Added features
+- HTML parser
+- ADS config registration
+- parser methods output serialisation with dataclasses
+
+## [1.0.8] - 12.08.2024
+
+### Added features
+- registered repository status
+
 ## [1.0.7] - 24.06.2024
 
 ### Changed features
