@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
 import json
 from lxml.etree import fromstring, tostring, ElementTree
 from lxml.etree import HTMLParser as _HTMLParser
@@ -7,7 +9,59 @@ from typing import Any, AnyStr, Generator, List, NamedTuple, Type, Union
 from .pid import PID, pid_factory
 
 
-class JSONParser:
+@dataclass
+class ReferencedResources:
+    """
+    Referenced resources by resource type
+    """
+    resource_type: str
+    pid: List[str]
+
+
+@dataclass
+class FetchResult(dict):
+    """
+    Parser's fetch result serialisation
+    {
+        "description": str
+        "license": str
+        "ref_files": [ReferencedResource]
+        "title": str
+    }
+    """
+    description: str
+    license: str
+    ref_files: List[ReferencedResources]
+    title: str
+
+
+@dataclass
+class IdentifyResult(dict):
+    """
+    Parser's identify result serialisation
+    {
+        "description": str
+        "item_title": str
+        "reverse_pid": str
+    }
+    """
+    description: str
+    item_title: str
+    reverse_pid: str
+
+
+class Parser(ABC):
+    def __init__(self, parser_config: dict):
+        pass
+
+    def fetch(self, response: str) -> FetchResult:
+        pass
+
+    def identify(self, response: str) -> IdentifyResult:
+        pass
+
+
+class JSONParser(Parser):
     """
     Generic parser for retrieving direct reference/download link to all resources linked in collection in JSON responses
 
@@ -18,7 +72,7 @@ class JSONParser:
 
         :param parser_config: dict, parser configuration retrieved from repository JSON config
         """
-        super().__init__()
+        super().__init__(parser_config)
         self.dois_root: str = parser_config['items_root']
         self.resource_path: str = parser_config['ref_file']['path']
         self.description_path: str = parser_config['description']
@@ -30,14 +84,12 @@ class JSONParser:
         self.item_title_path = parser_config["collection_title"]
         self.reverse_pid_path = parser_config["reverse_pid"]
 
-    def fetch(self, response: str) -> dict:
+    def fetch(self, response: str) -> FetchResult:
         """
+        Fetch referenced resources
 
         :param response: dict, json response from call to repository
-        :return: dict, result of response parsing:
-            digitalObjects: [{filename: str, pid: str}]
-            decriptions: [str]
-            license: str
+        :return: FetchResult result of response parsing
         """
         response: dict = json.loads(response)
         ref_files_root: dict = self.traverse_path_in_dict(response, self.dois_root)
@@ -46,12 +98,12 @@ class JSONParser:
         _license: str = self._parse_license(response)
         item_title: str = self._parse_item_title(response)
 
-        return {"ref_files": [{'resource_type': 'unknown', 'pid': ref_files}],
-                "description": descriptions,
-                "title": item_title,
-                "license": _license}
+        return FetchResult(ref_files=[ReferencedResources(resource_type='NA', pid=ref_files)],
+                           description=descriptions,
+                           title=item_title,
+                           license=_license)
 
-    def identify(self, response: str) -> dict:
+    def identify(self, response: str) -> IdentifyResult:
         """
         Retrieves title and description
         """
@@ -61,9 +113,7 @@ class JSONParser:
         description: str = self._parse_description(response)
         reverse_pid: str = self._parse_reverse_pid(response)
 
-        return {"item_title": item_title,
-                "description": description,
-                "reverse_pid": reverse_pid}
+        return IdentifyResult(description=description, item_title=item_title, reverse_pid=reverse_pid)
 
     def _parse_item_title(self, response: dict) -> Union[str, List[str]]:
         titles = self.fetchall_path_in_dict(response, self.item_title_path)
@@ -184,7 +234,7 @@ class JSONParser:
                     yield result
 
 
-class XMLParser:
+class XMLParser(Parser):
     """
     Generic parser for retrieving direct reference/download link to all resources linked in collection in XML responses
 
@@ -195,6 +245,7 @@ class XMLParser:
 
         :param parser_config: dict, parser configuration retrieved from repository XML config in .repo_configs/
         """
+        super().__init__(parser_config)
         if 'nsmap' in parser_config.keys():
             self.namespaces: dict = parser_config['nsmap']
         else:
@@ -227,17 +278,12 @@ class XMLParser:
             if "data_type_path" in parser_config["ref_file"].keys():
                 self.data_type_path: str = parser_config["ref_file"]["data_type_path"]
 
-    def fetch(self, response: str) -> dict:
+    def fetch(self, response: str) -> FetchResult:
         """
         Method wrapping fetch logic
 
         :param response: Response, response from repository
-        :return: dict, return fetch reimport ossult in a format:
-            {
-                "ref_files": [{"filename": str, "pid": str}],
-                "description": str,
-                "license: str
-            }
+        :return: FetchResult, return fetch result
         """
         xml_tree: ElementTree = fromstring(response.encode('utf-8'))
 
@@ -246,10 +292,11 @@ class XMLParser:
         resources: list = self._parse_resources(xml_tree, nsmap)
         description: str = self._parse_description(xml_tree, nsmap)
         _license: str = self._parse_license(xml_tree, nsmap)
+        item_title: str = self._parse_item_title(xml_tree, nsmap)
 
-        return {"ref_files": resources, "description": description, "license": _license}
+        return FetchResult(description=description, license=_license, ref_files=resources, title=item_title)
 
-    def identify(self, response) -> dict:
+    def identify(self, response) -> IdentifyResult:
         """
         Retrieves title and description
 
@@ -268,7 +315,7 @@ class XMLParser:
         description: str = self._parse_description(xml_tree, nsmap)
         reverse_pid: str = self._parse_reverse_pid(xml_tree, nsmap)
 
-        return {"item_title": item_title, "description": description, "reverse_pid": reverse_pid}
+        return IdentifyResult(description=description, item_title=item_title, reverse_pid=reverse_pid)
 
     def reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -365,7 +412,6 @@ class XMLParser:
             nsmap.pop(None)
         return nsmap
 
-
 class CMDIParser(XMLParser):
     """
     CMDI metadata parser
@@ -402,7 +448,7 @@ class CMDIParser(XMLParser):
 
         :param xml_tree: ElementTree, lxml tree object from HTML XML response
         :param nsmap: dict, map of namespace tags to namespace URIs
-        :return: list, list of dictionaries [{"filename": str, "pid": str}]
+        :return: list, list of dictionaries [{"resource_type": str, "ref_resources": [{"pid": str, "data_type": str}]}]
         """
         fetched_resources: dict = {}
 
@@ -446,7 +492,7 @@ class HTMLParser(XMLParser):
         # lxml html parser instance from lxml.etree
         self.parser = _HTMLParser()
 
-    def fetch(self, response: str) -> dict:
+    def fetch(self, response: str) -> FetchResult:
         """
 
         :param response: dict, json response from call to repository
@@ -455,13 +501,17 @@ class HTMLParser(XMLParser):
             decriptions: [str]
             license: str
         """
-        html_tree = fromstring(response, self.parser)
-        print(html_tree)
-        pass
 
-    def identify(self, response: str) -> dict:
+        html_tree = fromstring(response.encode(), self.parser)
+
+        description: str = self._parse_description(html_tree)
+        license: str = self._parse_license(html_tree)
+        ref_files: List[ReferencedResources] = self._parse_resources(html_tree)
+        title: str = self._parse_item_title(html_tree)
+
+    def identify(self, response: str) -> IdentifyResult:
         """
-        Retrieves title and description
+        Retrieves title, license and description
 
         :param response: Response, response from repository
             {
@@ -471,28 +521,37 @@ class HTMLParser(XMLParser):
             }
         """
 
-        with open("/Users/gawor/Documents/clarin_projects/dog/ads_sanitised.html", "w+") as raw:
-            html_tree = fromstring(response.encode(), self.parser)
-            raw.write(tostring(html_tree).decode("utf-8"))
+        html_tree = fromstring(response.encode(), self.parser)
 
         item_title: str = self._parse_item_title(html_tree)
         description: str = self._parse_description(html_tree)
         reverse_pid: str = self._parse_reverse_pid(html_tree)
 
-        return {"item_title": item_title, "reverse_pid": reverse_pid, "description": description}
+        return IdentifyResult(item_title=item_title, description=description, reverse_pid=reverse_pid)
 
-    def _parse_field(self, html_tree: ElementTree, field_path: str, nsmap: dict = None, join_by: str = ', ') -> str:
+    def _parse_field(self, html_tree: ElementTree, field_path: str, nsmap: dict = None, join_by: str = ', ') -> (
+            Union)[str, List[str]]:
         if field_path != '':
             found_element_values = html_tree.xpath(field_path)
-            return join_by.join([str(found_element_value) if isinstance(found_element_value, str) else
-                                 str(found_element_value.text)
-                                 for found_element_value in found_element_values if found_element_value is not None])
+            found_element_values = [str(found_element_value) if isinstance(found_element_value, str) else
+                                    str(found_element_value.text)
+                                    for found_element_value in found_element_values if found_element_value is not None]
+            if join_by != '':
+                return join_by.join(found_element_values)
+            else:
+                return found_element_values
 
     def _parse_item_title(self, html_tree: ElementTree) -> str:
         return self._parse_field(html_tree, self.item_title_path)
 
-    def _parse_resources(self, html_tree: ElementTree) -> List[dict]:
-        pass
+    def _parse_license(self, html_tree: ElementTree) -> str:
+        return self._parse_field(html_tree, self.license_path)
+
+    def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
+        resource_nodes = self._parse_field(html_tree, self.resource_path)
+        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA",
+                                                                            pid=resource_nodes)]
+        return fetched_resources
 
     def _parse_description(self, html_tree: ElementTree) -> str:
         print(self.description_path)

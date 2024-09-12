@@ -15,7 +15,7 @@
         "reverse_pid": "//tr[th[contains(text(), 'DOI')]]/td/table/tr/td/a/text()",
         "description": "//tr[th[contains(text(), 'Abstract:')]]/td/text()",
         "collection_title": "//tr[th[contains(text(), 'Title:')]]/td/text()",
-        "license": "",
+        "license": "//tr[th[contains(text(), 'Licence Type:')]]/td/a/@href",
         "ref_file": {
           "path": ""
         }
