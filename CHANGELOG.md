@@ -5,7 +5,7 @@
 ### Added features
 - HTML parser
 - ADS config registration
-- parser methods output serialisation with dataclasses
+- replaced type hints on parser methods with well-typed dataclasses
 
 ## [1.0.8] - 12.08.2024
 
