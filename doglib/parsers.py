@@ -509,6 +509,8 @@ class HTMLParser(XMLParser):
         ref_files: List[ReferencedResources] = self._parse_resources(html_tree)
         title: str = self._parse_item_title(html_tree)
 
+        return FetchResult(description=description, license=license, ref_files=ref_files, title=title)
+
     def identify(self, response: str) -> IdentifyResult:
         """
         Retrieves title, license and description
@@ -529,8 +531,8 @@ class HTMLParser(XMLParser):
 
         return IdentifyResult(item_title=item_title, description=description, reverse_pid=reverse_pid)
 
-    def _parse_field(self, html_tree: ElementTree, field_path: str, nsmap: dict = None, join_by: str = ', ') -> (
-            Union)[str, List[str]]:
+    def _parse_field(self, html_tree: ElementTree, field_path: str, nsmap: dict = None, join_by: str = '') -> (
+            Union)[str, List[str], None]:
         if field_path != '':
             found_element_values = html_tree.xpath(field_path)
             found_element_values = [str(found_element_value) if isinstance(found_element_value, str) else
@@ -540,6 +542,8 @@ class HTMLParser(XMLParser):
                 return join_by.join(found_element_values)
             else:
                 return found_element_values
+        else:
+            return None
 
     def _parse_item_title(self, html_tree: ElementTree) -> str:
         return self._parse_field(html_tree, self.item_title_path)
@@ -548,9 +552,12 @@ class HTMLParser(XMLParser):
         return self._parse_field(html_tree, self.license_path)
 
     def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
-        resource_nodes = self._parse_field(html_tree, self.resource_path)
-        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA",
-                                                                            pid=resource_nodes)]
+        print("PATH")
+        print(self.resource_path)
+        resource_nodes = self._parse_field(html_tree, self.resource_path, join_by='')
+        print(resource_nodes)
+        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA", pid=resource_node)
+                                                        for resource_node in resource_nodes]
         return fetched_resources
 
     def _parse_description(self, html_tree: ElementTree) -> str:

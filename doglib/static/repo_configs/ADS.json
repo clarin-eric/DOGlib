@@ -17,7 +17,7 @@
         "collection_title": "//tr[th[contains(text(), 'Title:')]]/td/text()",
         "license": "//tr[th[contains(text(), 'Licence Type:')]]/td/a/@href",
         "ref_file": {
-          "path": ""
+          "path": "//tr[th[contains(text(), 'Downloads:')]]/td/table/tr/td/a/@href"
         }
       }
     },
