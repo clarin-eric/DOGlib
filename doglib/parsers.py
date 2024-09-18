@@ -10,12 +10,18 @@ from .pid import PID, pid_factory
 
 
 @dataclass
+class ReferencedResource:
+    pid: str
+    data_type: str
+
+
+@dataclass
 class ReferencedResources:
     """
     Referenced resources by resource type
     """
     resource_type: str
-    pid: List[str]
+    pid: List[Union[str, ReferencedResource]]
 
 
 @dataclass
@@ -67,6 +73,7 @@ class JSONParser(Parser):
 
     See config schema in # TODO repository config schema validation
     """
+
     def __init__(self, parser_config: dict):
         """
 
@@ -144,7 +151,7 @@ class JSONParser(Parser):
                 pid: str = str(pid)
             except ValueError:
                 pid: AnyStr = _pid
-            #TODO add item title parsing for JSON parser
+            # TODO add item title parsing for JSON parser
             ret.append(pid)
         return ret
 
@@ -240,6 +247,7 @@ class XMLParser(Parser):
 
     See config schema in # TODO repository config schema validation
     """
+
     def __init__(self, parser_config: dict):
         """
 
@@ -323,7 +331,6 @@ class XMLParser(Parser):
         """
         return self._parse_field(xml_tree, nsmap=nsmap)
 
-
     def _parse_item_title(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
         Retrieves collection title according to xPath location specified in config
@@ -340,7 +347,8 @@ class XMLParser(Parser):
         """
         fetched_resources: dict = {}
         for resource_type in self.accept_resource_type:
-            fetched_resources[resource_type] = xml_tree.xpath(self.resource_path.replace("$resource_type", resource_type), namespaces=nsmap)
+            fetched_resources[resource_type] = xml_tree.xpath(
+                self.resource_path.replace("$resource_type", resource_type), namespaces=nsmap)
             if self.resource_format:
                 fetched_resources[resource_type] = [self.resource_format.replace('$resource', resource)
                                                     for resource in fetched_resources[resource_type]]
@@ -412,10 +420,12 @@ class XMLParser(Parser):
             nsmap.pop(None)
         return nsmap
 
+
 class CMDIParser(XMLParser):
     """
     CMDI metadata parser
     """
+
     def __init__(self, parser_config: dict):
         """
 
@@ -475,11 +485,11 @@ class CMDIParser(XMLParser):
                 fetched_resources[resource_type] = [(self.resource_format.replace('$resource', resource), data_type)
                                                     for resource, data_type in fetched_resources[resource_type]]
 
-        return [{"resource_type": resource_type,
-                 "ref_resources": [{"pid": resource_pid, "data_type": resource_data_type}
-                                   if isinstance(resource_pid, str) else
-                                   {"pid": resource_pid.text, "data_type": resource_data_type}
-                                   for resource_pid, resource_data_type in ref_resources]}
+        return [ReferencedResources(resource_type=resource_type,
+                                    pid=[ReferencedResource(pid=resource_pid, data_type=resource_data_type)
+                                         if isinstance(resource_pid, str) else
+                                         ReferencedResource(pid=resource_pid.text, data_type=resource_data_type)
+                                         for resource_pid, resource_data_type in ref_resources])
                 for resource_type, ref_resources in fetched_resources.items()]
 
 
@@ -554,10 +564,9 @@ class HTMLParser(XMLParser):
     def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
         resource_nodes = self._parse_field(html_tree, self.resource_path, join_by='')
         fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA",
-                                                                            pid=[resource_node
+                                                                            pid=[ReferencedResource(resource_node)
                                                                                  for resource_node
                                                                                  in resource_nodes])]
-
         return fetched_resources
 
     def _parse_description(self, html_tree: ElementTree) -> str:
