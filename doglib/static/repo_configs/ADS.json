@@ -7,7 +7,7 @@
     "url": {"format":  "$url"},
     "doi": {
       "id": "10.5284",
-      "format": "$doi"
+      "format": "redirect"
     },
     "parser": {
       "type": "html",

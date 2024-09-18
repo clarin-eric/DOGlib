@@ -82,8 +82,6 @@ class RegRepo(object):
         elif type(pid) == URL:
             request_config = self.url
             # if html scrapping return deposit URL
-            if self.parser["type"] == 'html':
-                return self.url["format"].replace("$url", pid.get_resolvable())
 
         # follow redirects
         if request_config["format"] == "redirect":

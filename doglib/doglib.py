@@ -358,3 +358,9 @@ class DOG:
             for repo_key, repo_status in status_report.items():
                 csv_writer.writerow([repo_key, repo_status["doi"], repo_status["hdl"],
                 repo_status["url"]])
+
+    def get_repository_by_name(self, repo_name="") -> Union[RegRepo, None]:
+        for reg_repo in self.reg_repos:
+            if reg_repo.name == repo_name:
+                return reg_repo
+        return None
