@@ -552,16 +552,15 @@ class HTMLParser(XMLParser):
         return self._parse_field(html_tree, self.license_path)
 
     def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
-        print("PATH")
-        print(self.resource_path)
         resource_nodes = self._parse_field(html_tree, self.resource_path, join_by='')
-        print(resource_nodes)
-        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA", pid=resource_node)
-                                                        for resource_node in resource_nodes]
+        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA",
+                                                                            pid=[resource_node
+                                                                                 for resource_node
+                                                                                 in resource_nodes])]
+
         return fetched_resources
 
     def _parse_description(self, html_tree: ElementTree) -> str:
-        print(self.description_path)
         return self._parse_field(html_tree, self.description_path)
 
     def _parse_reverse_pid(self, html_tree: ElementTree) -> str:

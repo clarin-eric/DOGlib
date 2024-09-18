@@ -104,6 +104,10 @@ class RegRepo(object):
         else:
             if type(pid) == HDL:
                 return self.hdl["format"].replace("$hdl", pid.get_resolvable())
+            elif type(pid) == DOI:
+                return self.pid["format"].replace("$doi", pid.get_resolvable())
+            elif type(pid) == URL:
+                return self.url["format"].replace("$url", pid.get_resolvable())
 
     def get_host_netloc(self) -> str:
         """
