@@ -21,7 +21,7 @@ class ReferencedResources:
     Referenced resources by resource type
     """
     resource_type: str
-    pid: List[Union[str, ReferencedResource]]
+    ref_resources: List[ReferencedResource]
 
 
 @dataclass
@@ -105,7 +105,8 @@ class JSONParser(Parser):
         _license: str = self._parse_license(response)
         item_title: str = self._parse_item_title(response)
 
-        return FetchResult(ref_files=[ReferencedResources(resource_type='NA', pid=ref_files)],
+        return FetchResult(ref_files=[ReferencedResources(resource_type='NA', ref_resources=[ReferencedResource(
+            pid=ref_file, data_type='') for ref_file in ref_files])],
                            description=descriptions,
                            title=item_title,
                            license=_license)
@@ -337,6 +338,7 @@ class XMLParser(Parser):
         """
         return self._parse_reverse_pid(xml_tree, nsmap=nsmap)
 
+#TODO serialise output
     def _parse_resources(self, xml_tree: ElementTree, nsmap: dict) -> list:
         """
         Find all direct references/download links to referenced resources and if possible their filenames/labels
@@ -486,10 +488,10 @@ class CMDIParser(XMLParser):
                                                     for resource, data_type in fetched_resources[resource_type]]
 
         return [ReferencedResources(resource_type=resource_type,
-                                    pid=[ReferencedResource(pid=resource_pid, data_type=resource_data_type)
-                                         if isinstance(resource_pid, str) else
-                                         ReferencedResource(pid=resource_pid.text, data_type=resource_data_type)
-                                         for resource_pid, resource_data_type in ref_resources])
+                                    ref_resources=[ReferencedResource(pid=resource_pid, data_type=resource_data_type)
+                                                   if isinstance(resource_pid, str) else
+                                                   ReferencedResource(pid=resource_pid.text, data_type=resource_data_type)
+                                                   for resource_pid, resource_data_type in ref_resources])
                 for resource_type, ref_resources in fetched_resources.items()]
 
 
@@ -562,11 +564,11 @@ class HTMLParser(XMLParser):
         return self._parse_field(html_tree, self.license_path)
 
     def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
-        resource_nodes = self._parse_field(html_tree, self.resource_path, join_by='')
+        resource_nodes: List[str] = self._parse_field(html_tree, self.resource_path, join_by='')
         fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA",
-                                                                            pid=[ReferencedResource(resource_node)
-                                                                                 for resource_node
-                                                                                 in resource_nodes])]
+                                                                            ref_resources=[ReferencedResource(pid=resource_node, data_type='')
+                                                                                           for resource_node
+                                                                                           in resource_nodes])]
         return fetched_resources
 
     def _parse_description(self, html_tree: ElementTree) -> str:

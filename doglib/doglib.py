@@ -7,7 +7,7 @@ from typing import List, Union, Optional
 from . import curl
 from .dtr import expand_datatype, DataTypeNotFoundException
 from .pid import pid_factory, PID, PID_TYPE_KEYS
-from .repos import HTMLParser, JSONParser, XMLParser
+from .repos import HTMLParser, JSONParser, XMLParser, FetchResult
 from .repos import RegRepo, warn_europeana
 
 
@@ -15,6 +15,15 @@ REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
 STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
 
+
+def _fetch_res_to_dict(fetch_result: FetchResult) -> dict:
+    fetch_dict = fetch_result.__dict__
+    fetch_dict["ref_files"] = [ref_resources.__dict__ for ref_resources in fetch_dict["ref_files"]]
+    fetch_dict["ref_files"] = [[ref_resource.__dict__ for ref_resource in ref_resources_dict["ref_resources"]]
+                                for ref_resources_dict in fetch_dict["ref_files"]]
+    print("DICT")
+    print(fetch_dict)
+    return fetch_dict
 
 class DOG:
     def __init__(self, secrets: Optional[dict] = None):
@@ -44,7 +53,8 @@ class DOG:
             headers: dict = matching_repo.get_headers(pid_factory(request_url))
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
             parser: Union[JSONParser, XMLParser, HTMLParser] = matching_repo.get_parser()
-            return parser.fetch(response)
+            fetch_result: FetchResult = parser.fetch(response)
+            return _fetch_res_to_dict(fetch_result)
 
     def fetch(self, pid_string: Union[str, PID], format: str = 'dict',
               dtr: bool = False) -> Union[dict, str]:

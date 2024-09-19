@@ -3,7 +3,7 @@ from typing import AnyStr, Union, Optional
 import warnings
 
 from . import curl
-from .parsers import CMDIParser, HTMLParser, JSONParser, XMLParser
+from .parsers import CMDIParser, HTMLParser, JSONParser, XMLParser, FetchResult, IdentifyResult
 from .pid import pid_factory, DOI, HDL, PID, URL
 
 
