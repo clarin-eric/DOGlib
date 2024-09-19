@@ -19,9 +19,8 @@ STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file
 def _fetch_res_to_dict(fetch_result: FetchResult) -> dict:
     fetch_dict = fetch_result.__dict__
     fetch_dict["ref_files"] = [ref_resources.__dict__ for ref_resources in fetch_dict["ref_files"]]
-    fetch_dict["ref_files"] = [[ref_resource.__dict__ for ref_resource in ref_resources_dict["ref_resources"]]
-                                for ref_resources_dict in fetch_dict["ref_files"]]
-    print("DICT")
+    for ref_resources in fetch_dict["ref_files"]:
+        fetch_dict["ref_files"] = [ref_resource.__dict__ for ref_resource in ref_resources["ref_resources"]]
     print(fetch_dict)
     return fetch_dict
 
