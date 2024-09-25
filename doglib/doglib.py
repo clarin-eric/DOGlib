@@ -16,13 +16,21 @@ SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "stat
 STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
 
 
-def _fetch_res_to_dict(fetch_result: FetchResult) -> dict:
-    fetch_dict = fetch_result.__dict__
-    fetch_dict["ref_files"] = [ref_resources.__dict__ for ref_resources in fetch_dict["ref_files"]]
-    for ref_resources in fetch_dict["ref_files"]:
-        fetch_dict["ref_files"] = [ref_resource.__dict__ for ref_resource in ref_resources["ref_resources"]]
-    print(fetch_dict)
-    return fetch_dict
+def _dataclass_to_dict(obj: object) -> dict:
+    if not isinstance(obj, dict):
+        obj_dict = obj.__dict__
+    else:
+        obj_dict = obj
+
+    for k, v in obj_dict.items():
+        if isinstance(v, list):
+            obj_dict[k] = [_dataclass_to_dict(_v) for _v in v]
+        if isinstance(v, dict):
+            obj_dict[k] = _dataclass_to_dict(obj)
+        else:
+            obj_dict[k] = _dataclass_to_dict(v)
+    return obj_dict
+
 
 class DOG:
     def __init__(self, secrets: Optional[dict] = None):
@@ -53,7 +61,10 @@ class DOG:
             final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
             parser: Union[JSONParser, XMLParser, HTMLParser] = matching_repo.get_parser()
             fetch_result: FetchResult = parser.fetch(response)
-            return _fetch_res_to_dict(fetch_result)
+            fetch_dict = _dataclass_to_dict(fetch_result)
+            print("CAST RESULT")
+            print(fetch_dict)
+            return fetch_dict
 
     def fetch(self, pid_string: Union[str, PID], format: str = 'dict',
               dtr: bool = False) -> Union[dict, str]:

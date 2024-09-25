@@ -4,7 +4,7 @@ import json
 from lxml.etree import fromstring, tostring, ElementTree
 from lxml.etree import HTMLParser as _HTMLParser
 from re import compile, match, findall, Match, Pattern
-from typing import Any, AnyStr, Generator, List, NamedTuple, Type, Union
+from typing import Any, AnyStr, Generator, List, Type, Union
 
 from .pid import PID, pid_factory
 
@@ -35,23 +35,23 @@ class FetchResult(dict):
         "title": str
     }
     """
-    description: str
-    license: str
+    description: Union[str, List[str]]
+    license: Union[str, List[str]]
     ref_files: List[ReferencedResources]
-    title: str
+    title: Union[str, List[str]]
 
 
 @dataclass
 class IdentifyResult(dict):
     """
-    Parser's identify result serialisation
+    Parser's identify result serialisationxw
     {
         "description": str
         "item_title": str
         "reverse_pid": str
     }
     """
-    description: str
+    description: Union[str, List[str]]
     item_title: str
     reverse_pid: str
 
@@ -558,21 +558,21 @@ class HTMLParser(XMLParser):
             return None
 
     def _parse_item_title(self, html_tree: ElementTree) -> str:
-        return self._parse_field(html_tree, self.item_title_path)
+        return self._parse_field(html_tree, self.item_title_path, join_by='\n')
 
     def _parse_license(self, html_tree: ElementTree) -> str:
-        return self._parse_field(html_tree, self.license_path)
+        return self._parse_field(html_tree, self.license_path, join_by='\n')
 
     def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
         resource_nodes: List[str] = self._parse_field(html_tree, self.resource_path, join_by='')
-        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="NA",
+        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="Unknown",
                                                                             ref_resources=[ReferencedResource(pid=resource_node, data_type='')
                                                                                            for resource_node
                                                                                            in resource_nodes])]
         return fetched_resources
 
     def _parse_description(self, html_tree: ElementTree) -> str:
-        return self._parse_field(html_tree, self.description_path)
+        return self._parse_field(html_tree, self.description_path, join_by='\n')
 
     def _parse_reverse_pid(self, html_tree: ElementTree) -> str:
-        return self._parse_field(html_tree, self.reverse_pid_path)
+        return self._parse_field(html_tree, self.reverse_pid_path, join_by='\n')
