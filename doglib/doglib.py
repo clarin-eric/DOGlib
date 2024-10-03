@@ -62,8 +62,6 @@ class DOG:
             parser: Union[JSONParser, XMLParser, HTMLParser] = matching_repo.get_parser()
             fetch_result: FetchResult = parser.fetch(response)
             fetch_dict = _dataclass_to_dict(fetch_result)
-            print("CAST RESULT")
-            print(fetch_dict)
             return fetch_dict
 
     def fetch(self, pid_string: Union[str, PID], format: str = 'dict',
@@ -342,7 +340,6 @@ class DOG:
         all_repos = [repo.__dict__() for repo in self.reg_repos]
         all_repos.sort(reverse=False, key=lambda x: x["host_name"])
         return all_repos
-
 
     def get_repository_status(self, reg_repo: RegRepo) -> dict:
         """

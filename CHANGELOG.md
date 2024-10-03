@@ -1,16 +1,27 @@
 # Changelog
 
-## [1.0.9] - TBD
+## [1.0.10] - TBD
+
+### Added features
+
+### Bugfixes
+- dynamic versioning in UI
+- sniff api call
+
+
+## [1.0.9] - 26.09.2024
 
 ### Added features
 - HTML parser
 - ADS config registration
-- replaced type hints on parser methods with well-typed dataclasses
+- replaced dict type hints on parser methods with well-typed dataclasses
+
 
 ## [1.0.8] - 12.08.2024
 
 ### Added features
 - registered repository status
+
 
 ## [1.0.7] - 24.06.2024
 

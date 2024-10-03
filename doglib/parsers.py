@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 import json
 from lxml.etree import fromstring, tostring, ElementTree
 from lxml.etree import HTMLParser as _HTMLParser
@@ -7,53 +6,7 @@ from re import compile, match, findall, Match, Pattern
 from typing import Any, AnyStr, Generator, List, Type, Union
 
 from .pid import PID, pid_factory
-
-
-@dataclass
-class ReferencedResource:
-    pid: str
-    data_type: str
-
-
-@dataclass
-class ReferencedResources:
-    """
-    Referenced resources by resource type
-    """
-    resource_type: str
-    ref_resources: List[ReferencedResource]
-
-
-@dataclass
-class FetchResult(dict):
-    """
-    Parser's fetch result serialisation
-    {
-        "description": str
-        "license": str
-        "ref_files": [ReferencedResource]
-        "title": str
-    }
-    """
-    description: Union[str, List[str]]
-    license: Union[str, List[str]]
-    ref_files: List[ReferencedResources]
-    title: Union[str, List[str]]
-
-
-@dataclass
-class IdentifyResult(dict):
-    """
-    Parser's identify result serialisationxw
-    {
-        "description": str
-        "item_title": str
-        "reverse_pid": str
-    }
-    """
-    description: Union[str, List[str]]
-    item_title: str
-    reverse_pid: str
+from .dogdataclasses import IdentifyResult, FetchResult, ReferencedResource, ReferencedResources
 
 
 class Parser(ABC):
