@@ -13,7 +13,8 @@
     },
     "doi": {
       "id": "10.34733",
-      "format": "redirect"
+      "format": "$doi",
+      "headers": {"Accept": "application/x-cmdi+xml"}
     },
     "parser": {
       "type": "cmdi",
@@ -32,6 +33,7 @@
     },
     "test_examples": {
       "url": "https://collections.clarin.eu/details/1061",
-      "hdl": "http://hdl.handle.net/11372/VC-1033"}
+      "hdl": "http://hdl.handle.net/11372/VC-1033",
+      "doi": "https://doi.org/10.34733/vc-1097"}
   }
 }
