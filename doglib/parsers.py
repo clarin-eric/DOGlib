@@ -518,7 +518,7 @@ class HTMLParser(XMLParser):
 
     def _parse_resources(self, html_tree: ElementTree) -> List[ReferencedResources]:
         resource_nodes: List[str] = self._parse_field(html_tree, self.resource_path, join_by='')
-        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="Unknown",
+        fetched_resources: List[ReferencedResources] = [ReferencedResources(resource_type="unknown",
                                                                             ref_resources=[ReferencedResource(pid=resource_node, data_type='')
                                                                                            for resource_node
                                                                                            in resource_nodes])]
