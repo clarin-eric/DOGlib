@@ -18,7 +18,6 @@
 - minor bugfixes
 
 
-
 ## [1.0.9] - 26.09.2024
 
 ### Added features
