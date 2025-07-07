@@ -23,6 +23,7 @@ certifi = "2024.7.4"
 lxml = "5.2.2"
 pycurl = "7.45.3"
 python = '>=3.11.*,<4.0'
+jsonpath-rw = "1.4.0"
 
 [tool.poetry-dynamic-versioning]
 enable = true

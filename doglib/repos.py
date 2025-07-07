@@ -3,7 +3,7 @@ from typing import AnyStr, Union, Optional
 import warnings
 
 from . import curl
-from .parsers import CMDIParser, HTMLParser, JSONParser, XMLParser, FetchResult, IdentifyResult
+from .parsers import CMDIParser, HTMLParser, JSONParser, SignpostParser, XMLParser, FetchResult, IdentifyResult, Parser
 from .pid import pid_factory, DOI, HDL, PID, URL
 
 
@@ -164,7 +164,7 @@ class RegRepo(object):
         """
         return self.parser['type']
 
-    def get_parser(self, parser_type: str = None, parser_config: dict = None) -> Union[JSONParser, XMLParser, None]:
+    def get_parser(self, parser_type: str = None, parser_config: dict = None) -> Union[JSONParser, XMLParser, SignpostParser, None]:
         """
         Method wrapping parser construction
 
@@ -186,6 +186,8 @@ class RegRepo(object):
             return JSONParser(parser_config)
         elif parser_type == "xml":
             return XMLParser(parser_config)
+        elif parser_type == "signpost":
+            return SignpostParser(parser_config)
         else:
             return None
 

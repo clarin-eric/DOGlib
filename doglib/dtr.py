@@ -57,8 +57,6 @@ def get_taxonomy_root_node_by_id(data_type_id: str) -> str:
     dtr_taxonomy_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/{data_type_id}"
     url, dtr_taxonomy_node_response, header = get(dtr_taxonomy_endpoint)
     dtr_taxonomy_json = json.loads(dtr_taxonomy_node_response)
-    print("get_taxonomy_root_node_by_id TAXONOMY:")
-    print(dtr_taxonomy_json)
     try:
         dtr_type_id = dtr_taxonomy_json["id"]
     except (IndexError, KeyError) as error:

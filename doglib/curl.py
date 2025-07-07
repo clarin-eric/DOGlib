@@ -1,6 +1,7 @@
 import certifi
 from io import BytesIO
 import pycurl
+import re
 from typing import Optional, Tuple, Union
 
 from .pid import PID
@@ -38,7 +39,6 @@ def get(url: Union[str, PID],
     response_body: BytesIO = BytesIO()
     response_headers: BytesIO = BytesIO()
     c: pycurl.Curl = pycurl.Curl()
-    print(url)
     c.setopt(c.URL, url)
     if headers:
         c.setopt(c.HTTPHEADER, [k + ': ' + v for k, v in list(headers.items())])
@@ -102,6 +102,11 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
     response_code = c.getinfo(c.RESPONSE_CODE)
     if response_code != 200:
         raise RequestError(f"Response code from {url}: {response_code}")  # TODO
-
     decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
+    # TODO safer cURL header response parsing
+
+
+
+
+
     return c.getinfo(c.EFFECTIVE_URL), decoded_response_headers

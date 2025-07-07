@@ -2,12 +2,14 @@ import csv
 import json
 import logging
 import os
+import re
+import requests
 from typing import List, Union, Optional
 
 from . import curl
 from .dtr import expand_datatype, DataTypeNotFoundException
 from .pid import pid_factory, PID, PID_TYPE_KEYS
-from .repos import HTMLParser, JSONParser, XMLParser, FetchResult
+from .repos import FetchResult, HTMLParser, JSONParser, Parser, SignpostParser, XMLParser
 from .repos import RegRepo, warn_europeana
 
 
@@ -50,16 +52,63 @@ class DOG:
                 "license": str
             }
         :rtype: dict
+
         """
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
             return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid, self.secrets)
-            # cast generated request URL to PID to decide which header from config shall be used
-            headers: dict = matching_repo.get_headers(pid_factory(request_url))
-            final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-            parser: Union[JSONParser, XMLParser, HTMLParser] = matching_repo.get_parser()
+            signpost_url = self._get_signpost_url(request_url)
+
+            if signpost_url:
+                request_url = signpost_url
+                final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
+                parser = matching_repo.get_parser("signpost")
+            else:
+                request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
+                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
+                parser: Parser = matching_repo.get_parser()
+
+
+            # # try signposting
+            # response, response_headers = curl.head(request_url)
+            # # dictable_headers_regex = "[^\r\n](?:\\r\\n)(?P<after>[\s\S]+)"
+            # dictable_headers_regex = "^[^\n]+\n(?P<headers>[\\s\\S]+)$"
+            # print("RESPONSE HEADERS")
+            # print(response_headers)
+            #
+            # dictable_response_match = re.match(dictable_headers_regex, response_headers)
+            # print("MATCH")
+            # print(dictable_response_match)
+            # print("GROUPS")
+            # print(dictable_response_match.groups())
+            #
+            #
+            # # CHECK IF FAIR SIGNPOSTING AVAILABLE
+            # headers_dict: dict = {}
+            # if dictable_response_match is not None:
+            #
+            #     headers_string = dictable_response_match.group("headers")
+            #     if "\r\n" in headers_string:
+            #         headers_strings = headers_string.split("\r\n")
+            #         print("BEFORE SPLIT")
+            #         print(headers_strings)
+            #         for header_string in headers_strings:
+            #             if header_string:
+            #                 header_split = header_string.split(': ')
+            #                 headers_dict[header_split[0]] = header_split[1]
+            # else:
+            #     headers_dict = {}
+            #
+            # # get parser instance, if FAIR signpost available default to SignpostParser
+            # if headers_dict:
+            #     signpost_url = self._get_signpost_url(headers_dict)
+            #     if signpost_url:
+            #         request_url = signpost_url
+            #         parser = matching_repo.get_parser("signpost")
+            #     else:
+
             fetch_result: FetchResult = parser.fetch(response)
             fetch_dict = _dataclass_to_dict(fetch_result)
             return fetch_dict
@@ -97,17 +146,6 @@ class DOG:
             elif format == 'jsons' or format == 'str':
                 return ""
         fetch_result: dict = self._fetch(pid)
-        if dtr:
-            unique_data_types: set = set()
-            for entry in fetch_result['ref_files']:
-                for resource in entry['ref_resources']:
-                    data_type = resource['data_type']
-                    unique_data_types.add(data_type)
-            for unique_type in unique_data_types:
-                try:
-                    fetch_result['dtr'][unique_type] = expand_datatype(unique_type)
-                except DataTypeNotFoundException:
-                    continue
         if format == 'dict':
             return fetch_result
         elif format == 'jsons' or format == 'str':
@@ -134,9 +172,17 @@ class DOG:
                 return {}
             elif matching_repo is not None:
                 request_url: str = matching_repo.get_request_url(pid, self.secrets)
-                headers: dict = matching_repo.get_headers(pid)
-                final_url, response, response_headers = curl.get(request_url, headers, follow_redirects=True)
-                parser: Union[JSONParser, XMLParser] = matching_repo.get_parser()
+                signpost_url = self._get_signpost_url(request_url)
+
+                if signpost_url:
+                    request_url = signpost_url
+                    final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
+                    parser = matching_repo.get_parser("signpost")
+                else:
+                    request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
+                    final_url, response, response_headers = curl.get(request_url, request_headers,
+                                                                     follow_redirects=True)
+                    parser: Parser = matching_repo.get_parser()
                 return parser.identify(response)
 
     def is_collection(self, pid_string: Union[str, PID]) -> bool:
@@ -266,6 +312,16 @@ class DOG:
             else:
                 return matching_repo
         return None
+
+    def _get_signpost_url(self, request_url: str) -> str:
+        head_response = requests.head(request_url)
+        link = ""
+        if "link" in head_response.headers.keys():
+            link_regex = "<(?P<link>[^>]+)>"
+
+            link_match = re.match(link_regex, head_response.headers["link"])
+            link = link_match.group("link")
+        return link
 
     def _sniff(self, pid: PID, resolve_identifier_conflicts: bool = True) -> Union[Optional[RegRepo], Optional[List[RegRepo]]]:
         """

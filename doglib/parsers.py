@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import json
+from jsonpath_rw import jsonpath, parse
 from lxml.etree import fromstring, tostring, ElementTree
 from lxml.etree import HTMLParser as _HTMLParser
 from re import compile, match, findall, Match, Pattern
@@ -57,12 +58,20 @@ class JSONParser(Parser):
         descriptions: str = self._parse_description(response)
         _license: str = self._parse_license(response)
         item_title: str = self._parse_item_title(response)
+        authors: List[str] = self._parse_authors(response)
 
-        return FetchResult(ref_files=[ReferencedResources(resource_type='NA', ref_resources=[ReferencedResource(
-            pid=ref_file, data_type='') for ref_file in ref_files])],
+        return FetchResult(authors=authors,
+                           ref_files=[
+                               ReferencedResources(resource_type='NA',
+                                                   ref_resources=[
+                                                       ReferencedResource(pid=ref_file,
+                                                                          data_type='') for ref_file in ref_files])],
                            description=descriptions,
                            title=item_title,
                            license=_license)
+
+    def _parse_authors(self, response: dict):
+        return [""]
 
     def identify(self, response: str) -> IdentifyResult:
         """
@@ -74,7 +83,7 @@ class JSONParser(Parser):
         description: str = self._parse_description(response)
         reverse_pid: str = self._parse_reverse_pid(response)
 
-        return IdentifyResult(description=description, item_title=item_title, reverse_pid=reverse_pid)
+        return IdentifyResult(description=description, title=item_title, reverse_pid=reverse_pid)
 
     def _parse_item_title(self, response: dict) -> Union[str, List[str]]:
         titles = self.fetchall_path_in_dict(response, self.item_title_path)
@@ -255,8 +264,17 @@ class XMLParser(Parser):
         description: str = self._parse_description(xml_tree, nsmap)
         _license: str = self._parse_license(xml_tree, nsmap)
         item_title: str = self._parse_item_title(xml_tree, nsmap)
+        authors: List[str] = self._parse_authors(xml_tree, nsmap)
 
-        return FetchResult(description=description, license=_license, ref_files=resources, title=item_title)
+        return FetchResult(authors=authors,
+                           description=description,
+                           license=_license,
+                           ref_files=resources,
+                           title=item_title)
+
+    def _parse_authors(self, xml_tree: ElementTree, nsmap: dict) -> Union[List[str], str]:
+        authors: List[str] = [""]
+        return authors
 
     def identify(self, response) -> IdentifyResult:
         """
@@ -277,7 +295,7 @@ class XMLParser(Parser):
         description: str = self._parse_description(xml_tree, nsmap)
         reverse_pid: str = self._parse_reverse_pid(xml_tree, nsmap)
 
-        return IdentifyResult(description=description, item_title=item_title, reverse_pid=reverse_pid)
+        return IdentifyResult(description=description, title=item_title, reverse_pid=reverse_pid)
 
     def reverse_pid(self, xml_tree: ElementTree, nsmap: dict) -> str:
         """
@@ -463,7 +481,7 @@ class HTMLParser(XMLParser):
         :param response: dict, json response from call to repository
         :return: dict, result of response parsing:
             digitalObjects: [{filename: str, pid: str}]
-            decriptions: [str]
+            descriptions: [str]
             license: str
         """
 
@@ -494,7 +512,7 @@ class HTMLParser(XMLParser):
         description: str = self._parse_description(html_tree)
         reverse_pid: str = self._parse_reverse_pid(html_tree)
 
-        return IdentifyResult(item_title=item_title, description=description, reverse_pid=reverse_pid)
+        return IdentifyResult(title=item_title, description=description, reverse_pid=reverse_pid)
 
     def _parse_field(self, html_tree: ElementTree, field_path: str, nsmap: dict = None, join_by: str = '') -> (
             Union)[str, List[str], None]:
@@ -529,3 +547,54 @@ class HTMLParser(XMLParser):
 
     def _parse_reverse_pid(self, html_tree: ElementTree) -> str:
         return self._parse_field(html_tree, self.reverse_pid_path, join_by='\n')
+
+
+class SignpostParser(Parser):
+    def __init__(self, parser_config: dict):
+        """
+        :param parser_config: dict, parser configuration retrieved from repository XML config in .repo_configs/
+        """
+        super().__init__(parser_config)
+        self.accept_resource_type: set = {'LandingPage', 'Resource', 'Metadata', 'SearchPage', 'SearchService'}
+
+        self.reverse_pid_path = parse("$.links[*].self")
+
+        self.authors_path = parse("$.metadata.creators[*].name")
+        self.resource_path = parse("$.files[*].links.self")
+        self.descriptions_path = parse("$.metadata.description")
+        self._license_path = parse("$.metadata.license.id")
+        self.item_title_path = parse("$.metadata.title")
+
+        self.reverse_pid_path = parse("$.links.doi")
+
+    def _parse_resources(self, response_json) -> FetchResult:
+        resources: list = []
+        for resource in self.resource_path.find(response_json):
+            referenced_resource: ReferencedResource = ReferencedResource(pid=resource.value, data_type="")
+            resources.append(referenced_resource)
+
+        referenced_resources: ReferencedResources = ReferencedResources(ref_resources=resources, resource_type="")
+        return referenced_resources
+
+    def fetch(self, response: str) -> FetchResult:
+        print("USES SIGNPOSTER")
+        response_json = json.loads(response)
+        referenced_resources: ReferencedResources = self._parse_resources(response_json)
+
+        authors = [author.value for author in self.authors_path.find(response_json)]
+
+        resources = [resource.value for resource in self.resource_path.find(response_json)]
+        descriptions = [description.value for description in self.descriptions_path.find(response_json)]
+        _license = [_lic.value for _lic in self._license_path.find(response_json)]
+        item_title = [title.value for title in self.item_title_path.find(response_json)]
+
+        return FetchResult(authors=authors, description=descriptions, license=_license,
+                           title=item_title, ref_files=[referenced_resources])
+
+    def identify(self, response: str):
+        response_json = json.loads(response)
+        descriptions = self.descriptions_path.find(response_json)
+        item_title = self.item_title_path.find(response_json).value
+        reverse_pid = self.reverse_pid_path.find(response_json).value
+
+        return IdentifyResult(description=descriptions, title=item_title, reverse_pid=reverse_pid)

@@ -28,10 +28,12 @@ class FetchResult(dict):
         "title": str
     }
     """
+    authors: Union[str, List[str]]
     description: Union[str, List[str]]
     license: Union[str, List[str]]
     ref_files: List[ReferencedResources]
     title: Union[str, List[str]]
+
 
 
 @dataclass
@@ -45,5 +47,5 @@ class IdentifyResult(dict):
     }
     """
     description: Union[str, List[str]]
-    item_title: str
+    title: str
     reverse_pid: str
