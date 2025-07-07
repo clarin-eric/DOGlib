@@ -1,12 +1,23 @@
 # Changelog
 
-## [1.0.10] - TBD
+## [1.0.11] - 7.07.2025
 
 ### Added features
 - FetchResult dataclass expanded with "author" and "title" field, logic for JSON and XML TBD 
-- pilot FAIR signposting support, SignposterParser as optional for repositories supporting signposting
-- jsonpath-rw for SignposterParser. Planned to apply to JSON parser as well
-- GoTriple added as known repository
+- pilot FAIR signposting support, SignposterParser as optional for repositories supporting signposting  
+- jsonpath-rw for json parsing. Planned to apply to JSON parser as well
+
+### Bugfixes
+- dynamic versioning in UI
+- sniff api call
+
+## [1.0.10] - 15.10.2024
+
+### Bugfixes
+- prune CMU
+- minor bugfixes
+
+
 
 ## [1.0.9] - 26.09.2024
 
