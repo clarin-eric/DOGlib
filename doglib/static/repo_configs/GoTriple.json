@@ -1,0 +1,28 @@
+{
+  "repository": {
+	"id": "GOTRIPLE",
+	"name": "Go Triple",
+	"host_name": "Go Triple",
+	"host_netloc": "https://www.gotriple.eu/",
+	"api": {
+  	"base": "https://api.gotriple.eu/documents/$record_id"
+	},
+	"url": {"regex": "^.*/(?P<record_id>.+)$", "format": "$api"},
+	"parser": {
+  	  "type": "json",
+  	  "config": {
+    	    "license": "license",
+    	    "description": "abstract/text()",
+    	    "collection_title": "headline/text()",
+		    "items_root": ".//",
+    	    "reverse_pid": "doi",
+    	    "ref_file": {
+      			"path": "url"
+    	    }
+  	  }
+	},
+	"test_examples": {
+  	"url": "https://www.gotriple.eu/documents/ftjagiellonuniir:oai:ruj.uj.edu.pl:item_241784"
+	}
+  }
+}

@@ -577,7 +577,6 @@ class SignpostParser(Parser):
         return referenced_resources
 
     def fetch(self, response: str) -> FetchResult:
-        print("USES SIGNPOSTER")
         response_json = json.loads(response)
         referenced_resources: ReferencedResources = self._parse_resources(response_json)
 
