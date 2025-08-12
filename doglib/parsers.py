@@ -388,7 +388,7 @@ class XMLParser(Parser):
         nsmap: dict = {**self.namespaces, **self._parse_nested_namespaces(response)}
         # for parsing default namespace
         nsmap: dict = {**nsmap, **xml_tree.nsmap}
-        # xPath does not support ampty namespaces
+        # xPath does not support empty namespaces
         if None in nsmap.keys():
             nsmap.pop(None)
         return nsmap

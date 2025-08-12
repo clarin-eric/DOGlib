@@ -110,6 +110,3 @@ DOGlib utilises `lxml` which requires `libxml2` and `libxslt` system libraries. 
 ```bash
 sudo apt-get install libxml2-dev libxslt-dev
 ```
-
-
-

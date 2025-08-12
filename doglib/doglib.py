@@ -66,11 +66,28 @@ class DOG:
                     request_url = signpost_url
                     final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
                     parser = matching_repo.get_parser("signpost")
+                    print("Using singpost")
+                    fetch_result: FetchResult = parser.fetch(response)
+                    fetch_dict = _dataclass_to_dict(fetch_result)
+                    return fetch_dict
+
                 except: # TODO investigate possible erroneous scenarios, matched HEAD response <link> does not imply signpost
                     request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
                     final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
                     parser: Parser = matching_repo.get_parser()
-
+                    print("Using configuration")
+                    fetch_result: FetchResult = parser.fetch(response)
+                    fetch_dict = _dataclass_to_dict(fetch_result)
+                    return fetch_dict
+            else:
+                # TODO code repetition, how to handle if/else with nested try/except
+                request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
+                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
+                parser: Parser = matching_repo.get_parser()
+                print("Using configuration")
+                fetch_result: FetchResult = parser.fetch(response)
+                fetch_dict = _dataclass_to_dict(fetch_result)
+                return fetch_dict
 
             # # try signposting
             # response, response_headers = curl.head(request_url)
@@ -109,10 +126,6 @@ class DOG:
             #         request_url = signpost_url
             #         parser = matching_repo.get_parser("signpost")
             #     else:
-
-            fetch_result: FetchResult = parser.fetch(response)
-            fetch_dict = _dataclass_to_dict(fetch_result)
-            return fetch_dict
 
     def fetch(self, pid_string: Union[str, PID], format: str = 'dict',
               dtr: bool = False) -> Union[dict, str]:

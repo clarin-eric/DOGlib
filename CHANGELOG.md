@@ -11,6 +11,7 @@
 - dynamic versioning in UI
 - sniff api call
 
+
 ## [1.0.10] - 15.10.2024
 
 ### Bugfixes
@@ -67,6 +68,7 @@
 ### Changed features
 - Added ```resolve_identifier_conflicts``` bool flag for clashing repo identifiers resolution
 
+
 ## [1.0.2] - 23.01.2023
 
 ### Changed features
@@ -74,6 +76,7 @@
 - CI migrated from Travis to GitActions
 - added is_pid(Union[str, PID]) -> bool to core functionalities
 - remove EKUT from testing due to Forbidden access to the repository for over a month
+
 
 ## [1.0.1] - 3.10.2022
 
@@ -83,6 +86,7 @@
 - Added static testing along with logic for procuring static resources and the resources
 - Changed SCM from setup.py to pyproject.toml
 - Fixed CI
+
 
 ## [1.0.0] - 16.05.2022
 
