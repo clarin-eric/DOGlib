@@ -19,7 +19,7 @@ def get(url: Union[str, PID],
         headers: dict = None,
         follow_redirects: bool = False,
         verbose: int = 0,
-        ssl_validation: bool = False) -> Tuple[str, str, str]:
+        ssl_validation: bool = True) -> Tuple[str, str, str]:
     """
     Performs http GET request using PyCurl
     :param url: Union[str, PID], request url
@@ -34,6 +34,7 @@ def get(url: Union[str, PID],
         1: response body
         2: response headers
     """
+
     if headers is None:
         headers = {}
     response_body: BytesIO = BytesIO()
