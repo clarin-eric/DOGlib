@@ -101,6 +101,7 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
     c.setopt(c.FOLLOWLOCATION, follow_redirects)
     c.setopt(pycurl.CONNECTTIMEOUT, 60)
     c.setopt(c.CAINFO, certifi.where())
+    c.setopt(c.USERAGENT, CUSTOM_USER_AGENT)
     c.setopt(pycurl.VERBOSE, verbose)
     c.perform()
 
@@ -109,9 +110,5 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
         raise RequestError(f"Response code from {url}: {response_code}")  # TODO
     decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
     # TODO safer cURL header response parsing
-
-
-
-
 
     return c.getinfo(c.EFFECTIVE_URL), decoded_response_headers
