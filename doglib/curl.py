@@ -7,6 +7,9 @@ from typing import Optional, Tuple, Union
 from .pid import PID
 
 
+CUSTOM_USER_AGENT = "CLARIN-DOGlib: https://www.clarin.eu/doglib"
+
+
 class CurlError(Exception):
     pass
 
@@ -54,6 +57,7 @@ def get(url: Union[str, PID],
     c.setopt(c.FOLLOWLOCATION, follow_redirects)
     c.setopt(pycurl.CONNECTTIMEOUT, 600)
     c.setopt(c.CAINFO, certifi.where())
+    c.setopt(c.USERAGENT, CUSTOM_USER_AGENT)
     c.setopt(pycurl.VERBOSE, verbose)
     c.perform()
 
