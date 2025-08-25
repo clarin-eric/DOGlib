@@ -16,6 +16,8 @@ REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
 STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
 
+class NoSignpostException(Exception):
+    pass
 
 def _dataclass_to_dict(obj: object) -> dict:
     if not isinstance(obj, dict):
@@ -69,7 +71,7 @@ class DOG:
                     fetch_dict = _dataclass_to_dict(fetch_result)
                     return fetch_dict
                 else:
-                    raise Exception("No signpost")
+                    raise NoSignpostException("No signpost")
                     # # TODO code repetition, how to handle if/else with nested try/except
                     # request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
                     # final_url, response, response_headers = curl.get(request_url, request_headers,

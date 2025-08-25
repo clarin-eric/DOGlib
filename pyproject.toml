@@ -19,11 +19,12 @@ homepage = ""
 repository = "https://github.com/clarin-eric/DOGlib"
 
 [tool.poetry.dependencies]
-certifi = "2024.7.4"
-lxml = "5.2.2"
-pycurl = "7.45.3"
-python = '>=3.11.*,<4.0'
+certifi = "2025.8.3"
+lxml = "6.0.1"
+pycurl = "7.45.6"
+python = "3.11.*"
 jsonpath-rw = "1.4.0"
+wheel = "0.45.1"
 
 [tool.poetry-dynamic-versioning]
 enable = true

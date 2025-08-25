@@ -1,11 +1,15 @@
 # Changelog
 
-## [1.0.11] - 7.07.2025
+## [1.0.11] - TBD
 
 ### Added features
 - FetchResult dataclass expanded with "author" and "title" field, logic for JSON and XML TBD 
 - pilot FAIR signposting support, SignposterParser as optional for repositories supporting signposting  
 - jsonpath-rw for json parsing. Planned to apply to JSON parser as well
+- remove `requests` from dependencies, rely solely on `PyCurl`
+- dependency bump: certifi -> 2025.8.3, lxml -> 6.0.1, pycurl -> 7.45.6
+- add `wheel` 0.45.1 to dependency tree as jsonpath-rw uses legacy setuptools
+- better try-catch for signposting
 
 ### Bugfixes
 - dynamic versioning in UI
