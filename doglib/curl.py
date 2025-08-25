@@ -2,7 +2,7 @@ import certifi
 from io import BytesIO
 import pycurl
 import re
-from typing import Optional, Tuple, Union
+from typing import Any, Optional, Tuple, Union
 
 from .pid import PID
 
@@ -71,7 +71,7 @@ def get(url: Union[str, PID],
 
 
 def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = False, verbose: int = 0) -> \
-        Tuple[str, str]:
+        Tuple[str, dict]:
     """
     Performs http HEAD request using PyCurl
     :param url: request url
@@ -102,13 +102,27 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
     c.setopt(pycurl.CONNECTTIMEOUT, 60)
     c.setopt(c.CAINFO, certifi.where())
     c.setopt(c.USERAGENT, CUSTOM_USER_AGENT)
+    header_processor = HeaderProcessor()
+    c.setopt(pycurl.HEADERFUNCTION, header_processor.process_header_line)
     c.setopt(pycurl.VERBOSE, verbose)
     c.perform()
 
     response_code = c.getinfo(c.RESPONSE_CODE)
     if response_code != 200:
         raise RequestError(f"Response code from {url}: {response_code}")  # TODO
-    decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
+    # decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
     # TODO safer cURL header response parsing
 
-    return c.getinfo(c.EFFECTIVE_URL), decoded_response_headers
+    return c.getinfo(c.EFFECTIVE_URL), header_processor.headers
+
+class HeaderProcessor:
+    def __init__(self):
+        self.headers = {}
+        self.header_buffer = BytesIO()
+
+    def process_header_line(self, header_line):
+        # Decode the header line and strip whitespace
+        line = header_line.decode('utf-8').strip()
+        if ': ' in line:
+            key, value = line.split(': ', 1)
+            self.headers[key.lower()] = value # Store keys in lowercase for consistency

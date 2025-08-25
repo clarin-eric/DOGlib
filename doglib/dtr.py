@@ -2,8 +2,6 @@ from enum import Enum
 import json
 from typing import List, Set, Union
 
-from requests import RequestException
-
 from .curl import get
 
 
@@ -30,7 +28,7 @@ def get_dtr_taxonomy_by_type(data_type: str) -> dict:
 
     try:
         url, dtr_taxonomy_search_response, header = get(dtr_type_search_endpoint)
-    except RequestException as error:
+    except Exception as error:
         raise DataTypeNotFoundException(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
 
     dtr_taxonomy_json = json.loads(dtr_taxonomy_search_response)

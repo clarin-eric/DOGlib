@@ -3,7 +3,6 @@ import json
 import logging
 import os
 import re
-import requests
 from typing import List, Union, Optional
 
 from . import curl
@@ -59,10 +58,9 @@ class DOG:
             return {}
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid, self.secrets)
-            signpost_url = self._get_signpost_url(request_url)
-
-            if signpost_url:
-                try:
+            try:
+                signpost_url = self._get_signpost_url(request_url)
+                if signpost_url:
                     request_url = signpost_url
                     final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
                     parser = matching_repo.get_parser("signpost")
@@ -70,17 +68,19 @@ class DOG:
                     fetch_result: FetchResult = parser.fetch(response)
                     fetch_dict = _dataclass_to_dict(fetch_result)
                     return fetch_dict
+                else:
+                    raise Exception("No signpost")
+                    # # TODO code repetition, how to handle if/else with nested try/except
+                    # request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
+                    # final_url, response, response_headers = curl.get(request_url, request_headers,
+                    #                                                  follow_redirects=True)
+                    # parser: Parser = matching_repo.get_parser()
+                    # print("Using configuration")
+                    # fetch_result: FetchResult = parser.fetch(response)
+                    # fetch_dict = _dataclass_to_dict(fetch_result)
+                    # return fetch_dict
 
-                except: # TODO investigate possible erroneous scenarios, matched HEAD response <link> does not imply signpost
-                    request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
-                    final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
-                    parser: Parser = matching_repo.get_parser()
-                    print("Using configuration")
-                    fetch_result: FetchResult = parser.fetch(response)
-                    fetch_dict = _dataclass_to_dict(fetch_result)
-                    return fetch_dict
-            else:
-                # TODO code repetition, how to handle if/else with nested try/except
+            except: # TODO investigate possible erroneous scenarios, matched HEAD response <link> does not imply signpost
                 request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
                 final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
                 parser: Parser = matching_repo.get_parser()
@@ -88,6 +88,7 @@ class DOG:
                 fetch_result: FetchResult = parser.fetch(response)
                 fetch_dict = _dataclass_to_dict(fetch_result)
                 return fetch_dict
+
 
             # # try signposting
             # response, response_headers = curl.head(request_url)
@@ -328,12 +329,14 @@ class DOG:
         return None
 
     def _get_signpost_url(self, request_url: str) -> str:
-        head_response = requests.head(request_url)
+        final_url, response_headers = curl.head(request_url)
+        print(type(response_headers))
+        print(response_headers)
         link = ""
-        if "link" in head_response.headers.keys():
+        if "link" in response_headers.keys():
             link_regex = "<(?P<link>[^>]+)>"
 
-            link_match = re.match(link_regex, head_response.headers["link"])
+            link_match = re.match(link_regex, response_headers["link"])
             link = link_match.group("link")
         return link
 
