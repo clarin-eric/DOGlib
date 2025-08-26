@@ -16,6 +16,7 @@
         "description": "//tr[th[contains(text(), 'Abstract:')]]/td/text()",
         "collection_title": "//tr[th[contains(text(), 'Title:')]]/td/text()",
         "license": "//tr[th[contains(text(), 'Licence Type:')]]/td/a/@href",
+        "authors": "//tr[th[contains(text(), 'Author:')]]/td/text()",
         "ref_file": {
           "path": "//tr[th[contains(text(), 'Downloads:')]]/td/table/tr/td/a/@href"
         }

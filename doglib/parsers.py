@@ -238,6 +238,9 @@ class XMLParser(Parser):
         self.resource_format: str = ''
         if 'resource_format' in parser_config['ref_file'].keys():
             self.resource_format = parser_config['ref_file']['resource_format']
+        self.authors_path: str = ''
+        if 'authors' in parser_config.keys():
+            self.authors_path = parser_config['authors']
 
         if "ref_file" in parser_config.keys():
             if "resource_root_path" in parser_config["ref_file"].keys():
@@ -491,8 +494,9 @@ class HTMLParser(XMLParser):
         license: str = self._parse_license(html_tree)
         ref_files: List[ReferencedResources] = self._parse_resources(html_tree)
         title: str = self._parse_item_title(html_tree)
+        authors: str = self._parse_authors(html_tree)
 
-        return FetchResult(description=description, license=license, ref_files=ref_files, title=title)
+        return FetchResult(description=description, license=license, ref_files=ref_files, title=title, authors=authors)
 
     def identify(self, response: str) -> IdentifyResult:
         """
@@ -548,6 +552,9 @@ class HTMLParser(XMLParser):
     def _parse_reverse_pid(self, html_tree: ElementTree) -> str:
         return self._parse_field(html_tree, self.reverse_pid_path, join_by='\n')
 
+    def _parse_authors(self, html_tree: ElementTree) -> str:
+        return self._parse_field(html_tree, self.authors_path)
+
 
 class SignpostParser(Parser):
     def __init__(self, parser_config: dict):
@@ -567,7 +574,7 @@ class SignpostParser(Parser):
 
         self.reverse_pid_path = parse("$.links.doi")
 
-    def _parse_resources(self, response_json) -> FetchResult:
+    def _parse_resources(self, response_json) -> ReferencedResources:
         resources: list = []
         for resource in self.resource_path.find(response_json):
             referenced_resource: ReferencedResource = ReferencedResource(pid=resource.value, data_type="")
@@ -581,8 +588,6 @@ class SignpostParser(Parser):
         referenced_resources: ReferencedResources = self._parse_resources(response_json)
 
         authors = [author.value for author in self.authors_path.find(response_json)]
-
-        resources = [resource.value for resource in self.resource_path.find(response_json)]
         descriptions = [description.value for description in self.descriptions_path.find(response_json)]
         _license = [_lic.value for _lic in self._license_path.find(response_json)]
         item_title = [title.value for title in self.item_title_path.find(response_json)]
