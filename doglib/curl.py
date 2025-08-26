@@ -7,7 +7,7 @@ from typing import Any, Optional, Tuple, Union
 from .pid import PID
 
 
-CUSTOM_USER_AGENT = "CLARIN-DOGlib: https://www.clarin.eu/doglib"
+CUSTOM_USER_AGENT = "CLARIN-DOG: https://www.clarin.eu/dog"
 
 
 class CurlError(Exception):
