@@ -1,8 +1,8 @@
 {
   "repository": {
-    "id": "ZIM",
+    "id": "GAMS",
     "name": "GAMS - Asset Management System for the Humanities",
-    "host_name": "ZIM Centre for Information Modelling",
+    "host_name": "GAMS Humanities' Asset Management System",
     "host_netloc": "http://gams.uni-graz.at",
     "hdl": {"id": "11471", "format":  "$hdl?index=3"},
     "url": {"format":  "$url/sdef:CMDI/get"},
