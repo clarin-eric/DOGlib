@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.11] - TBD
+## [1.0.11] - 27.08.2025
 
 ### Added features
 - FetchResult dataclass expanded with "author" and "title" field, logic for JSON and XML TBD 
@@ -10,6 +10,7 @@
 - dependency bump: certifi -> 2025.8.3, lxml -> 6.0.1, pycurl -> 7.45.6
 - add `wheel` 0.45.1 to dependency tree as jsonpath-rw uses legacy setuptools
 - better try-catch for signposting
+- moved PubMed to static/repo_configs/WIP
 
 ### Bugfixes
 - dynamic versioning in UI
