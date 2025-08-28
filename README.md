@@ -68,11 +68,18 @@ By default, returns dictionary, if format=='jsons' returns a JSON string.
 ``` 
 
 returns:
-```JSON
-{
-  "item_title": "LINDAT / CLARIAH-CZ Data & Tools", 
-  "description": "Etalon is a manually annotated corpus of contemporary Czech. The corpus contains 1,885,589 words (2,265,722 tokens) and is annotated in the same way as SYN2020 of the Czech National Corpus. The corpus includes fiction (ca 24%), professional and scientific literature (ca 40%) and newspapers (ca 36%). \r\n\r\nThe corpus is provided in a vertical format, where sentence boundaries are marked with a blank line. Every word form is written on a separate line, followed by five tab-separated attributes: syntactic word, lemma, sublemma, tag and verbtag. The texts are shuffled in random chunks of 100 words at maximum (respecting sentence boundaries).", 
-  "reverse_pid": "https://hdl.handle.net/11234/1-3698@format=cmdi"}
+```Python
+FetchResult(
+    authors=[''], 
+    description='Etalon is a manually annotated corpus of contemporary Czech. The corpus contains 1,885,589 words (2,265,722 tokens) and is annotated in the same way as SYN2020 of the Czech National Corpus. The corpus includes fiction (ca 24%), professional and scientific literature (ca 40%) and newspapers (ca 36%). \r\n\r\nThe corpus is provided in a vertical format, where sentence boundaries are marked with a blank line. Every word form is written on a separate line, followed by five tab-separated attributes: syntactic word, lemma, sublemma, tag and verbtag. The texts are shuffled in random chunks of 100 words at maximum (respecting sentence boundaries).', 
+    license='http://creativecommons.org/licenses/by-nc-sa/4.0/', 
+    ref_files=[ReferencedResources(resource_type='Metadata', ref_resources=[]), 
+               ReferencedResources(resource_type='Resource', ref_resources=[ReferencedResource(pid='https://wiki.korpus.cz/doku.php/en:cnk:etalon', data_type='text/html'), 
+                                                                            ReferencedResource(pid='https://lindat.mff.cuni.cz/repository//bitstream/handle/11234/1-3698/Etalon.tgz?sequence=1', data_type='application/x-gzip')]), 
+               ReferencedResources(resource_type='SearchPage', ref_resources=[]), 
+               ReferencedResources(resource_type='LandingPage', ref_resources=[ReferencedResource(pid='https://hdl.handle.net/11234/1-3698', data_type='')]), 
+               ReferencedResources(resource_type='SearchService', ref_resources=[])], title='https://hdl.handle.net/11234/1-3698@format=cmdi')
+
 ```
 
 #### is_host_registered(pid: str) -> bool
