@@ -197,7 +197,10 @@ class DOG:
                         request_url = signpost_url
                         final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
                         parser = matching_repo.get_parser("signpost")
-                        return parser.identify(response)
+                        identify_response = parser.identify(response)
+                        if not identify_response:
+                            raise NoSignpostException("No signpost")
+                        return identify_response
                     else:
                         raise NoSignpostException("No signpost")
                 except:
