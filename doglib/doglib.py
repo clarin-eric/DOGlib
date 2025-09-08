@@ -69,6 +69,8 @@ class DOG:
                     print("Using signpost")
                     fetch_result: FetchResult = parser.fetch(response)
                     fetch_dict = _dataclass_to_dict(fetch_result)
+                    if not fetch_dict:
+                        raise NoSignpostException("No signpost")
                     return fetch_dict
                 else:
                     raise NoSignpostException("No signpost")
