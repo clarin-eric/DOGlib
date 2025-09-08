@@ -3,7 +3,7 @@
 	"id": "GOTRIPLE",
 	"name": "Go Triple",
 	"host_name": "Go Triple",
-	"host_netloc": "https://www.gotriple.eu/",
+	"host_netloc": "https://gotriple.eu/",
 	"api": {
   	"base": "https://api.gotriple.eu/documents/$record_id"
 	},

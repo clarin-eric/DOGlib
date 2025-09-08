@@ -66,7 +66,7 @@ class DOG:
                     request_url = signpost_url
                     final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
                     parser = matching_repo.get_parser("signpost")
-                    print("Using singpost")
+                    print("Using signpost")
                     fetch_result: FetchResult = parser.fetch(response)
                     fetch_dict = _dataclass_to_dict(fetch_result)
                     return fetch_dict
