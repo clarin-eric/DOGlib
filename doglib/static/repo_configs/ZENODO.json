@@ -12,13 +12,13 @@
     "parser": {
       "type": "json",
       "config": {
-        "license": "metadata/license/id",
-        "items_root": "files",
-        "description": "metadata/description",
-        "collection_title": "metadata/title",
-        "reverse_pid": "metadata/doi",
+        "license": "$.metadata.license.id",
+        "items_root": "",
+        "description": "$.metadata.description",
+        "collection_title": "$.metadata.title",
+        "reverse_pid": "$.metadata.doi",
         "ref_file": {
-          "path": "links/self"
+          "path": "$.files[*].links.self"
         }
       }
     },

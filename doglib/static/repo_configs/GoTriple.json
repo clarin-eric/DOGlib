@@ -7,17 +7,18 @@
 	"api": {
   	"base": "https://api.gotriple.eu/documents/$record_id"
 	},
-	"url": {"regex": "^.*/(?P<record_id>.+)$", "format": "$api"},
+	"url": {"regex": "^.*/(?P<record_id>.+)$", "format": "$api", "headers": {"Accept": "application/ld+json"}},
 	"parser": {
   	  "type": "json",
   	  "config": {
-    	    "license": "license",
-    	    "description": "abstract/text()",
-    	    "collection_title": "headline/text()",
-		    "items_root": ".//",
-    	    "reverse_pid": "doi",
+    	    "license": "$.license[*]",
+    	    "description": "$.abstract[*].text",
+    	    "collection_title": "$.headline[*].text",
+		    "items_root": "",
+    	    "reverse_pid": "$.identifier[*]",
+		  	"authors": "$.author[*].fullname",
     	    "ref_file": {
-      			"path": "url"
+      			"path": "$.url"
     	    }
   	  }
 	},

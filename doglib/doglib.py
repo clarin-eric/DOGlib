@@ -63,10 +63,11 @@ class DOG:
             try:
                 signpost_url = self._get_signpost_url(request_url)
                 if signpost_url:
-                    request_url = signpost_url
-                    final_url, response, response_headers = curl.get(request_url, follow_redirects=True)
+                    print("using signpost")
+                    _request_url = signpost_url
+                    final_url, response, response_headers = curl.get(_request_url, follow_redirects=True)
                     parser = matching_repo.get_parser("signpost")
-                    print("Using signpost")
+
                     fetch_result: FetchResult = parser.fetch(response)
                     fetch_dict = _dataclass_to_dict(fetch_result)
                     if not fetch_dict:
@@ -85,10 +86,11 @@ class DOG:
                     # return fetch_dict
 
             except: # TODO investigate possible erroneous scenarios, matched HEAD response <link> does not imply signpost
+                print("using configuration")
                 request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
-                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
+                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=False)
+
                 parser: Parser = matching_repo.get_parser()
-                print("Using configuration")
                 fetch_result: FetchResult = parser.fetch(response)
                 fetch_dict = _dataclass_to_dict(fetch_result)
                 return fetch_dict

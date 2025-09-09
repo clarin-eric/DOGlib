@@ -27,181 +27,101 @@ class JSONParser(Parser):
 
     See config schema in # TODO repository config schema validation
     """
-
     def __init__(self, parser_config: dict):
         """
 
         :param parser_config: dict, parser configuration retrieved from repository JSON config
         """
         super().__init__(parser_config)
-        self.dois_root: str = parser_config['items_root']
-        self.resource_path: str = parser_config['ref_file']['path']
-        self.description_path: str = parser_config['description']
-        self.license_path: str = parser_config['license']
-        if 'resource_format' in parser_config['ref_file'].keys():
-            self.resource_format = parser_config['ref_file']['resource_format']
+        self.description_path: str
+        self.license_path: str
+        self.resource_format: str
+        self.item_title_path: str
+        self.reverse_pid_path: str
+        self.authors_path: str
+
+        self.resource_path: str = parse(parser_config['ref_file']['path'])
+        if "description" in parser_config.keys():
+            self.description_path = parse(parser_config["description"])
+        else:
+            self.description_path = ""
+
+        if "license" in parser_config.keys():
+            self.license_path = parse(parser_config["license"])
+        else:
+            self.license_path = ""
+
+        if "resource_format" in parser_config['ref_file'].keys():
+            self.resource_format = parse(parser_config['ref_file']['resource_format'])
         else:
             self.resource_format = ""
-        self.item_title_path = parser_config["collection_title"]
-        self.reverse_pid_path = parser_config["reverse_pid"]
+
+        if "collection_title" in parser_config.keys():
+            self.item_title_path = parse(parser_config["collection_title"])
+        else:
+            self.item_title_path = ""
+
+        if "reverse_pid" in parser_config.keys():
+            self.reverse_pid_path = parse(parser_config["reverse_pid"])
+        else:
+            self.reverse_pid_path = ""
+
+        if "authors" in parser_config.keys():
+            self.authors_path = parse(parser_config["authors"])
+        else:
+            self.authors_path = ""
+
+    def _parse_resources(self, response_json) -> ReferencedResources:
+        resources: list = []
+        for resource in self.resource_path.find(response_json):
+            referenced_resource: ReferencedResource = ReferencedResource(pid=resource.value, data_type="")
+            resources.append(referenced_resource)
+
+        referenced_resources: ReferencedResources = ReferencedResources(ref_resources=resources, resource_type="")
+        return referenced_resources
 
     def fetch(self, response: str) -> FetchResult:
-        """
-        Fetch referenced resources
+        response_json = json.loads(response)
+        referenced_resources: ReferencedResources = self._parse_resources(response_json)
 
-        :param response: dict, json response from call to repository
-        :return: FetchResult result of response parsing
-        """
-        response: dict = json.loads(response)
-        ref_files_root: dict = self.traverse_path_in_dict(response, self.dois_root)
-        ref_files: list = self._parse_resources(ref_files_root)
-        descriptions: str = self._parse_description(response)
-        _license: str = self._parse_license(response)
-        item_title: str = self._parse_item_title(response)
-        authors: List[str] = self._parse_authors(response)
+        authors = []
+        if self.authors_path:
+            authors_found = self.authors_path.find(response_json)
+            if authors_found != -1:
+                authors = [author.value for author in authors_found]
 
-        return FetchResult(authors=authors,
-                           ref_files=[
-                               ReferencedResources(resource_type='NA',
-                                                   ref_resources=[
-                                                       ReferencedResource(pid=ref_file,
-                                                                          data_type='') for ref_file in ref_files])],
-                           description=descriptions,
-                           title=item_title,
-                           license=_license)
-
-    def _parse_authors(self, response: dict):
-        return [""]
-
-    def identify(self, response: str) -> IdentifyResult:
-        """
-        Retrieves title and description
-        """
-        response: dict = json.loads(response)
-
-        item_title: str = self._parse_item_title(response)
-        description: str = self._parse_description(response)
-        reverse_pid: str = self._parse_reverse_pid(response)
-
-        return IdentifyResult(description=description, title=item_title, reverse_pid=reverse_pid)
-
-    def _parse_item_title(self, response: dict) -> Union[str, List[str]]:
-        titles = self.fetchall_path_in_dict(response, self.item_title_path)
-        if not titles:
-            return ""
-        else:
-            return '\n'.join(titles)
-
-    def _parse_reverse_pid(self, response: dict) -> str:
-        reverse_pid = self.fetchall_path_in_dict(response, self.reverse_pid_path)
-        if not reverse_pid:
-            return ""
-        else:
-            return reverse_pid[0]
-
-    def _parse_resources(self, ref_files_root: dict) -> list:
-        """
-        Find all direct references/download links to referenced resources and if possible their filenames/labels
-        :param ref_files_root: dict, subdict of JSON response that is a root dict of referenced resources
-        :return: list, list of dictionaries [{"filename": str, "pid": str}]
-        """
-        ret = []
-        pids = self.fetchall_path_in_dict(ref_files_root, self.resource_path)
-        for _pid in pids:
-            try:
-                # curate PID if possible before sending it to str
-                pid: PID = pid_factory(_pid)
-                pid: str = str(pid)
-            except ValueError:
-                pid: AnyStr = _pid
-            # TODO add item title parsing for JSON parser
-            ret.append(pid)
-        return ret
-
-    def _parse_description(self, response: dict) -> str:
-        """
-        Find collection description if path provided
-        :param response: dict, JSON response from repository
-        :return: str, description text, if description spread into multiple tags (e.g. Trolling)
-        join all collection descriptions
-        """
+        descriptions = []
         if self.description_path:
-            return '\n'.join(self.fetchall_path_in_dict(response, self.description_path))
-        else:
-            return ''
+            descriptions_found = self.description_path.find(response_json)
+            if descriptions_found != -1:
+                descriptions = [description.value for description in descriptions_found]
 
-    def _parse_license(self, response: dict) -> str:
-        """
-        Find collection license if path provided
-        :param response: dict, JSON response from repository
-        :return: str, license
-        """
+        _license = ""
         if self.license_path:
-            licence_fields_found: List[str] = self.fetchall_path_in_dict(response, self.license_path)
-            if len(licence_fields_found) > 1:
-                return ", ".join(licence_fields_found)
-            elif licence_fields_found:
-                return licence_fields_found[0]
-        else:
-            return ""
+            licenses_found = self.license_path.find(response_json)
+            if licenses_found != -1:
+                _license = [_lic.value for _lic in licenses_found]
+                if len(_license) == 1:
+                    _license = _license[0]
 
-    def traverse_path_in_dict(self, _dict: dict, path: str) -> Union[dict, str, list]:
-        """
-        Utility method for dict navigation
+        item_title = ""
+        if self.item_title_path:
+            item_titles_found = self.item_title_path.find(response_json)
+            if item_titles_found != -1:
+                item_title = [title.value for title in item_titles_found]
+                if len(item_title) == 1:
+                    item_title = item_title[0]
 
-        :param _dict: dict to traverse
-        :param path: file system like path, e.g. A/B/C
-        :return: Union[dict, str, list], return first result of path traversal, e.g. for a dict below and
-                                            path "A/B" return {"C": "val"},
-                                            path "A/B/C" return 'val'
-            dict = {"A": {
-                        "B": {
-                            "C": "val"}}}
-        """
-        for key in path.split('/'):
-            _dict = _dict[key]
-        return _dict
+        return FetchResult(authors=authors, description=descriptions, license=_license,
+                           title=item_title, ref_files=[referenced_resources])
 
-    def fetchall_path_in_dict(self, root: dict, path: str) -> list:
-        """
-        Utility method for fetching all values with a given path in iterable
-        :param root: dict, dict to fetch from
-        :param path: str, file system like path,
-        :return: list, for a dict below and path "A/B/C" return ["val1", "val2"],
-            dict = {"A": {
-                        "B": [
-                            "0": {"C": "val1"},
-                            "1": {"C": "val2"}]}}
-        """
-        keys_to_follow = path.split('/')
-        return [elem for elem in self._fetchall_path_in_dict(root, keys_to_follow)]
+    def identify(self, response: str):
+        response_json = json.loads(response)
+        descriptions = self.descriptions_path.find(response)
+        item_title = self.item_title_path.find(response_json).value
+        reverse_pid = self.reverse_pid_path.find(response_json).value
 
-    def _fetchall_path_in_dict(self, root: dict, keys_to_follow: list) -> Generator[Any, Any, None]:
-        """
-        Utility generator for yielding all results in iterable
-        :param root: dict, dict with nested iterable to yield from
-        :param keys_to_follow: list, path split into queue of keys
-        :return: Generator, Generator object yielding all queued key found matches in dict
-        """
-        if hasattr(root, 'items'):
-            for k, v in root.items():
-                if k == keys_to_follow[0]:
-                    # Check if last key, in case of multiple occurrences of the same key
-                    if k == keys_to_follow[-1] and len(keys_to_follow) == 1:
-                        yield v
-                    else:
-                        keys_to_follow.pop(0)
-                        if isinstance(v, dict):
-                            for result in self._fetchall_path_in_dict(v, keys_to_follow[:]):
-                                yield result
-                        elif isinstance(v, list):
-                            for d in v:
-                                for result in self._fetchall_path_in_dict(d, keys_to_follow[:]):
-                                    yield result
-        elif isinstance(root, list):
-            for d in root:
-                for result in self._fetchall_path_in_dict(d, keys_to_follow[:]):
-                    yield result
+        return IdentifyResult(description=descriptions, title=item_title, reverse_pid=reverse_pid)
 
 
 class XMLParser(Parser):

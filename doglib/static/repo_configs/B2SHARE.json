@@ -23,13 +23,13 @@
     "parser": {
       "type": "json",
       "config": {
-        "reverse_pid": "metadata/DOI",
-        "items_root": "files",
-        "license": "metadata/license/license",
-        "description": "metadata/descriptions/description",
-        "collection_title": "metadata/titles/title",
+        "reverse_pid": "$.metadata.DOI",
+        "items_root": "",
+        "license": "$.metadata.license.license",
+        "description": "$.metadata.descriptions.description",
+        "collection_title": "$.metadata.titles.title",
         "ref_file": {
-          "path": "ePIC_PID"
+          "path": "$.files[*].ePIC_PID"
         }
       }
     },
