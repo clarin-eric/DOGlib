@@ -88,7 +88,7 @@ class DOG:
             except: # TODO investigate possible erroneous scenarios, matched HEAD response <link> does not imply signpost
                 print("using configuration")
                 request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
-                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=False)
+                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
 
                 parser: Parser = matching_repo.get_parser()
                 fetch_result: FetchResult = parser.fetch(response)
