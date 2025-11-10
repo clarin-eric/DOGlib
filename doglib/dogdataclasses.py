@@ -35,7 +35,6 @@ class FetchResult(dict):
     title: Union[str, List[str]]
 
 
-
 @dataclass
 class IdentifyResult(dict):
     """

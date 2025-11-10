@@ -19,9 +19,10 @@ class RequestError(CurlError):
     Raise when response != 200. Catch in Django to avoid hiding underlying error exposing to the user 500 internal server error
     """
 
-    def __init__(self, message: str, response_code: int):
-        super.__init__(message)
+    def __init__(self, message: str, response_code: int, target_url: str):
+        super().__init__(message)
         self.response_code = response_code
+        self.target_url = target_url
 
 
 def get(url: Union[str, PID],
@@ -69,7 +70,9 @@ def get(url: Union[str, PID],
 
     response_code = c.getinfo(c.RESPONSE_CODE)
     if response_code != 200:
-        raise RequestError(f"Response code from {url}: {response_code}") #TODO
+        raise RequestError(f"HTTP error code {response_code} when resolving: {url}",
+                           response_code=response_code,
+                           target_url=url)  # TODO
 
     decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
     decoded_response_body: str = response_body.getvalue().decode("utf-8")
@@ -115,11 +118,14 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
 
     response_code = c.getinfo(c.RESPONSE_CODE)
     if response_code != 200:
-        raise RequestError(f"HTTP error code when resolving resource: {response_code}", response_code=response_code)  # TODO
+        raise RequestError(f"HTTP error code {response_code} when resolving: {url}",
+                           response_code=response_code,
+                           target_url=url)  # TODO
     # decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
     # TODO safer cURL header response parsing
 
     return c.getinfo(c.EFFECTIVE_URL), header_processor.headers
+
 
 class HeaderProcessor:
     def __init__(self):

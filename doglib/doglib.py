@@ -46,7 +46,7 @@ class DOG:
 
         :param pid: class instance of PID protocol
         :type pid: PID
-        :return: return fetch result in a dict format:
+        :return: return fetch result in a dict format OR http error code:
             {
                 "ref_files": [{"filename": str, "pid": str}],
                 "description": str,
@@ -88,12 +88,15 @@ class DOG:
             except: # TODO investigate possible erroneous scenarios, matched HEAD response <link> does not imply signpost
                 print("using configuration")
                 request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
-                final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
+                try:
+                    final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
 
-                parser: Parser = matching_repo.get_parser()
-                fetch_result: FetchResult = parser.fetch(response)
-                fetch_dict = _dataclass_to_dict(fetch_result)
-                return fetch_dict
+                    parser: Parser = matching_repo.get_parser()
+                    fetch_result: FetchResult = parser.fetch(response)
+                    fetch_dict = _dataclass_to_dict(fetch_result)
+                    return fetch_dict
+                except curl.RequestError as err:
+                    return {"HTTP_upstream_response_code": err.response_code}
 
 
             # # try signposting
@@ -207,10 +210,13 @@ class DOG:
                         raise NoSignpostException("No signpost")
                 except:
                     request_headers: dict = matching_repo.get_headers(pid_factory(request_url))
-                    final_url, response, response_headers = curl.get(request_url, request_headers,
-                                                                     follow_redirects=True)
-                    parser: Parser = matching_repo.get_parser()
-                    return parser.identify(response)
+                    try:
+                        final_url, response, response_headers = curl.get(request_url, request_headers,
+                                                                         follow_redirects=True)
+                        parser: Parser = matching_repo.get_parser()
+                        return parser.identify(response)
+                    except curl.RequestError as err:
+                        return {"HTTP_upstream_response_code": err.response_code}
 
     def is_collection(self, pid_string: Union[str, PID]) -> bool:
         """
