@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.12] - TBD
+- pass HTTP response code upon raising RequestError to be catched in Django for better error exposure to the user (currently hidden under 500)
+
+
 ## [1.0.11] - TBD
 
 ### Added features
@@ -11,7 +15,6 @@
 - add `wheel` 0.45.1 to dependency tree as jsonpath-rw uses legacy setuptools
 - better try-catch for signposting
 - moved PubMed to static/repo_configs/WIP
-- 
 
 ### Bugfixes
 - dynamic versioning in UI

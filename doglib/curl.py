@@ -15,7 +15,13 @@ class CurlError(Exception):
 
 
 class RequestError(CurlError):
-    pass
+    """
+    Raise when response != 200. Catch in Django to avoid hiding underlying error exposing to the user 500 internal server error
+    """
+
+    def __init__(self, message: str, response_code: int):
+        super.__init__(message)
+        self.response_code = response_code
 
 
 def get(url: Union[str, PID],
@@ -109,7 +115,7 @@ def head(url: Union[str, PID], headers: dict = None, follow_redirects: bool = Fa
 
     response_code = c.getinfo(c.RESPONSE_CODE)
     if response_code != 200:
-        raise RequestError(f"Response code from {url}: {response_code}")  # TODO
+        raise RequestError(f"HTTP error code when resolving resource: {response_code}", response_code=response_code)  # TODO
     # decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
     # TODO safer cURL header response parsing
 
