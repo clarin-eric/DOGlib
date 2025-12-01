@@ -3,13 +3,13 @@ from typing import List, Union
 
 
 @dataclass
-class ReferencedResource:
+class ReferencedResource(dict):
     pid: str
     data_type: str
 
 
 @dataclass
-class ReferencedResources:
+class ReferencedResources(dict):
     """
     Referenced resources by resource type
     """

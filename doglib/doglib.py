@@ -1,12 +1,11 @@
 import csv
 import json
-import logging
+import lxml
 import os
 import re
-from typing import List, Union, Optional
+from typing import Any, List, Union, Optional
 
 from . import curl
-from .dtr import expand_datatype, DataTypeNotFoundException
 from .pid import pid_factory, PID, PID_TYPE_KEYS
 from .repos import FetchResult, HTMLParser, JSONParser, Parser, SignpostParser, XMLParser
 from .repos import RegRepo, warn_europeana
@@ -16,24 +15,38 @@ REPO_CONFIG_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 SCHEMA_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/schemas")
 STATIC_TEST_FILES_DIR: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/testing")
 
+
 class NoSignpostException(Exception):
     pass
 
-def _dataclass_to_dict(obj: object) -> dict:
-    if not isinstance(obj, dict):
-        obj_dict = obj.__dict__
+class NotDictable(Exception):
+    pass
+
+def _dataclass_to_dict(obj: object) -> Any:
+    primitives = {bool, str, int, float, type(None)}
+    obj_dict = dict()
+    if type(obj) in primitives:
+        return obj
+    elif isinstance(obj, lxml.etree._ElementUnicodeResult):
+        # LXML doesn't return smart string since 6.0.0.
+        # catch _ElementUnicodeResult and cast to string manually
+        print("UNICODE ELEMENT")
+        print(obj)
+        print(isinstance(obj, str))
+        tmp = obj.__str__()
+        print("STR CAST")
+        print(tmp)
+        print(type(tmp))
+        return tmp
     else:
-        obj_dict = obj
-
-    for k, v in obj_dict.items():
-        if isinstance(v, list):
-            obj_dict[k] = [_dataclass_to_dict(_v) for _v in v]
-        if isinstance(v, dict):
-            obj_dict[k] = _dataclass_to_dict(obj)
-        else:
-            obj_dict[k] = _dataclass_to_dict(v)
-    return obj_dict
-
+        if not type(obj) == dict:
+            obj_dict = obj.__dict__
+            for k, v in obj_dict.items():
+                if isinstance(v, list):
+                    obj_dict[k] = [_dataclass_to_dict(_v) for _v in v]
+                else:
+                    obj_dict[k] = _dataclass_to_dict(v)
+        return obj_dict
 
 class DOG:
     def __init__(self, secrets: Optional[dict] = None):
@@ -91,10 +104,14 @@ class DOG:
                 try:
                     final_url, response, response_headers = curl.get(request_url, request_headers, follow_redirects=True)
 
+                    print(final_url)
                     parser: Parser = matching_repo.get_parser()
                     fetch_result: FetchResult = parser.fetch(response)
+                    print(fetch_result)
                     fetch_dict = _dataclass_to_dict(fetch_result)
+                    print(fetch_dict)
                     return fetch_dict
+
                 except curl.RequestError as err:
                     return {"HTTP_upstream_response_code": err.response_code}
 
@@ -347,9 +364,7 @@ class DOG:
         return None
 
     def _get_signpost_url(self, request_url: str) -> str:
-        final_url, response_headers = curl.head(request_url)
-        print(type(response_headers))
-        print(response_headers)
+        final_url, response_headers = curl.head(request_url, follow_redirects=True)
         link = ""
         if "link" in response_headers.keys():
             link_regex = "<(?P<link>[^>]+)>"

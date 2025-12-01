@@ -1,12 +1,18 @@
 # Changelog
+## [1.0.13] - 1.12.2025
 
-## [1.0.12] - TBD
-- pass HTTP response code upon raising RequestError to be catched in Django for better error exposure to the user (currently hidden under 500)
+### Added features
 
+- propagate HTTP response code from the repository to the output
+
+### Bugfixes
+
+- fix bug caused by `lxml` ElementTree.text() no longer returning `str` 
 
 ## [1.0.11] - TBD
 
 ### Added features
+
 - FetchResult dataclass expanded with "author" and "title" field, logic for JSON and XML TBD 
 - pilot FAIR signposting support, SignposterParser as optional for repositories supporting signposting  
 - jsonpath-rw for json parsing. Replace JSONParser old logic for traversing dictionary with JSONPath

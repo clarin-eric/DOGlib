@@ -25,7 +25,7 @@
         "description": "//olac:description/text()",
         "license": "//ms:licence/text()",
         "ref_file": {
-          "path": ""
+          "path": "//cmd:ResourceProxy[cmd:ResourceType=Resource]/cmd:ResourceRef/text()"
         }
       }
     },
