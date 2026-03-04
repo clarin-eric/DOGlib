@@ -70,7 +70,7 @@ class DOG:
         """
         matching_repo: RegRepo = self._sniff(pid)
         if not matching_repo:
-            return {}
+            return _dataclass_to_dict(FetchResult(recognised=False))
         elif matching_repo:
             request_url: str = matching_repo.get_request_url(pid, self.secrets)
             try:
