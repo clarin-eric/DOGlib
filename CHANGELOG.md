@@ -1,4 +1,8 @@
 # Changelog
+## [1.0.13] - TBD
+- add `recognised: bool` to FetchResult for DOGapp
+- Python 3.11 -> 3.12 and minor dependency bumps
+
 ## [1.0.12] - 1.12.2025
 
 ### Added features
