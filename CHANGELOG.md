@@ -14,7 +14,7 @@
 - fix bug caused by `lxml` ElementTree.text() no longer returning `str` 
 
 ## [1.0.11] - TBD
-
+:
 ### Added features
 
 - FetchResult dataclass expanded with "author" and "title" field, logic for JSON and XML TBD 
