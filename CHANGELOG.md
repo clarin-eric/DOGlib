@@ -1,4 +1,7 @@
 # Changelog
+## [1.0.14] - TBD
+- dependency bump
+
 ## [1.0.13] - 24.03.2026
 - add `recognised: bool` to FetchResult for DOGapp
 - Python 3.11 -> 3.12 and minor dependency bumps
