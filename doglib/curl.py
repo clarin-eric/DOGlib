@@ -19,8 +19,8 @@ class RequestError(CurlError):
     Raise when response != 200. Catch in Django to avoid hiding underlying error exposing to the user 500 internal server error
     """
 
-    def __init__(self, message: str, response_code: int):
-        super.__init__(message)
+    def __init__(self, message: str, response_code: Optional[int] = None):
+        super().__init__(message)
         self.response_code = response_code
 
 
@@ -69,7 +69,7 @@ def get(url: Union[str, PID],
 
     response_code = c.getinfo(c.RESPONSE_CODE)
     if response_code != 200:
-        raise RequestError(f"Response code from {url}: {response_code}") #TODO
+        raise RequestError(f"Response code from {url}: {response_code}", response_code=response_code) #TODO
 
     decoded_response_headers: str = response_headers.getvalue().decode("iso-8859-1")
     decoded_response_body: str = response_body.getvalue().decode("utf-8")
