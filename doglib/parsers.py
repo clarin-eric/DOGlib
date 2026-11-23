@@ -117,9 +117,16 @@ class JSONParser(Parser):
 
     def identify(self, response: str):
         response_json = json.loads(response)
-        descriptions = self.descriptions_path.find(response)
-        item_title = self.item_title_path.find(response_json).value
-        reverse_pid = self.reverse_pid_path.find(response_json).value
+
+        def _values(path):
+            if not path:
+                return ""
+            values = [match.value for match in path.find(response_json)]
+            return values[0] if len(values) == 1 else values
+
+        descriptions = _values(self.description_path)
+        item_title = _values(self.item_title_path)
+        reverse_pid = _values(self.reverse_pid_path)
 
         return IdentifyResult(description=descriptions, title=item_title, reverse_pid=reverse_pid)
 
