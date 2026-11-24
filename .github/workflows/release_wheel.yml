@@ -22,7 +22,7 @@ defaults:
 jobs:
   prepare:
     name: "Prepare"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     outputs:
       version: ${{ steps.get_version.outputs.VERSION }}
       create_release: ${{ steps.check_release.outputs.CREATE_RELEASE }}
@@ -45,7 +45,7 @@ jobs:
           fi
   build_wheel:
     needs: [prepare]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
       - name: Build wheel
         run: |
           cd ..
-          docker run -v ./DOGlib:/src -v ./whl:/whl registry.gitlab.com/clarin-eric/docker-alpine-wheeler:0.0.2-a1
+          docker run -v ./DOGlib:/src -v ./whl:/whl registry.gitlab.com/clarin-eric/docker-alpine-wheeler:0.0.3
       - name: 'Tar wheeler output and changelog'
         run: tar -cvf workspace.tar ../whl/*.whl ./CHANGELOG.md
       - uses: actions/upload-artifact@v4
@@ -67,7 +67,7 @@ jobs:
     needs: [prepare, build_wheel]
     # Run job for github releases and tag pushes (without github release)
     if: github.event_name == 'release' || needs.prepare.outputs.create_release == 'true'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
     steps:
